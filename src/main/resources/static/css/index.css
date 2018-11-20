@@ -1,0 +1,72 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: 'Mali', cursive;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	background: url("../img/bg_tile.gif");
+	background-repeat: repeat;
+	/* background: linear-gradient(90deg, skyblue, transparent),
+		linear-gradient(-90deg, coral, transparent); */
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+	background-color: #111;
+	color: lightblue;
+}
+
+#carouselExampleControls {
+	
+}
+
+.carousel-item.active, .carousel-item-next, .carousel-item-prev {
+	display: block;
+	padding: 0px;
+	margin: 0px;
+}
+
+#firstBody {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#infoDiv {
+	text-align: justify;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px black;
+}
+
+a:link {
+	color: coral;
+}
+
+#divMainForm{
+	box-shadow: 0px 0px 15px black;
+	color:white;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+	width:600px;
+	margin: auto;
+	background:url("../img/tile_lightblue.jpg");
+	padding:25px
+}
