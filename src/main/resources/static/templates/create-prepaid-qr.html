@@ -1,0 +1,420 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="default :: header">
+	<title>Track Pet services Controller Page</title>
+</head>
+
+<body onload="advice(), initMap(), test1()">
+
+    <ul th:replace="default :: bar"></ul>
+    
+	<div id="divContent">
+		<div class="needs-validation" id="divMainForm">
+			<h2 style="text-align: center">Servicio de información de mascotas</h2>
+			<br>
+			<h5>Datos básicos</h5>
+            <hr>
+            
+            <p th:text="${prepaidQR.specialId}" style="color:fuchsia">asdasd</p>
+			<div class="row">
+				<!-- Two colums -->
+				<div class="col">
+					<div class="form-group">
+						<label for="raze">Raza</label>
+						<!-- Start selector raze -->
+						<!-- <select class="form-control" name="raze" id="raze">
+							<option value="Otra" selected>Otra</option>
+							<option value="Mestizo">Mestizo</option>
+							<option value="Alaskan Malamute">Alaskan Malamute</option>
+							<option value="American Staffordshire">American Staffordshire</option>
+							<option value="Basset Hound">Basset Hound</option>
+							<option value="Beagle">Beagle</option>
+							<option value="Bichón Maltés">Bichón Maltés</option>
+							<option value="Mobtail">Bobtail</option>
+							<option value="Boxer">Boxer</option
+							<option value="Branco Alemán">Branco Alemán</option>
+							<option value="Bulldog Francés">Bulldog Francés</option>
+							<option value="Bulldog Inglés">Bulldog Inglés</option>
+							<option value="Bullmastiff">Bullmastiff</option>
+							<option value="Cane Corso">Cane Corso</option>
+							<option value="Caniche">Caniche</option>
+							<option value="Carlino">Carlino</option>
+							<option value="Chihuahua">Chihuahua</option>
+							<option value="Chow Chow">Chow Chow</option>
+							<option value="Cocker Spaniel">Cocker Spaniel</option>
+							<option value="Collie">Collie</option>
+							<option value="Dálmata">Dálmata</option>
+							<option value="Dobermann">Dobermann</option>
+							<option value="Espagneul Breton">Espagneul Bretón</option>
+							<option value="Galgo Español">Galgo Español</option>
+							<option value="Golden Retriever">Golden Retriever</option>
+							<option value="Husky Siberiano">Husky Siberiano</option>
+							<option value="Labrador Retriever">Labrador Retriever</option>
+							<option value="Leonberguer">Leonberguer</option>
+							<option value="Mastín Español">Mastín Español</option>
+							<option value="Pastor Alemán">Pastor Alemán</option>
+							<option value="Pastor de Brie">Pastor de Brie</option>
+							<option value="Perro de Agua Español">Perro de Agua
+								Español</option>
+							<option value="San Bernardo">San Bernardo</option>
+							<option value="Scottish Terrier">Scottish Terrier</option>
+							<option value="Schnauzer Miniatura">Schnauzer Miniatura</option>
+							<option value="Setter Inglés">Setter Inglés</option>
+							<option value="Teckel">Teckel</option>
+							<option value="Terrier de Bedlington">Terrier de
+								Bedlington</option>
+							<option value="West Highland Terrier">West Highland
+								Terrier</option>
+							<option value="Yorkshire Terrier">Yorkshire Terrier</option> -->
+						<!-- </select> -->
+						<!-- End selector raze -->
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="name">Nombre</label>
+						<input type="text" id="petName" placeholder="Nombre de la mascota" class="form-control" required>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="age">Edad</label>
+						<div id="resultAge"></div>
+
+						<!-- Start select age -->
+						<select class="form-control" name="age" id="age" onchange="age()">
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2015">2015</option>
+							<option value="2014">2014</option>
+							<option value="2013">2013</option>
+							<option value="2012">2012</option>
+							<option value="2011">2011</option>
+							<option value="2010">2010</option>
+							<option value="2009">2009</option>
+							<option value="2008">2008</option>
+							<option value="2007">2007</option>
+							<option value="2006">2006</option>
+							<option value="2005">2005</option>
+							<option value="2004">2004</option>
+							<option value="2003">2003</option>
+							<option value="2002">2002</option>
+							<option value="2001">2001</option>
+							<option value="2000">2000</option>
+							<option value="1999">1999</option>
+							<option value="1998">1998</option>
+							<option value="1997">1997</option>
+							<option value="1996">1996</option>
+							<option value="1995">1995</option>
+						</select>
+						<!-- End select age -->
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<h5>Vacunaci�n</h5>
+			<hr>
+			<div class="form-group">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="checkVaccines" onchange="checkVaccines()" value=true>
+					<label class="form-check-label">Vacunas</label>
+				</div>
+			</div>
+			<!-- 
+			<div id="syringeBloodContainment" class="row" >
+				<div id="droppableBlood" class="containerDraggable col-2" ><p></p></div>
+				<div class="col-8" id="spaceBlood">Extracciones de sangre</div>
+				<div id="syringeBlood" class="draggableHC col-2"><img src="../img/syringe-blood.png"/><p></p></div>
+			</div> 
+
+  			<div id="syringeVaccineContainment" class="row" style="padding-top: 20px;">
+				<div id="droppableVaccine" class="containerDraggable col-2" ><p></p></div>
+				<div class="col-8" id="spaceVaccine">Vacunas</div>
+				<div id="syringeVaccine" class="draggableHC col-2"><img src="../img/syringe-vaccine.png"/><p></p></div>
+			 </div>
+			 
+  			<div id="syringeAnesthesyContainment" class="row" style="padding-top: 20px;">
+				<div id="droppableAnesthesy" class="containerDraggable col-2" ><p></p></div>
+				<div class="col-8" id="spaceAnesthesy">Anestesia</div>
+				<div id="syringeAnesthesy" class="draggableHC col-2"><img src="../img/syringe-anesthesy.png"/><p></p></div>
+			 </div>
+			 			 
+  			<div id="syringeRemedyContainment" class="row" style="padding-top: 20px;">
+				<div id="droppableRemedy" class="containerDraggable col-2" ><p></p></div>
+				<div class="col-8" id="spaceRemedy">Remedios como antibi�oticos y otros.</div>
+				<div id="syringeRemedy" class="draggableHC col-2"><img src="../img/syringe-remedy.png"/><p></p></div>
+			 </div>
+			 			 			 
+  			<div id="garrapataContainment" class="row" style="padding-top: 20px;">
+				<div id="droppableGarrapata" class="containerDraggable col-2" ><p></p></div>
+				<div class="col-8" id="spaceGarrapata">Pipetas, pastillas, inyecciones, etc contra pulgas y garrapatas.</div>
+				<div id="garrapataDraggable" class="draggableHC col-2"><img src="../img/garrapata.png"/><p></p></div>
+			 </div> -->
+
+			<br>
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="dateAntiRabicVaccine">Antirábica</label>
+						<input type="date" class="form-control" name="dateAntiRabicVaccine" id="dateAntiRabicVaccine" disabled>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="datePolivalentVaccine">Polivalente</label>
+						<input type="date" class="form-control" name="datePolivalentVaccine" id="datePolivalentVaccine" disabled>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="dateSextupleVaccine">Sextuple</label>
+						<input type="date" class="form-control" name="dateSextupleVaccine" id="dateSextupleVaccine" disabled>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="dateOctupleVaccine">Octuple</label>
+						<input type="date" class="form-control" name="dateOctupleVaccine" id="dateOctupleVaccine" disabled>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<h5>Salud</h5>
+			<hr>
+			<div class="row">
+				<div class="col-4">
+					<div class="form-group">
+						<label for="illness">Sufre efermedad</label>
+						<!-- Start select age -->
+						<select class="form-control" name="illness" id="illness">
+							<option value="Ninguna">Ninguna</option>
+							<option value="Gastritis">Gastritis</option>
+							<option value="Otitis">Otitis</option>
+							<option value="Moquillo">Moquillo</option>
+							<option value="Sarna">Sarna</option>
+							<option value="Parasitos">Parasitos</option>
+							<option value="Artrosis">Artrosis</option>
+							<option value="Parvovirus">Parvovirus</option>
+							<option value="Leishmaniosis">Leishmaniosis</option>
+							<option value="Coronavirus">Coronavirus</option>
+							<option value="Leptospirosis">Leptospirosis</option>
+							<option value="HepatitisVirica">HepatitisVirica</option>
+							<option value="Tumor">Tumor</option>
+							<option value="Mastitis">Mastitis</option>
+							<option value="Piometra">Piometra</option>
+							<option value="Alergias">Alergias</option>
+							<option value="TorsionGastrica">TorsionGastrica</option>
+							<option value="Otra">Otra</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="form-group">
+						<label for="medicated">Está medicado</label>
+						<!-- Start select Medicated -->
+						<select class="form-control" name="medicated" id="medicated">
+							<option value=true>Sí</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="form-group">
+						<label for="lastVeterinaryVisit">Ult. revisión</label>
+						<input type="date" class="form-control" name="lastVeterinaryVisit" id="lastVeterinaryVisit">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="clinicHistory">Historia Clínica</label>
+				<textarea name="clinicHistory" id="clinicHistory" placeholder="Historia Cl�nica" rows="9" class="form-control"></textarea>
+			</div>
+
+			<br>
+			<h5>Estado respecto a Pet-QR</h5>
+			<hr>
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="status">Estado</label>
+						<!-- Start select status -->
+						<select class="form-control" name="status" id="status">
+							<option value="true">Normal</option>
+							<option value="false">Perdido</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="subscription">Subscripción</label>
+						<!-- Start select subscription -->
+						<select class="form-control" name="subscription" id="subscription">
+							<option value=true>Sí</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<H5>Datos del Tutor</H5>
+			<hr>
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="ownerName">Nombre</label> <input type="text" name="name" id="ownerName" placeholder="Nombre del cuidador"
+						 class="form-control" required>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="ownerLastname">Apellido</label> <input type="text" name="lastname" id="ownerLastname" placeholder="Apellido del cuidador"
+						 class="form-control" required>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="ownerDni">D.N.I</label>
+						<input type="number" name="dni" id="ownerDni" placeholder="DNI del cuidador" class="form-control" required>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="phone1">Teléfono</label> <input type="number" name="phone1" id="phone1" placeholder="Teléfono primario"
+						 class="form-control" />
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="phone2">Teléfono</label> <input type="number" name="phone2" id="phone2" placeholder="Teléfono secundario"
+						 class="form-control" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="email">Email</label> <input type="text" name="email" id="email" placeholder="Email" class="form-control" />
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="facebook">Facebook</label> <input type="text" id="facebook" placeholder="Como aparec�s en Facebook o la direcci�n exacta."
+						 class="form-control" />
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="instagram">Instagram</label> <input type="text" id="instagram" placeholder="Como aparec�s en Instagram o la direcci�n exacta."
+						 class="form-control" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="street1">Dirección principal (Dirección altura, localidad, provincia)</label>
+				<input type="text" id="street1" placeholder="Av. Libertador 650, Buenos Aires, Argentina" class="form-control is-invalid" />
+				<small class="form-text invalid-feedback">Es necesario utilizar el "motor" automático de direcciones para extraer
+					la latitud y longitud requerida por la App, si no se utiliza, el mismo puede fallar y dar una dirección errónea en
+					el mapa al momento de la lectura de código.</small>
+			</div>
+
+			<!-- Map Start -->
+			<div>
+				<div id="map" class="container-fluid"></div>
+			</div>
+			<!-- Map End -->
+
+			<br>
+			<div class="form-group">
+				<button id="send" class="btn btn-danger" onclick="createQrCode()">Almacenar datos y crear Código QR</button>
+			</div>
+
+			<div id="qrResult" style="text-align: center;">
+				<br>
+				<!-- Ajax call response from endpoint with qrCodeImages -->
+				<div id="downloadButtonDiv"></div>
+				<br>
+			</div>
+			<img alt="" src="src/img/pet1.jpg" class="img-fluid w-100, rounded">
+
+		</div>
+	</div>
+
+	<!--Template footer-->
+	<div th:replace="default :: footer"></div>
+
+	<script>
+		function createQrCode() {
+			var ajax = new XMLHttpRequest();
+			var petName = document.getElementById("petName").value;
+			var age = document.getElementById("age").value;
+			var raze = document.getElementById("raze").value;
+			var clinicHistory = document.getElementById("clinicHistory").value;
+			var illness = document.getElementById("illness").value;
+			var medicated = document.getElementById("medicated").value;
+			var status = document.getElementById("status").value;
+			var subscription = document.getElementById("subscription").value;
+			var lastVeterinaryVisit = document.getElementById("lastVeterinaryVisit").value;
+			var dateAntiRabicVaccine = document.getElementById("dateAntiRabicVaccine").value;
+			var datePolivalentVaccine = document.getElementById("datePolivalentVaccine").value;
+			var dateSextupleVaccine = document.getElementById("dateSextupleVaccine").value;
+			var dateOctupleVaccine = document.getElementById("dateOctupleVaccine").value;
+
+			ajax.open("POST", "/qr/crea<te", true);
+			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+			ajax.send("petName=" + petName + "&age=" + age + "&raze=" + raze + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&status=" + status + "&subscription=" + subscription + "&lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine);
+
+			ajax.onreadystatechange = function () {
+
+				if (ajax.readyState == 4 && ajax.status == 200) {
+
+					var data = ajax.responseText;
+
+					console.log(data);
+				}
+			}
+		}
+
+
+
+	</script>
+
+	<!-- Start Google Maps Javascript -->
+</body>
+
+
+
+<script type="text/javascript" src="js/googleApis.js"></script>
+
+<!-- Javascript maps libraries -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFuQb3h_4AhG3Kmdf3NIz3aZfzsguDQOE&libraries=places&callback=initMap"
+ async defer></script>
+<!-- Javascript maps libraries -->
+
+</html>

@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="default :: header"></head>
+
+<body>
+    <ul th:replace="default :: bar"></ul>
+    <br>
+    <div id="wellcomeContent">
+        <h2>Bienvenido</h2>
+        <h3 style="color:fuchsia;" th:text="'Hola ' + ${user.name}+'!'"></h3>
+        <p>Tengas un Perro o un Gato, u otro animal, acá en nuestra
+            comunidad creemos en los avances beneficiosos para los animales, tanto para su seguridad para poder
+            encontrarlos en el caso que se pierdan, en la gestión de datos de los mismos en las veterinarias con sus
+            datos en la Cloud o en la gestión de turnos para Spa de perros.</p>
+       
+        <br>
+
+        <p>Ingresa en el siguiente link para loguearte</p>
+        <button class="btn btn-warning" onclick="window.location.href='login'">Login</button>
+    </div>
+
+    <div th:replace="default :: footer"></div>
+</body>
+
+</html>

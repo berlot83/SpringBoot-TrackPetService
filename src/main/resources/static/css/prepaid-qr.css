@@ -1,0 +1,18 @@
+
+
+#prepaidMainDiv{
+    width:600px;
+    color:white;
+    margin: 0 auto;
+    background-image: url('../img/tile_darklightblue.jpg');
+    border-radius: 10px;
+    text-shadow: 0px 0px 3px black;
+    box-shadow: 0px 0px 15px black;
+    padding: 30px;
+    text-align: center;
+}
+
+input{
+    border-radius: 5px;
+    
+}

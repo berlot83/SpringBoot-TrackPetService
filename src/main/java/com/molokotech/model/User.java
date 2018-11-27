@@ -15,6 +15,7 @@ public class User {
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
     private String email;
     private String password;
+    private String[] authorities;
     private String name;
     private String lastname;
     private String address;
@@ -24,6 +25,10 @@ public class User {
     private String instagram;
     private String sessionToken;
     private String lostDogToken;
+    
+    public User() {
+    	
+    }
     
     public User(String email, String password, String name, String lastname, String address, String dni,
     		List<String> telephone, String facebook, String instagram, String sessionToken, String lostDogToken) {
@@ -135,6 +140,14 @@ public class User {
 
 	public void setLostDogToken(String lostDogToken) {
 		this.lostDogToken = lostDogToken;
+	}
+
+	public String[] getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(String[] authorities) {
+		this.authorities = authorities;
 	}
 
 }

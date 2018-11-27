@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <!--Jquery draggable and sort-->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+    <!--jquery draggable end-->
+    <link href="https://fonts.googleapis.com/css?family=Mali:500" rel="stylesheet">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Default</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../css/maps.css">
+    <link rel="stylesheet" type="text/css" href="../css/controllers.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/pricing.css">
+    <link rel="stylesheet" type="text/css" href="../css/about.css">
+    <link rel="stylesheet" type="text/css" href="../css/sign-up.css">
+    <link rel="stylesheet" type="text/css" href="../css/success.css">
+    <link rel="stylesheet" type="text/css" href="../css/prepaid-qr.css">
+    
+    <script type="text/javascript" src="../js/ajaxCalls.js"></script>
+    <script type="text/javascript" src="../js/various.js"></script>
+    <script type="text/javascript" src="../js/controllers.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link charset="utf-8" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+   
+        <title>Cloud-Pet-Service</title>
+</head>
+
+<body>
+
+    <!-- Star menu bar -->
+    <ul th:fragment="bar">
+
+        <div>
+            <li><a href="/index"><i class="fas fa-home"></i> Inicio</a></li>
+        </div>
+        <div>
+            <li><a href="#" onclick="contact()"><i class="far fa-envelope"></i> Contacto</a></li>
+        </div>
+        <div>
+            <li><a href="/about"><i class="far fa-question-circle"></i> Sobre Nosotros</a></li>
+        </div>
+        <div>
+            <li><a href="/molokoAccess"><i class="fas fa-toolbox"></i> MolokoAccess</a></li>
+        </div>
+        <div class="dropdown">
+            <li><a href="#"><i class="fas fa-qrcode"></i> Pet-QR</a>
+                <div class="dropdown-content">
+                    <a href="/prepaid-qr"><i class="fas fa-power-off"></i> <i class="fas fa-long-arrow-alt-right"></i> <i class="fas fa-qrcode"></i>  Activar QR prepago</a>
+                    <a href="/create-qr"><i class="fas fa-file-upload"></i> <i class="fas fa-long-arrow-alt-right"></i> <i class="fas fa-qrcode"></i>  Crear QR para descarga</a>
+                </div>
+            </li>
+        </div>
+        <div class="dropdown">
+            <li><a href="/pricing"><i class="fas fa-paw"></i> Productos</a>
+                <div class="dropdown-content">
+                    <a href="/product-pet-qr"></i> <i class="fas fa-qrcode"></i> Pet-QR</a>
+                    <a href="/product-vet-cloud"><i class="fas fa-cloud"></i> Vet-Cloud</a>
+                </div>
+            </li>
+        </div>
+        <div class="dropdown">
+            <li><a href="#" class="droplink"><i class="fas fa-cloud"></i> Vet-Cloud</a>
+                <div class="dropdown-content">
+                    <a href="/create-pet-cloud"><i class="fas fa-cloud-upload-alt"></i> Cargar datos</a>
+                    <a href="/read-pet-cloud"><i class="fas fa-cloud-download-alt"></i> Consultar datos</a>
+                    <a href="/update-pet-cloud"><i class="fas fa-upload"></i> Modificar datos</a>
+                    <a href="/delete-pet-cloud"><i class="fas fa-trash-alt"></i> Eliminar datos</a>
+                </div>
+            </li>
+        </div>
+        <!-- Logout Bundle divs, do not change the order  -->
+        <div id="logoutButtons" class="logout">
+            <li class="nav-item" th:if="${currentUser == 'Invitado'}">
+                <a class="nav-link" th:href="@{/login}">Log in</a>
+            </li>
+            <form action="/logout" method="POST">
+                <button type="submit" th:if="${currentUser != 'Invitado'}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>
+                    Salir</button>
+            </form>
+        </div>
+        
+        <div id="sign-in" class="logout">
+            <li class="nav-item" style="color:red;" th:if="${currentUser == 'Invitado'}">
+                <a class="nav-link" href="/sign-up">Registrarse</a>
+            </li>
+        </div>
+
+        <div id="printName" class="logout">
+            <li class="nav-item" th:if="${currentUser}">
+                <a class="nav-link" th:text=${fullName}></a>
+            </li>
+        </div>
+
+        <!-- End logout divs -->
+    </ul>
+    <!-- End menu bar -->
+
+    <div th:fragment="footer" id="footer" style="display:inline-block;">
+        <div style="float:left;">
+            <div id="subtitle_footer">
+                <strong style="color:white;">Powered by</strong>
+            </div>
+            <img alt="Molokotech" id="logo" src="/img/molokoalternativo.png" class="img-fluid" onclick="redirectTo()">
+        </div>
+        <div style="padding-top: 43px; padding-left:20px;"> | <strong style="color: #ff8000">Cloud-Pet</strong>® y <Strong style="color: #ff8000">Pet-QR</Strong>® son
+            marcas Registradas de <strong style="color:#ff8000">Molokotech Solutions</strong>.</div>
+    </div>
+    <!-- /.container -->
+</body>
+
+</html>

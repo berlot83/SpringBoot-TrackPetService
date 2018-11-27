@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="default :: header">
+
+    <title>Sobre nosotros</title>
+</head>
+<ul th:replace="default :: bar"></ul>
+
+<body>
+
+    <div id="mainContainerAbout">
+        <h2 style="margin-left: 5px;">Nosotros:</h2>
+        <div id="introDiv" >
+        Pet-CLoud y Vet-CLoud son productos creados por Molokotech, brindando soluciones tecnológicas a problemáticas relacionadas con las mascotas, a su vez nos especializamos
+        en la creación de códigos QR con los lenguajes de programación más sólidos del mercado
+        </div>
+        
+        <h2 style="margin: 5px;">Nuestro sistema:</h2>
+        <div class="row" style="margin: 10px;">
+            <div class="col-4">
+                <img src="../img/qrCloud.png" style="box-shadow: 0px 0px 10px black;"/>
+            </div>
+            <div class="col-8">
+                Nuestro sistema está creado para que en un QR pequeño pueda entrar una cantidad casi ilimitada de información, porqué? porque los datos están en la Cloud (nube), haciendo que sea absolutamente indiferente la cantidad de datos que se carguen al mismo. Ya sean datos básicos como nombre del dueño, teléfono y otros datos básicos como también historias clínicas de varias hojas, es absolutamente indiferente. Los datos que contienen nuestros códigos QR pueden ser modificados dinámicamente en el tiempo y lugar que sea nunca modificando elcódigo ya creado, esós son unos de los tantos beneficios de usar las clouds. 
+            </div>
+        </div>
+
+        <h3 style="margin: 5px;">Otros sistemas:</h3>
+        <div class="row" style="margin: 10px;">
+            <div class="col-4">
+                <img src="../img/exampleBigQrCode.png" style="box-shadow: 0px 0px 10px black;"/>
+            </div>
+            <div class="col-8">
+                Lo que nos diferencia de otros servicios web que crean códigos QR incluso gratuitos, es que el límite para insercción de datos es limitado a la cantidad de bits que pueda almacenar el código, haciendo que el código solo pueda almacenar datos básicos o en poca cantidad. Porqué?, porque si uno quiere cargar toda una historia clínica o mucha información dentro de un QR el mismo empieza a ser más tupido con respecto a los bits o puntos negros que lo caracterizan, obligando a que el mismo crezca en tamaño para que sea legible por los lectores actuales e inclusive así sería muy difícil de ser leído, y limitando la portabilidad del mismo. Otra cosa a tener en cuenta con estos códigos es que una vez creados no pueden ser modificados sus datos, a menos que se cree de nuevo.  
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+    <br><br>
+
+    <div th:replace="default :: footer"></div>
+</body>
+</html>

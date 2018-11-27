@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "pets")
 public class Pet {
@@ -17,7 +18,9 @@ public class Pet {
 	private boolean medicated;
 	private boolean status;
 	private boolean subscription;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate lastVeterinaryVisit;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateLost;
 	private Period periodLost;
 	private String dateAntiRabicVaccine;

@@ -18,6 +18,7 @@ public class QR {
 	private User user;
 	private Pet pet;
 	private Veterinary veterinary;
+	private boolean prePaid;
 	
 	public QR() {
 		
@@ -77,6 +78,14 @@ public class QR {
 
 	public void setVeterinary(Veterinary veterinary) {
 		this.veterinary = veterinary;
+	}
+
+	public boolean isPrePaid() {
+		return prePaid;
+	}
+
+	public void setPrePaid(boolean prePaid) {
+		this.prePaid = prePaid;
 	}
 	
 }

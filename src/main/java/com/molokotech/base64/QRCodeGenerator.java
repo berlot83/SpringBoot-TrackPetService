@@ -46,7 +46,9 @@ public class QRCodeGenerator{
 	public static void main(String[] args) throws WriterException, IOException {
 	/* For console test porpuse only */
 		
-		byte[] qr = QRCodeGenerator.generateQRCodeImageToByte("https://pets2018.herokuapp.com/controllers.jsp", 300, 300);
+		String lorem="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+		
+		byte[] qr = QRCodeGenerator.generateQRCodeImageToByte(lorem+lorem+lorem+lorem+lorem, 500, 500);
 		String str64 = Base64.getEncoder().encodeToString(qr);
 		System.out.println(str64);
 	}

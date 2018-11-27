@@ -1,0 +1,16 @@
+#signUpFormMainDiv{
+    color: white;
+    text-shadow: 0px 0px 5px black;
+    width:800px;
+    box-shadow: 0px 0px 15px black;
+    margin: 0 auto;
+    padding: 25px;
+    height: 100%;
+    background-image: url('../img/tile_darkcoral.jpg');
+}
+
+#termsAndConditionInput{
+    height: 18px;
+    width: 18px;
+    padding:5px;
+}

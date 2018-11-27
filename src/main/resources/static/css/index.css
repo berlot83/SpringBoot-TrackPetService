@@ -1,6 +1,44 @@
-@charset "ISO-8859-1";
+/* @charset "ISO-8859-1"; */
+html{
+	    position: relative;
+		min-height: 100%;
+		width: 100%;
+}
+
+#footer{
+	height: 70px;
+	background-color: black;
+	position: fixed;
+	left: 0;
+	width: 100%;
+	color: white;
+	text-align: left;
+	vertical-align: middle;
+    bottom: 0;
+}
+
+.logout{
+	margin-top: 5px;
+	float: right;
+	margin-right: 10px;
+	color:white;
+}
+
+#logo{
+	margin-left: 10px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+#subtitle_footer{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
 
 body {
+	height: 100%;
+	margin: 0;
 	font-family: 'Mali', cursive;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 	background: url("../img/bg_tile.gif");
@@ -10,11 +48,12 @@ body {
 }
 
 ul {
+	width: 100%;
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	overflow: hidden;
-	background-color: #333;
+	background-color: black; /* #333 best color */ 
 }
 
 li {
@@ -36,7 +75,7 @@ li a:hover {
 }
 
 #carouselExampleControls {
-	
+text-shadow: 0px 0px 4px #000000;
 }
 
 .carousel-item.active, .carousel-item-next, .carousel-item-prev {
@@ -46,15 +85,21 @@ li a:hover {
 }
 
 #firstBody {
+	padding: 10px;
 	padding-left: 50px;
 	padding-right: 50px;
 }
 
 #infoDiv {
+	color:white;
+	padding: 10px;
+	background-image: url('../img/tile_darkblue.jpg');
+	background-repeat: repeat;
 	text-align: justify;
-	background: white;
+	margin-top: 10px;
 	border-radius: 10px;
 	box-shadow: 0px 0px 10px black;
+	text-shadow: 0px 0px 5px black;
 }
 
 a:link {
@@ -67,6 +112,54 @@ a:link {
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 	width:600px;
 	margin: auto;
-	background:url("../img/tile_lightblue.jpg");
+	background:url("../img/tile_darkblue.jpg");
 	padding:25px
 }
+
+.imageCarousel{
+	padding-top:5px;
+	border-radius: 15px;
+}
+
+#divFormMolokoAccess{
+	background-image: url('../img/tile_coral.jpg') ;
+	margin: 25px;
+	width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 15px black;
+}
+
+.droplink {
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+	color:white;
+    display: none;
+    position: fixed;
+    background-color: black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #333;}
+
+.dropdown:hover .dropdown-content {display: inline-block; color: white;}
+
+.dropdown:hover .droplink {	background-color: #333; color: lightblue;}

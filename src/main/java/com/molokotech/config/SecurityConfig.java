@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import com.molokotech.service.CustomUserDetailsService;
 
@@ -46,10 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		/* Filtra quien ingresa y dónde, falta aplicar roles */
 		 http.authorizeRequests().antMatchers("/resources/**").permitAll();
-		 http.authorizeRequests().antMatchers("/testtwo", "/qr/create", "/controllers.html", "/molokoAccess.html").authenticated().and().formLogin().permitAll();
+		 http.authorizeRequests().antMatchers("/qr/create-qr", "/create-qr", "/molokoAccess", "/prepaid-qr", "/create-prepaid-qr").authenticated().and().formLogin().loginPage("/login").permitAll();
+		 http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutUrl("/logout");
 		 http.csrf().disable();
-		//http.authorizeRequests().antMatchers("/controllers.html").hasAnyRole("USER", "ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login.html").permitAll().and().logout().permitAll();
-		
 	}
 
 }

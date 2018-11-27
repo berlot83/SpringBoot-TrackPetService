@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="default :: header"></head>
+
+<body onload="findPrepaidQR()">
+    <ul th:replace="default :: bar"></ul>
+    <br>
+    <br>
+    <div id="prepaidMainDiv">
+        <h2>Activar QR</h2>
+
+        <br>
+
+        <h5>Ingrese código de activación</h5>
+
+        <form action="#" th:action="@{/prepaid-qr}" th:object="${prepaidQR}" method="POST">
+            <input type="text" th:field="*{specialId}" required />
+
+            <br>
+
+            <small style="color:pink">Código alfanumérico único de 8 caractéres impreso en la cinta.</small>
+
+            <br>
+            <br>
+
+            <button class="btn btn-danger" type="submit">Activar QR</button>
+        </form>
+    </div>
+    <div th:replace="default :: footer"></div>
+</body>(
+
+
+<script>
+    function findPrepaidQR() {
+        alert("hello world")
+        var xhr = new XMLHttpRequest();
+        var url = "/find-prepaid-qr";
+
+        var inputSpecialId = document.getElementById("inputSpecialId").value;
+        xhr.send("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.onreadystatechange == 4 && xhr.readyState == 200) {
+                alert(xhr.responseText);
+            }
+        }
+    }
+</script>
+
+</html>
