@@ -12,17 +12,18 @@
 		<div class="needs-validation" id="divMainForm">
 			<h2 style="text-align: center">Servicio de información de mascotas</h2>
 			<br>
+			<p>El código de activación es:</p>
+            <h4><span th:text="${prepaidQR.id}" class="badge badge-lg badge-danger" style="color:white; text-align:center;">asdasd</span></h4>
+			<br>
 			<h5>Datos básicos</h5>
-            <hr>
-            
-            <p th:text="${prepaidQR.specialId}" style="color:fuchsia">asdasd</p>
+			<hr>
 			<div class="row">
 				<!-- Two colums -->
 				<div class="col">
 					<div class="form-group">
 						<label for="raze">Raza</label>
 						<!-- Start selector raze -->
-						<!-- <select class="form-control" name="raze" id="raze">
+						<select class="form-control" name="raze" id="raze">
 							<option value="Otra" selected>Otra</option>
 							<option value="Mestizo">Mestizo</option>
 							<option value="Alaskan Malamute">Alaskan Malamute</option>
@@ -31,7 +32,7 @@
 							<option value="Beagle">Beagle</option>
 							<option value="Bichón Maltés">Bichón Maltés</option>
 							<option value="Mobtail">Bobtail</option>
-							<option value="Boxer">Boxer</option
+							<option value="Boxer">Boxer</option>
 							<option value="Branco Alemán">Branco Alemán</option>
 							<option value="Bulldog Francés">Bulldog Francés</option>
 							<option value="Bulldog Inglés">Bulldog Inglés</option>
@@ -65,8 +66,8 @@
 								Bedlington</option>
 							<option value="West Highland Terrier">West Highland
 								Terrier</option>
-							<option value="Yorkshire Terrier">Yorkshire Terrier</option> -->
-						<!-- </select> -->
+							<option value="Yorkshire Terrier">Yorkshire Terrier</option>
+						</select>
 						<!-- End selector raze -->
 					</div>
 				</div>
@@ -116,7 +117,7 @@
 			</div>
 
 			<br>
-			<h5>Vacunaci�n</h5>
+			<h5>Vacunación</h5>
 			<hr>
 			<div class="form-group">
 				<div class="form-check">
@@ -124,36 +125,6 @@
 					<label class="form-check-label">Vacunas</label>
 				</div>
 			</div>
-			<!-- 
-			<div id="syringeBloodContainment" class="row" >
-				<div id="droppableBlood" class="containerDraggable col-2" ><p></p></div>
-				<div class="col-8" id="spaceBlood">Extracciones de sangre</div>
-				<div id="syringeBlood" class="draggableHC col-2"><img src="../img/syringe-blood.png"/><p></p></div>
-			</div> 
-
-  			<div id="syringeVaccineContainment" class="row" style="padding-top: 20px;">
-				<div id="droppableVaccine" class="containerDraggable col-2" ><p></p></div>
-				<div class="col-8" id="spaceVaccine">Vacunas</div>
-				<div id="syringeVaccine" class="draggableHC col-2"><img src="../img/syringe-vaccine.png"/><p></p></div>
-			 </div>
-			 
-  			<div id="syringeAnesthesyContainment" class="row" style="padding-top: 20px;">
-				<div id="droppableAnesthesy" class="containerDraggable col-2" ><p></p></div>
-				<div class="col-8" id="spaceAnesthesy">Anestesia</div>
-				<div id="syringeAnesthesy" class="draggableHC col-2"><img src="../img/syringe-anesthesy.png"/><p></p></div>
-			 </div>
-			 			 
-  			<div id="syringeRemedyContainment" class="row" style="padding-top: 20px;">
-				<div id="droppableRemedy" class="containerDraggable col-2" ><p></p></div>
-				<div class="col-8" id="spaceRemedy">Remedios como antibi�oticos y otros.</div>
-				<div id="syringeRemedy" class="draggableHC col-2"><img src="../img/syringe-remedy.png"/><p></p></div>
-			 </div>
-			 			 			 
-  			<div id="garrapataContainment" class="row" style="padding-top: 20px;">
-				<div id="droppableGarrapata" class="containerDraggable col-2" ><p></p></div>
-				<div class="col-8" id="spaceGarrapata">Pipetas, pastillas, inyecciones, etc contra pulgas y garrapatas.</div>
-				<div id="garrapataDraggable" class="draggableHC col-2"><img src="../img/garrapata.png"/><p></p></div>
-			 </div> -->
 
 			<br>
 			<div class="row">
@@ -240,7 +211,7 @@
 
 			<div class="form-group">
 				<label for="clinicHistory">Historia Clínica</label>
-				<textarea name="clinicHistory" id="clinicHistory" placeholder="Historia Cl�nica" rows="9" class="form-control"></textarea>
+				<textarea name="clinicHistory" id="clinicHistory" placeholder="Historia Clínica" rows="9" class="form-control"></textarea>
 			</div>
 
 			<br>
@@ -322,14 +293,14 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="facebook">Facebook</label> <input type="text" id="facebook" placeholder="Como aparec�s en Facebook o la direcci�n exacta."
+						<label for="facebook">Facebook</label> <input type="text" id="facebook" placeholder="Como aparecés en Facebook o la direcci�n exacta."
 						 class="form-control" />
 					</div>
 				</div>
 
 				<div class="col">
 					<div class="form-group">
-						<label for="instagram">Instagram</label> <input type="text" id="instagram" placeholder="Como aparec�s en Instagram o la direcci�n exacta."
+						<label for="instagram">Instagram</label> <input type="text" id="instagram" placeholder="Como aparecés en Instagram o la direcci�n exacta."
 						 class="form-control" />
 					</div>
 				</div>
@@ -338,7 +309,7 @@
 			<div class="form-group">
 				<label for="street1">Dirección principal (Dirección altura, localidad, provincia)</label>
 				<input type="text" id="street1" placeholder="Av. Libertador 650, Buenos Aires, Argentina" class="form-control is-invalid" />
-				<small class="form-text invalid-feedback">Es necesario utilizar el "motor" automático de direcciones para extraer
+				<small class="form-text" style="color:pink; text-align:justify;">Es necesario utilizar el "motor" automático de direcciones para extraer
 					la latitud y longitud requerida por la App, si no se utiliza, el mismo puede fallar y dar una dirección errónea en
 					el mapa al momento de la lectura de código.</small>
 			</div>

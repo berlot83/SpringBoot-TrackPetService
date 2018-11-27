@@ -8,6 +8,8 @@ import java.util.List;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +22,11 @@ import com.google.gson.Gson;
 import com.google.zxing.WriterException;
 import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.Pet;
+import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.QR;
 import com.molokotech.model.User;
 import com.molokotech.model.Veterinary;
+import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.QrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.TokenCreator;
@@ -33,9 +37,10 @@ public class RestControllers {
 
 	@Autowired
 	QrService qrService;
-	
 	@Autowired
 	UserService userService;
+	@Autowired
+	PrepaidQrService prepaidQrService;
 	
 	/* Controller for text exampleon web page */
 //	@RequestMapping(value = "/qr/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -102,6 +107,54 @@ public class RestControllers {
 		 * pets2018.herokuapp.com/controllers.html
 		 */
 		return strBase64;
+	}
+	/* End prepaid QR controllers */
+	
+	/* Manually create dinamyc QR codes with specialId and Id with strBase64 included */
+	@GetMapping("/create-pp-to-db")
+	public String insertPrepaidQrToDB(final PrepaidQR prepaidqr) throws WriterException, IOException {
+		
+					/* Create PrepaidQR to insert into mongoDB Start */
+					/* Create an object QR */
+					/* String token */
+					String specialId = "PP".concat(TokenCreator.createSpecialId());
+					/* Set the special Id for each one */
+					prepaidqr.setSpecialId(specialId);
+					
+					/* Create QR only with special ID */
+					byte[] imageData = null;
+					try {
+						imageData = QRCodeGenerator.generateQRCodeImageToByte(prepaidqr.getSpecialId(), 300, 300);
+					} catch (WriterException | IOException e) {
+						e.printStackTrace();
+					}
+					String strBase64 = QRCodeGenerator.toBase64(imageData);
+					prepaidqr.setStrBase64(strBase64);
+					System.out.println(strBase64);
+					
+					System.out.println(prepaidqr.getId());
+					System.out.println(prepaidqr.getSpecialId());
+					
+					PrepaidQR objectToUpload = prepaidQrService.createPrepaidQR(prepaidqr);
+					
+					String result = null;
+					
+					if(objectToUpload != null) {
+						result = "Look's like everything goes well. SpecialId:  " + objectToUpload.getSpecialId() + " | Id:  " + objectToUpload.getId();
+					}else {
+						result = "Something is wrong, the object is NULL";
+					}
+					/* creamos el objeto y sbimos el mismo a la DB */
+	return result;
+	}
+	/* End */
+	
+	/* Find an object in mongoDB and if it exist take a strBase64 and shows on html Ajax call */
+	@PostMapping("/findPrepaidQrBySpecialId")
+	public @ResponseBody String findPrepaidQr(@ModelAttribute PrepaidQR prepaidQR) {
+		PrepaidQR qr = prepaidQrService.findById(prepaidQR.getId().toHexString());
+		String base64 = qr.getStrBase64();
+		return base64;
 	}
 	
 	

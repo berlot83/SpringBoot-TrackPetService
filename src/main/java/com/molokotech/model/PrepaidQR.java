@@ -1,5 +1,7 @@
 package com.molokotech.model;
 
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -9,28 +11,28 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PrepaidQR {
 	
 	@Id
-	private String id;
+	private ObjectId id;
 	@Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
 	private String strBase64;
 	@Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
 	private String specialId;
-	private User user;
 	
+	@Autowired
 	public PrepaidQR() {
 	
 	}
 	
-	public PrepaidQR(String id, String strBase64, String specialId, User user) {
+	@Autowired
+	public PrepaidQR(ObjectId id, String strBase64, String specialId) {
 		this.id = id;
 		this.strBase64 = strBase64;
 		this.specialId = specialId;
-		this.user = user;
 	}
 	
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 	public String getStrBase64() {
@@ -44,12 +46,6 @@ public class PrepaidQR {
 	}
 	public void setSpecialId(String specialId) {
 		this.specialId = specialId;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }

@@ -4,13 +4,18 @@ import java.io.IOException;
 import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.zxing.WriterException;
 import com.molokotech.base64.QRCodeGenerator;
@@ -23,6 +28,7 @@ import com.molokotech.service.UserService;
 import com.molokotech.utilities.PrintName;
 import com.molokotech.utilities.TokenCreator;
 
+@Component
 @Controller
 public class QrController {
 
@@ -149,50 +155,19 @@ public class QrController {
 		model.addAttribute("prepaidQR", new PrepaidQR());
 		return "prepaid-qr";
 	}
-
+	
 	@PostMapping("/prepaid-qr")
 	public String prepaidQrSubmit(@ModelAttribute PrepaidQR prepaidQR, Model modelName) {
 		PrintName.printUser(modelName);
+		String tempSpecialId = prepaidQrService.findById(prepaidQR.getId().toHexString()).getId().toHexString();
 		String result = null;
-		String tempSpecialId = prepaidQrService.findBySpecialId(prepaidQR.getSpecialId()).getSpecialId();
-		if (prepaidQR.getSpecialId() != null && prepaidQR.getSpecialId().equals(tempSpecialId)) {
+		if (prepaidQR.getId().toHexString() != null && prepaidQR.getId().toHexString().equals(tempSpecialId)) {
 			result = "create-prepaid-qr";
 		} else {
 			result = "error";
 		}
 		return result;
 	}
+	/* End prepaidControllers */
 
-	/* End prepaid QR controllers */
-	public void insertPrepaidQrToDB(PrepaidQR prepaidqr) throws WriterException, IOException {
-		/* Create PrepaidQR to insert into mongoDB Start */
-		/* Create an object QR */
-
-		/* String token */
-		String specialId = "PP".concat(TokenCreator.createSpecialId());
-		/* Set the special Id for each one */
-		prepaidqr.setSpecialId(specialId);
-
-		/* Create QR only with special ID */
-		byte[] imageData = QRCodeGenerator.generateQRCodeImageToByte(prepaidqr.getSpecialId(), 300, 300);
-		String strBase64 = QRCodeGenerator.toBase64(imageData);
-		prepaidqr.setStrBase64(strBase64);
-		System.out.println(strBase64);
-
-		prepaidqr.setId("hola");
-		prepaidqr.setUser(new User());
-		System.out.println(prepaidqr.getId());
-		System.out.println(prepaidqr.getSpecialId());
-
-		/* creamos el objeto y sbimos el mismo a la DB */
-		
-		
-		prepaidQrService.create(prepaidqr);
-	}
-	/* End */
-
-	public static void main(String[] args) throws WriterException, IOException {
-		QrController cont = new QrController();
-		cont.insertPrepaidQrToDB(new PrepaidQR());
-	}
 }
