@@ -1,11 +1,5 @@
 package com.molokotech.controllers;
-
-import java.io.IOException;
-import java.time.Instant;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,25 +9,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.google.zxing.WriterException;
-import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
 import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
-import com.molokotech.service.QrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.PrintName;
-import com.molokotech.utilities.TokenCreator;
 
 @Component
 @Controller
 public class QrController {
 
-	@Autowired
-	QrService qrService;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -138,6 +124,13 @@ public class QrController {
 		PrintName.printUser(model);
 		return "sign-up";
 	}
+	
+	@GetMapping("/vet-cloud")
+	public String vetCloud(Model model) {
+		model.addAttribute("user", new User());
+		PrintName.printUser(model);
+		return "vet-cloud";
+	}
 
 	@PostMapping("/sign-up")
 	public String greetingSubmit(@ModelAttribute User user) {
@@ -148,7 +141,7 @@ public class QrController {
 	}
 	/* End Sign-up */
 
-	/* Prepaid QR Controllers */
+	/* Prepaid QR Controllers to enter or not to the form */
 	@GetMapping("/prepaid-qr")
 	public String prepaidQrForm(Model model, Model modelName) {
 		PrintName.printUser(modelName);
@@ -169,5 +162,17 @@ public class QrController {
 		return result;
 	}
 	/* End prepaidControllers */
+	
+	
+	/* get id details */
+	@GetMapping(value = "/id/{id}")
+	public String readQr(@PathVariable String id, PrepaidQR prepaidQR, Model model, Model modelName) {
+	prepaidQR = prepaidQrService.findById(id);
+	System.out.println(prepaidQR.getOwner().getOwnerName());
+	model.addAttribute("prepaidQR", prepaidQR);
+		modelName.addAttribute("user", new User());
+		PrintName.printUser(modelName);
+		return "id";
+	}
 
 }

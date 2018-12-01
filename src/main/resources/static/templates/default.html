@@ -13,15 +13,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../css/id.css" />
     <link rel="stylesheet" type="text/css" href="../css/maps.css">
     <link rel="stylesheet" type="text/css" href="../css/controllers.css">
+    <link rel="stylesheet" type="text/css" href="../css/vet-cloud.css">
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <link rel="stylesheet" type="text/css" href="css/pricing.css">
     <link rel="stylesheet" type="text/css" href="../css/about.css">
     <link rel="stylesheet" type="text/css" href="../css/sign-up.css">
     <link rel="stylesheet" type="text/css" href="../css/success.css">
     <link rel="stylesheet" type="text/css" href="../css/prepaid-qr.css">
-    
     <script type="text/javascript" src="../js/ajaxCalls.js"></script>
     <script type="text/javascript" src="../js/various.js"></script>
     <script type="text/javascript" src="../js/controllers.js"></script>
@@ -74,17 +75,17 @@
         <div class="dropdown">
             <li><a href="#" class="droplink"><i class="fas fa-cloud"></i> Vet-Cloud</a>
                 <div class="dropdown-content">
-                    <a href="/create-pet-cloud"><i class="fas fa-cloud-upload-alt"></i> Cargar datos</a>
-                    <a href="/read-pet-cloud"><i class="fas fa-cloud-download-alt"></i> Consultar datos</a>
-                    <a href="/update-pet-cloud"><i class="fas fa-upload"></i> Modificar datos</a>
-                    <a href="/delete-pet-cloud"><i class="fas fa-trash-alt"></i> Eliminar datos</a>
+                    <a href="/vet-cloud"><i class="fas fa-cloud-upload-alt"></i> Cargar datos</a>
+                    <a href="/vet-cloud"><i class="fas fa-cloud-download-alt"></i> Consultar datos</a>
+                    <a href="/vet-cloud"><i class="fas fa-upload"></i> Modificar datos</a>
+                    <a href="/vet-cloud"><i class="fas fa-trash-alt"></i> Eliminar datos</a>
                 </div>
             </li>
         </div>
         <!-- Logout Bundle divs, do not change the order  -->
         <div id="logoutButtons" class="logout">
             <li class="nav-item" th:if="${currentUser == 'Invitado'}">
-                <a class="nav-link" th:href="@{/login}">Log in</a>
+                <a class="nav-link" th:href="@{/login}"><i class="fas fa-user" style="color:white" ></i> Log in</a>
             </li>
             <form action="/logout" method="POST">
                 <button type="submit" th:if="${currentUser != 'Invitado'}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>
@@ -100,7 +101,7 @@
 
         <div id="printName" class="logout">
             <li class="nav-item" th:if="${currentUser}">
-                <a class="nav-link" th:text=${fullName}></a>
+                <a class="nav-link" style=" font-weight: bolder; background-color: gray; border-radius: 5px;" th:text= "${fullName}"></a>
             </li>
         </div>
 

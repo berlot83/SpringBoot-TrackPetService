@@ -2,7 +2,7 @@
 
 <head th:replace="default :: header"></head>
 
-<body onload="findPrepaidQR()">
+<body>
     <ul th:replace="default :: bar"></ul>
     <br>
     <br>
@@ -14,28 +14,31 @@
         <h5> Ingrese código de activación</h5>
 
         <form action="#" th:action="@{/prepaid-qr}" th:object="${prepaidQR}" method="POST">
-            <input type="text" th:field="*{id}" id="id" onkeyup="findPrepaidQR()" required />
+            <input type="text" th:field="*{id}" id="id" onkeyup="findPrepaidQrStrBase64(), findPrepaidQrSellPoint()"
+                required />
 
             <br>
             <label><i class="fas fa-paw"></i></label>
             <small style="color:pink">Código alfanumérico único de 20 caractéres impreso en la cinta.</small>
             <label><i class="fas fa-paw"></i></label>
             <br>
+            <div id="resultDivSellPoint"></div>
             <br>
             <div id="resultImage"></div>
             <br>
             <button class="btn btn-danger" type="submit">Activar QR</button>
         </form>
         <br>
+        <br>
     </div>
     <div th:replace="default :: footer"></div>
-</body>(
+</body>
 
 
 <script>
-    function findPrepaidQR() {
+    function findPrepaidQrStrBase64() {
         var xhr = new XMLHttpRequest();
-        var url = "/findPrepaidQrBySpecialId";
+        var url = "/findPrepaidQrByIdStrBase64";
         var id = document.getElementById("id").value;
 
         xhr.open("POST", url, true);
@@ -53,15 +56,36 @@
                 var shadowStyle = document.createAttribute("style");
                 shadowStyle.value = "box-shadow: 0px 0px 45px black; border-radius: 10px";
                 createImage.setAttributeNode(shadowStyle);
-                
+
                 divResult.appendChild(createImage);
 
-                document.onkeydown = function(){
+                document.onkeydown = function () {
                     divResult.removeChild(createImage);
                     divResult.removeChild(createImage);
                 }
             }
         }
+    }
+
+    function findPrepaidQrSellPoint() {
+        var xhr = new XMLHttpRequest();
+        var url = "/findPrepaidQrByIdSellPoint";
+        var id = document.getElementById("id").value;
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("id=" + id);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                var resultDivSellPoint = document.getElementById("resultDivSellPoint");
+
+                resultDivSellPoint.innerHTML = "<h5>Punto de venta</h5><h1><span class='badge badge-lg badge-danger'><i class='fas fa-medkit'></i>  "+xhr.responseText+"  <i class='fas fa-heartbeat'></i></span></h1>";
+            }
+
+        }
+
     }
 </script>
 

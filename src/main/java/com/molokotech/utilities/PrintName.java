@@ -15,7 +15,6 @@ public class PrintName {
 				}
 				modelName.addAttribute("currentUser", name);
 				modelName.addAttribute("fullName", name);
-				System.out.println(name);
 				
 			} else {
 				System.out.println("Nulo");

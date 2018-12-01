@@ -1,0 +1,60 @@
+<html>
+
+<head th:replace="default :: header"></head>
+
+<body>
+    <ul th:replace="default :: bar"></ul>
+
+    <div id="idMainContent">
+        <h4><span class="badge badge-lg badge-danger" th:text="'ID:  ' + ${prepaidQR.id}"></span></h4>
+        <h4><span class="badge badge-lg badge-danger" th:text="'ID especial: ' + ${prepaidQR.specialId}"></span></h4>
+        <br>
+        <h5>Datos básicos</h5>
+        <hr>
+        <!-- <p th:text="'Sexo:' + ${prepaidQR.pet.sex}"></p> -->
+        <p th:text="'Nacimimento: ' + ${prepaidQR.pet.age}"></p>
+        <p th:text="'Usuario asignado: ' + ${prepaidQR.userName}"></p>
+        <p th:text="'Dueño/tutor: ' + ${prepaidQR.owner.ownerName}"></p>
+        <br>
+        <h5>Estado de salud</h5>
+        <hr>
+        <p th:text="'Historia Clínica: ' + ${prepaidQR.pet.clinicHistory}"></p>
+        <p th:text="'Enferemedades: ' + ${prepaidQR.pet.illness}"></p>
+        <p th:text="'Medicado: ' + ${prepaidQR.pet.medicated}"></p>
+        <p th:text="'Últ.visita veterinaria: ' + ${prepaidQR.pet.lastVeterinaryVisit}"></p>
+        <!-- <p th:text="${prepaidQR.pet.dateAntiRabicVaccine"></p> -->
+        <p th:text="'Vacuna Polivalente: ' + ${prepaidQR.pet.datePolivalentVaccine}"></p>
+        <p th:text="'Vacuna Sextuple: ' + ${prepaidQR.pet.dateSextupleVaccine}"></p>
+        <p th:text="'Vacuna Octuple: ' + ${prepaidQR.pet.dateOctupleVaccine}"></p>
+        <p th:text="'Castrado: ' + ${prepaidQR.pet.neuteredPet}"></p>
+        <p th:text="'Preñiado: ' + ${prepaidQR.pet.pregnant}"></p>
+        <br>
+        <h5>Alimentación</h5>
+        <hr>
+        <p th:text="'Marca de Comida bal: ' + ${prepaidQR.pet.foodBrand}"></p>
+        <p th:text="'Cantidad comida Balanceada: ' + ${prepaidQR.pet.quantityFood}"></p>
+        <p th:text="'Comida húmeda: ' + ${prepaidQR.pet.coockedFood}"></p>
+        <br>
+        <h5>Estado</h5>
+        <hr>
+        <p th:text="'Estado: ' + ${prepaidQR.pet.status}"></p>
+        <br>
+        <h5>Datos de contacto</h5>
+        <p th:text="'Tutor: ' + ${prepaidQR.owner.ownerName} + ' ' + ${prepaidQR.owner.ownerLastname}"></p>
+        <p th:text="'Dni: ' + ${prepaidQR.owner.dni}"></p>
+        <p th:text="'Teléfono: ' + ${prepaidQR.owner.telephone1}"></p>
+        <p th:text="'Teléfono: ' + ${prepaidQR.owner.telephone2}"></p>
+        <p th:text="'Email: ' + ${prepaidQR.owner.email}"></p>
+        <p th:text="'Dirección' + ${prepaidQR.owner.address}"></p>
+        <p th:text="'Facebook: ' + ${prepaidQR.owner.facebook}"></p>
+        <p th:text="'Instagram: ' + ${prepaidQR.owner.instagram}"></p>
+        
+        <br><br>
+
+    </div>
+
+
+    <div th:replace="default :: footer"></div>
+</body>
+
+</html>

@@ -4,16 +4,27 @@
 	<title>Track Pet services Controller Page</title>
 </head>
 
-<body onload="advice(), initMap(), test1()">
+<body onload="advice(), initMap()">
 
-    <ul th:replace="default :: bar"></ul>
-    
+	<ul th:replace="default :: bar"></ul>
+
 	<div id="divContent">
 		<div class="needs-validation" id="divMainForm">
 			<h2 style="text-align: center">Servicio de información de mascotas</h2>
 			<br>
+
+			<!-- Needed to identify the id to update to -->
 			<p>El código de activación es:</p>
-            <h4><span th:text="${prepaidQR.id}" class="badge badge-lg badge-danger" style="color:white; text-align:center;">asdasd</span></h4>
+			<h4><span id="idPrepaidQrCode" th:text="${prepaidQR.id}" class="badge badge-lg badge-danger"></h4>
+
+			<!-- Needed to update the name of the username -->
+			<p>Asignado a usuario:</p>
+			<h4><span id="user" th:text="${currentUser}" class="badge badge-lg badge-danger" style="color:white; text-align:center;"></span></h4>
+
+			<!-- CouldExist or not, should be added manually by the admin -->
+			<p>Punto de venta</p>
+			<h4><span th:text="${prepaidQR.sellPoint}" class="badge badge-lg badge-danger" style="color:white; text-align:center;"></span></h4>
+			<br>
 			<br>
 			<h5>Datos básicos</h5>
 			<hr>
@@ -74,11 +85,14 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="name">Nombre</label>
+						<label for="petname">Nombre mascota</label>
 						<input type="text" id="petName" placeholder="Nombre de la mascota" class="form-control" required>
 					</div>
 				</div>
 
+			</div>
+
+			<div class="row">
 				<div class="col">
 					<div class="form-group">
 						<label for="age">Edad</label>
@@ -114,14 +128,33 @@
 						<!-- End select age -->
 					</div>
 				</div>
-			</div>
 
+				<div class="col">
+					<div class="form-group">
+						<label for="sex">Sexo</label>
+						<select id="sex" onchange="pregnant()" class="form-control">
+							<option value="Macho">Macho</option>
+							<option value="Hembra">Hembra</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="weight">Peso</label>
+						<input type="number" id="weight" maxlength="2" min="1" placeholder="5" class="form-control"/>
+					</div>
+				</div>
+
+			</div>
+			<br>
 			<br>
 			<h5>Vacunación</h5>
 			<hr>
 			<div class="form-group">
 				<div class="form-check">
-					<input type="checkbox" class="form-check-input" id="checkVaccines" onchange="checkVaccines()" value=true>
+					<input type="checkbox" style="width: 18px; height: 18px;" class="form-check-input" id="checkVaccines" onchange="checkVaccines()"
+					 value=true>
 					<label class="form-check-label">Vacunas</label>
 				</div>
 			</div>
@@ -158,7 +191,7 @@
 					</div>
 				</div>
 			</div>
-
+			<br>
 			<br>
 			<h5>Salud</h5>
 			<hr>
@@ -209,11 +242,59 @@
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="col form-group">
+					<label for="neuteredPet">Castrado</label>
+					<select id="neuteredPet" class="form-control">
+						<option value=false>No</option>
+						<option value=true>Sí</option>
+					</select>
+				</div>
+
+				<div class="col form-group">
+					<label for="pregnant">Embarazo</label>
+					<select id="pregnant" class="form-control" disabled>
+						<option value=false>No</option>
+						<option value=true>Sí</option>
+					</select>
+				</div>	
+			</div>
+
 			<div class="form-group">
 				<label for="clinicHistory">Historia Clínica</label>
 				<textarea name="clinicHistory" id="clinicHistory" placeholder="Historia Clínica" rows="9" class="form-control"></textarea>
 			</div>
+			<br>
+			<br>
+			<h5>Alimentación</h5>
+			<hr>
+			<br>
+			<div id="feeding" class="row">
+				<div class="col-4">
+					<div class="form-group">
+						<label for="foodBrand">Marca Comida Bal.:</label>
+						<input type="text" id="foodBrand" class="form-control" placeholder="Royal cannin, Proplan, etc">
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="form-group">
+						<label for="quantityFood">Cantidad Grs.:</label>
+						<input type="number" min="1" id="quantityFood" class="form-control" placeholder="1000 gramos (1 kg al día)">
+					</div>
+				</div>
 
+				<div class="col-4">
+					<div class="form-group">
+						<label for="coockedFood">Comida humeda:</label>
+						<select id="coockedFood" class="form-control">
+							<option value="Nunca">Nunca</option>
+							<option value="A veces">A veces</option>
+							<option value="Todos los días">Todos los días</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<br>
 			<br>
 			<h5>Estado respecto a Pet-QR</h5>
 			<hr>
@@ -228,19 +309,8 @@
 						</select>
 					</div>
 				</div>
-
-				<div class="col">
-					<div class="form-group">
-						<label for="subscription">Subscripción</label>
-						<!-- Start select subscription -->
-						<select class="form-control" name="subscription" id="subscription">
-							<option value=true>Sí</option>
-							<option value=false>No</option>
-						</select>
-					</div>
-				</div>
 			</div>
-
+			<br>
 			<br>
 			<H5>Datos del Tutor</H5>
 			<hr>
@@ -261,8 +331,8 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="ownerDni">D.N.I</label>
-						<input type="number" name="dni" id="ownerDni" placeholder="DNI del cuidador" class="form-control" required>
+						<label for="dni">D.N.I</label>
+						<input type="number" name="dni" id="dni" placeholder="DNI del cuidador" class="form-control" required>
 					</div>
 				</div>
 			</div>
@@ -271,14 +341,14 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="phone1">Teléfono</label> <input type="number" name="phone1" id="phone1" placeholder="Teléfono primario"
+						<label for="telephone1">Teléfono</label> <input type="number" name="telephone1" id="telephone1" placeholder="Teléfono primario"
 						 class="form-control" />
 					</div>
 				</div>
 
 				<div class="col">
 					<div class="form-group">
-						<label for="phone2">Teléfono</label> <input type="number" name="phone2" id="phone2" placeholder="Teléfono secundario"
+						<label for="telephone2">Teléfono</label> <input type="number" name="telephone2" id="telephone2" placeholder="Teléfono secundario"
 						 class="form-control" />
 					</div>
 				</div>
@@ -307,9 +377,10 @@
 			</div>
 
 			<div class="form-group">
-				<label for="street1">Dirección principal (Dirección altura, localidad, provincia)</label>
-				<input type="text" id="street1" placeholder="Av. Libertador 650, Buenos Aires, Argentina" class="form-control is-invalid" />
-				<small class="form-text" style="color:pink; text-align:justify;">Es necesario utilizar el "motor" automático de direcciones para extraer
+				<label for="address">Dirección principal (Dirección altura, localidad, provincia)</label>
+				<input type="text" name="address" id="address" placeholder="Av. Libertador 650, Buenos Aires, Argentina" class="form-control is-invalid" />
+				<small class="form-text" style="color:pink; text-align:justify;">Es necesario utilizar el "motor" automático de
+					direcciones para extraer
 					la latitud y longitud requerida por la App, si no se utiliza, el mismo puede fallar y dar una dirección errónea en
 					el mapa al momento de la lectura de código.</small>
 			</div>
@@ -322,58 +393,65 @@
 
 			<br>
 			<div class="form-group">
-				<button id="send" class="btn btn-danger" onclick="createQrCode()">Almacenar datos y crear Código QR</button>
+				<button id="send" class="btn btn-danger" onclick="updateQr()">Almacenar datos y crear Código QR</button>
 			</div>
-
-			<div id="qrResult" style="text-align: center;">
-				<br>
-				<!-- Ajax call response from endpoint with qrCodeImages -->
-				<div id="downloadButtonDiv"></div>
-				<br>
-			</div>
-			<img alt="" src="src/img/pet1.jpg" class="img-fluid w-100, rounded">
-
+			<br>
+			<br>
+			<br>
 		</div>
 	</div>
 
 	<!--Template footer-->
 	<div th:replace="default :: footer"></div>
 
+
 	<script>
-		function createQrCode() {
-			var ajax = new XMLHttpRequest();
+		function updateQr() {
+			var idPrepaidQrCode = document.getElementById("idPrepaidQrCode").textContent;
 			var petName = document.getElementById("petName").value;
-			var age = document.getElementById("age").value;
+			var ownerName = document.getElementById("ownerName").value;
+			var ownerLastname = document.getElementById("ownerLastname").value;
 			var raze = document.getElementById("raze").value;
-			var clinicHistory = document.getElementById("clinicHistory").value;
-			var illness = document.getElementById("illness").value;
-			var medicated = document.getElementById("medicated").value;
-			var status = document.getElementById("status").value;
-			var subscription = document.getElementById("subscription").value;
+			var foodBrand = document.getElementById("foodBrand").value;
+			var quantityFood = document.getElementById("quantityFood").value;
+			var neuteredPet = document.getElementById("neuteredPet").value;
+			var user = document.getElementById("user").textContent;
+			var age = document.getElementById("age").value;
 			var lastVeterinaryVisit = document.getElementById("lastVeterinaryVisit").value;
 			var dateAntiRabicVaccine = document.getElementById("dateAntiRabicVaccine").value;
 			var datePolivalentVaccine = document.getElementById("datePolivalentVaccine").value;
 			var dateSextupleVaccine = document.getElementById("dateSextupleVaccine").value;
 			var dateOctupleVaccine = document.getElementById("dateOctupleVaccine").value;
+			var status = document.getElementById("status").value;
+			var clinicHistory = document.getElementById("clinicHistory").value;
+			var illness = document.getElementById("illness").value;
+			var medicated = document.getElementById("medicated").value;
+			var coockedFood = document.getElementById("coockedFood").value;
+			var sex = document.getElementById("sex").value;
+			var pregnant = document.getElementById("pregnant").value;
+			var weight = document.getElementById("weight").value;
+			var dni = document.getElementById("dni").value;
+			var address = document.getElementById("address").value;
+			var telephone1 = document.getElementById("telephone1").value;
+			var telephone2 = document.getElementById("telephone2").value;
+			var facebook = document.getElementById("facebook").value;
+			var instagram = document.getElementById("instagram").value;
+			var email = document.getElementById("email").value;
 
-			ajax.open("POST", "/qr/crea<te", true);
-			ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			var xhr = new XMLHttpRequest();
+			var url = "/update-qr";
 
-			ajax.send("petName=" + petName + "&age=" + age + "&raze=" + raze + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&status=" + status + "&subscription=" + subscription + "&lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine);
-
-			ajax.onreadystatechange = function () {
-
-				if (ajax.readyState == 4 && ajax.status == 200) {
-
-					var data = ajax.responseText;
-
-					console.log(data);
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&ownerName=" + ownerName + "&ownerLastname=" + ownerLastname + "&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&dni=" + dni + "&telephone1=" + telephone1 + "&telephone2=" + telephone2 + "&email=" + email + "&address=" + address + "&facebook=" + facebook + "&instagram=" + instagram);
+			console.log(idPrepaidQrCode);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					alert(xhr.responseText);
 				}
 			}
+
 		}
-
-
-
 	</script>
 
 	<!-- Start Google Maps Javascript -->

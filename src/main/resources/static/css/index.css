@@ -135,6 +135,10 @@ a:link {
 
 }
 
+hr{
+	border: 1px solid red;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
