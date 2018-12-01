@@ -1,4 +1,5 @@
 package com.molokotech.controllers;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -124,7 +125,7 @@ public class QrController {
 		PrintName.printUser(model);
 		return "sign-up";
 	}
-	
+
 	@GetMapping("/vet-cloud")
 	public String vetCloud(Model model) {
 		model.addAttribute("user", new User());
@@ -148,7 +149,7 @@ public class QrController {
 		model.addAttribute("prepaidQR", new PrepaidQR());
 		return "prepaid-qr";
 	}
-	
+
 	@PostMapping("/prepaid-qr")
 	public String prepaidQrSubmit(@ModelAttribute PrepaidQR prepaidQR, Model modelName) {
 		PrintName.printUser(modelName);
@@ -162,17 +163,22 @@ public class QrController {
 		return result;
 	}
 	/* End prepaidControllers */
-	
-	
+
 	/* get id details */
 	@GetMapping(value = "/id/{id}")
 	public String readQr(@PathVariable String id, PrepaidQR prepaidQR, Model model, Model modelName) {
-	prepaidQR = prepaidQrService.findById(id);
-	System.out.println(prepaidQR.getOwner().getOwnerName());
-	model.addAttribute("prepaidQR", prepaidQR);
-		modelName.addAttribute("user", new User());
-		PrintName.printUser(modelName);
-		return "id";
+		prepaidQR = prepaidQrService.findById(id);
+		String result = null;
+		if (prepaidQR != null) {
+			model.addAttribute("prepaidQR", prepaidQR);
+			modelName.addAttribute("user", new User());
+			PrintName.printUser(modelName);
+			result = "id";
+		} else {
+			System.out.println("nulo");
+			result = "empty";
+		}
+	return result;
 	}
 
 }

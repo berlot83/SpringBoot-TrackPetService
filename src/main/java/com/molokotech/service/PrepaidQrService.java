@@ -53,9 +53,16 @@ public class PrepaidQrService {
 
 	public void updateQrService(String id, PrepaidQR prepaidQR, Pet pet, Owner owner, String user) {
 		prepaidQR = findById(id);
-		prepaidQR.setPet(pet);
-		prepaidQR.setOwner(owner);
-		prepaidQR.setUserName(user);
-		prepaidQrRepository.save(prepaidQR);
+
+		try {
+			prepaidQR.setPet(pet);
+			prepaidQR.setOwner(owner);
+			prepaidQR.setUserName(user);
+			prepaidQrRepository.save(prepaidQR);
+		} catch (Exception error) {
+			error.printStackTrace();
+			System.out.println(error.getMessage());
+			System.out.println("bloque catch");
+		}
 	}
 }
