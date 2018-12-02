@@ -3,6 +3,8 @@ package com.molokotech.utilities;
 import java.time.Instant;
 import java.util.Random;
 
+
+/* Not in use right now, because we are using MongoDB ObjectId */
 public class TokenCreator {
 	
 	public static String createAleatoryToken() {

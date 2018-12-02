@@ -73,8 +73,9 @@
         <p th:if="${prepaidQR.owner.address} != null" th:text="'Dirección' + ${prepaidQR.owner.address}"></p>
         <p th:if="${prepaidQR.owner.facebook} != null" th:text="'Facebook: ' + ${prepaidQR.owner.facebook}"></p>
         <p th:if="${prepaidQR.owner.instagram} != null" th:text="'Instagram: ' + ${prepaidQR.owner.instagram}"></p>
-
-        <br><br>
+        <a href="data:application/octet-stream;base64,"+th:text="${prepaidQR.strBase64}" download="filename.jpg">Descargar QR</a>
+        <p th:text="${prepaidQR.strBase64}"></p>
+        <br><br><br>
 
     </div>
 
