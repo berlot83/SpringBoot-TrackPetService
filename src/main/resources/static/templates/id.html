@@ -7,14 +7,12 @@
 
     <div th:if="${prepaidQR} != null" id="idMainContent">
         <h4><span class="badge badge-lg badge-danger" th:text="'ID:  ' + ${prepaidQR.id}"></span></h4>
-        <h4><span class="badge badge-lg badge-danger" th:text="'ID especial: ' + ${prepaidQR.specialId}"></span></h4>
         <p th:if="${prepaidQR.userName} != null" th:text="'Usuario asignado: ' + ${prepaidQR.userName}"></p>
         <br>
         <h5><i class="fas fa-paw"></i> Datos básicos</h5>
         <hr>
-        <!-- <p th:text="'Sexo:' + ${prepaidQR.pet.sex}"></p> -->
-        <p th:if="${prepaidQR.pet.age} >= 2018" th:text="'Nacimimento: ' + ${prepaidQR.pet.age}"></p>
         <p th:if="${prepaidQR.pet.petName} != null" th:text="'Nombre: ' + ${prepaidQR.pet.petName}"></p>
+        <p th:if="${prepaidQR.pet.age} >= 2018" th:text="'Nacimimento: ' + ${prepaidQR.pet.age}"></p>
         <p th:if="${prepaidQR.pet.sex} != null" th:text="'Sexo: ' + ${prepaidQR.pet.sex}"></p>
 
         <br>
@@ -36,7 +34,7 @@
                     <td>V. Octuple</td>
                 </tr>
                 <tr>
-                    <td><!-- <p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.dateAntiRabicVaccine"></p> --></td>
+                    <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.dateAntiRabicVaccine}"></p></td>
                     <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.datePolivalentVaccine}"></p></td>
                     <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.dateSextupleVaccine}"></p></td>
                     <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.dateOctupleVaccine}"></p></td>
