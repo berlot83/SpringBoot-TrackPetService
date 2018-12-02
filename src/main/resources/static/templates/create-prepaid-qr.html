@@ -404,7 +404,6 @@
 	<!--Template footer-->
 	<div th:replace="default :: footer"></div>
 
-
 	<script>
 		function updateQr() {
 			var idPrepaidQrCode = document.getElementById("idPrepaidQrCode").textContent;
@@ -444,10 +443,15 @@
 			xhr.open("POST", url, true);
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&ownerName=" + ownerName + "&ownerLastname=" + ownerLastname + "&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&dni=" + dni + "&telephone1=" + telephone1 + "&telephone2=" + telephone2 + "&email=" + email + "&address=" + address + "&facebook=" + facebook + "&instagram=" + instagram);
-			console.log(idPrepaidQrCode);
 			xhr.onreadystatechange = function () {
 				if (xhr.readyState == 4 && xhr.status == 200) {
+					
 					alert(xhr.responseText);
+					data = xhr.responseText;
+					var jsonResponse = JSON.parse(data);
+					$.alert({type: 'green', 
+							title: 'Compruebe el funcionamiento',
+							content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Lea este código QR para verificar que los datos se subieron correctamente, si los mismo no se subieron intente lo de nuevo, caso contrario comuníquese con el código ID a info@molokotech.com que gestionamos por usted la carga de datos.</p></div></content></body>"});
 				}
 			}
 

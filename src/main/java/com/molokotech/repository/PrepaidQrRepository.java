@@ -8,6 +8,4 @@ import com.molokotech.model.PrepaidQR;
 @Repository
 public interface PrepaidQrRepository extends MongoRepository<PrepaidQR, String> {
 	
-	//public void create(PrepaidQR prepaidQR);
-
 }

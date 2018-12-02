@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.zxing.WriterException;
 import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.Owner;
@@ -19,8 +20,6 @@ import com.molokotech.service.OwnerService;
 import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
-import com.molokotech.utilities.TokenCreator;
-
 
 @Controller
 @RestController
@@ -41,37 +40,33 @@ public class RestControllers {
 		
 					/* Create PrepaidQR to insert into mongoDB Start */
 					/* Create an object QR */
-					/* String token */
-					String specialId = "PP".concat(TokenCreator.createSpecialId());
-					/* Set the special Id for each one */
-					prepaidqr.setSpecialId(specialId);
+					/* String specialId token it is not used right now */
+					/* Set the MongoDB ObjectId for each one creating fisrt the space on DataBase */
 					
-					/* Create QR only with special ID */
+					/* Upload the object and create the MongoDB ObjectId, so next we catch it and put it on the String Base64 */
+					PrepaidQR objectToUpload = prepaidQrService.createPrepaidQR(prepaidqr);
+					/* Create QR MongoDB ObjectId */
 					byte[] imageData = null;
+					
 					try {
-						imageData = QRCodeGenerator.generateQRCodeImageToByte(prepaidqr.getSpecialId(), 300, 300);
+						imageData = QRCodeGenerator.generateQRCodeImageToByte("http://localhost:8080/id/" + prepaidqr.getId(), 300, 300);
 					} catch (WriterException | IOException e) {
 						e.printStackTrace();
 					}
 					String strBase64 = QRCodeGenerator.toBase64(imageData);
 					prepaidqr.setStrBase64(strBase64);
-					System.out.println(strBase64);
-					prepaidqr.setSellPoint("Clivet");
 					
-					System.out.println(prepaidqr.getId());
-					System.out.println(prepaidqr.getSpecialId());
+					/* Upload Again but with the String base64 updated */
+					objectToUpload = prepaidQrService.createPrepaidQR(prepaidqr);
 					
-					PrepaidQR objectToUpload = prepaidQrService.createPrepaidQR(prepaidqr);
-					
+					/* Declare the response */
 					String result = null;
 					
-					
 					if(objectToUpload != null) {
-						result = "Look's like everything goes well. SpecialId:  " + objectToUpload.getSpecialId() + " | Id:  " + objectToUpload.getId();
+						result = "Look's like everything goes well. Id:  " + objectToUpload.getId();
 					}else {
 						result = "Something is wrong, the object is NULL";
 					}
-					/* creamos el objeto y sbimos el mismo a la DB */
 	return result;
 	}
 	/* End */
@@ -102,9 +97,13 @@ public class RestControllers {
 		ownerService.createOwner(owner);
 		petService.createPet(pet);
 	
-		prepaidQrService.updateQrService(idPrepaidQrCode, prepaidQR, pet, owner, user);
-		Gson gson = new Gson();
-		String strJson = gson.toJson(prepaidQR);
+		PrepaidQR temp = prepaidQrService.updateQrService(idPrepaidQrCode, prepaidQR, pet, owner, user);
+		
+		
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		//PrepaidQR tempPrepaidQR = new PrepaidQR(prepaidQR.getStrBase64(), pet, owner);
+		String strJson = gson.toJson(temp, PrepaidQR.class);
 		
 		return strJson;
 	}

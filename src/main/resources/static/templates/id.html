@@ -63,7 +63,7 @@
         <h5><i class="fas fa-paw"></i> Estado</h5>
         <hr>
         <p th:if="${prepaidQR.pet.status} != false" >Normal</p>
-         <p th:unless="${prepaidQR.pet.status} != false" >Perdido</p>
+         <p th:unless="${prepaidQR.pet.status} != false" style="color:deeppink;">Perdido!!!, contáctese con los tutores por favor.</p>
         <br>
         <h5><i class="fas fa-user"></i> Datos de contacto</h5>
         <hr>
