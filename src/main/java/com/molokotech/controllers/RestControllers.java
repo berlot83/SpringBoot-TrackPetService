@@ -49,7 +49,7 @@ public class RestControllers {
 					byte[] imageData = null;
 					
 					try {
-						imageData = QRCodeGenerator.generateQRCodeImageToByte("http://localhost:8080/id/" + prepaidqr.getId(), 300, 300);
+						imageData = QRCodeGenerator.generateQRCodeImageToByte("https://pet-cloud-service.herokuapp.com/id/" + prepaidqr.getId(), 300, 300);
 					} catch (WriterException | IOException e) {
 						e.printStackTrace();
 					}
