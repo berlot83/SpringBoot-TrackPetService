@@ -1,1 +1,1 @@
-web: java -jar server.port=$PORT target/cloud-pet-0.0.1-SNAPSHOT.jar
+web: java -jar server.port=8080 target/cloud-pet-0.0.1-SNAPSHOT.jar
