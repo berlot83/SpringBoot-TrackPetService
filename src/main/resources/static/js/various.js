@@ -75,7 +75,7 @@ function termsAndCondition() {
 
 function image(){
 	var id = document.getElementById("id").textContent;
-	var strBase64 = document.getElementById("strBase64").textContent;
+	var strBase64 = document.getElementById("strBase64").value;
 
 	var doc = new jsPDF()
 	var qr ='data:image/png;base64,'+strBase64;

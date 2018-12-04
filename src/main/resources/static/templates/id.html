@@ -112,7 +112,7 @@
 				th:text="'Facebook: ' + ${prepaidQR.owner.facebook}"></p>
 			<p th:if="${prepaidQR.owner.instagram} != null"
 				th:text="'Instagram: ' + ${prepaidQR.owner.instagram}"></p>
-			<p th:text="${prepaidQR.strBase64}" id="strBase64"></p>
+			<input type="hidden" th:value="${prepaidQR.strBase64}" id="strBase64"></input>
 
 			<br>
 
