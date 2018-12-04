@@ -1,9 +1,9 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="default :: header"></head>
 
 <body>
-	<ul th:replace="default :: bar"></ul>
+	<nav th:replace="default :: bar"></nav>
 <div class="container">
 	<div th:if="${prepaidQR} != null" id="idMainContent" class="container-fluid">
 		<div id="detaillsDiv">
@@ -144,6 +144,5 @@
 </div>
 	<footer th:replace="default :: footer"></footer>
 </body>
-
 
 </html>
