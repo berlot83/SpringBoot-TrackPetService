@@ -8,8 +8,9 @@
 
 	<ul th:replace="default :: bar"></ul>
 
-	<div id="divContent">
-		<div class="needs-validation" id="divMainForm">
+	<div id="divContent" class="container">
+	
+		<div class="container-fluid" id="divMainForm">
 			<h2 style="text-align: center">Servicio de información de mascotas</h2>
 			<br>
 
@@ -398,11 +399,14 @@
 			<br>
 			<br>
 			<br>
+			<br>
+			<br>
+			<br>
 		</div>
 	</div>
 
 	<!--Template footer-->
-	<div th:replace="default :: footer"></div>
+	<footer th:replace="default :: footer"></footer>
 
 	<script>
 		function updateQr() {

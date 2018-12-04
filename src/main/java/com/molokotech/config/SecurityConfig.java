@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		/* Filtra quien ingresa y dónde, falta aplicar roles */
 		 http.authorizeRequests().antMatchers("/resources/**").permitAll();
-		 http.authorizeRequests().antMatchers("/qr/create-qr", "/create-qr", "/molokoAccess", "/prepaid-qr", "/create-prepaid-qr").authenticated().and().formLogin().loginPage("/login").permitAll();
+		 http.authorizeRequests().antMatchers("/qr/create-qr", "/create-qr", "/prepaid-qr", "/create-prepaid-qr").authenticated().and().formLogin().loginPage("/login").permitAll();
 		 http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutUrl("/logout");
 		 http.csrf().disable();
 	}

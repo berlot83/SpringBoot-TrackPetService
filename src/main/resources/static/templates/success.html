@@ -4,8 +4,9 @@
 
 <body>
     <ul th:replace="default :: bar"></ul>
+    <div class="container">
     <br>
-    <div id="wellcomeContent">
+    <div id="wellcomeContent" class="container-fluid" style="padding-bottom:50px;">
         <h2>Bienvenido</h2>
         <h3 style="color:fuchsia;" th:text="'Hola ' + ${user.name}+'!'"></h3>
         <p>Tengas un Perro o un Gato, u otro animal, acá en nuestra
@@ -18,8 +19,8 @@
         <p>Ingresa en el siguiente link para loguearte</p>
         <button class="btn btn-warning" onclick="window.location.href='login'">Login</button>
     </div>
-
-    <div th:replace="default :: footer"></div>
+</div>
+    <footer th:replace="default :: footer"></footer>
 </body>
 
 </html>

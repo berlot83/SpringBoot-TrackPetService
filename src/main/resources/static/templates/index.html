@@ -7,11 +7,10 @@
 <body>
 
 <!-- Template bar -->
-<ul th:replace="default :: bar"></ul>
-
+<nav th:replace="default :: bar"></nav>
   <div id="firstBody" class="row">
     <!--  Start Carousel -->
-    <div id="carouselExampleControls" class="carousel slide, col-6" data-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide col-6" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img class="img-fluid w-100 imageCarousel" src="../img/lostDog1.jpg" alt="First slide">
@@ -54,17 +53,16 @@
     <!--  End Carousel -->
     <div id="infoDiv" class="col-6">
       <h3>Servicios brindados</h3>
-      <p>Proveemos un servicio avanzado de información en base de datos en la nube de mascotas, la veterinaria o
+      <p style="margin:20px">Proveemos un servicio avanzado de información en base de datos en la nube de mascotas, la veterinaria o
         revendedor de este sistema crea un código QR que a su vez impacta en una base de datos donde quedan almacenados
         los datos del animal, si alguna vez el mismo se perdiera y lleva el código QR en alguna parte como una chapa
         identificatoria o pegado en el collar, sería muy fácil acceder a la información desde cualquier dispositivo móvil
         No es necesario realizar ninguna operación invasiva ni similarsólo imprimir el código en algun sticker para que puedan ser cargados por los animales a todos lados.</p>
     </div>
-
-  </div>
+</div>
 
 <!-- Template footer -->
-<div th:replace="default :: footer"></div>
+<footer th:replace="default :: footer"></footer>
 
 </body>
 </html>

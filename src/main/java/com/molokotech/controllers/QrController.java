@@ -16,6 +16,7 @@ import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.PrintName;
+import com.mongodb.MongoWriteException;
 
 @Component
 @Controller
@@ -32,13 +33,11 @@ public class QrController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, String error, String logout) {
-
 		if (error != null)
 			model.addAttribute("errorMsg", "Usuario o Password incorrectos.");
 
 		if (logout != null)
 			model.addAttribute("msg", "Saliste.");
-
 		PrintName.printUser(model);
 		return "login";
 	}
@@ -48,41 +47,17 @@ public class QrController {
 		PrintName.printUser(model);
 		return "index";
 	}
+	
+	@RequestMapping("/test")
+	public String test(Model model) {
+		PrintName.printUser(model);
+		return "test";
+	}
 
 	@RequestMapping("/pricing")
 	public String pricing(Model model) {
 		PrintName.printUser(model);
 		return "pricing";
-	}
-
-	@RequestMapping("/molokoAccess")
-	public String molokoAccess(Model model) {
-		PrintName.printUser(model);
-		return "molokoAccess";
-	}
-
-	@RequestMapping("/create-pet-cloud")
-	public String createPetCloud(Model model) {
-		PrintName.printUser(model);
-		return "create-pet-cloud";
-	}
-
-	@RequestMapping("/read-pet-cloud")
-	public String readPetCloud(Model model) {
-		PrintName.printUser(model);
-		return "read-pet-cloud";
-	}
-
-	@RequestMapping("/update-pet-cloud")
-	public String updatePetCloud(Model model) {
-		PrintName.printUser(model);
-		return "update-pet-cloud";
-	}
-
-	@RequestMapping("/delete-pet-cloud")
-	public String deletePetCloud(Model model) {
-		PrintName.printUser(model);
-		return "delete-pet-cloud";
 	}
 
 	@RequestMapping("/default")
@@ -101,18 +76,6 @@ public class QrController {
 	public String about(Model model) {
 		PrintName.printUser(model);
 		return "about";
-	}
-
-	@RequestMapping("/product-pet-qr")
-	public String productPetQR(Model model) {
-		PrintName.printUser(model);
-		return "product-pet-qr";
-	}
-
-	@RequestMapping("/product-vet-cloud")
-	public String productVetCloud(Model model) {
-		PrintName.printUser(model);
-		return "product-vet-cloud";
 	}
 
 	/*
@@ -134,11 +97,18 @@ public class QrController {
 	}
 
 	@PostMapping("/sign-up")
-	public String greetingSubmit(@ModelAttribute User user) {
-		String[] authorities = { "USER" };
-		user.setAuthorities(authorities);
-		userService.saveUser(user);
-		return "success";
+	public String greetingSubmit(@ModelAttribute User user, Model model) {
+		try {
+			String[] authorities = { "USER" };
+			user.setAuthorities(authorities);
+			userService.saveUser(user);
+			return "success";
+		} catch (Exception e) {
+			model.addAttribute("errorMsg", "Ese usuario ya está registrado");
+			System.out.println("Entró en exceptción");
+			System.out.println(e.getMessage());
+			return "sign-up";
+		}
 	}
 	/* End Sign-up */
 
@@ -178,7 +148,7 @@ public class QrController {
 			System.out.println("nulo");
 			result = "empty";
 		}
-	return result;
+		return result;
 	}
 
 }

@@ -3,84 +3,147 @@
 <head th:replace="default :: header"></head>
 
 <body>
-    <ul th:replace="default :: bar"></ul>
+	<ul th:replace="default :: bar"></ul>
+<div class="container">
+	<div th:if="${prepaidQR} != null" id="idMainContent" class="container-fluid">
+		<div id="detaillsDiv">
+			<h4>
+				<span class="badge badge-lg badge-danger" th:text="${prepaidQR.id}"
+					id="id"></span>
+			</h4>
+			<p th:if="${prepaidQR.userName} != null"
+				th:text="'Usuario asignado: ' + ${prepaidQR.userName}"></p>
+			<br>
+			<h5>
+				<i class="fas fa-paw"></i> Datos básicos
+			</h5>
+			<hr>
+			<p th:if="${prepaidQR.pet.petName} != null"
+				th:text="'Nombre: ' + ${prepaidQR.pet.petName}"></p>
+			<p th:if="${prepaidQR.pet.age} >= 2018"
+				th:text="'Nacimimento: ' + ${prepaidQR.pet.age}"></p>
+			<p th:if="${prepaidQR.pet.sex} != null"
+				th:text="'Sexo: ' + ${prepaidQR.pet.sex}"></p>
 
-    <div th:if="${prepaidQR} != null" id="idMainContent">
-        <h4><span class="badge badge-lg badge-danger" th:text="'ID:  ' + ${prepaidQR.id}"></span></h4>
-        <p th:if="${prepaidQR.userName} != null" th:text="'Usuario asignado: ' + ${prepaidQR.userName}"></p>
-        <br>
-        <h5><i class="fas fa-paw"></i> Datos básicos</h5>
-        <hr>
-        <p th:if="${prepaidQR.pet.petName} != null" th:text="'Nombre: ' + ${prepaidQR.pet.petName}"></p>
-        <p th:if="${prepaidQR.pet.age} >= 2018" th:text="'Nacimimento: ' + ${prepaidQR.pet.age}"></p>
-        <p th:if="${prepaidQR.pet.sex} != null" th:text="'Sexo: ' + ${prepaidQR.pet.sex}"></p>
+			<br>
+			<h5>
+				<i class="fas fa-heartbeat"></i> Estado de salud
+			</h5>
+			<hr>
+			<p th:if="${prepaidQR.pet.clinicHistory} != null"
+				th:text="'Historia Clínica: ' + ${prepaidQR.pet.clinicHistory}"></p>
+			<p th:if="${prepaidQR.pet.illness} != null"
+				th:text="'Enfermedades: ' + ${prepaidQR.pet.illness}"></p>
 
-        <br>
-        <h5><i class="fas fa-heartbeat"></i> Estado de salud</h5>
-        <hr>
-        <p th:if="${prepaidQR.pet.clinicHistory} != null" th:text="'Historia Clínica: ' + ${prepaidQR.pet.clinicHistory}"></p>
-        <p th:if="${prepaidQR.pet.illness} != null" th:text="'Enfermedades: ' + ${prepaidQR.pet.illness}"></p>
-        
-        <p th:if="${prepaidQR.pet.medicated} == true">Medicado: Sí</p>
-        <p th:unless="${prepaidQR.pet.medicated} == true" th:text="'Medicado: ' + ${prepaidQR.pet.medicated}">Medicado: No</p>
-        
-        
-        <table  class="table table-dark table-bordered">
-            <thead>
-                <tr>
-                    <td>V. Antirábica</td>
-                    <td>V. Polivalente</td>
-                    <td>V. Sextuple</td>
-                    <td>V. Octuple</td>
-                </tr>
-                <tr>
-                    <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.dateAntiRabicVaccine}"></p></td>
-                    <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.datePolivalentVaccine}"></p></td>
-                    <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.dateSextupleVaccine}"></p></td>
-                    <td><p th:if="${prepaidQR.pet.medicated} != null" th:text="${prepaidQR.pet.dateOctupleVaccine}"></p></td>
-                </tr>
-            </thead>
-        </table>
-        <br>
-        <p th:if="${prepaidQR.pet.lastVeterinaryVisit} != null" th:text="'Últ.visita veterinaria: ' + ${prepaidQR.pet.lastVeterinaryVisit}"></p>
-        
-        <p th:if="${prepaidQR.pet.neuteredPet} == true">Castrado: Sí</p>
-        <p th:unless="${prepaidQR.pet.neuteredPet} == true">Castrado: No</p>
-
-        <p th:if="${prepaidQR.pet.pregnant} == true">Preñiada: Sí</p>
-        <p th:unless="${prepaidQR.pet.pregnant} == true">Preñiada: No</p>
-        
-        <br>
-        
-        <h5><i class="fas fa-fish"></i> Alimentación</h5>
-        <hr>
-        <p th:if="${prepaidQR.pet.foodBrand} != null" th:text="'Marca de Comida bal: ' + ${prepaidQR.pet.foodBrand}"></p>
-        <p th:if="${prepaidQR.pet.quantityFood} != null" th:text="'Cantidad comida Balanceada: ' + ${prepaidQR.pet.quantityFood}"></p>
-        <p th:if="${prepaidQR.pet.coockedFood} != null" th:text="'Comida húmeda: ' + ${prepaidQR.pet.coockedFood}"></p>
-        <br>
-        <h5><i class="fas fa-paw"></i> Estado</h5>
-        <hr>
-        <p th:if="${prepaidQR.pet.status} != false" >Normal</p>
-         <p th:unless="${prepaidQR.pet.status} != false" style="color:deeppink;">Perdido!!!, contáctese con los tutores por favor.</p>
-        <br>
-        <h5><i class="fas fa-user"></i> Datos de contacto</h5>
-        <hr>
-        <p th:if="${prepaidQR.owner.ownerName} != null" th:text="'Tutor: ' + ${prepaidQR.owner.ownerName} + ' ' + ${prepaidQR.owner.ownerLastname}"></p>
-        <p th:if="${prepaidQR.owner.dni} != null" th:text="'Dni: ' + ${prepaidQR.owner.dni}"></p>
-        <p th:if="${prepaidQR.owner.telephone1} != null" th:text="'Teléfono: ' + ${prepaidQR.owner.telephone1}"></p>
-        <p th:if="${prepaidQR.owner.telephone2} != null" th:text="'Teléfono: ' + ${prepaidQR.owner.telephone2}"></p>
-        <p th:if="${prepaidQR.owner.email} != null" th:text="'Email: ' + ${prepaidQR.owner.email}"></p>
-        <p th:if="${prepaidQR.owner.address} != null" th:text="'Dirección' + ${prepaidQR.owner.address}"></p>
-        <p th:if="${prepaidQR.owner.facebook} != null" th:text="'Facebook: ' + ${prepaidQR.owner.facebook}"></p>
-        <p th:if="${prepaidQR.owner.instagram} != null" th:text="'Instagram: ' + ${prepaidQR.owner.instagram}"></p>
-        <a href="data:application/octet-stream;base64,"+th:text="${prepaidQR.strBase64}" download="filename.jpg">Descargar QR</a>
-        <p th:text="${prepaidQR.strBase64}"></p>
-        <br><br><br>
-
-    </div>
+			<p th:if="${prepaidQR.pet.medicated} == true">Medicado: Sí</p>
+			<p th:unless="${prepaidQR.pet.medicated} == true"
+				th:text="'Medicado: ' + ${prepaidQR.pet.medicated}">Medicado: No</p>
 
 
-    <div th:replace="default :: footer"></div>
+			<table class="table table-dark table-bordered table-responsive">
+				<thead>
+					<tr>
+						<td>V. Antirábica</td>
+						<td>V. Polivalente</td>
+						<td>V. Sextuple</td>
+						<td>V. Octuple</td>
+					</tr>
+					<tr>
+						<td><p th:if="${prepaidQR.pet.medicated} != null"
+								th:text="${prepaidQR.pet.dateAntiRabicVaccine}"></p></td>
+						<td><p th:if="${prepaidQR.pet.medicated} != null"
+								th:text="${prepaidQR.pet.datePolivalentVaccine}"></p></td>
+						<td><p th:if="${prepaidQR.pet.medicated} != null"
+								th:text="${prepaidQR.pet.dateSextupleVaccine}"></p></td>
+						<td><p th:if="${prepaidQR.pet.medicated} != null"
+								th:text="${prepaidQR.pet.dateOctupleVaccine}"></p></td>
+					</tr>
+				</thead>
+			</table>
+			<br>
+			<p th:if="${prepaidQR.pet.lastVeterinaryVisit} != null"
+				th:text="'Últ.visita veterinaria: ' + ${prepaidQR.pet.lastVeterinaryVisit}"></p>
+
+			<p th:if="${prepaidQR.pet.neuteredPet} == true">Castrado: Sí</p>
+			<p th:unless="${prepaidQR.pet.neuteredPet} == true">Castrado: No</p>
+
+			<p th:if="${prepaidQR.pet.pregnant} == true">Preñiada: Sí</p>
+			<p th:unless="${prepaidQR.pet.pregnant} == true">Preñiada: No</p>
+
+			<br>
+
+			<h5>
+				<i class="fas fa-fish"></i> Alimentación
+			</h5>
+			<hr>
+			<p th:if="${prepaidQR.pet.foodBrand} != null"
+				th:text="'Marca de Comida bal: ' + ${prepaidQR.pet.foodBrand}"></p>
+			<p th:if="${prepaidQR.pet.quantityFood} != null"
+				th:text="'Cantidad comida Balanceada: ' + ${prepaidQR.pet.quantityFood} + ' gr'"></p>
+			<p th:if="${prepaidQR.pet.coockedFood} != null"
+				th:text="'Comida húmeda: ' + ${prepaidQR.pet.coockedFood}"></p>
+			<br>
+			<h5>
+				<i class="fas fa-paw"></i> Estado
+			</h5>
+			<hr>
+			<p th:if="${prepaidQR.pet.status} != false">Normal</p>
+			<p th:unless="${prepaidQR.pet.status} != false"
+				style="color: deeppink;">Perdido!!!, contáctese con los tutores
+				por favor.</p>
+			<br>
+			<h5>
+				<i class="fas fa-user"></i> Datos de contacto
+			</h5>
+			<hr>
+			<p th:if="${prepaidQR.owner.ownerName} != null"
+				th:text="'Tutor: ' + ${prepaidQR.owner.ownerName} + ' ' + ${prepaidQR.owner.ownerLastname}"></p>
+			<p th:if="${prepaidQR.owner.dni} != null"
+				th:text="'Dni: ' + ${prepaidQR.owner.dni}"></p>
+			<p th:if="${prepaidQR.owner.telephone1} != null"
+				th:text="'Teléfono: ' + ${prepaidQR.owner.telephone1}"></p>
+			<p th:if="${prepaidQR.owner.telephone2} != null"
+				th:text="'Teléfono: ' + ${prepaidQR.owner.telephone2}"></p>
+			<p th:if="${prepaidQR.owner.email} != null"
+				th:text="'Email: ' + ${prepaidQR.owner.email}"></p>
+			<p th:if="${prepaidQR.owner.address} != null"
+				th:text="'Dirección' + ${prepaidQR.owner.address}"></p>
+			<p th:if="${prepaidQR.owner.facebook} != null"
+				th:text="'Facebook: ' + ${prepaidQR.owner.facebook}"></p>
+			<p th:if="${prepaidQR.owner.instagram} != null"
+				th:text="'Instagram: ' + ${prepaidQR.owner.instagram}"></p>
+			<p th:text="${prepaidQR.strBase64}" id="strBase64"></p>
+
+			<br>
+
+			<h5>Descarga</h5>
+			<hr>
+			<p>Brindamos la descarga del código QR por las siguientes causas:</p>
+			<ol>
+				<li>La reposición del mismo en caso de pérdidas</li>
+				<li>La reutilzación en caso de grandes cantidades de animales,
+					ejemplo si tenés diez perros y todos ellos comparten el mismo tutor
+					puede que te convenga utilizar uno para todos. *</li>
+				<li>Por si se quieren realizar copias para llevar el control
+					clínico de la mascota.</li>
+				<li>El mismo puede ser impreso y colocado en cualquier lugar,
+					desde agendas, hojas y hasta en la heladera.</li>
+			</ol>
+
+			<button class="btn btn-danger" onclick="image()">Descargar
+				QR</button>
+			<br> <small>* Hay que tener en cuenta que aunque se
+				copien o impriman muchos, todos siempre van a tener acceso a los
+				mismos datos de la nube, por ende sólo serviría para cuando es una
+				persona que comparte muchos animales.</small> <br> <br> <br>
+		</div>
+		<br>
+		<br>
+		<br>
+	</div>
+</div>
+	<footer th:replace="default :: footer"></footer>
 </body>
+
 
 </html>

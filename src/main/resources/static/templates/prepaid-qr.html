@@ -6,32 +6,38 @@
     <ul th:replace="default :: bar"></ul>
     <br>
     <br>
-    <div id="prepaidMainDiv">
-        <h2><i class="fas fa-paw"></i> Activar QR <i class="fas fa-qrcode"></i></h2>
-
-        <br>
-
-        <h5> Ingrese código de activación</h5>
-
-        <form action="#" th:action="@{/prepaid-qr}" th:object="${prepaidQR}" method="POST">
-            <input type="text" th:field="*{id}" id="id" onkeyup="findPrepaidQrStrBase64(), findPrepaidQrSellPoint()"
-                required />
-
-            <br>
-            <label><i class="fas fa-paw"></i></label>
-            <small style="color:pink">Código alfanumérico único de 20 caractéres impreso en la cinta.</small>
-            <label><i class="fas fa-paw"></i></label>
-            <br>
-            <div id="resultDivSellPoint"></div>
-            <br>
-            <div id="resultImage"></div>
-            <br>
-            <button class="btn btn-danger" type="submit">Activar QR</button>
-        </form>
-        <br>
-        <br>
+    <div class="container">
+	    <div id="prepaidMainDiv" class="container-fluid">
+	        <h2><i class="fas fa-paw"></i> Activar QR <i class="fas fa-qrcode"></i></h2>
+	
+	        <br>
+	
+	        <h5> Ingrese código de activación</h5>
+	
+	        <form action="#" th:action="@{/prepaid-qr}" th:object="${prepaidQR}" method="POST">
+	            <input type="text" th:field="*{id}" id="id" onkeyup="findPrepaidQrStrBase64(), findPrepaidQrSellPoint()"
+	                required />
+	
+	            <br>
+	            <label><i class="fas fa-paw"></i></label>
+	            <small style="color:pink">Código alfanumérico único de 20 caractéres impreso en la cinta.</small>
+	            <label><i class="fas fa-paw"></i></label>
+	            <br>
+	            <div id="resultDivSellPoint"></div>
+	            <br>
+	            <div id="resultImage"></div>
+	            <br>
+	            <button class="btn btn-danger" type="submit">Activar QR</button>
+	        </form>
+	        <br>
+	        <br>
+	        <br>
+	        <br>
+	        <br>
+	        <br>
+	    </div>
     </div>
-    <div th:replace="default :: footer"></div>
+    <footer th:replace="default :: footer"></footer>
 </body>
 
 

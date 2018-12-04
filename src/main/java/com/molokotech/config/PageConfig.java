@@ -35,19 +35,16 @@ public class PageConfig implements WebMvcConfigurer {
 		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/index").setViewName("index");
 		registry.addViewController("/create-qr").setViewName("create-qr");
-		registry.addViewController("/molokoAccess").setViewName("molokoAccess");
 		registry.addViewController("/pricing").setViewName("pricing");
-		registry.addViewController("/veterinary").setViewName("veterinary");
 		registry.addViewController("/default").setViewName("default");
 		registry.addViewController("/about").setViewName("about");
-		registry.addViewController("/product-pet-qr").setViewName("product-pet-qr");
-		registry.addViewController("/product-vet-cloud").setViewName("product-vet-cloud");
 		registry.addViewController("/sign-up").setViewName("sign-up");
 		registry.addViewController("/success").setViewName("success");
 		registry.addViewController("/prepaid-qr").setViewName("prepaid-qr");
 		registry.addViewController("/create-prepaid-qr").setViewName("create-prepaid-qr");
 		registry.addViewController("/vet-cloud").setViewName("vet-cloud");
 		registry.addViewController("/id").setViewName("id");
+		registry.addViewController("/test").setViewName("test");
 	}
 
 	@Bean
