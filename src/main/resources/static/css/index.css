@@ -21,17 +21,6 @@ a:link{
 	color:white;
 }
 
-#logo{
-	margin-left: 10px;
-	margin-bottom: 5px;
-	margin-top: 5px;
-}
-
-#subtitle_footer{
-	margin-top: 10px;
-	margin-left: 10px;
-}
-
 body {
 	height: 100%;
 	margin: 0;
@@ -42,13 +31,16 @@ body {
 }
 
 #carouselExampleControls {
-text-shadow: 0px 0px 4px #000000;
+text-shadow: 0px 0px 4px black;
 }
 
 .carousel-item.active, .carousel-item-next, .carousel-item-prev {
 	display: block;
 	padding: 0px;
 	margin: 0px;
+	text-shadow: 0px 0px 7px white;
+	color:#5b3f83;
+	font-weight: bold;
 }
 
 #firstBody {
@@ -59,12 +51,11 @@ text-shadow: 0px 0px 4px #000000;
 
 #infoDiv {
 	color:white;
-	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
 	background-image: url('../img/tile_pupure.jpg');
 	background-repeat: repeat;
 	text-align: justify;
-	margin-top: 10px;
-	border-radius: 10px;
 	box-shadow: 0px 0px 10px black;
 	text-shadow: 0px 0px 5px black;
 }
@@ -79,8 +70,9 @@ text-shadow: 0px 0px 4px #000000;
 }
 
 .imageCarousel{
-	padding-top:5px;
-	border-radius: 15px;
+	margin: 0px;
+	padding: 0px;
+
 }
 
 hr{
