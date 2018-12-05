@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="default :: header"></head>
+<body style="height:100%;">
+	<nav th:replace="default :: bar"></nav>
+
+	<div class="container">
+		<div class="container-fluid" id="lostPetContainer" style="height:100vh;">
+			<div>
+			<h2 style="padding:20px;">Lista de Mascotas perdidas de Pet-QR</h2>
+			
+			<p  style="margin:20px;">Acá se muestra la lista cpn datos "muy básicos" de mascotas, que habiendo adquirido Pet-QR fueron declaradas como perdidas, en las listas <strong>No se muestran números de contacto ni ubicaciones</strong> para proteger la privacidad del usuario, sino que es una orientación para aquel que la encuentre y pueda ver si coinciden los ID de los códigos QR y si a su vez está declarada como perdida.</p>
+			<p  style="margin:20px;">Si por alguna razón tu celular o tablet no cuenta con cualquier <strong>lector de códigos QR</strong>, podés ver todos los datos ingresando estos datos a la barra de direcciones de tu navegador web</p>
+			<p style="color:lightpink; margin:20px;">https://pet-cloud-service.herokuapp.com/id/CODIGO_IMPRESO_EN_QR</p>
+					
+			<div th:if="${list} != null" id="tableContainer" class="container-fluid">
+				<table id="lostTable" class="table table-dark table-responsive table-striped">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>Sexo</td>
+							<td>Nombre</td>
+							<td>Raza</td>
+							<td>Nacimiento</td>
+							<td>Medicado</td>
+							<td>Enfermedad</td>
+							<td>Marca Comida</td>
+						</tr>
+					</thead>
+
+					<tbody th:each="listIterate : ${list}"
+						th:if="${listIterate.pet.status}  == true">
+						<tr>
+							<td th:text="${listIterate.pet.id}"></td>
+							<td th:text="${listIterate.pet.sex}"></td>
+							<td th:text="${listIterate.pet.petName}"></td>
+							<td th:text="${listIterate.pet.raze}"></td>
+							<td th:text="${listIterate.pet.age}"></td>
+							<td th:if="${listIterate.pet.medicated} == true">Si</td>
+							<td th:unless="${listIterate.pet.medicated} == true">No</td>
+							<td th:text="${listIterate.pet.illness}"></td>
+							<td th:text="${listIterate.pet.foodBrand}"></td>
+						</tr>
+					</tbody>
+
+
+				</table>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+			</div>
+		</div>
+		</div>
+	</div>
+	<footer th:replace="default :: footer"></footer>
+</body>
+
+</html>

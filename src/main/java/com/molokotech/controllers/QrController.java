@@ -1,5 +1,7 @@
 package com.molokotech.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -149,6 +151,15 @@ public class QrController {
 			result = "empty";
 		}
 		return result;
+	}
+	
+	/* Get all lost Dog */
+	@RequestMapping("/db-lost-pet")
+	public String getAllPrepaidQR(Model modelName, Model model){
+		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
+		PrintName.printUser(modelName);
+		model.addAttribute("list",list);
+		return "db-lost-pet";
 	}
 
 }

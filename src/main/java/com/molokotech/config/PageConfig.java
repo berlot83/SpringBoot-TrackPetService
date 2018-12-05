@@ -43,6 +43,7 @@ public class PageConfig implements WebMvcConfigurer {
 		registry.addViewController("/prepaid-qr").setViewName("prepaid-qr");
 		registry.addViewController("/create-prepaid-qr").setViewName("create-prepaid-qr");
 		registry.addViewController("/vet-cloud").setViewName("vet-cloud");
+		registry.addViewController("/db-lost-pet").setViewName("db-lost-pet");
 		registry.addViewController("/id").setViewName("id");
 		registry.addViewController("/test").setViewName("test");
 	}

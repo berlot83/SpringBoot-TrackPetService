@@ -1,4 +1,5 @@
 package com.molokotech.service;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,5 +49,9 @@ public class PrepaidQrService {
 			System.out.println("bloque catch");
 		}
 		return prepaidQR;
+	}
+	
+	public List<PrepaidQR> findAllPrepaidQR(){
+		return prepaidQrRepository.findAll();
 	}
 }
