@@ -30,6 +30,7 @@
 <link rel="stylesheet" type="text/css" href="../css/prepaid-qr.css">
 <link rel="stylesheet" type="text/css" href="../css/db-lost-pet.css">
 <script type="text/javascript" src="../js/ajaxCalls.js"></script>
+<script type="text/javascript" src="../js/download.js"></script>
 <script type="text/javascript" src="../js/various.js"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -111,7 +112,7 @@
 			</form>
 	
 	<!-- Print Register -->
-		<a th:if="${currentUser == 'Invitado'}" class="nav-link" href="/sign-up">Registrarse</a>
+		<a th:if="${currentUser == 'Invitado'}" class="nav-link" href="/sign-up"><i class="fas fa-sign-in-alt"></i> Registrarse</a>
 		
 	<!-- Print logout -->
 		<button class="navbar-toggler navbar-dark navbar-toggler-right" type="button" data-toggle="collapse"

@@ -6,67 +6,132 @@
 
 <body>
 
-<!-- Template bar -->
-<nav th:replace="default :: bar"></nav>
-    <!--  Start Carousel -->
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="color:violet">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="img-fluid w-100 imageCarousel" src="../img/carousel1.jpg" alt="First slide">
-          <div class="carousel-caption d-none d-md-block" style="color: #5b3f83">
-            <h2>Porque amás tu mascota...</h2>
-            <h4>Querés  mejor para ella</h4>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img class="img-fluid w-100 imageCarousel" src="../img/carousel2.jpg" alt="Second slide">
-          <div class="carousel-caption d-none d-md-block" style="color: #5b3f83">
-            <h2>Harías cualquier cosa por tu amigo...</h2>
-            <h4>Porque te quiere y no lo vas a abandonar</h4>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img class="img-fluid w-100 imageCarousel" src="../img/carousel3.jpg" alt="Third slide">
-          <div class="carousel-caption d-none d-md-block" style="color: #5b3f83">
-            <h2>Solo resta que alguien se fije en él...</h2>
-            <h4>Colocale todos los datos que quieras, los llevará adonde vaya</h4>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img class="img-fluid w-100 imageCarousel" src="../img/carousel4.jpg" alt="Four slide">
-          <div class="carousel-caption d-none d-md-block" style="color: #5b3f83">
-            <h2>El nunca te abandonaría...</h2>
-            <h4>Te buscará hasta el final, vos podés hacer lo mismo</h4>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Atr�s</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Siguiente</span>
-      </a>
-    </div>
-    <!--  End Carousel -->
-    <div id="infoDiv">
-	    <div style="padding:20px;">
-	      <h3>Servicios brindados</h3>
-	      <p>Proveemos un servicio avanzado de información en base de datos en la nube de mascotas, la veterinaria o
-	        revendedor de este sistema crea un código QR que a su vez impacta en una base de datos donde quedan almacenados
-	        los datos del animal, si alguna vez el mismo se perdiera y lleva el código QR en alguna parte como una chapa
-	        identificatoria o pegado en el collar, sería muy fácil acceder a la información desde cualquier dispositivo móvil
-	        No es necesario realizar ninguna operación invasiva ni similarsólo imprimir el código en algun sticker para que puedan ser cargados por los animales a todos lados.</p>
-	    </div>
-	    <br>
-	    <br>
-	    <br>
-	    <br>
-    </div>
+	<!-- Template bar -->
+	<nav th:replace="default :: bar"></nav>
+	<!--  Start Carousel -->
+	<div id="carouselExampleControls" class="carousel slide"
+		data-ride="carousel" style="color: violet">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img class="img-fluid w-100 imageCarousel"
+					src="../img/carousel1.jpg" alt="First slide">
+				<div class="carousel-caption d-none d-md-block"
+					style="color: #5b3f83">
+					<h2>Porque amás tu mascota...</h2>
+					<h4>Querés mejor para ella</h4>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img class="img-fluid w-100 imageCarousel"
+					src="../img/carousel2.jpg" alt="Second slide">
+				<div class="carousel-caption d-none d-md-block"
+					style="color: #5b3f83">
+					<h2>Harías cualquier cosa por tu amigo...</h2>
+					<h4>Porque te quiere y no lo vas a abandonar</h4>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img class="img-fluid w-100 imageCarousel"
+					src="../img/carousel3.jpg" alt="Third slide">
+				<div class="carousel-caption d-none d-md-block"
+					style="color: #5b3f83">
+					<h2>Solo resta que alguien se fije en él...</h2>
+					<h4>Colocale todos los datos que quieras, los llevará adonde
+						vaya</h4>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img class="img-fluid w-100 imageCarousel"
+					src="../img/carousel4.jpg" alt="Four slide">
+				<div class="carousel-caption d-none d-md-block"
+					style="color: #5b3f83">
+					<h2>El nunca te abandonaría...</h2>
+					<h4>Te buscará hasta el final, vos podés hacer lo mismo</h4>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleControls"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Atr�s</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleControls"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Siguiente</span>
+		</a>
+	</div>
+	<!--  End Carousel -->
+	<div id="infoDiv">
+		<div style="padding: 20px;">
+			<h3>
+				<img src="../img/iconoPet75.png" width=50 height=50 /> Servicios
+				brindados
+			</h3>
+			<p>Nos especializamos en servicios en la nube y en su mayoría
+				aplicados a la lectura de códigos QR, con los lenguajes de
+				programación más sólidos del mercado, ofreciendo algunas opciones
+				que superan a la competencia, ofreciendo a nuestros usuarios un
+				servicio premium para dueños o tutores de mascotas exigentes.</p>
+			<ol>
+				<li>Pet-QR físico:<br> Este es una acceso directo a un
+					espacio en la nube donde se guardan los siguientes datos:<br>
+					• Datos básicos del animal, como nombre, edad, raza, sexo, y muchos
+					más.<br> • Estados de salud, historia clínica, si está
+					castrada, vacunación, si sufre enfermedades y muchas cosas más.<br>
+					• Tipo de alimentación, si come comida balanceada, si lo hace se
+					puede declarar alguna marca en especial, si come regularmente o no,
+					comida humana.<br> • Activador de estado de normal a perdido,
+					el cual sube automáticamente a la <a href="/db-lost-pet"
+					style="color: deeppink">Base de Datos</a> pública de esta misma web
+					los datos de la mascota menos los de contacto y ubicación para
+					resguardar la información privada de los usuarios.<br> • Puede
+					ser adquirido por acá y se realiza el envío, o en centros
+					veterinarios u otros que lo distribuyan.<br> • Una vez
+					realizada la compra y activación, se habilita a descargar seis
+					modelos diferentes con el mismo código QR, para cambiárselo cuando
+					si se aburrieran, así como también el código QR sin diseño y en un
+					tamaño más grande para manipular su diseño.<br> • Si se pierde
+					por alguna razón, la descarga del mismo es ilimitada, se imprime y
+					se coloca donde al dueño mejor le parezca.
+				</li>
+				<br>
+				<li>Pet-QR online:<br> • Es el mismo código QR
+					anteriormente nombrado pero adquirido directamente desde la web
+					para su "Descarga" las veces que quiera a un menor precio, se
+					genera un espacio en la Cloud específico y se habilita la descarga
+					de cualquiera de los seis modelos de código QR, si se desea se
+					puede imprimir y colocar donde mejor le parezca.<br> • El
+					beneficio de este sistema es que podemos descargar el mismo y
+					colocarlo donde queramos, y siempre vamos a tener a mano los datos
+					médicos, de vacunación, asi como también tendremos a nuestra
+					mascota con mucha información encima.<br> • Una vez descargado
+					se prueba leyéndolo desde la PC y luego se imprime en "Buena
+					calidad", pudiendo colocarlo en chapitas id, etc. • El tamaño ideal
+					de impresión para su próxima lectura es de 4x4 cm (puede ser menor
+					3x3 también pero recomendamos 4), puede ser más chico pero
+					preferimos que las cosas funcionen perfecto.<br>
+				</li>
+				<br>
+				<li>Vet-Cloud:<br> • Es un producto premium el cual
+					estamos desarrollando para llevar la gestión de locales
+					veterinarios, administración de turnos, productos en venta etc, el
+					mismo está programado para ser terminado en febrero de 2019.<br>
+					• Usa la potencia de los sistemas cloud para alacenar todos los
+					datos y que los mismos sean accesados desde diferentes lugares.<br>
+					• Especial importancia en aquellas veterinarias que tengan más de
+					un local, donde desde uno pueden ver los pacientes del otro, o si
+					hay en stock cierto medicamento, los horarios de algún doctor
+					veterinario en especial, etc.<br> • Dado que los datos está en
+					alguna cloud de algún lugar del mundo no se pierden nunca los
+					datos, podemos estar tranquilos que pase lo que le pase al local
+					nunca se van a perder los datos.<br></li>
+			</ol>
+		</div>
+		<br> <br> <br> <br>
+	</div>
 
-<!-- Template footer -->
-<footer th:replace="default :: footer"></footer>
+	<!-- Template footer -->
+	<footer th:replace="default :: footer"></footer>
 
 </body>
 </html>

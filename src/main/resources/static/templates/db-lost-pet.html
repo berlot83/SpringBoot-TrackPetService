@@ -30,7 +30,7 @@
 					<tbody th:each="listIterate : ${list}"
 						th:if="${listIterate.pet.status}  == true">
 						<tr>
-							<td th:text="${listIterate.pet.id}"></td>
+							<td th:text="${listIterate.id}"></td>
 							<td th:text="${listIterate.pet.sex}"></td>
 							<td th:text="${listIterate.pet.petName}"></td>
 							<td th:text="${listIterate.pet.raze}"></td>
