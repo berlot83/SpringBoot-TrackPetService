@@ -7,11 +7,13 @@
         height:300px;
         border: 2px solid black;
       }
+      
       /* Optional: Makes the sample page fill the window. */
       html, body {
         margin: 0;
         padding: 0;
       }
+      
       #description {
         font-family: Roboto;
         font-size: 15px;

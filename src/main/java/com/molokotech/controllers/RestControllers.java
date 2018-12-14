@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
 import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.Owner;
@@ -22,6 +23,7 @@ import com.molokotech.service.OwnerService;
 import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
+import com.molokotech.utilities.GoogleMapsService;
 
 @Controller
 @RestController
@@ -91,10 +93,11 @@ public class RestControllers {
 	
 	/* Ajax controllers for App */
 	@RequestMapping(value = "/update-qr", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody String updateQr(String idPrepaidQrCode, String user, PrepaidQR prepaidQR, @ModelAttribute Pet pet, @ModelAttribute Owner owner) {
+	public @ResponseBody String updateQr(String idPrepaidQrCode, String user, PrepaidQR prepaidQR, @ModelAttribute Pet pet, @ModelAttribute Owner owner) throws ApiException, InterruptedException, IOException {
 		
 		owner.setIdPrepaidQrOwned(idPrepaidQrCode);
-		
+		owner.setLatitude(GoogleMapsService.getLatitude(owner.getAddress()));
+		owner.setLongitude(GoogleMapsService.getLongitude(owner.getAddress()));
 		/* Upload To mongoDB */
 		ownerService.createOwner(owner);
 		petService.createPet(pet);

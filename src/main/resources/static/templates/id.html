@@ -2,7 +2,7 @@
 
 <head th:replace="default :: header"></head>
 
-<body>
+<body onload="initMap(), moveToLocation()">
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">
 		<div th:if="${prepaidQR} != null" id="idMainContent"
@@ -107,7 +107,7 @@
 				<p th:if="${prepaidQR.owner.telephone2} != null"
 					th:text="'Teléfono: ' + ${prepaidQR.owner.telephone2}"></p>
 				<p th:if="${prepaidQR.owner.email} != null"
-					th:text="'Email: ' + ${prepaidQR.owner.email}"></p>
+					th:text="${prepaidQR.owner.email}" id="mail"></p>
 				<p th:if="${prepaidQR.owner.address} != null"
 					th:text="'Dirección: ' + ${prepaidQR.owner.address}"></p>
 				<p th:if="${prepaidQR.owner.facebook} != null"
@@ -116,6 +116,21 @@
 					th:text="'Instagram: ' + ${prepaidQR.owner.instagram}"></p>
 				<input type="hidden" th:value="${prepaidQR.strBase64}"
 					id="strBase64"></input> <br>
+
+
+			<h5>Mapas</h5>
+			<hr>
+			<!-- Map Start -->
+			<p>Dirección declarada donde reside la mascota</p> 
+			<div>
+			<input type="hidden" th:value="${prepaidQR.owner.latitude}" id="latitude"/>
+			<input type="hidden" th:value="${prepaidQR.owner.longitude}" id="longitude"/>
+				<div id="map" class="container-fluid"></div>
+			</div>
+			<br>
+			<br>
+			
+			<!-- Map End -->
 
 				<h5>Descarga</h5>
 				<hr>
@@ -186,6 +201,16 @@
 					cuando es una persona que comparte muchos animales.</small> <br> <br>
 				<br>
 			</div>
+			
+			<p th:text="${prepaidQR.owner.email}" id="mail" ></p>
+			
+			<script>
+			/* Needs to be here to wait charge email input, not onload */
+			$( document ).ready(function() {
+				getLocalization();
+			});
+			</script>
+			
 			<br> <br> <br>
 		</div>
 	</div>

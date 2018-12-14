@@ -11,7 +11,7 @@
           zoom: 13
         });
         var card = document.getElementById('pac-card');
-        var input = document.getElementById('street1');
+        var input = document.getElementById('address');
         var types = document.getElementById('type-selector');
         var strictBounds = document.getElementById('strict-bounds-selector');
 

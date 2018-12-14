@@ -292,5 +292,60 @@ function downloadNowPNG(){
 }
 
 
+function moveToLocation(){
+    var latitude = document.getElementById("latitude").value;
+    var longitude = document.getElementById("longitude").value;
 
+    var latlng = new google.maps.LatLng(latitude, longitude);
+    var mapOptions = {
+        zoom: 16,
+        center: latlng
+    };
+    
+    var marker = new google.maps.Marker({
+    	position: latlng,
+    	map: map,
+    	title: 'Domicilio declarado por el tutor donde vive la mascota.'
+    });
+    
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    marker.setMap(map);
+	
+}
+
+function getLocalization(){
+	//  Html5 Geolocalization
+    
+	if (navigator.geolocation) {
+    	navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          console.log(pos);
+
+          /* For mailing */
+          var mail = document.getElementById("mail").textContent;
+          var latitude = pos.lat;
+          var longitude = pos.lng;
+          var dateTime = new Date();
+
+          /* Send to endponit and JavaMail sends the mail */
+          var xhr = new XMLHttpRequest();
+          var url = "/sendCoordinatesToMail";
+          
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.send("latitude="+latitude+"&longitude="+longitude+"&mail="+mail+"&dateTime="+dateTime);
+          /* For Mailing*/
+
+        }, function() {
+          handleLocationError(true, infoWindow, map.getCenter());
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+ 
+}
 

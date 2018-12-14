@@ -22,6 +22,8 @@ public class Owner {
     private Pet pet;
     private String petNameInCharge;
     private String idPrepaidQrOwned;
+    private double latitude;
+    private double longitude;
     
     public Owner() {
     	
@@ -153,6 +155,22 @@ public class Owner {
 
 	public void setIdPrepaidQrOwned(String idPrepaidQrOwned) {
 		this.idPrepaidQrOwned = idPrepaidQrOwned;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 }

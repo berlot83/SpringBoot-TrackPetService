@@ -12,6 +12,11 @@
 			<p  style="margin:20px;">Si por alguna razón tu celular o tablet no cuenta con cualquier <strong>lector de códigos QR</strong>, podés ver todos los datos ingresando estos datos a la barra de direcciones de tu navegador web</p>
 			<p style="color:lightpink; margin:20px;">https://pet-cloud-service.herokuapp.com/id/CODIGO_IMPRESO_EN_QR</p>
 					
+<!-- 			<div th:if="${list.prepaidQR.pet.status == null ? list.prepaidQR.pet.status : false}"></div> -->
+			
+					<p th:each="listIterate : ${list}"
+						th:text="${listIterate.pet.status != null ? listIterate.pet.status : false}" >false</p>
+		
 			<div th:if="${list} != null" id="tableContainer" class="container-fluid">
 				<table id="lostTable" class="table table-dark table-responsive table-striped">
 					<thead>
@@ -26,7 +31,6 @@
 							<td>Marca Comida</td>
 						</tr>
 					</thead>
-
 					<tbody th:each="listIterate : ${list}"
 						th:if="${listIterate.pet.status}  == true">
 						<tr>

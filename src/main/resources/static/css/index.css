@@ -17,10 +17,6 @@ html{
     bottom: 0;
 }
 
-a:link{
-	color:white;
-}
-
 body {
 	height: 100%;
 	margin: 0;
@@ -66,7 +62,7 @@ text-shadow: 0px 0px 4px black;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 	margin: auto;
 	background:url("../img/tile_darkblue.jpg");
-	padding:25px
+	padding:25px;
 }
 
 .imageCarousel{
@@ -87,6 +83,14 @@ hr{
 
 a{
 	color:white;
+}
+
+a:link{
+	color:white;
+}
+
+a:visited{
+	color: white;
 }
 
 a:hover{
