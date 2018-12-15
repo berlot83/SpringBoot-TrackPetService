@@ -1,13 +1,66 @@
-#introDiv{
-    margin: 0 auto;
+html, body{
+	height:auto;
 }
+
 
 #mainContainerAbout{
     text-shadow: 0px 0px 5px rgba(0,0,0,1);
     text-align: justify;
     box-shadow: 0px 0px 15px black;
     color: white;
-    background-image: url('../img/tile_darklightblue.jpg');
+    background-image: url('../img/tile_pupure.jpg');
     background-repeat: repeat;
-    margin-bottom:0px;
+    height:1500px;
+
+}
+
+
+/*  Small devices (landscape phones, 576px and up) */
+@media ( max-width : 576px) {
+	body {
+	
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h2 {
+		font-size: medium !important;
+	}
+	#mainContainerAbout {
+		width:100%;
+		font-size: small !important;
+	}
+}
+
+/*  Medium devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	body {
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h2 {
+		font-size: medium !important;
+	}
+	#mainContainerAbout {
+		width:100%;
+		font-size: small !important;
+	}
+}
+
+/*  Large devices (desktops, 992px and up) */
+@media ( max-width : 992px) {
+	body {
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h2 {
+		font-size: medium !important;
+	}
+	#mainContainerAbout {
+		width:100%;
+		font-size: small !important;
+	}
+}
+
+/*  Extra large devices (large desktops, 1200px and up) */
+@media ( min-width : 1200px) {
 }

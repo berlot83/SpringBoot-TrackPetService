@@ -23,7 +23,7 @@
 					th:text="'País: ' + ${prepaidQR.owner.residence}"></p>
 				<p th:if="${prepaidQR.pet.petName} != null"
 					th:text="'Nombre: ' + ${prepaidQR.pet.petName}"></p>
-				<p th:if="${prepaidQR.pet.age} >= 2018"
+				<p th:if="${prepaidQR.pet.age} <= 2018"
 					th:text="'Nacimimento: ' + ${prepaidQR.pet.age}"></p>
 				<p th:if="${prepaidQR.pet.sex} != null"
 					th:text="'Sexo: ' + ${prepaidQR.pet.sex}"></p>

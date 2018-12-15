@@ -8,85 +8,66 @@
 <nav th:replace="default :: bar"></nav>
 
 <body>
-	<div class="container">
-		<div id="mainContainerAbout" class="container-fluid">
+	<div class="container inline-block" id="mainContainerAbout">
+		<div class="container-fluid">
 
-			<div id="introDiv" class="container-fluid" style="margin: 0 auto;">
-				<h2>Nosotros:</h2>
-				Pet-CLoud y Vet-CLoud son productos creados por Molokotech,
-				brindando soluciones tecnológicas a problemáticas relacionadas con
-				las mascotas, a su vez nos especializamos en la creación de códigos
-				QR con los lenguajes de programación más sólidos del mercado
-			</div>
-
-			<div class="container-fluid" style="margin: 0 auto;">
-				<h2>Academia QR:</h2>
+<!-- 			<div id="introDiv" class="container-fluid" style="margin: 0 auto;"> -->
+<!-- 			<br> -->
+<!-- 			<br> -->
+<!-- 				<h2>Nosotros:</h2> -->
+<!-- 				<strong style="color:#ff8000">Pet-CLoud</strong> y <strong style="color:#ff8000">Vet-CLoud</strong> son productos creados por <strong style="color:#ff8000">Molokotech</strong>, -->
+<!-- 				brindando soluciones tecnológicas a problemáticas relacionadas con -->
+<!-- 				las mascotas, a su vez nos especializamos en la creación de códigos -->
+<!-- 				QR con los lenguajes de programación más sólidos del mercado -->
+<!-- 			</div> -->
+<br><br>
+				<h3>Preguntas frecuentes sobre los QR:</h3>
 				<div style="float: left" class="container-fluid">
-					<img src="../img/qrCloud.png"
-						style="box-shadow: 0px 0px 10px black; margin: 0 auto;" />
+					<img class="img-fluid" src="../img/densidad.png"
+						style="margin: 0 auto;" />
 				</div>
-				<div style="float: left" class="container-fluid">
-					Acá vamos a responder algunas preguntas técnicas sobre los códigos
-					QR en general y los nuestros en particular
-					<ol>
-						<li>Es un módulo para almacenar información en una matriz de
-							puntos.
-						<li>
-						<li>La densidad de bytes (cantidad de puntos negros) es
+				<div style="float: left; margin-top: 20px;" class="container-fluid">
+					<p>Acá vamos a responder algunas preguntas técnicas sobre los códigos
+					QR en general y los nuestros en particular</p>
+					
+						<p>1) Es un módulo para almacenar información en una matriz de
+							puntos. (Quick response)</p>
+						
+						<p>2) La densidad de bytes (cantidad de puntos negros) es
 							importante a la hora de la lectura y la distancia en que se va a
-							leer.</li>
-						<li>Nuestros códigos QR almacenan una ruta a una cloud donde
+							leer.
+						</p>
+						<p>
+							3) Permiten un margen de error de aprox. el 30% como máximo, por eso vemos a veces imagenes en el medio.
+						</p>
+						<p>4) Nuestros códigos QR almacenan una ruta a una cloud donde
 							están los datos de la mascota. Por ende la cantidad de datos
 							ingresada es irrelevante ya que el QR siempre será el mismo.
-						</li>
-						<li>Los colores, tanto de los puntos negros como el fondo del
+						</p>
+						<p>5) Los colores, tanto de los puntos negros como el fondo del
 							QR afectan su lectura. Por ende intentar colocar colores suaves y
 							un fondo muy oscuro dificultará su lectura.
-						</li>
-						<li>Los dibujos superpuestos de gran tamaño afectan la
+						</p>
+						<p>6) Los dibujos superpuestos de gran tamaño afectan la
 							lectura del mismo, hay tolerancias como los logos centrales de
 							menor tamaño.
-						</li>
-						<li>El tamaño óptimo de impresión es de 3x3 cm en adelante,
+						</p>
+						<p>7) El tamaño óptimo de impresión es de 3x3 cm en adelante,
 							menos que ése tamaño dificulta su lectura, no solo para el
 							dispositivo, sino para aquel que tiene que acercarse todavía más
 							para leerlo.
-						</li>
-					</ol>
+						</p>
+						<p>
+							8) La calidad de impresión de los mismos debe ser buena, por éso se recomienda impresoras laser por sobre las de tinta.
+						</p>
+						<p>
+							9) La distancia máxima de lectura es de 1:10, significa, que si el QR tiene 2x2 cm, la distancia debe ser de 20 cm máximo.
+						<p>
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				</div>
-			</div>
-
-			<br>
-
-			<div class="container-fluid" style="margin: 0 auto;">
-				<h3>Otros sistemas:</h3>
-				<div style="float: left" class="container-fluid">
-					<img src="../img/exampleBigQrCode.png"
-						style="box-shadow: 0px 0px 10px black;" />
-				</div>
-				<div style="float: left" class="container-fluid">Lo que nos
-					diferencia de otros servicios web que crean códigos QR incluso
-					gratuitos, es que el límite para insercción de datos es limitado a
-					la cantidad de bits que pueda almacenar el código, haciendo que el
-					código solo pueda almacenar datos básicos o en poca cantidad.
-					Porqué?, porque si uno quiere cargar toda una historia clínica o
-					mucha información dentro de un QR el mismo empieza a ser más tupido
-					con respecto a los bits o puntos negros que lo caracterizan,
-					obligando a que el mismo crezca en tamaño para que sea legible por
-					los lectores actuales e inclusive así sería muy difícil de ser
-					leído, y limitando la portabilidad del mismo. Otra cosa a tener en
-					cuenta con estos códigos es que una vez creados no pueden ser
-					modificados sus datos, a menos que se cree de nuevo.</div>
-				<br> <br> <br> <br> <br> <br> <br>
-				<br> <br> <br> <br> <br> <br> <br>
-				<br> <br> <br> <br> <br> <br> <br>
-				<br> <br> <br> <br> <br> <br> <br>
-				<br> <br> <br> <br>
-			</div>
 		</div>
 	</div>
-
-
+	
 	<footer th:replace="default :: footer"></footer>
 </body>
 </html>

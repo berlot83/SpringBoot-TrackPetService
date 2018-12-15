@@ -72,7 +72,7 @@ body {
 }
 
 hr {
-	border: 1px solid red;
+	border: 1px solid red !important;
 }
 
 #navigationBar {
@@ -99,12 +99,13 @@ a:hover {
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 	body {
-		color: red !important;
-		font-size: x-small !important;
 		padding: 2px !important;
 		margin: 2px !important;
 	}
 	h3 {
+		font-size: medium !important;
+	}
+	#infoDiv {
 		font-size: small !important;
 	}
 }
@@ -112,12 +113,13 @@ a:hover {
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
 	body {
-		color: red !important;
-		font-size: x-small !important;
 		padding: 2px !important;
 		margin: 2px !important;
 	}
 	h3 {
+		font-size: medium !important;
+	}
+	#infoDiv {
 		font-size: small !important;
 	}
 }
@@ -125,13 +127,14 @@ a:hover {
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
 	body {
-		color: red !important;
-		font-size: x-small !important;
 		padding: 2px !important;
 		margin: 2px !important;
 	}
 	h3 {
-		font-size: small! important;
+		font-size: medium !important;
+	}
+	#infoDiv {
+		font-size: small !important;
 	}
 }
 
