@@ -7,9 +7,10 @@ public class Owner {
 	@Id
     private String id;
    // @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
-    private String email;
+	private String email;
     private String ownerName;
     private String ownerLastname;
+    private String residence;
     private String address;
     private String dni;
     private String telephone1;
@@ -171,6 +172,14 @@ public class Owner {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public String getResidence() {
+		return residence;
+	}
+
+	public void setResidence(String residence) {
+		this.residence = residence;
 	}
 
 }

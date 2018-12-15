@@ -20,22 +20,40 @@
 			</div>
 
 			<div class="container-fluid" style="margin: 0 auto;">
-				<h2>Nuestro sistema:</h2>
+				<h2>Academia QR:</h2>
 				<div style="float: left" class="container-fluid">
 					<img src="../img/qrCloud.png"
 						style="box-shadow: 0px 0px 10px black; margin: 0 auto;" />
 				</div>
-				<div style="float: left" class="container-fluid">Nuestro
-					sistema está creado para que en un QR pequeño pueda entrar una
-					cantidad casi ilimitada de información, porqué? porque los datos
-					están en la Cloud (nube), haciendo que sea absolutamente
-					indiferente la cantidad de datos que se carguen al mismo. Ya sean
-					datos básicos como nombre del dueño, teléfono y otros datos básicos
-					como también historias clínicas de varias hojas, es absolutamente
-					indiferente. Los datos que contienen nuestros códigos QR pueden ser
-					modificados dinámicamente en el tiempo y lugar que sea nunca
-					modificando elcódigo ya creado, esós son unos de los tantos
-					beneficios de usar las clouds.</div>
+				<div style="float: left" class="container-fluid">
+					Acá vamos a responder algunas preguntas técnicas sobre los códigos
+					QR en general y los nuestros en particular
+					<ol>
+						<li>Es un módulo para almacenar información en una matriz de
+							puntos.
+						<li>
+						<li>La densidad de bytes (cantidad de puntos negros) es
+							importante a la hora de la lectura y la distancia en que se va a
+							leer.</li>
+						<li>Nuestros códigos QR almacenan una ruta a una cloud donde
+							están los datos de la mascota. Por ende la cantidad de datos
+							ingresada es irrelevante ya que el QR siempre será el mismo.
+						</li>
+						<li>Los colores, tanto de los puntos negros como el fondo del
+							QR afectan su lectura. Por ende intentar colocar colores suaves y
+							un fondo muy oscuro dificultará su lectura.
+						</li>
+						<li>Los dibujos superpuestos de gran tamaño afectan la
+							lectura del mismo, hay tolerancias como los logos centrales de
+							menor tamaño.
+						</li>
+						<li>El tamaño óptimo de impresión es de 3x3 cm en adelante,
+							menos que ése tamaño dificulta su lectura, no solo para el
+							dispositivo, sino para aquel que tiene que acercarse todavía más
+							para leerlo.
+						</li>
+					</ol>
+				</div>
 			</div>
 
 			<br>

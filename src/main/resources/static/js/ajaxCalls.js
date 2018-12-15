@@ -46,13 +46,14 @@ function updateQr() {
 	var facebook = document.getElementById("facebook").value;
 	var instagram = document.getElementById("instagram").value;
 	var email = document.getElementById("email").value;
+	var residence = document.getElementById("residence").value;
 
 	var xhr = new XMLHttpRequest();
 	var url = "/update-qr";
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&ownerName=" + ownerName + "&ownerLastname=" + ownerLastname + "&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&dni=" + dni + "&telephone1=" + telephone1 + "&telephone2=" + telephone2 + "&email=" + email + "&address=" + address + "&facebook=" + facebook + "&instagram=" + instagram);
+	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&ownerName=" + ownerName + "&ownerLastname=" + ownerLastname + "&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&dni=" + dni + "&telephone1=" + telephone1 + "&telephone2=" + telephone2 + "&email=" + email + "&address=" + address + "&facebook=" + facebook + "&instagram=" + instagram + "&residence=" + residence);
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			

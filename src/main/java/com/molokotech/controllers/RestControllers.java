@@ -106,7 +106,6 @@ public class RestControllers {
 		
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
-		//PrepaidQR tempPrepaidQR = new PrepaidQR(prepaidQR.getStrBase64(), pet, owner);
 		String strJson = gson.toJson(temp, PrepaidQR.class);
 		
 		return strJson;

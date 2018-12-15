@@ -1,12 +1,12 @@
 /* @charset "ISO-8859-1"; */
-html{
-	    position: relative;
-		min-height: 100%;
-		width: 100%;
+html {
+	position: relative;
+	min-height: 100%;
+	width: 100%;
 }
 
-#footer{
-	//height: 70px;
+#footer { //
+	height: 70px;
 	background-color: black;
 	position: fixed;
 	left: 0;
@@ -14,20 +14,20 @@ html{
 	color: white;
 	text-align: left;
 	vertical-align: middle;
-    bottom: 0;
+	bottom: 0;
 }
 
 body {
 	height: 100%;
 	margin: 0;
-	font-family: 'Mali', cursive;
-	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	font-family: 'Mali', cursive !important;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3) !important;
 	background: url("../img/bg_tile.gif");
 	background-repeat: repeat;
 }
 
 #carouselExampleControls {
-text-shadow: 0px 0px 4px black;
+	text-shadow: 0px 0px 4px black;
 }
 
 .carousel-item.active, .carousel-item-next, .carousel-item-prev {
@@ -35,7 +35,7 @@ text-shadow: 0px 0px 4px black;
 	padding: 0px;
 	margin: 0px;
 	text-shadow: 0px 0px 7px white;
-	color:#5b3f83;
+	color: #5b3f83;
 	font-weight: bold;
 }
 
@@ -46,7 +46,7 @@ text-shadow: 0px 0px 4px black;
 }
 
 #infoDiv {
-	color:white;
+	color: white;
 	padding-left: 15px;
 	padding-right: 15px;
 	background-image: url('../img/tile_pupure.jpg');
@@ -56,43 +56,85 @@ text-shadow: 0px 0px 4px black;
 	text-shadow: 0px 0px 5px black;
 }
 
-#divMainForm{
+#divMainForm {
 	box-shadow: 0px 0px 15px black;
-	color:white;
+	color: white;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 	margin: auto;
-	background:url("../img/tile_darkblue.jpg");
-	padding:25px;
+	background: url("../img/tile_darkblue.jpg");
+	padding: 25px;
 }
 
-.imageCarousel{
+.imageCarousel {
 	margin: 0px;
 	padding: 0px;
 	box-shadow: 0px 0px -25px black;
-
 }
 
-hr{
+hr {
 	border: 1px solid red;
 }
 
-#navigationBar{
-	color:white;
-	background-color:black;
+#navigationBar {
+	color: white;
+	background-color: black;
 }
 
-a{
-	color:white;
-}
-
-a:link{
-	color:white;
-}
-
-a:visited{
+a {
 	color: white;
 }
 
-a:hover{
-	color:violet;
+a:link {
+	color: white;
+}
+
+a:visited {
+	color: white;
+}
+
+a:hover {
+	color: violet !important;
+}
+
+/*  Small devices (landscape phones, 576px and up) */
+@media ( max-width : 576px) {
+	body {
+		color: red !important;
+		font-size: x-small !important;
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h3 {
+		font-size: small !important;
+	}
+}
+
+/*  Medium devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	body {
+		color: red !important;
+		font-size: x-small !important;
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h3 {
+		font-size: small !important;
+	}
+}
+
+/*  Large devices (desktops, 992px and up) */
+@media ( max-width : 992px) {
+	body {
+		color: red !important;
+		font-size: x-small !important;
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h3 {
+		font-size: small! important;
+	}
+}
+
+/*  Extra large devices (large desktops, 1200px and up) */
+@media ( min-width : 1200px) {
 }

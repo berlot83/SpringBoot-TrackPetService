@@ -4,62 +4,80 @@
     background-repeat: repeat;
     color:white;
     text-shadow: 0px 0px 2px black;
-
+    margin: 0 auto;
 }
 
 .column{
-    padding:30px;
+    padding:10px;
     text-align: center;
-    border: 3px gray solid;
+    float:left;
 }
 
-.row1{
-padding: 10px;
+.rowPadding {
+	padding: 10px;
 }
 
-.row2{
-padding: 10px;
+.qrImages{
+	border-radius:7px;
 }
 
-.row3{
-padding: 10px;    
-}
-
-.row4{
-padding: 10px;    
-}
-
-.row5{
-padding: 10px;    
+.moreInfo{
+	font-size:16px !important;
+	margin-bottom:5px !important;
 }
 
 .transparency{
+	margin-top: 10px;
     background:rgba(0,0,0,0.5);
     border-radius: 10px;
+}
+
+.imgSelected{
+	box-shadow: 0px 0px 30px violet;
 }
 
 .buttons{
 margin: 10px;
 }
 
-html {
-  font-size: 1rem;
+/*  Small devices (landscape phones, 576px and up) */
+@media ( max-width : 576px) {
+	body {
+		font-size: small !important;
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h3 {
+		font-size: medium; !important;
+	}
 }
 
-@include media-breakpoint-up(sm) {
-  html {
-    font-size: 1.2rem;
-  }
+/*  Medium devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	body {
+		font-size: small !important;
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h3 {
+		font-size: medium !important;
+	}
 }
 
-@include media-breakpoint-up(md) {
-  html {
-    font-size: 1.4rem;
-  }
+/*  Large devices (desktops, 992px and up) */
+@media ( max-width : 992px) {
+	body {
+		font-size: medium !important;
+		padding: 2px !important;
+		margin: 2px !important;
+	}
+	h3 {
+		font-size: medium !important;
+	}
 }
 
-@include media-breakpoint-up(lg) {
-  html {
-    font-size: 1.6rem;
-  }
+/*  Extra large devices (large desktops, 1200px and up) */
+@media ( min-width : 1200px) {
 }
+
+
