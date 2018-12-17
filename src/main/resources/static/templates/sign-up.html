@@ -10,8 +10,8 @@
         <H5>Registro de usuario</H5>
         <hr>
         <form class="needs-validation" action="#" th:action="@{/sign-up}" th:object="${user}" method="POST">
-            <div class="row">
-                <div class="col-4">
+            <div class="row"  id="mainContentDivsSignUp">
+                <div class="col">
                     <div class="form-group">
                         <label for="name"><i class="far fa-user"></i> Usuario</label> <input type="text" th:field="*{name}"
                         id="name" name="name" placeholder="Usuario" class="form-control" required>
@@ -41,24 +41,20 @@
                     </div>
                 </div>
                 
-                <div class="col-8">
+                <div class="col">
                     <img alt="No lo pierdas" src="../img/abandonDog.jpg" class="fluid-content img-fluid" style=" border-radius: 10px;" />
                 </div>
             </div>
+
         </form>
     </div>
-
 </div>
-                    	<br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-    <br>
-     <br>
-      <br>
-       <br>
+				    <br>
+				    <br>
+				    <br>
+				    <br>
+				    <br>
+				    <br>
     <footer th:replace="default :: footer"></footer>
 </body>
 

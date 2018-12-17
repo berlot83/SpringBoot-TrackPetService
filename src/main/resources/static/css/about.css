@@ -1,6 +1,3 @@
-html, body{
-	height:auto;
-}
 
 
 #mainContainerAbout{
@@ -10,8 +7,6 @@ html, body{
     color: white;
     background-image: url('../img/tile_pupure.jpg');
     background-repeat: repeat;
-    height:1500px;
-
 }
 
 

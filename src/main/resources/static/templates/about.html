@@ -8,66 +8,56 @@
 <nav th:replace="default :: bar"></nav>
 
 <body>
-	<div class="container inline-block" id="mainContainerAbout">
-		<div class="container-fluid">
+	<div class="container inline-block">
+		<div class="container-fluid" id="mainContainerAbout">
 
-<!-- 			<div id="introDiv" class="container-fluid" style="margin: 0 auto;"> -->
-<!-- 			<br> -->
-<!-- 			<br> -->
-<!-- 				<h2>Nosotros:</h2> -->
-<!-- 				<strong style="color:#ff8000">Pet-CLoud</strong> y <strong style="color:#ff8000">Vet-CLoud</strong> son productos creados por <strong style="color:#ff8000">Molokotech</strong>, -->
-<!-- 				brindando soluciones tecnológicas a problemáticas relacionadas con -->
-<!-- 				las mascotas, a su vez nos especializamos en la creación de códigos -->
-<!-- 				QR con los lenguajes de programación más sólidos del mercado -->
-<!-- 			</div> -->
 <br><br>
-				<h3>Preguntas frecuentes sobre los QR:</h3>
-				<div style="float: left" class="container-fluid">
-					<img class="img-fluid" src="../img/densidad.png"
-						style="margin: 0 auto;" />
-				</div>
-				<div style="float: left; margin-top: 20px;" class="container-fluid">
-					<p>Acá vamos a responder algunas preguntas técnicas sobre los códigos
-					QR en general y los nuestros en particular</p>
+			<h3>Preguntas frecuentes sobre los QR:</h3>
+			<div style="float: left" class="container-fluid">
+				<img class="img-fluid" src="../img/densidad.png"
+					style="margin: 0 auto;" />
+			</div>
+			<div style="float: left; margin-top: 20px;" class="container-fluid">
+				<p>Acá vamos a responder algunas preguntas técnicas sobre los códigos
+				QR en general y los nuestros en particular</p>
+				
+					<p>1) Es un módulo para almacenar información en una matriz de
+						puntos. (Quick response)</p>
 					
-						<p>1) Es un módulo para almacenar información en una matriz de
-							puntos. (Quick response)</p>
-						
-						<p>2) La densidad de bytes (cantidad de puntos negros) es
-							importante a la hora de la lectura y la distancia en que se va a
-							leer.
-						</p>
-						<p>
-							3) Permiten un margen de error de aprox. el 30% como máximo, por eso vemos a veces imagenes en el medio.
-						</p>
-						<p>4) Nuestros códigos QR almacenan una ruta a una cloud donde
-							están los datos de la mascota. Por ende la cantidad de datos
-							ingresada es irrelevante ya que el QR siempre será el mismo.
-						</p>
-						<p>5) Los colores, tanto de los puntos negros como el fondo del
-							QR afectan su lectura. Por ende intentar colocar colores suaves y
-							un fondo muy oscuro dificultará su lectura.
-						</p>
-						<p>6) Los dibujos superpuestos de gran tamaño afectan la
-							lectura del mismo, hay tolerancias como los logos centrales de
-							menor tamaño.
-						</p>
-						<p>7) El tamaño óptimo de impresión es de 3x3 cm en adelante,
-							menos que ése tamaño dificulta su lectura, no solo para el
-							dispositivo, sino para aquel que tiene que acercarse todavía más
-							para leerlo.
-						</p>
-						<p>
-							8) La calidad de impresión de los mismos debe ser buena, por éso se recomienda impresoras laser por sobre las de tinta.
-						</p>
-						<p>
-							9) La distancia máxima de lectura es de 1:10, significa, que si el QR tiene 2x2 cm, la distancia debe ser de 20 cm máximo.
-						<p>
-						<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				</div>
+					<p>2) La densidad de bytes (cantidad de puntos negros) es
+						importante a la hora de la lectura y la distancia en que se va a
+						leer.
+					</p>
+					<p>
+						3) Permiten un margen de error de aprox. el 30% como máximo, por eso vemos a veces imagenes en el medio.
+					</p>
+					<p>4) Nuestros códigos QR almacenan una ruta a una cloud donde
+						están los datos de la mascota. Por ende la cantidad de datos
+						ingresada es irrelevante ya que el QR siempre será el mismo.
+					</p>
+					<p>5) Los colores, tanto de los puntos negros como el fondo del
+						QR afectan su lectura. Por ende intentar colocar colores suaves y
+						un fondo muy oscuro dificultará su lectura.
+					</p>
+					<p>6) Los dibujos superpuestos de gran tamaño afectan la
+						lectura del mismo, hay tolerancias como los logos centrales de
+						menor tamaño.
+					</p>
+					<p>7) El tamaño óptimo de impresión es de 3x3 cm en adelante,
+						menos que ése tamaño dificulta su lectura, no solo para el
+						dispositivo, sino para aquel que tiene que acercarse todavía más
+						para leerlo.
+					</p>
+					<p>
+						8) La calidad de impresión de los mismos debe ser buena, por éso se recomienda impresoras laser por sobre las de tinta.
+					</p>
+					<p>
+						9) La distancia máxima de lectura es de 1:10, significa, que si el QR tiene 2x2 cm, la distancia debe ser de 20 cm máximo.
+					<p>
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</div>
 		</div>
 	</div>
-	
 	<footer th:replace="default :: footer"></footer>
 </body>
 </html>

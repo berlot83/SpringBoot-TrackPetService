@@ -53,10 +53,12 @@
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-
                 var createImage = document.createElement("img");
                 var divResult = document.getElementById("resultImage");
                 var attribute = document.createAttribute("src");
+                var attributeClass = document.createAttribute("class");
+                attributeClass.value= "img-fluid";
+                createImage.setAttributeNode(attributeClass);
                 attribute.value = "data:image/png;base64, " + xhr.responseText;
                 createImage.setAttributeNode(attribute);
                 var shadowStyle = document.createAttribute("style");

@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="default :: header"></head>
+<nav th:replace="default :: bar"></nav>
+<div class="container">
+	<div class="container-fluid">
+		<h3>Estado del pago.</h3>
+		<p>Su pago fue procesado con éxito!.</p>
+		<p>Revise su mail donde recibirá el código QR a ingresar en la
+			siguiente URL:</p>
+		<a href="https://pet-cloud-service.herokuapp.com/login">Activar
+			Código QR</a>
+		<p>Recuerde que para poder ingresar al link de arriba nombrado
+			necesita tener una cuenta.</p>
+	</div>
+</div>
+<footer th:replace="default :: footer"></footer>
+</html>

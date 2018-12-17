@@ -28,6 +28,8 @@
 		<maven-jar-plugin.version>2.6</maven-jar-plugin.version>
 	</properties>
 
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -83,9 +85,8 @@
 		    <artifactId>spring-boot-starter-mail</artifactId>
 		    <version>2.0.4.RELEASE</version>
 		</dependency>
-		
 		    
-		<!-- 		Start Google maps     -->
+		<!-- Start Google maps     -->
 		<!-- https://mvnrepository.com/artifact/com.google.maps/google-maps-services -->
 		<dependency>
 		    <groupId>com.google.maps</groupId>
@@ -96,12 +97,27 @@
 		<dependency>
 		  <groupId>org.slf4j</groupId>
 		  <artifactId>slf4j-simple</artifactId>
-<!-- 		  <version>1.7.25</version> -->
+		<!-- <version>1.7.25</version> Commmented for irregularities with version spring-->
 		</dependency>
 	    <!-- 		End Google maps     -->
 	    
+	    <!-- MercadoPago start Dependency-->
+<!-- 	    <dependency> -->
+<!--         	<groupId>com.mercadopago</groupId> -->
+<!--         	<artifactId>sdk</artifactId> -->
+<!--         	<version>0.3.4</version> -->
+<!--     	</dependency> -->
+    	<!-- MercadoPago end Dependency -->
 		</dependencies>
 		
+		<repositories>
+    	<!-- MercadoPago start Repository --> 
+<!--     		<repository> -->
+<!--         		<id>mercadopago</id> -->
+<!--         		<url>https://github.com/mercadopago/sdk-java/raw/master/releases</url> -->
+<!--     		</repository> -->
+		<!-- MercadoPago end Repository -->
+		</repositories>
 		
 	<build>
 		<plugins>

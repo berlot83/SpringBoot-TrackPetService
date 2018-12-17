@@ -1,3 +1,5 @@
+html, body{
+}
 
 #container{
     background-image: url('../img/tile_darkblue.jpg');
@@ -5,8 +7,10 @@
     color:white;
     text-shadow: 0px 0px 2px black;
     margin: 0 auto;
+}
 
-    
+#col1, #col2, #col3{
+	padding-top:20px;
 }
 
 .column{
@@ -52,6 +56,10 @@ margin: 10px;
 	h3 {
 		font-size: medium; !important;
 	}
+	
+	#col1, #col2, #col3{
+	padding-top:50px;
+	}
 }
 
 /*  Medium devices (tablets, 768px and up) */
@@ -63,6 +71,10 @@ margin: 10px;
 	}
 	h3 {
 		font-size: medium !important;
+	}
+	
+	#col1, #col2, #col3{
+	padding-top:50px;
 	}
 }
 
@@ -76,10 +88,16 @@ margin: 10px;
 	h3 {
 		font-size: medium !important;
 	}
+	
+	#col1, #col2, #col3{
+	padding-top:50px;
+	}
 }
 
 /*  Extra large devices (large desktops, 1200px and up) */
 @media ( min-width : 1200px) {
+
 }
+
 
 

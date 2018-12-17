@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css?family=Mali:500"
 	rel="stylesheet">
 <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Pet-Cloud</title>
+<link rel="stylesheet" type="text/css" href="../css/default.css"/>
 <link rel="stylesheet" type="text/css" href="../css/index.css" />
 <link rel="stylesheet" type="text/css" href="../css/id.css" />
 <link rel="stylesheet" type="text/css" href="../css/maps.css"/>
@@ -21,6 +22,7 @@
 <link rel="stylesheet" type="text/css" href="../css/sign-up.css"/>
 <link rel="stylesheet" type="text/css" href="../css/success.css"/>
 <link rel="stylesheet" type="text/css" href="../css/prepaid-qr.css"/>
+<link rel="stylesheet" type="text/css" href="../css/create-prepaid-qr.css"/>
 <link rel="stylesheet" type="text/css" href="../css/db-lost-pet.css"/>
 <script type="text/javascript" src="../js/ajaxCalls.js"></script>
 <script type="text/javascript" src="../js/download.js"></script>
@@ -68,9 +70,22 @@
 	<nav th:fragment="bar"
 		class="navbar navbar-toggleable-md navbar-expand-lg justify-content-between"
 		id="navigationBar">
-		<a class="nav-link navbar-brand" href="/index"><img
-			src="../img/iconoPet75.png" width="30" height="30" alt="">
-			Pet-Cloud</a>
+		
+		<!-- All envolve in one div, collapse only seen on mobile screen -->
+		<div id="logoNavigation">
+			<!-- Logo Home -->
+			<a class="nav-link navbar-brand" href="/index"><img
+				src="../img/iconoPet75.png" width="30" height="30" alt="Home">
+				Pet-Cloud</a>
+			
+			<!-- Print Collapse Icon -->
+			<button class="navbar-toggler navbar-dark navbar-toggler-right"
+				type="button" style="float:right;" data-toggle="collapse" data-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
 
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 
@@ -78,7 +93,7 @@
 				<li class="nav-item dropdown dropdown-content"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLinkPetQR" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> Pet-QR </a>
+					aria-haspopup="true" aria-expanded="false"><i class="fas fa-qrcode" style="color: white"></i> Pet-QR </a>
 					<div class="dropdown-menu"
 						aria-labelledby="navbarDropdownMenuLinkPetQR"
 						style="background-color: black; color: white;">
@@ -122,30 +137,33 @@
 
 		<!-- Logout Bundle buttons, do not change the order  -->
 		<!-- Print Username -->
-		<a th:if="${currentUser}" class="nav-link"
+		<a th:if="${currentUser}" id="currentUserButton" class="nav-link"
 			style="font-weight: bolder; background-color: #5b3f83; border-radius: 5px;"
 			th:text="${fullName}"></a> <a th:if="${currentUser == 'Invitado'}"
 			class="nav-link" th:href="@{/login}"><i class="fas fa-user"
-			style="color: white"></i> Log in</a>
+			style="color: white;"></i> Log in</a>
+			
 		<form style="margin-bottom: 0px;" class="nav-link" action="/logout"
 			method="POST">
 			<button type="submit" th:if="${currentUser != 'Invitado'}"
-				class="nav-link btn btn-danger">
+				class="nav-link btn btn-danger" id="logoutButton">
 				<i class="fas fa-sign-out-alt"></i> Salir
 			</button>
 		</form>
 
 		<!-- Print Register -->
 		<a th:if="${currentUser == 'Invitado'}" class="nav-link"
-			href="/sign-up"><i class="fas fa-sign-in-alt"></i> Registrarse</a>
+			href="/sign-up"><i class="fas fa-sign-in-alt"></i> Registro</a>
 
-		<!-- Print logout -->
-		<button class="navbar-toggler navbar-dark navbar-toggler-right"
-			type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-			aria-controls="navbarNavDropdown" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+
+
+<!-- 		<!-- Print logout -->
+<!-- 		<button class="navbar-toggler navbar-dark navbar-toggler-right" -->
+<!-- 			type="button" data-toggle="collapse" data-target="#navbarNavDropdown" -->
+<!-- 			aria-controls="navbarNavDropdown" aria-expanded="false" -->
+<!-- 			aria-label="Toggle navigation"> -->
+<!-- 			<span class="navbar-toggler-icon"></span> -->
+<!-- 		</button> -->
 
 	</nav>
 	<!-- End logout divs -->

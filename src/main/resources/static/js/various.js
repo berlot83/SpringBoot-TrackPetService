@@ -3,7 +3,7 @@ function contact() {
 		type: 'blue',
 		title: "<h5><strong><img src='../img/iconoPet75.png' style='widh:40px; height:40px;' /> Contacto</strong></h5>",
 		columnClass: 'col-md-6 col-md-offset-3',
-		content: '<ol><li>Para ventas a veterinarias y/o revendedores <a href="mailto:molokotech.com">info@molokotech.com</a></li><li>Para venta en canal minorista comunicarse con <a href="mailto:molokotech.com">info@molokotech.com</a></li><li>Para consultas generales sobre el mismo y/o alcances de responsabilidad <a href="mailto:molokotech.com">info@molokotech.com</a></li></ol>',
+		content: '<ol><li>Para ventas a veterinarias y/o revendedores <a href="mailto:molokotech.com"><span class="badge badge-primary">info@molokotech.com</span></a></li><li>Para venta en canal minorista comunicarse con <a href="mailto:molokotech.com"><span class="badge badge-primary">info@molokotech.com</span></a></li><li>Para consultas generales sobre el mismo y/o alcances de responsabilidad <a href="mailto:molokotech.com"><span class="badge badge-primary">info@molokotech.com</span></a></li></ol>',
 		
 		buttons: {
 			danger: {
