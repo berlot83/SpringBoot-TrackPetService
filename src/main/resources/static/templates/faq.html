@@ -1,0 +1,262 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="default :: header"></head>
+<body>
+	<nav th:replace="default :: bar"></nav>
+
+
+	<div class="container">
+		<div class="container-fluid" id="faqMainContainer">
+			<h4>Preguntas Frecuentes</h4>
+
+			<span class="badge badge-lg badge-primary" id="show1">Ver +</span>
+			<label for="answer1" id="quest1">1) Porqué Pet-QR vale lo que
+				vale?</label>
+			<p id="answer1" class="answer">Simplemente porque Cuesta mucho
+				más de su valor de venta, las tecnologías que utiliza son muy
+				sólidas y confiables.</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show2" onclick="show2()">Ver
+				+</span>
+			<label for="answer2" id="quest2">2) Cuáles son los alcances
+				geográficos?</label>
+			<p id="answer2" class="answer">Realmente no tenemos límites para
+				la venta online, porque este sistema se concivió con el fin evitar
+				los envíos, hacia el interior y exterior del país, sin tiempos de
+				espera, etc...</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show3" onclick="show3()">Ver
+				+</span>
+			<label for="answer3" id="quest3">3) Sin gastos mensuales</label>
+			<p id="answer3" class="answer">No tiene gastos mensuales, una vez
+				realizada la compra los datos se alojan en la nube y el usuario
+				puede usar el sistema junto con la App.</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show4" onclick="show4()">Ver
+				+</span>
+			<label for="answer4" id="quest4">4) Dónde lo compro?</label>
+			<p id="answer4" class="answer">Se compra y activa online, como si
+				estuvieras activando un chip de celular, más simple aún. Y sino en
+				los puntos de venta que son habitualmente veterinarias.</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show5" onclick="show5()">Ver
+				+</span>
+			<label for="answer5" id="quest5">5) Es transferible</label>
+			<p id="answer5" class="answer">Si, esa mascota ya no la usar va a
+				usar más, se completan los datos con las de otra, o si se desea se
+				transfiere a otra persona pasando los códigos de acceso.</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show6" onclick="show6()">Ver
+				+</span>
+			<label for="answer6" id="quest6">6) Ubicación de mi hogar</label>
+			<div id="answer6" class="answer">
+			<p>No es obligatorio colocarla, para nada, se puede declarar
+				una plaza cercana a su zona de residencia, o una zona muy
+				transitada, la ubicación que ustedes deseen, pero sí es obligatorio
+				poner alguna ubicación en el mapa ya que el sistema está programado
+				para obtener direcciónes por medio de geocódigo.</p>
+			<img src="../img/exampleAddress.png" class="img-fluid">
+			</div>
+			
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show7" onclick="show7()">Ver
+				+</span>
+			<label for="answer7" id="quest7">7) Cuales son los formatos
+				de descarga?</label>
+			<p id="answer7" class="answer">Los diseños que vienen con logos o
+				imagen en el medio se descargan en formato PDF, los mismos se pueden
+				manipular con varios programas ya conocidos en el mercado, aparte
+				ponemos a disposición los mismos QR sin dibujo ni diseño para
+				descarga en formato PNG y JPG.</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show8" onclick="show8()">Ver
+				+</span>
+			<label for="answer8" id="quest8">8) Tienen límites de
+				descargas?</label>
+			<p id="answer8" class="answer">En ningún caso, se puede descargar
+				las veces que quiera, sin embargo los límites de descarga son
+				naturales a la función, ya que por más que impriman 20 códigos, la
+				Historia clínica va a ser la de un sólo animal, así como los datos
+				básicos también, sin embargo hay un beneficio amplio para cuando se
+				quiere tener un control de la ubicación, Ejemplo si tenés 4 perros y
+				a los 4 comparten el mismo código y uno se pierde, cuando lean el QR
+				va a llegar la ubicación del perro perdido, en el Caso que se
+				pierdan dos... estamos en problemas... ya que ahí vas a tener que
+				analizar la ubicación de cada aviso de latitud y longitud... Por eso
+				decimos que el límite es natural.</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show9" onclick="show9()">Ver
+				+</span>
+			<label for="answer9" id="quest9">9) Venta online por sobre la física?</label>
+			<p id="answer9" class="answer">Porque el sistema actual va en ésa
+				dirección, nosotros nos ahorramos enviarlo, ustedes de esperarlo y
+				pagar envío, así como también disponen de descargas del mismo QR en
+				diferentes tamaños y diseños, de esta manera personas del interior
+				del país y de todo el mundo pueden tener en cuesti�n de minutos un
+				sistema de seguridad para su amigo fiel.</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show10" onclick="show10()">Ver
+				+</span>
+			<label for="answer10" id="quest10">10) El soporte es pago?</label>
+			<p id="answer10" class="answer">
+				Es gratuito, y despreocupate si ten�s algun problema, te comunicás
+				con nosotros a <span class="badge badge-lg badge-danger">info@molokotech.com</span>
+				indicando tu código QR que es el nro de 24 dígitos, todo tiene
+				solución.
+			</p>
+			<br>
+
+			<span class="badge badge-lg badge-primary" id="show11" onclick="show11()">Ver
+				+</span>
+			<label for="answer11" id="quest11">11) Prefiero la venta
+				física antes de la online</label>
+			<p id="answer11" class="answer">Bueno esos son gustos de una
+				vieja costumbre, sin embargo la compra online te permite acceder a
+				muchos diseños más, así como también es más económico, cuando uno
+				tenga ganas lo imprime y lo coloca donde quiera, en una chapita, en
+				un llavero, donde les parezca, así como también al haber diferentes
+				tamaños está la posibilidad de un id más grande para pretal. Así
+				como también hay que tener en cuenta que por ejemplo si uno vive en
+				Jujuy y lo quiere va a tener que esperar y encima pagar envío con la
+				incertidumbre del trayecto, porque puede pasarle cualquier cosa al
+				producto en el viaje, seamos realistas.</p>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#show1").click(function() {
+				$("#answer1").fadeToggle(900);
+
+				$("#show1").attr("class", "badge badge-lg badge-danger");
+				$("#show1").click(function() {
+					$("#show1").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+
+		});
+
+		$(document).ready(function() {
+			$("#show2").click(function() {
+				$("#answer2").fadeToggle(900);
+
+				$("#show2").attr("class", "badge badge-lg badge-danger");
+				$("#show2").click(function() {
+					$("#show2").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show3").click(function() {
+				$("#answer3").fadeToggle(900);
+
+					$("#show3").attr("class", "badge badge-lg badge-danger");
+					$("#show3").click(function() {
+					$("#show3").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show4").click(function() {
+				$("#answer4").fadeToggle();
+			
+					$("#show4").attr("class", "badge badge-lg badge-danger");
+					$("#show4").click(function() {
+					$("#show4").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show5").click(function() {
+				$("#answer5").fadeToggle();
+				
+					$("#show5").attr("class", "badge badge-lg badge-danger");
+					$("#show5").click(function() {
+					$("#show5").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show6").click(function() {
+				$("#answer6").fadeToggle();
+			
+					$("#show6").attr("class", "badge badge-lg badge-danger");
+					$("#show6").click(function() {
+					$("#show6").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show7").click(function() {
+				$("#answer7").fadeToggle();
+			
+					$("#show7").attr("class", "badge badge-lg badge-danger");
+					$("#show7").click(function() {
+					$("#show7").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show8").click(function() {
+				$("#answer8").fadeToggle();
+			
+					$("#show8").attr("class", "badge badge-lg badge-danger");
+					$("#show8").click(function() {
+					$("#show8").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show9").click(function() {
+				$("#answer9").fadeToggle();
+			
+					$("#show9").attr("class", "badge badge-lg badge-danger");
+					$("#show9").click(function() {
+					$("#show9").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show10").click(function() {
+				$("#answer10").fadeToggle();
+			
+					$("#show10").attr("class", "badge badge-lg badge-danger");
+					$("#show10").click(function() {
+					$("#show10").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+
+		$(document).ready(function() {
+			$("#show11").click(function() {
+				$("#answer11").fadeToggle();
+			
+					$("#show11").attr("class", "badge badge-lg badge-danger");
+					$("#show11").click(function() {
+					$("#show11").attr("class", "badge badge-lg badge-primary");
+				});
+			});
+		});
+	</script>
+
+	<footer th:replace="default :: footer"></footer>
+</body>
+</html>

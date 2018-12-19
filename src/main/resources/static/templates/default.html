@@ -8,12 +8,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link href="https://fonts.googleapis.com/css?family=Mali:500"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Mali:500" rel="stylesheet">
 <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Pet-Cloud</title>
 <link rel="stylesheet" type="text/css" href="../css/default.css"/>
 <link rel="stylesheet" type="text/css" href="../css/index.css" />
 <link rel="stylesheet" type="text/css" href="../css/id.css" />
+<link rel="stylesheet" type="text/css" href="../css/faq.css" />
 <link rel="stylesheet" type="text/css" href="../css/maps.css"/>
 <link rel="stylesheet" type="text/css" href="../css/vet-cloud.css"/>
 <link rel="stylesheet" type="text/css" href="../css/login.css"/>
@@ -28,6 +28,7 @@
 <script type="text/javascript" src="../js/download.js"></script>
 <script type="text/javascript" src="../js/various.js"></script>
 <script type="text/javascript" src="../js/pricing.js"></script>
+<script type="text/javascript" src="../js/faq.js"></script>
 
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -39,9 +40,11 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous" />
 	
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" -->
+<!-- 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" -->
+<!-- 	crossorigin="anonymous"></script> -->
 	
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -126,8 +129,11 @@
 				<li class="nav-item"><a class="nav-link" href="/pricing"><i
 						class="fas fa-paw"></i> Productos</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/about"><i
-						class="far fa-question-circle"></i> QR-Ayuda</a></li>
+				<li class="nav-item"><a class="nav-link" href="/about"><i class="fas fa-wrench"></i>
+				 QR-Ayuda</a></li>
+
+				<li class="nav-item"><a class="nav-link" href="/faq"><i
+						class="far fa-question-circle"></i> F.A.Q</a></li>
 
 				<li class="nav-item active"><a class="nav-link" href="#"
 					onclick="contact()"><i class="far fa-envelope"></i> Contacto</a></li>
@@ -154,16 +160,6 @@
 		<!-- Print Register -->
 		<a th:if="${currentUser == 'Invitado'}" class="nav-link"
 			href="/sign-up"><i class="fas fa-sign-in-alt"></i> Registro</a>
-
-
-
-<!-- 		<!-- Print logout -->
-<!-- 		<button class="navbar-toggler navbar-dark navbar-toggler-right" -->
-<!-- 			type="button" data-toggle="collapse" data-target="#navbarNavDropdown" -->
-<!-- 			aria-controls="navbarNavDropdown" aria-expanded="false" -->
-<!-- 			aria-label="Toggle navigation"> -->
-<!-- 			<span class="navbar-toggler-icon"></span> -->
-<!-- 		</button> -->
 
 	</nav>
 	<!-- End logout divs -->

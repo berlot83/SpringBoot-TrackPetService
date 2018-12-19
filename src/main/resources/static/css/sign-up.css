@@ -21,8 +21,6 @@ html, body{
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 	body {
-		padding: 2px !important;
-		margin: 2px !important;
 	}
 	#mainContentDivsSignUp {
 		display: inline-block;
@@ -33,8 +31,6 @@ html, body{
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
 	body {
-		padding: 2px !important;
-		margin: 2px !important;
 	}
 	#mainContentDivsSignUp {
 		display: inline-block;
@@ -45,8 +41,6 @@ html, body{
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
 	body {
-		padding: 2px !important;
-		margin: 2px !important;
 	}
 	#mainContentDivsSignUp {
 		display: inline-block;

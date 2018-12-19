@@ -1,0 +1,66 @@
+#faqMainContainer{
+	    background-image: url('../img/tile_darkblue.jpg');
+    background-repeat: repeat;
+    color:white;
+    text-shadow: 1px 2px black;
+    margin: 0 auto;
+    box-shadow: 0px 0px 25px black;
+    text-align:justify;
+}
+
+.answer{
+	display:none;
+	padding-left:30px;
+}
+
+h4{
+	padding-top:30px;
+	text-shadow:1px 3px black;
+}
+
+
+/*  Small devices (landscape phones, 576px and up) */
+@media ( max-width : 576px) {
+	body {
+		font-size: small !important;		
+	}
+	
+	h4 {
+		font-size: medium !important;
+	}
+	
+	#faqMainContainer{
+	background-image: url('../img/tile_darkblue.jpg');
+    background-repeat: repeat;
+    color:white;
+    text-shadow: 1px 2px black;
+    margin: 0 auto;
+    box-shadow: 0px 0px 25px black;
+	font-size: small !important;
+}
+
+}
+
+/*  Medium devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	body {
+		font-size: small !important;
+	}
+	h4 {
+		font-size: medium !important;
+	}
+}
+
+/*  Large devices (desktops, 992px and up) */
+@media ( max-width : 992px) {
+	body {
+		font-size: medium !important;
+	}
+	h4 {
+		font-size: medium !important;
+	}
+}
+
+/*  Extra large devices (large desktops, 1200px and up) */
+@media ( min-width : 1200px) {
+}
