@@ -1,7 +1,10 @@
 package com.molokotech.controllers;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
+import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,7 @@ import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.GoogleMapsService;
+import com.mongodb.client.MongoCursor;
 
 @Controller
 @RestController
@@ -59,6 +63,9 @@ public class RestControllers {
 					}
 					String strBase64 = QRCodeGenerator.toBase64(imageData);
 					prepaidqr.setStrBase64(strBase64);
+					
+					/* It must be this String to change to 'vendido' when payment was released */
+					prepaidqr.setSelledOnline("En venta");
 					
 					/* Upload Again but with the String base64 updated */
 					objectToUpload = prepaidQrService.createPrepaidQR(prepaidqr);
@@ -109,6 +116,24 @@ public class RestControllers {
 		String strJson = gson.toJson(temp, PrepaidQR.class);
 		
 		return strJson;
+	}
+	
+	@RequestMapping("/checkPrepaidQrAvailable")
+	public PrepaidQR checkPrepaidQrAvailable() {
+		PrepaidQR match = null;
+		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
+		
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getSelledOnline().equals("En venta")) {
+				match = list.get(i);
+				System.out.println(list.get(i).getSelledOnline());
+				System.out.println(list.get(i).getId());
+				break;
+			}else {
+				System.out.println("No match with 'En venta'");
+			}
+		}
+		return match;
 	}
 	
 }

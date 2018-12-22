@@ -97,6 +97,12 @@ public class QrController {
 		PrintName.printUser(model);
 		return "vet-cloud";
 	}
+	
+	@RequestMapping("/faq")
+	public String faq(Model model) {
+		PrintName.printUser(model);
+		return "faq";
+	}
 
 	@PostMapping("/sign-up")
 	public String greetingSubmit(@ModelAttribute User user, Model model) {
@@ -160,6 +166,21 @@ public class QrController {
 		PrintName.printUser(modelName);
 		model.addAttribute("list",list);
 		return "db-lost-pet";
+	}
+	
+	@RequestMapping("/payment-success")
+	public String upgradeToSelledOnline(Model modelName, Model model){
+		PrintName.printUser(modelName);
+
+		RestControllers rc = new RestControllers();
+		
+		
+		
+		PrepaidQR prepaidQR = rc.checkPrepaidQrAvailable();
+		
+		MailSenderUtilities msu = new MailSenderUtilities();
+		msu.sendQrCodeToEmail(prepaidQR, model);
+		return null;
 	}
 
 }

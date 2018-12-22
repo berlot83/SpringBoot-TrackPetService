@@ -3,59 +3,70 @@
 <head th:replace="default :: header"></head>
 
 <body>
-    <nav th:replace="default :: bar"></nav>
+	<nav th:replace="default :: bar"></nav>
 
-<div class="container">
-    <div id="signUpFormMainDiv" class="container-fluid">
-        <H5>Registro de usuario</H5>
-        <hr>
-        <form class="needs-validation" action="#" th:action="@{/sign-up}" th:object="${user}" method="POST">
-            <div class="row"  id="mainContentDivsSignUp">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="name"><i class="far fa-user"></i> Usuario</label> <input type="text" th:field="*{name}"
-                        id="name" name="name" placeholder="Usuario" class="form-control" required>
-                    </div>
-                    <div th:if="${errorMsg} != null" class="alert alert-danger" style="text-shadow: 0px 0px 3px white; color:red;">Usuario no disponible.</div>
-                    
-                    <div class="form-group">
-                        <label for="password"><i class="fas fa-unlock"></i> Password</label>
-                        <input type="password" th:field="*{password}" maxlength="12" minlength="4" id="password" name="password" placeholder="Password" class="form-control"
-                        required><div id="messages"></div>
-                        <small>El formato debe ser entre 4 y 8 caractéres, letras, números o símbolos, combinados o sólos.</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email"><i class="fas fa-at"></i> Email</label> <input type="email" th:field="*{email}" placeholder="Email"
-                            class="form-control" required/>
-                    </div>
+	<div class="container">
+		<div id="signUpFormMainDiv" class="container-fluid">
+			<H5>Registro de usuario</H5>
+			<hr>
+			<form class="needs-validation" action="#" th:action="@{/sign-up}"
+				th:object="${user}" method="POST">
+				<div class="row" id="mainContentDivsSignUp">
+					<div class="col">
+						<div class="form-group">
+							<label for="name"><i class="far fa-user"></i> Usuario</label> <input
+								type="text" th:field="*{name}" id="name" name="name"
+								placeholder="Usuario" class="form-control" required>
+						</div>
+						<div th:if="${errorMsg} != null" class="alert alert-danger"
+							style="text-shadow: 0px 0px 3px white; color: red;">Usuario
+							no disponible.</div>
 
-                    <div class="form-check">
-                        <input id="termsAndConditionInput" type="checkbox" class="form-check-input" required>
-                        <label class="form-check-label" onclick="termsAndCondition()"><small>Acepto los terminos y condiciones</small></label>
-                    </div>
-                    <br>
-                
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-info">Registrarse</button>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <img alt="No lo pierdas" src="../img/abandonDog.jpg" class="fluid-content img-fluid" style=" border-radius: 10px;" />
-                </div>
-            </div>
+						<div class="form-group">
+							<label for="password"><i class="fas fa-unlock"></i>
+								Password</label> <input type="password" th:field="*{password}"
+								maxlength="12" minlength="4" id="password" name="password"
+								placeholder="Password" class="form-control" required>
+							<div id="messages"></div>
+							<small>El formato debe ser entre 4 y 8 caractéres,
+								letras, números o símbolos, combinados o sólos.</small>
+						</div>
 
-        </form>
-    </div>
-</div>
-				    <br>
-				    <br>
-				    <br>
-				    <br>
-				    <br>
-				    <br>
-    <footer th:replace="default :: footer"></footer>
+						<div class="form-group">
+							<label for="email"><i class="fas fa-at"></i> Email</label> <input
+								type="email" th:field="*{email}" placeholder="Email"
+								class="form-control" required />
+						</div>
+
+						<div class="form-check">
+							<input id="termsAndConditionInput" type="checkbox"
+								class="form-check-input" required> <label
+								class="form-check-label" onclick="termsAndCondition()"><small>Acepto
+									los terminos y condiciones</small></label>
+						</div>
+						<br>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-info">Registrarse</button>
+						</div>
+					</div>
+
+					<div class="col">
+						<img alt="No lo pierdas" src="../img/abandonDog.jpg"
+							class="fluid-content img-fluid" style="border-radius: 10px;" />
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer th:replace="default :: footer"></footer>
 </body>
 
 </html>

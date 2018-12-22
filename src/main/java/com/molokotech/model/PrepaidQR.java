@@ -16,7 +16,7 @@ public class PrepaidQR {
 	private User user;
 	private Pet pet;
 	private Owner owner;
-	private boolean selledOnline;
+	private String selledOnline;
 	
 	@Autowired
 	public PrepaidQR() {
@@ -93,11 +93,11 @@ public class PrepaidQR {
 		this.userName = userName;
 	}
 
-	public boolean isSelledOnline() {
+	public String getSelledOnline() {
 		return selledOnline;
 	}
 
-	public void setSelledOnline(boolean selledOnline) {
+	public void setSelledOnline(String selledOnline) {
 		this.selledOnline = selledOnline;
 	}
 

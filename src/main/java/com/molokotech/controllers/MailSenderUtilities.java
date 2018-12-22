@@ -6,10 +6,12 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.molokotech.model.Order;
+import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
@@ -69,4 +71,28 @@ public class MailSenderUtilities {
 		}
 
 	}
+	
+	@GetMapping("/sendQrCodeToEmail")
+	public void sendQrCodeToEmail(PrepaidQR prepaidQR, Model model) {
+		
+		String email = "email";
+		String id = prepaidQR.getId().toString();
+		model.addAttribute(email, "berlot83@yahoo.com.ar");
+		
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setSubject("Id del QR adquirido.");
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
+				mimeMessage.setText("EL id del QR es = " + id);
+			}
+		};
+
+		try {
+			this.emailSender.send(preparator);
+		} catch (MailException ex) {
+			System.err.println(ex.getMessage());
+		}
+	}
+
 }

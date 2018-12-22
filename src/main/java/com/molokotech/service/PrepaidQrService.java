@@ -1,4 +1,5 @@
 package com.molokotech.service;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,9 @@ public class PrepaidQrService {
 	PrepaidQrRepository prepaidQrRepository;
 
 	public PrepaidQrService() {
-		
+
 	}
-	
+
 	public PrepaidQR createPrepaidQR(PrepaidQR prepaidQR) {
 		return prepaidQrRepository.save(prepaidQR);
 	}
@@ -50,8 +51,9 @@ public class PrepaidQrService {
 		}
 		return prepaidQR;
 	}
-	
-	public List<PrepaidQR> findAllPrepaidQR(){
+
+	public List<PrepaidQR> findAllPrepaidQR() {
 		return prepaidQrRepository.findAll();
 	}
+
 }

@@ -8,4 +8,6 @@ import com.molokotech.model.PrepaidQR;
 @Repository
 public interface PrepaidQrRepository extends MongoRepository<PrepaidQR, String> {
 	
+	PrepaidQR findBySelledOnline();
+	
 }
