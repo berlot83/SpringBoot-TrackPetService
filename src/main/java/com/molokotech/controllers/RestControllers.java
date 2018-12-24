@@ -143,6 +143,7 @@ public class RestControllers {
 	@ResponseBody
 	public ResponseEntity notifications(String id, String topic) {
 
+		System.out.println("hello world");
 		if(id != null) {
 			System.out.println(id);
 		
