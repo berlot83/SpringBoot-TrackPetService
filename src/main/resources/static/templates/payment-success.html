@@ -40,8 +40,7 @@
 			
 			<div class="row">
 				<div class="col-12 text-center" style="display:inline-block">
-					<button class="btn btn-sm btn-warning" onclick="copyCode()">Copiar Código</button><br><br>
-					<span id="code" style=";font-size:16px;" th:text="${prepaidQR.id}" th:value="${prepaidQR.id}" class="badge badge-lg badge-danger" ></span>
+					<span id="code" style=";font-size:16px;" th:text="${prepaidQR.id}" class="badge badge-lg badge-danger" ></span>
 				</div>
 			</div>
 			<br>
@@ -61,16 +60,6 @@ function instructions(){
 		title:"Atención",
 		content: "Por favor, lea la siguiente pantalla para entender las instrucciones que son muy sencillas, a su vez copie en algún lugar el código para que quede seguro en otro lugar más ademas de su email."
 	});
-}
-
-function copyCode(){
-	var code = document.getElementById("code").textContent;
-	var input = document.createElement("text");
-	var node = document.createTextNode(code);
-    document.body.appendChild(input);
-	input.value = node;
-	input.select();
-	document.execCommand("copy");
 }
 </script>
 </body>
