@@ -73,16 +73,14 @@ public class MailSenderUtilities {
 	}
 	
 	@GetMapping("/sendQrCodeToEmail")
-	public void sendQrCodeToEmail(PrepaidQR prepaidQR, Model model) {
+	public void sendQrCodeToEmail(PrepaidQR prepaidQR, User user) {
 		
-		String email = "email";
 		String id = prepaidQR.getId().toString();
-		model.addAttribute(email, "berlot83@yahoo.com.ar");
 		
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setSubject("Id del QR adquirido.");
-				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
 				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
 				mimeMessage.setText("EL id del QR es = " + id);
 			}

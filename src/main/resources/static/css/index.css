@@ -99,6 +99,7 @@ a:hover {
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 	body {
+		
 	}
 	h3 {
 		font-size: medium !important;
@@ -106,69 +107,65 @@ a:hover {
 	#infoDiv {
 		font-size: small !important;
 	}
-		
 	#footer { //
-	height: 70px;
-	background-color: black;
-	position: relative;
-	left: 0;
-	width: 100%;
-	color: white;
-	text-align: left;
-	vertical-align: middle;
-	bottom: 0;
+		height: 70px;
+		background-color: black;
+		position: relative;
+		left: 0;
+		width: 100%;
+		color: white;
+		text-align: left;
+		vertical-align: middle;
+		bottom: 0;
 	}
 }
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
 	body {
+		
 	}
 	h3 {
 		font-size: medium !important;
 	}
-	
 	#infoDiv {
 		font-size: small !important;
 	}
-	
 	#footer { //
-	height: 70px;
-	background-color: black;
-	position: relative;
-	left: 0;
-	width: 100%;
-	color: white;
-	text-align: left;
-	vertical-align: middle;
-	bottom: 0;
-	}	
+		height: 70px;
+		background-color: black;
+		position: relative;
+		left: 0;
+		width: 100%;
+		color: white;
+		text-align: left;
+		vertical-align: middle;
+		bottom: 0;
+	}
 }
 
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
 	body {
+		
 	}
-	
 	h3 {
 		font-size: medium !important;
 	}
-	
 	#infoDiv {
 		font-size: small !important;
 	}
-	
 	#footer { //
-	height: 70px;
-	background-color: black;
-	position: relative;
-	left: 0;
-	width: 100%;
-	color: white;
-	text-align: left;
-	vertical-align: middle;
-	bottom: 0;
-}
+		height: 70px;
+		background-color: black;
+		position: relative;
+		left: 0;
+		width: 100%;
+		color: white;
+		text-align: left;
+		vertical-align: middle;
+		bottom: 0;
+	}
 }
 
 /*  Extra large devices (large desktops, 1200px and up) */

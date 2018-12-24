@@ -2,18 +2,76 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="default :: header"></head>
-<nav th:replace="default :: bar"></nav>
-<div class="container">
-	<div class="container-fluid">
-		<h3>Estado del pago.</h3>
-		<p>Su pago fue procesado con éxito!.</p>
-		<p>Revise su mail donde recibirá el código QR a ingresar en la
-			siguiente URL:</p>
-		<a href="https://pet-cloud-service.herokuapp.com/login">Activar
-			Código QR</a>
-		<p>Recuerde que para poder ingresar al link de arriba nombrado
-			necesita tener una cuenta.</p>
+<body onload="instructions()">
+	<nav th:replace="default :: bar"></nav>
+	<div class="container">
+		<div class="container-fluid" id="mainPaymentSuccessDiv" style="margin-top:30px;">
+			<h3 style="text-align:center; margin-top:15px;">Estado del pago.</h3>
+			<h4 th:text="'Hola ' + ${user.name} + ','"></h4>
+			<p style="color:lightgreen">Su pago fue procesado con <strong>Éxito! <i class="fas fa-check"></i></strong>.</p>
+			<p style="text-align:justify"
+				th:text="'Revise en la cuenta  declarada , recibirá un mail con el código, si no lo recibió, porque se equivocó ingresando el mail, o sólo no llegó, no se preocupe envíenos un mail con usuario, horario de pago y fecha, o sino cópie en algun lugar seguro el código alfanumérico que aparece arriba del QR en esta misma página.'"></p>
+				
+				<label for="userMail"><i class='far fa-envelope' style="color:lightgreen"></i> Cuenta de email proporcionada:</label>
+				<br>
+				<span id="userMail" class='badge badge-lg badge-success' style="margin-left:20px" th:text="${user.email}"></span>
+				<br>
+				<br>
+				<label for="helpMail"><i class='fas fa-wrench' style="color:coral"></i> Mail de reclamos:</label>
+				<br>
+				<a id="helpMail" style="margin-left:20px" href='mailto:info@molokotech.com'><span class='badge badge-lg badge-danger'>info@molokotech.com</span></a>
+				<br>
+				<br>
+			<p>Recuerde que para poder ingresar al link de arriba nombrado
+				necesita tener una cuenta.</p>
+
+			<p>Este es el código sin diseño, sin embargo si lo intenta leer le debería
+				marcar error ya que al momento no está activado.</p>
+				
+				<p>Para activarlo vaya al siguiente link (previamente logueado)
+			<a href="https://pet-cloud-service.herokuapp.com/login"><span class="badge badge-lg badge-success">Activar Código QR</span></a></p><br>
+			
+			<h5 style="color:lightgreen">Manualmente de la siguiente manera</h5>
+				<p><i class="fas fa-long-arrow-alt-right"></i> Ingrese a su cuenta recientemente creada Pet-QR</p>
+				<p><i class="fas fa-long-arrow-alt-right"></i> Activar un QR-prepago</p> 
+				<p><i class="fas fa-long-arrow-alt-right"></i> Ingrese el código de más de 20 digitos que le debió llegar al mail.</p>
+				<p><i class="fas fa-long-arrow-alt-right"></i> complete el formulario lo más que pueda.</p>
+			
+			
+			<div class="row">
+				<div class="col-12 text-center" style="display:inline-block">
+					<button class="btn btn-sm btn-warning" onclick="copyCode()">Copiar Código</button><br><br>
+					<span id="code" style=";font-size:16px;" th:text="${prepaidQR.id}" th:value="${prepaidQR.id}" class="badge badge-lg badge-danger" ></span>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-12 text-center container-fluid" style="display:inline-block">
+					<img alt="Código QR" th:attr="src=${'data:image/png;base64, '+ prepaidQR.strBase64}" style="border-radius:15px; box-shadow: 0px 0px 25px black"/>
+				</div>
+			</div>
+		</div>
+		<br><br><br><br><br>
 	</div>
-</div>
-<footer th:replace="default :: footer"></footer>
+	<footer th:replace="default :: footer"></footer>
+<script>
+function instructions(){
+	$.alert({
+		type:"blue",
+		title:"Atención",
+		content: "Por favor, lea la siguiente pantalla para entender las instrucciones que son muy sencillas, a su vez copie en algún lugar el código para que quede seguro en otro lugar más ademas de su email."
+	});
+}
+
+function copyCode(){
+	var code = document.getElementById("code").textContent;
+	var input = document.createElement("text");
+	var node = document.createTextNode(code);
+    document.body.appendChild(input);
+	input.value = node;
+	input.select();
+	document.execCommand("copy");
+}
+</script>
+</body>
 </html>

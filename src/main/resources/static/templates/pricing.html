@@ -46,12 +46,17 @@
                     <div class="rowPadding">• Posibilidad de tener más de una copia del código <i class="fas fa-check" style="color:lightgreen;"></i></div>
                 <a onclick="moreInfoPetQrOnline()"><span class="badge badge-pill badge-danger moreInfo">+ info</span></a>
                 </div>
-                <!-- MercadoPago start -->
-                <a mp-mode="dftl" style="font-family:'Mali', cursive !important; margin-bottom:15px;" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8" name="MP-payButton" class='blue-ar-l-rn-arall'>Comprar</a>
-				<script type="text/javascript">
-					(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-				</script>
-                <!-- MercadoPago ends -->
+               <div> 
+					<button onclick="checkoutPage()" class="btn btn-md btn-warning">Comprar</button><br>
+					<p style="color:pink">Checkout - Recuerde estar logueado.</p>
+					
+	            	<script>
+		            	function checkoutPage(){
+		            		window.location.href = "/online-checkout";	
+		            	}
+	            	</script>
+            	
+            	</div>
             </div>
             <div class="column order-3 containerProduct" id="col3">
                 <img src="../img/vetCloud.png" class="img-fluid imgSelected" style="border-radius:7px;"/>

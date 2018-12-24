@@ -2,7 +2,16 @@ package com.molokotech.controllers;
 
 import java.util.List;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +38,9 @@ public class QrController {
 	@Autowired
 	PetService petService;
 	@Autowired
-	UserService userservice;
-	@Autowired
 	PrepaidQrService prepaidQrService;
+	@Autowired
+	JavaMailSender emailSender;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, String error, String logout) {
@@ -168,19 +177,76 @@ public class QrController {
 		return "db-lost-pet";
 	}
 	
+	@RequestMapping("/online-checkout")
+	public String onlineCheckout(Model modelName, Model model) {
+		/* We need to create a checkout page to stack all data to send to, most important, email to send QR code */
+		PrintName.printUser(modelName);
+		
+		/* We capture the name of the logued session to find the user and the we catch the email and other data on the page */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUser(auth.getName());
+		model.addAttribute("user", user);
+
+		return "online-checkout";
+	}
+	
+	
+	
 	@RequestMapping("/payment-success")
 	public String upgradeToSelledOnline(Model modelName, Model model){
-		PrintName.printUser(modelName);
 
-		RestControllers rc = new RestControllers();
+		/* We need to create a checkout page to stack all data to send to, most important, email to send QR code */
+		PrintName.printUser(modelName);
 		
+		/* We capture the name of the logued session to find the user and the we catch the email and other data on the page */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUser(auth.getName());
+		model.addAttribute("user", user);
 		
+		/* Start checking, sending and reemplacing sellecdOnline java attribute*/
+		PrepaidQR prepaidQR = null;
+		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
 		
-		PrepaidQR prepaidQR = rc.checkPrepaidQrAvailable();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getSelledOnline().equals("En venta")) {
+				prepaidQR = list.get(i);
+				System.out.println(list.get(i).getSelledOnline());
+				System.out.println(list.get(i).getId());
+				break;
+			}else {
+				System.out.println("No match with 'En venta'");
+			}
+		}
+		/* End selecting 'En venta match' */
 		
-		MailSenderUtilities msu = new MailSenderUtilities();
-		msu.sendQrCodeToEmail(prepaidQR, model);
-		return null;
+		/* Adding prepaidQR to show data of buyed QR code Start */
+		model.addAttribute("prepaidQR", prepaidQR);
+		/* PrepaidQr code data End */
+		
+		/* Send email with id start */
+		String id = prepaidQR.getId().toString();
+		
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setSubject("Id del QR adquirido.");
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
+				mimeMessage.setText("EL id del QR es = " + id);
+			}
+		};
+
+		try {
+			this.emailSender.send(preparator);
+		} catch (MailException ex) {
+			System.err.println(ex.getMessage());
+		}
+		/* Send email with id end */
+		
+		/* Override "En Venta" for "Vendido a ... " to stop resending other Users*/
+		prepaidQR.setSelledOnline("Vendido a " + user.getName());
+		prepaidQrService.createPrepaidQR(prepaidQR);
+		
+		return "/payment-success";
 	}
 
 }

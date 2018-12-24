@@ -9,6 +9,7 @@ public class PrintName {
 		try {
 			if (modelName != null) {
 				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+				
 				String name = auth.getName(); // get logged in username				
 				if(name.equals("anonymousUser")) {
 					name = "Invitado";
