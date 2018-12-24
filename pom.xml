@@ -108,6 +108,13 @@
 <!--         	<version>0.3.4</version> -->
 <!--     	</dependency> -->
     	<!-- MercadoPago end Dependency -->
+    	
+    	<dependency>
+            <groupId> com.mercadopago </groupId>
+            <artifactId> dx-java </artifactId>
+            <version> 1.0.33 </version>
+        </dependency>
+    	
 		</dependencies>
 		
 		<repositories>
