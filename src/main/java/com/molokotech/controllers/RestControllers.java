@@ -1,5 +1,10 @@
 package com.molokotech.controllers;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 import org.apache.coyote.http2.Http2Protocol;
@@ -145,28 +150,56 @@ public class RestControllers {
 	@RequestMapping(value = "/notifications", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<?> notifications(String topic, String id) throws MPException {
 
-		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
-		MercadoPago.SDK.setClientId("4306840655072811");
+//		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
+//		MercadoPago.SDK.setClientId("4306840655072811");
+//		MercadoPago.SDK.setAccessToken(value);
+//		
+//		System.out.println("hello world");
+//		Gson gson = new Gson();
+//		String test1 = gson.toJson(topic);
+//		System.out.println(test1);
+//		
+//		Gson gson2 = new Gson();
+//		String test2 = gson2.toJson(id);
+//		System.out.println(test2);
+//		
+//		if(topic != null) {
+//			System.out.println(topic);
+//			if(topic.equals("payment")) {
+//				System.out.println("is payment");
+//			}
+//		}
+//
+//		if(id != null) {
+//			System.out.println(id.toString());
+//			
+//		}
 		
-		System.out.println("hello world");
-		Gson gson = new Gson();
-		String test1 = gson.toJson(topic);
-		System.out.println(test1);
-		
-		Gson gson2 = new Gson();
-		String test2 = gson2.toJson(id);
-		System.out.println(test2);
-		
-		if(topic != null) {
-			System.out.println(topic);
-			if(topic.equals("payment")) {
-				System.out.println("is payment");
-			}
-		}
+		if(topic.equals("payment")) {
+	        try {
+	            // get URL content
 
-		if(id != null) {
-			System.out.println(id.toString());
-			
+	            String a="https://pet-cloud-service.herokuapp.com/payment-success";
+	            URL url = new URL(a);
+	            URLConnection conn = url.openConnection();
+
+	            // open the stream and put it into BufferedReader
+	            BufferedReader br = new BufferedReader(
+	                               new InputStreamReader(conn.getInputStream()));
+
+	            String inputLine;
+	            while ((inputLine = br.readLine()) != null) {
+	                    System.out.println(inputLine);
+	            }
+	            br.close();
+
+	            System.out.println("Done");
+
+	        } catch (MalformedURLException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 		}
 		
 		System.out.println(MercadoPago.SDK.Get("/v1/customers/"+id));
