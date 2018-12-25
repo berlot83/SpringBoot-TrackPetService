@@ -150,9 +150,11 @@ public class RestControllers {
 		System.out.println("hello world");
 		Gson gson = new Gson();
 		String test1 = gson.toJson(topic);
+		System.out.println(test1);
 		
 		Gson gson2 = new Gson();
 		String test2 = gson2.toJson(id);
+		System.out.println(test2);
 		
 		if(topic != null) {
 			System.out.println(topic);
@@ -165,6 +167,10 @@ public class RestControllers {
 			System.out.println(id.toString());
 			
 		}
+		
+		System.out.println(MercadoPago.SDK.Get("/v1/customers/"+id));
+		
+		
 		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
