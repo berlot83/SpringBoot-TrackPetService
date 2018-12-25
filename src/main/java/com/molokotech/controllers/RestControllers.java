@@ -23,6 +23,7 @@ import com.google.gson.GsonBuilder;
 import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
 import com.mercadopago.MercadoPago;
+import com.mercadopago.core.MPApiResponse;
 import com.mercadopago.exceptions.MPException;
 import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.Owner;
@@ -170,6 +171,14 @@ public class RestControllers {
 		
 		System.out.println(MercadoPago.SDK.Get("/v1/customers/"+id));
 		
+		Gson gsonCustomer = new Gson();
+		gsonCustomer.toJson(MercadoPago.SDK.Get("/v1/customers/"+id));
+		
+		
+		MPApiResponse api = MercadoPago.SDK.Get("/v1/customers/"+id);
+		
+		System.out.println(api);
+		System.out.println(api.getJsonElementResponse());
 		
 		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
 		
