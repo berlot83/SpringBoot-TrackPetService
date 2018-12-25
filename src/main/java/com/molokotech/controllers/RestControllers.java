@@ -142,24 +142,24 @@ public class RestControllers {
 	}
 	
 	@RequestMapping(value = "/notifications", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<?> notifications() throws MPException {
+	public ResponseEntity<?> notifications(String topic, String id) throws MPException {
 
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
 		
 		System.out.println("hello world");
 		
-//		if(topic != null) {
-//			System.out.println(topic);
-//			if(topic.equals("payment")) {
-//				System.out.println("is payment");
-//			}
-//		}
-//
-//		if(id != null) {
-//			System.out.println(id.toString());
-//			
-//		}
+		if(topic != null) {
+			System.out.println(topic);
+			if(topic.equals("payment")) {
+				System.out.println("is payment");
+			}
+		}
+
+		if(id != null) {
+			System.out.println(id.toString());
+			
+		}
 		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
