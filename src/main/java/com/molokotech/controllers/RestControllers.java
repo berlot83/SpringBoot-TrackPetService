@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
 import com.mercadopago.MercadoPago;
@@ -140,22 +142,23 @@ public class RestControllers {
 	
 	@GetMapping("/notifications")
 	@ResponseBody
-	public ResponseEntity notifications(JSONObject topic, JSONObject id) throws MPException, JSONException {
+	public ResponseEntity notifications(String topic, String id) throws MPException {
 
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
-		
 		
 		System.out.println("hello world");
 		
 		if(topic != null) {
 			System.out.println(topic);
-			System.out.println(topic.get("payment").toString());
+			if(topic.equals("payment")) {
+				System.out.println("is payment");
+			}
 		}
 
 		if(id != null) {
-			System.out.println(id);
-			System.out.println(id.get("id").toString());
+			System.out.println(id.toString());
+			
 		}
 		System.out.println(new ResponseEntity(HttpStatus.OK));
 		
