@@ -148,6 +148,11 @@ public class RestControllers {
 		MercadoPago.SDK.setClientId("4306840655072811");
 		
 		System.out.println("hello world");
+		Gson gson = new Gson();
+		String test1 = gson.toJson(topic);
+		
+		Gson gson2 = new Gson();
+		String test2 = gson2.toJson(id);
 		
 		if(topic != null) {
 			System.out.println(topic);
