@@ -2,11 +2,6 @@ package com.molokotech.controllers;
 import java.io.IOException;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-//import javax.ws.rs.core.Response;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,7 +28,6 @@ import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.GoogleMapsService;
-import com.mongodb.client.MongoCursor;
 //import com.mercadopago.MercadoPago;
 //import com.mercadopago.exceptions.MPException;
 
@@ -147,7 +140,7 @@ public class RestControllers {
 	
 	@GetMapping("/notifications")
 	@ResponseBody
-	public ResponseEntity notifications(JSONObject topic, JSONObject  id) throws JSONException, MPException {
+	public ResponseEntity notifications(String topic, String  id) throws MPException {
 
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
@@ -156,13 +149,14 @@ public class RestControllers {
 		System.out.println("hello world");
 		
 		if(topic != null) {
-			System.out.println(topic.get("payment").toString());
+//			System.out.println(topic.get("payment").toString());
+			System.out.println(topic);
 		}
 
 		if(id != null) {
-			System.out.println(id.get("id").toString());
+//			System.out.println(id.get("id").toString());
+			System.out.println(id);
 		}
-		System.out.println(id.get("response").toString());
 		
 		return new ResponseEntity(HttpStatus.OK);
 	}
