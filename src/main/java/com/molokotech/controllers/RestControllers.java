@@ -2,6 +2,8 @@ package com.molokotech.controllers;
 import java.io.IOException;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,8 +30,6 @@ import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.GoogleMapsService;
-//import com.mercadopago.MercadoPago;
-//import com.mercadopago.exceptions.MPException;
 
 @Controller
 @RestController
@@ -140,7 +140,7 @@ public class RestControllers {
 	
 	@GetMapping("/notifications")
 	@ResponseBody
-	public ResponseEntity notifications(String topic, String  id) throws MPException {
+	public ResponseEntity notifications(JSONObject topic, JSONObject id) throws MPException, JSONException {
 
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
@@ -149,14 +149,15 @@ public class RestControllers {
 		System.out.println("hello world");
 		
 		if(topic != null) {
-//			System.out.println(topic.get("payment").toString());
 			System.out.println(topic);
+			System.out.println(topic.get("payment").toString());
 		}
 
 		if(id != null) {
-//			System.out.println(id.get("id").toString());
 			System.out.println(id);
+			System.out.println(id.get("id").toString());
 		}
+		System.out.println(new ResponseEntity(HttpStatus.OK));
 		
 		return new ResponseEntity(HttpStatus.OK);
 	}
