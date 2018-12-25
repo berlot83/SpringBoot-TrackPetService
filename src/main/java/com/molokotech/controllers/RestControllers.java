@@ -171,10 +171,6 @@ public class RestControllers {
 		
 		System.out.println(MercadoPago.SDK.Get("/v1/customers/"+id));
 		
-		Gson gsonCustomer = new Gson();
-		gsonCustomer.toJson(MercadoPago.SDK.Get("/v1/customers/"+id));
-		
-		
 		MPApiResponse api = MercadoPago.SDK.Get("/v1/customers/"+id);
 		
 		System.out.println(api);
