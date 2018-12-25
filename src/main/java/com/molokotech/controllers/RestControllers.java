@@ -2,8 +2,6 @@ package com.molokotech.controllers;
 import java.io.IOException;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
 import com.mercadopago.MercadoPago;
