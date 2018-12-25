@@ -109,11 +109,20 @@
 <!--     	</dependency> -->
     	<!-- MercadoPago end Dependency -->
     	
-    	<dependency>
-            <groupId> com.mercadopago </groupId>
-            <artifactId> dx-java </artifactId>
-            <version> 1.0.33 </version>
-        </dependency>
+<!--     	<dependency> -->
+<!--             <groupId> com.mercadopago </groupId> -->
+<!--             <artifactId> dx-java </artifactId> -->
+<!--             <version> 1.0.33 </version> -->
+<!--         </dependency> -->
+    
+<!-- https://mvnrepository.com/artifact/com.mercadopago/java-sdk -->
+      <dependency>
+          <groupId> com.mercadopago </groupId>
+          <artifactId> dx-java </artifactId>
+          <version> 1.0.36 </version>
+      </dependency>
+
+    
     	
 		</dependencies>
 		
@@ -124,6 +133,11 @@
 <!--         		<url>https://github.com/mercadopago/sdk-java/raw/master/releases</url> -->
 <!--     		</repository> -->
 		<!-- MercadoPago end Repository -->
+		
+		    <repository>
+        <id>mercadopago</id>
+        <url>https://github.com/mercadopago/sdk-java/raw/master/releases</url>
+    </repository>
 		</repositories>
 		
 	<build>
