@@ -2,6 +2,7 @@ package com.molokotech.controllers;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.coyote.http2.Http2Protocol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -138,29 +141,28 @@ public class RestControllers {
 		return match;
 	}
 	
-	@GetMapping("/notifications")
-	@ResponseBody
-	public ResponseEntity notifications(@RequestParam(value="topic") String topic, @RequestParam(value="id") String id) throws MPException {
+	@RequestMapping(value = "/notifications", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<?> notifications() throws MPException {
 
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
 		
 		System.out.println("hello world");
 		
-		if(topic != null) {
-			System.out.println(topic);
-			if(topic.equals("payment")) {
-				System.out.println("is payment");
-			}
-		}
-
-		if(id != null) {
-			System.out.println(id.toString());
-			
-		}
-		System.out.println(new ResponseEntity(HttpStatus.OK));
+//		if(topic != null) {
+//			System.out.println(topic);
+//			if(topic.equals("payment")) {
+//				System.out.println("is payment");
+//			}
+//		}
+//
+//		if(id != null) {
+//			System.out.println(id.toString());
+//			
+//		}
+		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
 		
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 }
