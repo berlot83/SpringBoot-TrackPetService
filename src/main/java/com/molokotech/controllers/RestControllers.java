@@ -150,10 +150,17 @@ public class RestControllers {
 	@RequestMapping(value = "/notifications", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<?> notifications(String topic, String id) throws MPException {
 
-//		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
-//		MercadoPago.SDK.setClientId("4306840655072811");
-//		MercadoPago.SDK.setAccessToken(value);
-//		
+		
+		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
+		MercadoPago.SDK.setClientId("4306840655072811");
+		MercadoPago.SDK.setAccessToken("");
+		
+		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
+		String accessToken = MercadoPago.SDK.getAccessToken();
+		
+		System.out.println("Access Token ======      "+accessToken);
+		
+		
 //		System.out.println("hello world");
 //		Gson gson = new Gson();
 //		String test1 = gson.toJson(topic);
@@ -175,32 +182,6 @@ public class RestControllers {
 //			
 //		}
 		
-		if(topic.equals("payment")) {
-	        try {
-	            // get URL content
-
-	            String a="https://pet-cloud-service.herokuapp.com/payment-success";
-	            URL url = new URL(a);
-	            URLConnection conn = url.openConnection();
-
-	            // open the stream and put it into BufferedReader
-	            BufferedReader br = new BufferedReader(
-	                               new InputStreamReader(conn.getInputStream()));
-
-	            String inputLine;
-	            while ((inputLine = br.readLine()) != null) {
-	                    System.out.println(inputLine);
-	            }
-	            br.close();
-
-	            System.out.println("Done");
-
-	        } catch (MalformedURLException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-		}
 		
 		System.out.println(MercadoPago.SDK.Get("/v1/customers/"+id));
 		
