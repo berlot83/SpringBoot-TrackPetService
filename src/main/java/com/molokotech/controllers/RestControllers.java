@@ -2,10 +2,11 @@ package com.molokotech.controllers;
 import java.io.IOException;
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+
+//import javax.ws.rs.core.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,6 +23,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
+import com.mercadopago.MercadoPago;
+import com.mercadopago.exceptions.MPException;
 import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.Owner;
 import com.molokotech.model.Pet;
@@ -32,8 +35,8 @@ import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.GoogleMapsService;
 import com.mongodb.client.MongoCursor;
-import com.mercadopago.MercadoPago;
-import com.mercadopago.exceptions.MPException;
+//import com.mercadopago.MercadoPago;
+//import com.mercadopago.exceptions.MPException;
 
 @Controller
 @RestController
