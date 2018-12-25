@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
@@ -138,7 +140,7 @@ public class RestControllers {
 	
 	@GetMapping("/notifications")
 	@ResponseBody
-	public ResponseEntity notifications(String topic, String id) throws MPException {
+	public ResponseEntity notifications(@RequestParam(value="topic") String topic, @RequestParam(value="id") String id) throws MPException {
 
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
