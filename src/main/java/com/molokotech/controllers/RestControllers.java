@@ -156,18 +156,18 @@ public class RestControllers {
 		
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
-		MercadoPago.SDK.setAccessToken("");
 		
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
+		
+		
 
 		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/"+id+"?access_token="+accessToken);
 		System.out.println(api);
-		JsonElement json = api.getJsonElementResponse();
-		System.out.println(json.getAsJsonArray());
 		
-		JsonArray array = json.getAsJsonArray();
-		System.out.println(array);
+		
+		System.out.println(api.getStringResponse());
+		
 //		
 //		System.out.println(api.getPayload());
 //		System.out.println(api.getStringResponse());
