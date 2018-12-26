@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
 import com.mercadopago.MercadoPago;
@@ -157,11 +160,22 @@ public class RestControllers {
 		
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
-		MercadoPago.SDK.Get("/v1/customers/"+id+"?access_token="+accessToken);
+
+		MPApiResponse api = MercadoPago.SDK.Get("/v1/customers/"+id+"?access_token="+accessToken);
+		System.out.println(api);
+		
+		JsonElement gson = api.getJsonElementResponse();
+		System.out.println(gson);
+		
+		JsonObject jsonObject = gson.getAsJsonObject();
+		System.out.println(jsonObject);
+		
+		JsonArray jsonArray = jsonObject.getAsJsonArray();
+		System.out.println(jsonArray);
+		
+		
 		
 		System.out.println(MercadoPago.SDK.Get("/v1/customers/"+id+"?access_token="+accessToken));
-		
-		System.out.println("Access Token ======      "+accessToken);
 		
 		
 //		System.out.println("hello world");
@@ -184,14 +198,6 @@ public class RestControllers {
 //			System.out.println(id.toString());
 //			
 //		}
-		
-		
-		System.out.println(MercadoPago.SDK.Get("/v1/customers/"+id));
-		
-		MPApiResponse api = MercadoPago.SDK.Get("/v1/customers/"+id);
-		
-		System.out.println(api);
-		System.out.println(api.getJsonElementResponse());
 		
 		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
 		
