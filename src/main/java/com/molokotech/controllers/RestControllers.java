@@ -7,6 +7,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.apache.coyote.http2.Http2Protocol;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
@@ -15,6 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,6 +68,8 @@ public class RestControllers {
 	PetService petService;
 	@Autowired
 	OwnerService ownerService;
+	@Autowired
+	JavaMailSender emailSender;
 	
 	/* Manually create dinamyc QR codes with specialId and Id with strBase64 included */
 	@GetMapping("/create-pp-to-db")
@@ -163,49 +172,64 @@ public class RestControllers {
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
 
-		if(topic.equals("payment")) {
-			
-		}
-		
 		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/4391970308?access_token="+accessToken);
 		MP mp = new MP(accessToken);
 		JSONObject json = mp.get("/v1/payments/4391970308");
 		
-		//JSONObject jsonPayer = json.getJSONObject("payer");
+		if(topic.equals("payment")) {
+			String email = json.getJSONObject("response").getJSONObject("payer").getString("email");
+			System.out.println(email);
+			
+			
+			/* Start checking, sending and reemplacing sellecdOnline java attribute*/
+			PrepaidQR prepaidQR = null;
+			List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
+			
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getSelledOnline().equals("En venta")) {
+					prepaidQR = list.get(i);
+					System.out.println(list.get(i).getSelledOnline());
+					System.out.println(list.get(i).getId());
+					break;
+				}else {
+					System.out.println("No match with 'En venta'");
+				}
+			}
+			/* End selecting 'En venta match' */
+			
+			/* Adding prepaidQR to show data of buyed QR code Start */
+//			model.addAttribute("prepaidQR", prepaidQR);
+			/* PrepaidQr code data End */
+			
+			/* Send email with id start */
+			String idPrepaidQR = prepaidQR.getId().toString();
+			
+			MimeMessagePreparator preparator = new MimeMessagePreparator() {
+				public void prepare(MimeMessage mimeMessage) throws Exception {
+					mimeMessage.setSubject("Id del QR adquirido.");
+					mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+					mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
+					mimeMessage.setText("EL id del QR es = " + idPrepaidQR);
+				}
+			};
+
+			try {
+				this.emailSender.send(preparator);
+			} catch (MailException ex) {
+				System.err.println(ex.getMessage());
+			}
+			/* Send email with id end */
+			
+			/* Override "En Venta" for "Vendido a ... " to stop resending other Users*/
+			prepaidQR.setSelledOnline("Vendido a " + email);
+			prepaidQrService.createPrepaidQR(prepaidQR);
+			
+			
+		}
 		
-		System.out.println(json.toString(4));
-		
-		System.out.println();
-		System.out.println();
-		String email = json.getJSONObject("response").getJSONObject("payer").getString("email");
-		System.out.println(email);
 		
 		
-		//System.out.println(jsonPayer.toString(4));
-		
-		
-//		
-//		System.out.println(api);
-//		System.out.println(api.getJsonElementResponse());
-//		
-//		System.out.println(api.getPayload());
-//		System.out.println(api.getStringResponse());
-		
-//		JsonElement gson = api.getJsonElementResponse();
-//		System.out.println(gson);
-//		
-//		JsonObject jsonObject = gson.getAsJsonObject();
-//		System.out.println(jsonObject);
-//		
-//		JsonArray jsonArray = jsonObject.getAsJsonArray();
-//		System.out.println(jsonArray);
-//		
-//		
-		
-		
-		
-		System.out.println("hello world");
-		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
+//		System.out.println(json.toString(4));
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
