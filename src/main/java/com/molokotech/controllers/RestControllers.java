@@ -176,7 +176,6 @@ public class RestControllers {
 		
 		System.out.println(jsonElement);
 		
-		System.out.println(json.get("payer"));
 		
 		
 		System.out.println(accessToken);
