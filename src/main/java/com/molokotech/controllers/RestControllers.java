@@ -152,7 +152,7 @@ public class RestControllers {
 	}
 	
 	@RequestMapping(value = "/notifications", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<?> notifications(String topic, String id, @ModelAttribute String sd) throws MPException {
+	public ResponseEntity<?> notifications(String topic, String id) throws MPException {
 
 		
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
