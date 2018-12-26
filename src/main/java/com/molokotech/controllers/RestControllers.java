@@ -169,15 +169,10 @@ public class RestControllers {
 		
 		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/4391970308?access_token="+accessToken);
 		MP mp = new MP(accessToken);
-		JSONObject json = mp.getPaymentInfo("/v1/payments/"+id);
+		JSONObject json = mp.getPaymentInfo("/v1/payments/4391970308");
 		
 		System.out.println(json);
 		
-		
-		
-		
-		
-
 		
 		
 //		
@@ -201,26 +196,6 @@ public class RestControllers {
 		
 		
 		System.out.println("hello world");
-		Gson gson = new Gson();
-		String test1 = gson.toJson(topic);
-		System.out.println(test1);
-		
-		Gson gson2 = new Gson();
-		String test2 = gson2.toJson(id);
-		System.out.println(test2);
-		
-		if(topic != null) {
-			System.out.println(topic);
-			if(topic.equals("payment")) {
-				System.out.println("is payment");
-			}
-		}
-
-		if(id != null) {
-			System.out.println(id.toString());
-			
-		}
-		
 		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
