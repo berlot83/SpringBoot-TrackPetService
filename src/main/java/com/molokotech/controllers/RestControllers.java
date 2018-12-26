@@ -177,7 +177,7 @@ public class RestControllers {
 		
 		System.out.println();
 		System.out.println();
-		String email = json.getJSONObject("response").toString();
+		String email = json.getJSONObject("response").getJSONObject("payer").getString("email");
 		System.out.println(email);
 		
 		
