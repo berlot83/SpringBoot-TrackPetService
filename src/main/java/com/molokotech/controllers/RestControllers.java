@@ -160,10 +160,11 @@ public class RestControllers {
 		
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
-System.out.println(accessToken);
+		System.out.println(accessToken);
 		
 		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/4391970308?access_token="+accessToken);
 		System.out.println(api);
+		System.out.println(api.getStringResponse());
 		
 //		
 //		System.out.println(api.getPayload());
