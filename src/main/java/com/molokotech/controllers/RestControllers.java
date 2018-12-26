@@ -8,6 +8,9 @@ import java.net.URLConnection;
 import java.util.List;
 
 import org.apache.coyote.http2.Http2Protocol;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,6 +33,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
+import com.mercadopago.MP;
 import com.mercadopago.MercadoPago;
 import com.mercadopago.core.MPApiResponse;
 import com.mercadopago.exceptions.MPException;
@@ -153,14 +157,28 @@ public class RestControllers {
 	}
 	
 	@RequestMapping(value = "/notifications", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<?> notifications(String topic, String id) throws MPException {
-
-		
+	public ResponseEntity<?> notifications(String topic, String id) throws JSONException, Exception {
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		MercadoPago.SDK.setClientId("4306840655072811");
-		
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
+
+		if(topic.equals("payment")) {
+			
+		}
+		
+		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/4391970308?access_token="+accessToken);
+		MP mp = new MP(accessToken);
+		JSONObject json = mp.getPaymentInfo(id);
+		JSONArray jsonElement = json.getJSONArray("payer");
+		
+		System.out.println(json.get("response"));
+		
+		System.out.println(jsonElement);
+		
+		System.out.println(json.get("payer"));
+		
+		
 		System.out.println(accessToken);
 
 		Payer p = new Payer();
@@ -169,12 +187,11 @@ public class RestControllers {
 		System.out.println(p.getNickname());
 		
 		
-		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/4391970308?access_token="+accessToken);
 		
-		
-		System.out.println(api);
-		System.out.println(api.getJsonElementResponse());
-		
+//		
+//		System.out.println(api);
+//		System.out.println(api.getJsonElementResponse());
+//		
 //		System.out.println(api.getPayload());
 //		System.out.println(api.getStringResponse());
 		
@@ -191,26 +208,26 @@ public class RestControllers {
 		
 		
 		
-//		System.out.println("hello world");
-//		Gson gson = new Gson();
-//		String test1 = gson.toJson(topic);
-//		System.out.println(test1);
-//		
-//		Gson gson2 = new Gson();
-//		String test2 = gson2.toJson(id);
-//		System.out.println(test2);
-//		
-//		if(topic != null) {
-//			System.out.println(topic);
-//			if(topic.equals("payment")) {
-//				System.out.println("is payment");
-//			}
-//		}
-//
-//		if(id != null) {
-//			System.out.println(id.toString());
-//			
-//		}
+		System.out.println("hello world");
+		Gson gson = new Gson();
+		String test1 = gson.toJson(topic);
+		System.out.println(test1);
+		
+		Gson gson2 = new Gson();
+		String test2 = gson2.toJson(id);
+		System.out.println(test2);
+		
+		if(topic != null) {
+			System.out.println(topic);
+			if(topic.equals("payment")) {
+				System.out.println("is payment");
+			}
+		}
+
+		if(id != null) {
+			System.out.println(id.toString());
+			
+		}
 		
 		System.out.println(new ResponseEntity<>(HttpStatus.CREATED));
 		
