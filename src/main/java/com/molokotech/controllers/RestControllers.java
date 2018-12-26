@@ -169,22 +169,15 @@ public class RestControllers {
 		
 		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/4391970308?access_token="+accessToken);
 		MP mp = new MP(accessToken);
-		JSONObject json = mp.getPaymentInfo(id);
-		JSONArray jsonElement = json.getJSONArray("payer");
+		JSONObject json = mp.getPaymentInfo("/v1/payments/"+id);
 		
-		System.out.println(json.get("response"));
-		
-		System.out.println(jsonElement);
+		System.out.println(json);
 		
 		
 		
-		System.out.println(accessToken);
+		
+		
 
-		Payer p = new Payer();
-		System.out.println(p.getId());
-		System.out.println(p.getEmail());
-		System.out.println(p.getNickname());
-		
 		
 		
 //		
