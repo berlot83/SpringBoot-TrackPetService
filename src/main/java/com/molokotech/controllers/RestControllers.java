@@ -171,11 +171,11 @@ public class RestControllers {
 		MP mp = new MP(accessToken);
 		JSONObject json = mp.get("/v1/payments/4391970308");
 		
-		JSONObject jsonPayer = json.getJSONObject("payer");
+		//JSONObject jsonPayer = json.getJSONObject("payer");
 		
-		System.out.println(json.toString());
+		System.out.println(json.toString(4));
 		System.out.println();
-		System.out.println(jsonPayer.toString(4));
+		//System.out.println(jsonPayer.toString(4));
 		
 		
 //		
