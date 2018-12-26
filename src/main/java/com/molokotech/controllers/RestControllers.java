@@ -171,9 +171,11 @@ public class RestControllers {
 		MP mp = new MP(accessToken);
 		JSONObject json = mp.get("/v1/payments/4391970308");
 		
+		JSONArray jsonArray = json.getJSONArray("payer");
 		
 		System.out.println(json.toString());
-		
+		System.out.println();
+		System.out.println(jsonArray.toString());
 		
 		
 //		
