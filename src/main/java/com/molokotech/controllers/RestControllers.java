@@ -151,7 +151,7 @@ public class RestControllers {
 	}
 	
 	@RequestMapping(value = "/notifications", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<?> notifications(String topic, String id) throws MPException {
+	public ResponseEntity<?> notifications(String topic, String id, @ModelAttribute String sd) throws MPException {
 
 		
 		MercadoPago.SDK.setClientSecret("uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
@@ -159,12 +159,9 @@ public class RestControllers {
 		
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
-		
-		
 
 		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/"+id+"?access_token="+accessToken);
 		System.out.println(api);
-		
 		
 		System.out.println(api.getStringResponse());
 		
