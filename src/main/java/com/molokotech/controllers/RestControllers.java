@@ -172,14 +172,12 @@ public class RestControllers {
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
 
-		MPApiResponse api = MercadoPago.SDK.Get("https://api.mercadopago.com/v1/payments/4391970308?access_token="+accessToken);
 		MP mp = new MP(accessToken);
 		JSONObject json = mp.get("/v1/payments/4391970308");
 		
 		if(topic.equals("payment")) {
 			String email = json.getJSONObject("response").getJSONObject("payer").getString("email");
-			System.out.println(email);
-			
+			String firstName = json.getJSONObject("response").getJSONObject("payer").getString("firstName");
 			
 			/* Start checking, sending and reemplacing sellecdOnline java attribute*/
 			PrepaidQR prepaidQR = null;
@@ -196,20 +194,16 @@ public class RestControllers {
 				}
 			}
 			/* End selecting 'En venta match' */
-			
-			/* Adding prepaidQR to show data of buyed QR code Start */
-//			model.addAttribute("prepaidQR", prepaidQR);
-			/* PrepaidQr code data End */
-			
+
 			/* Send email with id start */
 			String idPrepaidQR = prepaidQR.getId().toString();
 			
 			MimeMessagePreparator preparator = new MimeMessagePreparator() {
 				public void prepare(MimeMessage mimeMessage) throws Exception {
-					mimeMessage.setSubject("Id del QR adquirido.");
+					mimeMessage.setSubject("Código QR adquirido.");
 					mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 					mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
-					mimeMessage.setText("EL id del QR es = " + idPrepaidQR);
+					mimeMessage.setText(firstName+", gracias por tu compra, el id del QR es = " + idPrepaidQR +", lo que tenés que hacer es ir a nuestra web, ingresar a Pet-QR ==> Activar un QR prepago ==> Ingresá el código que recibiste y listo, fijate de completar todo lo que puedas del formulario. Una vez completo Tocá el botón rojo y cuando te salga el QR probalo desde la PC, si sale todo bien tendrías que ver todos los datos que pusiste.");
 				}
 			};
 
@@ -226,8 +220,6 @@ public class RestControllers {
 			
 			
 		}
-		
-		
 		
 //		System.out.println(json.toString(4));
 		

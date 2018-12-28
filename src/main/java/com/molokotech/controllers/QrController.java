@@ -191,7 +191,7 @@ public class QrController {
 	}
 	
 	
-	
+	/* UNUSED migrated the same to MercadoPago notifications */
 	@RequestMapping("/payment-success")
 	public String upgradeToSelledOnline(Model modelName, Model model){
 

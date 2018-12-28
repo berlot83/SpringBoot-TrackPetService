@@ -26,7 +26,7 @@
                 <div><button onclick="" class="btn btn-md btn-info buttons">Puntos de venta</button></div>
             </div>
             <div class="column order-2 containerProduct" id="col2" style="position:relative;top:0;left:0;" >
-                <img src="../img/pet-qr-online.png" class="img-fluid imgSelected qrImages" style="position:relative;top:0;left:0;"/>
+                <img src="../img/pet-qr-online.png" onmouseover="onhover()" class="img-fluid imgSelected qrImages" style="position:relative;top:0;left:0;"/>
             <img alt="Recomendado por Pet-QR" src="../img/recommended.png" style="position:absolute; left:150px;">
                 <div class="transparency">
                     <div class="rowPadding">• Etiqueta QR descarga<i class="fas fa-check" style="color:lightgreen;"></i></div>
@@ -45,10 +45,24 @@
                     <div class="rowPadding">• Instrucciones de impresión <i class="fas fa-check" style="color:lightgreen;"></i></div>
                     <div class="rowPadding">• Posibilidad de tener más de una copia del código <i class="fas fa-check" style="color:lightgreen;"></i></div>
                 <a onclick="moreInfoPetQrOnline()"><span class="badge badge-pill badge-danger moreInfo">+ info</span></a>
+                
+                <script type="text/javascript">
+	                function onhover(){
+	                	$.alert({
+	                		columnClass:"col-md-6",
+	                		type:"blue",
+	                		title:"<i style='color:lightblue' class='fas fa-shield-alt'></i> Medidas de seguridad",
+	                		content:"<html><body><p style='text-align:justify'>A pesar que nuestra web utiliza SSL (Cifrado de datos absolutos entre los dos puntos), nosotros no utilizamos ni capturamos ningún tipo de datos de los medios de pago, por ende la transacción será por MercadoPago, TodoPago o el medio que haya elegido, esto con el fin de darle seguridad y confianza al cliente.</p><br><label style='font-weight:bold'><img src='../img/iconoPet75.png' style='height:30px;width:30px'> Pet-QR</label></body></html>"
+	                	});
+	                }
+                </script>
+                
                 </div>
                <div> 
-					<button onclick="checkoutPage()" class="btn btn-md btn-warning">Comprar</button><br>
-					<p style="color:pink">Checkout - Recuerde estar logueado.</p>
+               <br>
+					<button onclick="checkoutPage()" class="btn btn-md btn-warning">Comprar</button><br><br>
+					<p th:if="${currentUser} == Invitado" style="color:pink;background:rgba(0,0,0,0.5); border-radius:5px">Checkout - Recuerde estar logueado.</p>
+					<p th:unless="${currentUser} == Invitado" style="color:lightgreen;background:rgba(0,0,0,0.5); border-radius:5px">Usted está logueado y listo para comprar.</p>
 					
 	            	<script>
 		            	function checkoutPage(){

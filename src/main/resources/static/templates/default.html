@@ -148,14 +148,14 @@
 		<!-- Logout Bundle buttons, do not change the order  -->
 		<!-- Print Username -->
 		<a th:if="${currentUser}" id="currentUserButton" class="nav-link"
-			style="font-weight: bolder; background-color: #5b3f83; border-radius: 5px;"
+			style="font-weight: bolder; background-color: #5b3f83; border-radius: 5px; text-shadow:1px 2px black;"
 			th:text="${fullName}"></a> <a th:if="${currentUser == 'Invitado'}"
 			class="nav-link" th:href="@{/login}"><i class="fas fa-user"
 			style="color: white;"></i> Log in</a>
 			
 		<form style="margin-bottom: 0px;" class="nav-link" action="/logout"
 			method="POST">
-			<button type="submit" th:if="${currentUser != 'Invitado'}"
+			<button style="text-shadow:1px 2px black;" type="submit" th:if="${currentUser != 'Invitado'}"
 				class="nav-link btn btn-danger" id="logoutButton">
 				<i class="fas fa-sign-out-alt"></i> Salir
 			</button>

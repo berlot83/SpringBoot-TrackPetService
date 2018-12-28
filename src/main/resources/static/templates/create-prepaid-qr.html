@@ -15,17 +15,26 @@
 			<br>
 
 			<!-- Needed to identify the id to update to -->
-			<p>El código de activación es:</p>
-			<h4><span id="idPrepaidQrCode" th:text="${prepaidQR.id}" class="badge badge-lg badge-danger"></h4>
-
+			<div class="form-group">
+				<label for="idPrepaidQrCode">El código de activación es:</label>
+				<h4><span id="idPrepaidQrCode" th:text="${prepaidQR.id}" class="badge badge-lg badge-danger"></h4>
+			</div>
+			
+			
 			<!-- Needed to update the name of the username -->
-			<p>Asignado a usuario:</p>
-			<h4><span id="user" th:text="${currentUser}" class="badge badge-lg badge-danger" style="color:white; text-align:center;"></span></h4>
-
+			<div class="form-group">
+				<Label for="user">Asignado a usuario:</label>
+				<h4><span id="user" th:text="${currentUser}" class="badge badge-lg badge-danger" style="color:white; text-align:center;"></span></h4>
+			</div>
+			
 			<!-- CouldExist or not, should be added manually by the admin -->
-			<p>Punto de venta</p>
-			<h4><span th:text="${prepaidQR.sellPoint}" class="badge badge-lg badge-danger" style="color:white; text-align:center;"></span></h4>
+			<div class="form-group">
+				<label>Punto de venta</label>
+				<h4><span th:text="${prepaidQR.sellPoint}" class="badge badge-lg badge-danger" style="color:white; text-align:center;"></span></h4>
+			</div>
+			
 			<br>
+			
 			<br>
 			<h5>Datos básicos</h5>
 			<hr>

@@ -8,20 +8,13 @@
 			<div>
 			<h2 style="padding:20px;">Lista de Mascotas perdidas de Pet-QR</h2>
 			
-			<p  style="margin:20px;">Acá se muestra la lista cpn datos "muy básicos" de mascotas, que habiendo adquirido Pet-QR fueron declaradas como perdidas, en las listas <strong>No se muestran números de contacto ni ubicaciones</strong> para proteger la privacidad del usuario, sino que es una orientación para aquel que la encuentre y pueda ver si coinciden los ID de los códigos QR y si a su vez está declarada como perdida.</p>
-			<p  style="margin:20px;">Si por alguna razón tu celular o tablet no cuenta con cualquier <strong>lector de códigos QR</strong>, podés ver todos los datos ingresando estos datos a la barra de direcciones de tu navegador web</p>
-			<p style="color:lightpink; margin:20px;">https://pet-cloud-service.herokuapp.com/id/CODIGO_IMPRESO_EN_QR</p>
-					
-<!-- 			<div th:if="${list.prepaidQR.pet.status == null ? list.prepaidQR.pet.status : false}"></div> -->
-			
-					<p th:each="listIterate : ${list}"
-						th:text="${listIterate.pet.status != null ? listIterate.pet.status : false}" >false</p>
-		
+			<p  style="margin:20px;">Acá se muestra la lista cpn datos "muy básicos" de mascotas, que habiendo adquirido Pet-QR fueron declaradas como perdidas, en las listas <strong>No se muestran números de contacto ni ubicaciones</strong> para proteger la privacidad del usuario, sino que es una orientación para aquel que la encuentre y pueda ver si coinciden los últimos 5 dígitos del ID con los de la DB.</p>
+
 			<div th:if="${list} != null" id="tableContainer" class="container-fluid">
 				<table id="lostTable" class="table table-dark table-responsive table-striped">
 					<thead>
 						<tr>
-							<td>ID</td>
+							<td>Ult. dig. id</td>
 							<td>Sexo</td>
 							<td>Nombre</td>
 							<td>Raza</td>
@@ -29,12 +22,13 @@
 							<td>Medicado</td>
 							<td>Enfermedad</td>
 							<td>Marca Comida</td>
+							<td>País</td>
 						</tr>
 					</thead>
 					<tbody th:each="listIterate : ${list}"
-						th:if="${listIterate.pet.status}  == true">
+						th:if="${listIterate?.pet?.status}  == true">
 						<tr>
-							<td th:text="${listIterate.id}"></td>
+							<td th:text="${#strings.substring(listIterate.id, 19, 24)}"></td>
 							<td th:text="${listIterate.pet.sex}"></td>
 							<td th:text="${listIterate.pet.petName}"></td>
 							<td th:text="${listIterate.pet.raze}"></td>
@@ -43,11 +37,26 @@
 							<td th:unless="${listIterate.pet.medicated} == true">No</td>
 							<td th:text="${listIterate.pet.illness}"></td>
 							<td th:text="${listIterate.pet.foodBrand}"></td>
+							<td th:text="${listIterate.owner.residence}"></td>
 						</tr>
 					</tbody>
-
-
 				</table>
+				
+			<br>
+				
+			<h4>Ingreso manual de id:</h4>	
+			<p  style="margin:20px;">Si por alguna razón tu celular o tablet no cuenta con cualquier <strong>lector de códigos QR</strong>, podés ver todos los datos ingresando estos datos a la barra de direcciones de tu navegador web</p>
+			<label style="color:lightpink; margin:20px;">https://pet-cloud-service.herokuapp.com/id/</label><input id="idManually" type="text" placeholder="Código alfanumérico QR">
+			<button class="btn btn-sm btn-success" onclick="findManuallyId()">Ver Datos</button>	
+				
+			<!-- Search script manually start -->		
+			<script>
+				function findManuallyId(){
+					var idManually = document.getElementById("idManually").value;
+					window.location.href = "https://pet-cloud-service.herokuapp.com/id/"+ idManually;
+				}
+			</script>
+			<!-- Search script manually end -->
 	<br>
 	<br>
 	<br>
