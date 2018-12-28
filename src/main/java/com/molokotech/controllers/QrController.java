@@ -203,49 +203,6 @@ public class QrController {
 		User user = userService.findUser(auth.getName());
 		model.addAttribute("user", user);
 		
-		/* Start checking, sending and reemplacing sellecdOnline java attribute*/
-		PrepaidQR prepaidQR = null;
-		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
-		
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getSelledOnline().equals("En venta")) {
-				prepaidQR = list.get(i);
-				System.out.println(list.get(i).getSelledOnline());
-				System.out.println(list.get(i).getId());
-				break;
-			}else {
-				System.out.println("No match with 'En venta'");
-			}
-		}
-		/* End selecting 'En venta match' */
-		
-		/* Adding prepaidQR to show data of buyed QR code Start */
-		model.addAttribute("prepaidQR", prepaidQR);
-		/* PrepaidQr code data End */
-		
-		/* Send email with id start */
-		String id = prepaidQR.getId().toString();
-		
-		MimeMessagePreparator preparator = new MimeMessagePreparator() {
-			public void prepare(MimeMessage mimeMessage) throws Exception {
-				mimeMessage.setSubject("Id del QR adquirido.");
-				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
-				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
-				mimeMessage.setText("EL id del QR es = " + id);
-			}
-		};
-
-		try {
-			this.emailSender.send(preparator);
-		} catch (MailException ex) {
-			System.err.println(ex.getMessage());
-		}
-		/* Send email with id end */
-		
-		/* Override "En Venta" for "Vendido a ... " to stop resending other Users*/
-		prepaidQR.setSelledOnline("Vendido a " + user.getName());
-		prepaidQrService.createPrepaidQR(prepaidQR);
-		
 		return "/payment-success";
 	}
 

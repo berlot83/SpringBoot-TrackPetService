@@ -10,7 +10,7 @@
 			<h4 th:text="'Hola ' + ${user.name} + ','"></h4>
 			<p style="color:lightgreen">Su pago fue procesado con <strong>Éxito! <i class="fas fa-check"></i></strong>.</p>
 			<p style="text-align:justify"
-				th:text="'Revise en la cuenta  declarada , recibirá un mail con el código, si no lo recibió, porque se equivocó ingresando el mail, o sólo no llegó, no se preocupe envíenos un mail con usuario, horario de pago y fecha, o sino cópie en algun lugar seguro el código alfanumérico que aparece arriba del QR en esta misma página.'"></p>
+				th:text="'Revise en la misma cuenta de mail que colocó para recibir el comprobante de pago de MercadoPago, recibirá un mail con el código, si no lo recibió, porque se equivocó ingresando el mail, o sólo no llegó, no se preocupe envíenos un mail con usuario, horario de pago y fecha, o sino cópie en algun lugar seguro el código alfanumérico que aparece arriba del QR en esta misma página.'"></p>
 				
 				<label for="userMail"><i class='far fa-envelope' style="color:lightgreen"></i> Cuenta de email proporcionada:</label>
 				<br>
@@ -37,18 +37,6 @@
 				<p><i class="fas fa-long-arrow-alt-right"></i> Ingrese el código de más de 20 digitos que le debió llegar al mail.</p>
 				<p><i class="fas fa-long-arrow-alt-right"></i> complete el formulario lo más que pueda.</p>
 			
-			
-			<div class="row">
-				<div class="col-12 text-center" style="display:inline-block">
-					<span id="code" style=";font-size:16px;" th:text="${prepaidQR.id}" class="badge badge-lg badge-danger" ></span>
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-12 text-center container-fluid" style="display:inline-block">
-					<img alt="Código QR" th:attr="src=${'data:image/png;base64, '+ prepaidQR.strBase64}" style="border-radius:15px; box-shadow: 0px 0px 25px black"/>
-				</div>
-			</div>
 		</div>
 		<br><br><br><br><br>
 	</div>
