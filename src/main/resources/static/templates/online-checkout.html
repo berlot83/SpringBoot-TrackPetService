@@ -8,16 +8,16 @@
 			style="margin-top: 20px">
 
 			<h3 style="text-align: center">
-				Checkout <i class="fas fa-shopping-cart"></i>
+				Checkout <i class="fas fa-shopping-cart" style="color:LimeGreen"></i>
 			</h3>
 			<hr style="border: 1px solid lightgreen !important;">
 			<label for="user"><strong><i class="fas fa-user"
-					style="color: white"></i> Usuario:</strong></label>
+					style="color: lightblue"></i> Usuario:</strong></label>
 			<p id="user" th:if="${user.name} != null" th:text="${user.name}"
 				style="color: lightgreen; margin-left: 20px;"></p>
 
 			<label for="email"><strong><i
-					class="fas fa-envelope" style="color: white"></i> Email:</strong></label>
+					class="fas fa-envelope" style="color: lightblue"></i> Email:</strong></label>
 			<p id="email" th:unless="${user.email} != null">
 				No parece estar lagueado o hubo un error en la captura de los datos,
 				por favor salga con el boton salir y vuelva a entrar, si el problema
@@ -36,7 +36,7 @@
 					class="badge badge-lg badge-danger">info@molokotech.com</span></a> para
 				gestionar manualmente el envio del código QR.
 			</p>
-
+<p>Tenga en cuenta que usted va a realizar la transacción a MercadoPago, por ende no gestionamos, manipulamos ni guardamos ninguno de sus datos de pago, sea del tipo que fuere, tarjetas o efectivo y tenga en cuenta también que este sitio posee Certificado <i class="fas fa-lock" style="color:LimeGreen"></i> SSL de encriptación (candado verde en url) para que nadie vea ningún tipo de dato suyo.</p>
 			<table class="table responsive-table table-dark" style="color: white">
 				<thead>
 					<tr>

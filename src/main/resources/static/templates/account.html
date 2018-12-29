@@ -39,11 +39,11 @@
 					<tbody>
 						<tr>
 							<td th:text="${iStat?.count}"></td>
-							<td><a th:href="@{'http://localhost:8080/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
+							<td><a th:href="@{'http://pet-qr.com/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
 							<td th:text="${listIterate?.pet?.petName}"></td>
 							<td>
-								<a th:href="@{'http://localhost:8080/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
-								<a th:href="@{'http://localhost:8080/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
+								<a th:href="@{'http://pet-qr.com/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
+								<a th:href="@{'http://pet-qr.com/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
 								<i class="far fa-trash-alt" style="color:tomato" ></i>
 								<i style="color:pink" class="fas fa-exclamation-triangle"></i>
 								 
