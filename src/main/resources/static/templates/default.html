@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Mali:500" rel="stylesheet">
 <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Pet-Cloud</title>
 <link rel="stylesheet" type="text/css" href="../css/default.css"/>
+<link rel="stylesheet" type="text/css" href="../css/account.css"/>
 <link rel="stylesheet" type="text/css" href="../css/online-checkout.css"/>
 <link rel="stylesheet" type="text/css" href="../css/index.css" />
 <link rel="stylesheet" type="text/css" href="../css/id.css" />
@@ -147,7 +148,7 @@
 
 		<!-- Logout Bundle buttons, do not change the order  -->
 		<!-- Print Username -->
-		<a th:if="${currentUser}" id="currentUserButton" class="nav-link"
+		<a th:if="${currentUser}" th:href="@{'http://localhost:8080/account'}" id="currentUserButton" class="nav-link"
 			style="font-weight: bolder; background-color: #5b3f83; border-radius: 5px; text-shadow:1px 2px black;"
 			th:text="${fullName}"></a> <a th:if="${currentUser == 'Invitado'}"
 			class="nav-link" th:href="@{/login}"><i class="fas fa-user"

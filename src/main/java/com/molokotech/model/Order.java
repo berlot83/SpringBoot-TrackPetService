@@ -8,6 +8,10 @@ public class Order {
 	private String date;
 	private double price;
 	
+	public static void main(String[] args) {
+		System.out.println("'asdasdasd'".toString().replace("'", ""));
+	}
+	
 	public String getId() {
 		return id;
 	}

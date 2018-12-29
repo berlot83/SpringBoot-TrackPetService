@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="default :: header"></head>
+<body>
+	<nav th:replace="default :: bar"></nav>
+	<div class="container">
+		<div id="accountMainDiv" class="container-fluid">
+		<div id="dataAccountDiv">
+			<h3>Cuenta</h3>
+			<hr style="border: 1px solid white !important;">
+			<div class="form-group">
+				<label><i style="color:lightblue" class="fas fa-user"></i> Nombre de usuario:</label>
+				<p th:text="${user?.name}"></p>
+			</div>
+
+			<div class="form-group">
+				<label><i style="color:lightblue" class="fas fa-envelope"></i> Email:</label>
+				<p th:text="${user?.email}"></p>
+			</div>
+			
+			<br>
+			
+			<div class="form-group">
+				<h4>Administración códigos QR:</h4>
+				<hr style="border: 1px solid white !important;">
+			</div>
+
+			<div>
+				<table id="accountTable"
+					class="table table-dark table-responsive table-striped rounded">
+					<thead>
+						<tr>
+							<td>Indice</td>
+							<td>QR id</td>
+							<td>Nombre Mascota</td>
+							<td>Acciones</td>
+						</tr>
+					</thead>
+					<!--/*/ <th:block th:each="listIterate, iStat : ${list}"> /*/-->
+					<tbody>
+						<tr>
+							<td th:text="${iStat?.count}"></td>
+							<td><a th:href="@{'http://localhost:8080/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
+							<td th:text="${listIterate?.pet?.petName}"></td>
+							<td>
+								<a th:href="@{'http://localhost:8080/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
+								<a th:href="@{'http://localhost:8080/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
+								<i class="far fa-trash-alt" style="color:tomato" ></i>
+								<i style="color:pink" class="fas fa-exclamation-triangle"></i>
+								 
+								 </td>
+								 
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				<br> <br> <br> <br>
+			</div>
+		</div>
+		
+		<!--/*/ </th:block> /*/-->
+		<footer th:replace="default :: footer"></footer>
+	</div>
+</body>
+
+</html>

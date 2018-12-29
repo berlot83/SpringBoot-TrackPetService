@@ -1,5 +1,8 @@
 package com.molokotech.controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.Message;
@@ -58,12 +61,6 @@ public class QrController {
 		PrintName.printUser(model);
 		return "index";
 	}
-	
-	@RequestMapping("/test")
-	public String test(Model model) {
-		PrintName.printUser(model);
-		return "test";
-	}
 
 	@RequestMapping("/pricing")
 	public String pricing(Model model) {
@@ -106,7 +103,7 @@ public class QrController {
 		PrintName.printUser(model);
 		return "vet-cloud";
 	}
-	
+
 	@RequestMapping("/faq")
 	public String faq(Model model) {
 		PrintName.printUser(model);
@@ -167,43 +164,81 @@ public class QrController {
 		}
 		return result;
 	}
-	
+
 	/* Get all lost Dog */
 	@RequestMapping("/db-lost-pet")
-	public String getAllPrepaidQR(Model modelName, Model model){
+	public String getAllPrepaidQR(Model modelName, Model model) {
 		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
 		PrintName.printUser(modelName);
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 		return "db-lost-pet";
 	}
-	
+
 	@RequestMapping("/online-checkout")
 	public String onlineCheckout(Model modelName, Model model) {
-		/* We need to create a checkout page to stack all data to send to, most important, email to send QR code */
+		/*
+		 * We need to create a checkout page to stack all data to send to, most
+		 * important, email to send QR code
+		 */
 		PrintName.printUser(modelName);
-		
-		/* We capture the name of the logued session to find the user and the we catch the email and other data on the page */
+
+		/*
+		 * We capture the name of the logued session to find the user and the we catch
+		 * the email and other data on the page
+		 */
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUser(auth.getName());
 		model.addAttribute("user", user);
 
 		return "online-checkout";
 	}
-	
-	
-	/* UNUSED migrated the same to MercadoPago notifications */
-	@RequestMapping("/payment-success")
-	public String upgradeToSelledOnline(Model modelName, Model model){
 
-		/* We need to create a checkout page to stack all data to send to, most important, email to send QR code */
+	@RequestMapping("/payment-success")
+	public String paymentSuccess(Model modelName, Model model) {
+
+		/*
+		 * We need to create a checkout page to stack all data to send to, most
+		 * important, email to send QR code
+		 */
 		PrintName.printUser(modelName);
-		
-		/* We capture the name of the logued session to find the user and the we catch the email and other data on the page */
+
+		/*
+		 * We capture the name of the logued session to find the user and the we catch
+		 * the email and other data on the page
+		 */
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUser(auth.getName());
 		model.addAttribute("user", user);
-		
+
 		return "/payment-success";
+	}
+
+	@RequestMapping("/account")
+	public String account(Model modelName, Model model) {
+		PrintName.printUser(modelName);
+		List<PrepaidQR> resultList = new ArrayList<>();
+
+		/*
+		 * We capture the name of the logued session to find the user and the we catch
+		 * the email and other data on the page
+		 */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUser(auth.getName());
+		model.addAttribute("user", user);
+
+		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUserName() != null) {
+				if(list.get(i).getUserName().equals(user.getName())) {
+					resultList.add(list.get(i));
+				}
+				
+			}else {
+				System.out.println("No tiene QR asociados");
+			}
+		}
+		model.addAttribute("list", resultList);
+		 return "/account";
 	}
 
 }

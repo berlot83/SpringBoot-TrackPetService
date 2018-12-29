@@ -10,7 +10,7 @@
 			<h3 style="text-align: center">
 				Checkout <i class="fas fa-shopping-cart"></i>
 			</h3>
-			<hr>
+			<hr style="border: 1px solid lightgreen !important;">
 			<label for="user"><strong><i class="fas fa-user"
 					style="color: white"></i> Usuario:</strong></label>
 			<p id="user" th:if="${user.name} != null" th:text="${user.name}"
@@ -57,10 +57,6 @@
 			<!-- MercadoPago start -->
 			<div class="row">
 				<div class="col-12 text-center">
-<!-- 					<a mp-mode="dftl" -->
-<!-- 						style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" -->
-<!-- 						href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8" -->
-<!-- 						name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar ahora</a> -->
 					
 <a mp-mode="dftl"style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align:center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8" name="MP-payButton" class='blue-ar-l-sq-arall'>Pagar ahora</a>
 <script type="text/javascript">
@@ -93,7 +89,7 @@
 			</script>
 			<!-- MercadoPago ends -->
 			
-			<hr>
+			<hr style="border: 1px solid lightgreen !important;" >
 			<p style="color:lightgreen; text-align:center">Compre Ahora y reciba ya mismo el Código de activación al mail, puede descargar las veces que quiera los códigos en diferentes tamaños.</p>
 			<br><br><br><br><br>
 		</div>
@@ -104,9 +100,9 @@
 		$(document).ready(function(){
 			$.alert({
 					title:"Atención",
-					type:"red",
+					type:"blue",
 					columnClass:"col-md",
-					content:"<html><body><ol><li><p style='text-align: justify'>Revise bien que el email sea el correcto antes de comprar, ya que le llegará el código a este email, si no está en la carpeta spam no se preocupe que lo enviamos manualmente sólo comuníquese a <a href='mailto:info@molokotech.com'><span class='badge badge-lg badge-danger'>info@molokotech.com</span></a> con:<br>• Usuario<br>• La fecha y hora del pago.</p></li><li><p>Una vez realizada la compra espere a que se le redireccione a nuestra web de confirmación.</p></li></ol></body></html>"
+					content:"<html><body><ol><li><p style='text-align: justify'>No salga de su cuenta hasta no haber recibido la pantalla de pago exitoso.<li>El mail más importante es el que ponga en MercadoPago para recibir su comprobante de pago, en la misma direción recibirá su código QR.</li><li>Si lo colocó correctamente, lo buscó y el mismo no está ni siquiera en la carpeta de spam no se preocupe que lo enviamos manualmente sólo comuníquese a <a href='mailto:info@molokotech.com'><span class='badge badge-lg badge-danger'>info@molokotech.com</span></a> con:<br>• Usuario<br>• La fecha y hora del pago.</p></li></li></ol></body></html>"
 				});
 			});
 		}
