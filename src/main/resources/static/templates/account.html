@@ -49,30 +49,30 @@
 								 
 								 </td>
 								 <script>
-									 function deleteQr(){
-										 $.confirm({
-											 type:"red",
-											    title: 'Confirme la eliminación!',
-											    content: "<html><p>Confirma que desea Borrar el QR con id:   <strong>[[${list[iStat?.index].id}]]</strong>?</p><p style='text-align:justify'>Tenga en cuenta que está interactuando con nuestro servidor por ende los datos no podrán ser recuperados</p></html>",
-											    buttons: {
-											        confirm: {
-											            text: 'Borrar',
-											            btnClass: 'btn-red',
-											            keys: ['enter', 'shift'],
-											            action: function(){
-												            $.alert('Confirmada eliminación de QR!, los datos No podrán ser recuperados}');
-												            window.location.href="[[@{'/delete?id='+${list[iStat?.index].id}}]]"
-											            }
-											        },
-												    cancel: function () {
-											            $.alert({type: "blue",
-											            		title: "Acción:",
-											            		content:'Cancelada'});
-											        }
+// 									 function deleteQr(){
+// 										 $.confirm({
+// 											 type:"red",
+// 											    title: 'Confirme la eliminación!',
+// 											    content: "<html><p>Confirma que desea Borrar el QR con id:   <strong>[[${list[iStat?.index].id}]]</strong>?</p><p style='text-align:justify'>Tenga en cuenta que está interactuando con nuestro servidor por ende los datos no podrán ser recuperados</p></html>",
+// 											    buttons: {
+// 											        confirm: {
+// 											            text: 'Borrar',
+// 											            btnClass: 'btn-red',
+// 											            keys: ['enter', 'shift'],
+// 											            action: function(){
+// 												            $.alert('Confirmada eliminación de QR!, los datos No podrán ser recuperados}');
+// 												            window.location.href="[[@{'/delete?id='+${list[iStat?.index].id}}]]"
+// 											            }
+// 											        },
+// 												    cancel: function () {
+// 											            $.alert({type: "blue",
+// 											            		title: "Acción:",
+// 											            		content:'Cancelada'});
+// 											        }
 	
-											    }
-											});
-									 }
+// 											    }
+// 											});
+// 									 }
 								 </script>
 						</tr>
 					</tbody>
