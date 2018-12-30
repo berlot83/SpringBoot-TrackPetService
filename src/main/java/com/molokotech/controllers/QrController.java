@@ -242,28 +242,17 @@ public class QrController {
 		model.addAttribute("user", user);
 
 		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
-		if(list != null) {
-			System.out.println("list is not null");
-		}else {
-			System.out.println("list is null");
-		}
-		
-		try {
-			
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getUserName() != null) {
-					if(list.get(i).getUserName().equals(user.getName())) {
-						resultList.add(list.get(i));
-					}
-					
-				}else {
-					System.out.println("No tiene QR asociados");
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUserName() != null) {
+				if(list.get(i).getUserName().equals(user.getName())) {
+					resultList.add(list.get(i));
 				}
+				
+			}else {
+				System.out.println("No tiene QR asociados");
 			}
-			model.addAttribute("list", resultList);
-		}catch(Exception error) {
-		System.out.println("Error is in list");	
 		}
+		model.addAttribute("list", resultList);
 		 return "/account";
 	}
 

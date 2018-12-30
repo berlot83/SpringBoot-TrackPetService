@@ -38,16 +38,7 @@
 					<!--/*/ <th:block th:each="listIterate, iStat : ${list}"> /*/-->
 					<tbody>
 						<tr>
-							<td th:text="${iStat?.count}"></td>
-							<td><a th:href="@{'/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
-							<td th:text="${listIterate?.pet?.petName}"></td>
-							<td>
-								<a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
-								<a th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
-								<a href="#" onclick="deleteQr()" ><i class="far fa-trash-alt" style="color:tomato" ></i></a>
-								<i style="color:pink" class="fas fa-exclamation-triangle"></i>
-								 
-								 </td>
+
 								 <script>
 									 function deleteQr(){
 										 $.confirm({
