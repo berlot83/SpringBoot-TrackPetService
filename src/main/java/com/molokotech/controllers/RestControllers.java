@@ -147,6 +147,15 @@ public class RestControllers {
 		return strJson;
 	}
 	
+	@RequestMapping("/delete")
+	public void deletePrepaidQr(String id) {
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		System.out.println(prepaidQR.getPet().getPetName());
+		prepaidQrService.deletePrepaidQr(prepaidQR);
+		
+		
+	}
+	
 	@RequestMapping("/checkPrepaidQrAvailable")
 	public PrepaidQR checkPrepaidQrAvailable() {
 		PrepaidQR match = null;

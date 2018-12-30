@@ -4,7 +4,7 @@
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">
 		<div id="accountMainDiv" class="container-fluid">
-		<div id="dataAccountDiv">
+		<div id="dataAccountDiv" class="transparency" >
 			<h3>Cuenta</h3>
 			<hr style="border: 1px solid white !important;">
 			<div class="form-group">
@@ -39,16 +39,20 @@
 					<tbody>
 						<tr>
 							<td th:text="${iStat?.count}"></td>
-							<td><a th:href="@{'http://pet-qr.com/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
+							<td><a th:href="@{'http://localhost:8080/delete?id='+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
 							<td th:text="${listIterate?.pet?.petName}"></td>
 							<td>
 								<a th:href="@{'http://pet-qr.com/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
 								<a th:href="@{'http://pet-qr.com/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
-								<i class="far fa-trash-alt" style="color:tomato" ></i>
-								<i style="color:pink" class="fas fa-exclamation-triangle"></i>
+								<a th:href="@{'http://localhost:8080/delete?id='+${list[iStat?.index].id}}" ><i class="far fa-trash-alt" style="color:tomato" ></i></a>
+								<button onclick="window.$.confirm('Hello world');" >test</button><i style="color:pink" class="fas fa-exclamation-triangle"></i>
 								 
 								 </td>
-								 
+								 <script>
+								 function deleteQr(){
+									 
+								 }
+								 </script>
 						</tr>
 					</tbody>
 				</table>

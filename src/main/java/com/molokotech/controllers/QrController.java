@@ -55,9 +55,15 @@ public class QrController {
 		PrintName.printUser(model);
 		return "login";
 	}
+	
+	@RequestMapping("/")
+	public String firstIndex(Model model) {
+		PrintName.printUser(model);
+		return "index";
+	}
 
 	@RequestMapping("/index")
-	public String index(Model model) {
+	public String secondIndex(Model model) {
 		PrintName.printUser(model);
 		return "index";
 	}
@@ -164,6 +170,7 @@ public class QrController {
 		}
 		return result;
 	}
+	
 
 	/* Get all lost Dog */
 	@RequestMapping("/db-lost-pet")

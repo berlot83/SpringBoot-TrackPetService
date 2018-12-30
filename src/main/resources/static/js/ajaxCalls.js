@@ -81,3 +81,38 @@ function updateQr() {
 	}
 
 }
+
+function deletePrepaidQR(){
+	var idPrepaidQR = document.getElementById("idPrepaidQR").value;
+	var xhr = new XMLHttpRequest();
+	var url = "/delete";
+	
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			$.alert("todo ok");
+		}
+	}
+}
+
+
+$.confirm({
+    title: 'Confirm!',
+    content: 'Simple confirm!',
+    buttons: {
+        confirm: function () {
+            $.alert('Confirmed!');
+            window.location.href="[[@{'http://localhost:8080/delete?id='+${list[iStat?.index].id}}]]"
+        },
+        cancel: function () {
+            $.alert('Canceled!');
+        },
+        somethingElse: {
+            text: 'Something else',
+            btnClass: 'btn-blue',
+            keys: ['enter', 'shift'],
+            action: function(){
+                $.alert('Something else?');
+            }
+        }
+    }
+});

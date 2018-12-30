@@ -56,4 +56,8 @@ public class PrepaidQrService {
 		return prepaidQrRepository.findAll();
 	}
 
+	public void deletePrepaidQr(PrepaidQR prepaidQR) {
+		prepaidQrRepository.delete(prepaidQR);
+	}
+	
 }
