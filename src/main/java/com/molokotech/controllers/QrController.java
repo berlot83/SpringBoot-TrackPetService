@@ -171,6 +171,14 @@ public class QrController {
 		return result;
 	}
 	
+	@RequestMapping("/delete")
+	public String deletePrepaidQr(String id) {
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		System.out.println(prepaidQR.getPet().getPetName());
+		prepaidQrService.deletePrepaidQr(prepaidQR);
+		return "delete";
+	}
+	
 
 	/* Get all lost Dog */
 	@RequestMapping("/db-lost-pet")

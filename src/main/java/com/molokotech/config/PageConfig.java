@@ -49,6 +49,8 @@ public class PageConfig implements WebMvcConfigurer {
 		registry.addViewController("/faq").setViewName("faq");
 		registry.addViewController("/online-checkout").setViewName("online-checkout");
 		registry.addViewController("/account").setViewName("account");
+		registry.addViewController("/delete").setViewName("delete");
+		
 	}
 
 	@Bean

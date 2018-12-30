@@ -1,5 +1,5 @@
 #faqMainContainer{
-	    background-image: url('../img/tile_darkblue.jpg');
+	    background-image: url('../img/tile_pupure.jpg');
     background-repeat: repeat;
     color:white;
     text-shadow: 1px 2px black;
@@ -8,13 +8,19 @@
     text-align:justify;
 }
 
+#mainDataContainerAbout{
+	padding-top:10px;
+	padding-left:80px;
+	padding-right:80px;
+}
+
 .answer{
 	display:none;
 	padding-left:30px;
 }
 
 #faqHeader{
-	padding-top:30px;
+	padding-top:10px;
 	text-shadow:1px 3px black;
 }
 

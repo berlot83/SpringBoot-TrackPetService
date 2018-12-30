@@ -3,7 +3,7 @@ function contact() {
 		type: 'blue',
 		title: "<h5><strong><img src='../img/iconoPet75.png' style='widh:40px; height:40px;' /> Contacto</strong></h5>",
 		columnClass: 'col-md-6 col-md-offset-3',
-		content: '<ol><li>Para ventas a veterinarias y/o revendedores <a href="mailto:molokotech.com"><span class="badge badge-primary">info@molokotech.com</span></a></li><li>Para venta en canal minorista comunicarse con <a href="mailto:molokotech.com"><span class="badge badge-primary">info@molokotech.com</span></a></li><li>Para consultas generales sobre el mismo y/o alcances de responsabilidad <a href="mailto:molokotech.com"><span class="badge badge-primary">info@molokotech.com</span></a></li></ol>',
+		content: '<ol><li>En todos los casos abajo declarados enviar a esta dirección de mail <a href="mailto:molokotech.com"><span class="badge badge-warning">info@molokotech.com</span></a></li><li>Para ser "Usuario Proveedor" solicitar boton de pago colocando en asunto <strong style="color:DarkViolet">"Proveedor"</strong>.</li><li>Para consultar por capacidad de distribuir QR físicos a veterinarias indique en el asunto <strong style="color:DarkBlue">"Distribución"</strong>, nuestra intención es incentivar la venta online.</li><li>Para consultas generales sobre el sistema y/o alcances de responsabilidad coloque en el asunto <strong style="color:DarkRed">"Consulta"</strong>.</li><li>Para reclamos de cualquier tipo, soporte para solucionar problemas si los hubiere, coloque en el asunto <strong style="color:DarkGreen">"Reclamo"</strong>.</li></ol>',
 		
 		buttons: {
 			danger: {

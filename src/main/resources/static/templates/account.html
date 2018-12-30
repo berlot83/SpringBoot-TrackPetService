@@ -5,7 +5,7 @@
 	<div class="container">
 		<div id="accountMainDiv" class="container-fluid">
 		<div id="dataAccountDiv" class="transparency" >
-			<h3>Cuenta</h3>
+			<h3><img src="../img/iconoPet75.png" style="width:38px;height:38px;"> Cuenta</h3>
 			<hr style="border: 1px solid white !important;">
 			<div class="form-group">
 				<label><i style="color:lightblue" class="fas fa-user"></i> Nombre de usuario:</label>
@@ -39,19 +39,40 @@
 					<tbody>
 						<tr>
 							<td th:text="${iStat?.count}"></td>
-							<td><a th:href="@{'http://localhost:8080/delete?id='+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
+							<td><a th:href="@{'https://pet-qr.com/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
 							<td th:text="${listIterate?.pet?.petName}"></td>
 							<td>
-								<a th:href="@{'http://pet-qr.com/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
-								<a th:href="@{'http://pet-qr.com/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
-								<a th:href="@{'http://localhost:8080/delete?id='+${list[iStat?.index].id}}" ><i class="far fa-trash-alt" style="color:tomato" ></i></a>
-								<button onclick="window.$.confirm('Hello world');" >test</button><i style="color:pink" class="fas fa-exclamation-triangle"></i>
+								<a th:href="@{'https://pet-qr.com/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
+								<a th:href="@{'https://pet-qr.com/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
+								<a href="#" onclick="deleteQr()" ><i class="far fa-trash-alt" style="color:tomato" ></i></a>
+								<i style="color:pink" class="fas fa-exclamation-triangle"></i>
 								 
 								 </td>
 								 <script>
-								 function deleteQr(){
-									 
-								 }
+									 function deleteQr(){
+										 $.confirm({
+											 type:"red",
+											    title: 'Confirme la eliminación!',
+											    content: "<html><p>Confirma que desea Borrar el QR con id:   <strong>[[${list[iStat?.index].id}]]</strong>?</p><p style='text-align:justify'>Tenga en cuenta que está interactuando con nuestro servidor por ende los datos no podrán ser recuperados</p></html>",
+											    buttons: {
+											        confirm: {
+											            text: 'Borrar',
+											            btnClass: 'btn-red',
+											            keys: ['enter', 'shift'],
+											            action: function(){
+												            $.alert('Confirmada eliminación de QR!, los datos No podrán ser recuperados}');
+												            window.location.href="[[@{'https://pet-qr.com/delete?id='+${list[iStat?.index].id}}]]"
+											            }
+											        },
+												    cancel: function () {
+											            $.alert({type: "blue",
+											            		title: "Acción:",
+											            		content:'Cancelada'});
+											        }
+	
+											    }
+											});
+									 }
 								 </script>
 						</tr>
 					</tbody>

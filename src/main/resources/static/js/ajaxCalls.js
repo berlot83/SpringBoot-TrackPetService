@@ -94,25 +94,3 @@ function deletePrepaidQR(){
 	}
 }
 
-
-$.confirm({
-    title: 'Confirm!',
-    content: 'Simple confirm!',
-    buttons: {
-        confirm: function () {
-            $.alert('Confirmed!');
-            window.location.href="[[@{'http://localhost:8080/delete?id='+${list[iStat?.index].id}}]]"
-        },
-        cancel: function () {
-            $.alert('Canceled!');
-        },
-        somethingElse: {
-            text: 'Something else',
-            btnClass: 'btn-blue',
-            keys: ['enter', 'shift'],
-            action: function(){
-                $.alert('Something else?');
-            }
-        }
-    }
-});
