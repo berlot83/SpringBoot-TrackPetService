@@ -9,6 +9,13 @@
 
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<!-- Favicon start -->
+<link rel="apple-touch-icon" sizes="180x180" href="/appleTouchIcon.png">
+<link rel="icon" type="image/png" href="../img/iconoPet32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../img/iconoPet16x16.png" sizes="16x16">
+<meta name="theme-color" content="#ffffff">
+<!-- Favicon end -->
+
 <link href="https://fonts.googleapis.com/css?family=Mali:500" rel="stylesheet">
 <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Pet-Cloud</title>
 <link rel="stylesheet" type="text/css" href="../css/default.css"/>
@@ -149,9 +156,8 @@
 		<!-- Logout Bundle buttons, do not change the order  -->
 		<!-- Print Username -->
 		<a th:if="${currentUser}" href="/account" id="currentUserButton" class="nav-link"
-			style="font-weight: bolder; background-color: #5b3f83; border-radius: 5px; text-shadow:1px 2px black;"
 			th:text="${fullName}"></a> <a th:if="${currentUser == 'Invitado'}"
-			class="nav-link" th:href="@{/login}"><i class="fas fa-user"
+			class="nav-link" th:href="@{/login}" id="loginButton"><i class="fas fa-user"
 			style="color: white;"></i> Log in</a>
 			
 		<form style="margin-bottom: 0px;" class="nav-link" action="/logout"
@@ -164,7 +170,7 @@
 
 		<!-- Print Register -->
 		<a th:if="${currentUser == 'Invitado'}" class="nav-link"
-			href="/sign-up"><i class="fas fa-sign-in-alt"></i> Registro</a>
+			href="/sign-up" id="registerButton"><i class="fas fa-sign-in-alt"></i> Registro</a>
 
 	</nav>
 	<!-- End logout divs -->
