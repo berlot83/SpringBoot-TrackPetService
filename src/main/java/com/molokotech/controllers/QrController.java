@@ -253,7 +253,7 @@ public class QrController {
 			}
 		}
 		model.addAttribute("list", resultList);
-		 return "/account";
+		 return "account";
 	}
 
 }
