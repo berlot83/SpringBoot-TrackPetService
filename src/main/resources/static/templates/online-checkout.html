@@ -3,109 +3,366 @@
 
 <body onload="alertEmailCheck()">
 	<nav th:replace="default :: bar"></nav>
+
+<!-- CSS rectangle mobile only Start -->
+	<div id="rectangle" style="color: white; display:none;">
+		<div style="position: relative; left: 5px;">
+			<strong
+				style="text-shadow: 1px 2px black; font-size: 20px !important;">Checkout
+				<img src="../img/mp64x64.png">
+			</strong>
+		</div>
+	</div>
+
+
+<!-- CSS rectangle mobile only Start -->
+
+	<!-- CSS triangle Start -->
+	<div id="triangle-topleft" style="color: white">
+		<div style="position: absolute; top: -165px; left: 15px">
+			<strong
+				style="text-shadow: 1px 2px black; font-size: 20px !important;">Checkout
+				<img src="../img/mp64x64.png">
+			</strong>
+		</div>
+	</div>
+	<!-- CSS triangle Start -->
+
 	<div class="container">
 		<div id="onlineCheckoutMainDiv" class="container-fluid"
-			style="margin-top: 20px">
+			style="margin-top: 20px;">
+			<hr style="border: 1px solid DarkViolet !important;">
+			<div id="checkoutFirstPanel" style="display: inline-block;">
+				<div id="dataUserCheckout" style="float: left">
+					<div class="row">
+						<div class="col form-group">
+							<label for="user"><i class="fas fa-user"
+								style="color: #7A52A7"></i> Usuario:</label>
+							<p id="user" th:if="${user.name} != null" th:text="${user.name}"
+								style="color: lightgreen; margin-left: 20px;"></p>
+						</div>
 
-			<h3 style="text-align: center">
-				Checkout <i class="fas fa-shopping-cart" style="color:LimeGreen"></i>
-			</h3>
-			<hr style="border: 1px solid lightgreen !important;">
-			<label for="user"><strong><i class="fas fa-user"
-					style="color: lightblue"></i> Usuario:</strong></label>
-			<p id="user" th:if="${user.name} != null" th:text="${user.name}"
-				style="color: lightgreen; margin-left: 20px;"></p>
+						<div class="col form-group">
+							<label for="email"><i class="fas fa-envelope"
+								style="color: #7A52A7"></i> Email:</label>
+							<p id="email" th:unless="${user.email} != null">
+								No parece estar lagueado o hubo un error en la captura de los
+								datos, por favor salga con el boton salir y vuelva a entrar, si
+								el problema persiste communíquese a <a
+									href="mailto:info@molokotech.com"><span
+									class="badge badge-lg badge-danger">info@molokotech.com</span></a>
+								para solucionar el problema o en su caso gestionar el envío
+								manual del Código.
+							</p>
 
-			<label for="email"><strong><i
-					class="fas fa-envelope" style="color: lightblue"></i> Email:</strong></label>
-			<p id="email" th:unless="${user.email} != null">
-				No parece estar lagueado o hubo un error en la captura de los datos,
-				por favor salga con el boton salir y vuelva a entrar, si el problema
-				persiste communíquese a <a href="mailto:info@molokotech.com"><span
-					class="badge badge-lg badge-danger">info@molokotech.com</span></a> para
-				solucionar el problema o en su caso gestionar el envío manual del
-				Código.
-			</p>
+							<p th:if="${user.email != null}" th:text="${user.email}"
+								style="color: lightgreen; margin-left: 20px;"></p>
+							<p th:unless="${user.email != null}">
+								Este es el dato más importante ya que ahi se le enviará el
+								código, si el mail aquí no figura no continúe la compra,
+								comuníquese directamente a <a href="mailto:info@molokotech.com"><span
+									class="badge badge-lg badge-danger">info@molokotech.com</span></a>
+								para gestionar manualmente el envio del código QR.
+							</p>
+						</div>
+					</div>
 
-			<p th:if="${user.email != null}" th:text="${user.email}"
-				style="color: lightgreen; margin-left: 20px;"></p>
-			<p th:unless="${user.email != null}">
-				Este es el dato más importante ya que ahi se le enviará el código,
-				si el mail aquí no figura no continúe la compra, comuníquese
-				directamente a <a href="mailto:info@molokotech.com"><span
-					class="badge badge-lg badge-danger">info@molokotech.com</span></a> para
-				gestionar manualmente el envio del código QR.
-			</p>
+					<div class="row">
+						<div class="col form-group">
+							<label id="nameBuyer">Nombre</label><br> <input
+								type="text" class="form-control" />
+						</div>
+						<div class="col form-group">
+							<label for="user"><i class="fas fa-flag"
+								style="color: #7A52A7"></i> País</label> <select
+								id="selectCountry" class="form-control" onchange="setPrice()">
+								<option value=1>Argentina</option>
+								<option value=2>Colombia</option>
+								<option value=3>Uruguay</option>
+								<option value=4>Chile</option>
+								<option value=5>Venezuela</option>
+								<option value=6>Ecuador</option>
+								<option value=7>Paraguay</option>
+								<option value=8>Bolivia</option>
+								<option value=9>Colombia</option>
+								<option value=10>Brazil</option>
+								<option value=11>Peru</option>
+							</select>
+						</div>
+					</div>
 
-			<table class="table responsive-table table-dark" style="color: white">
-				<thead>
-					<tr>
-						<td>Cantidad</td>
-						<td>Detalle</td>
-						<td>Precio</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Código-QR online</td>
-						<td>$450.-</td>
-					</tr>
-				</tbody>
-			</table>
+					<div class="row">
+						<div class="col form-group">
+							<label for="user"><i class="far fa-credit-card"
+								style="color: #7A52A7"></i> F. de pago</label> <select
+								id="kindOfPayment" class="form-control"
+								onchange="setPrice(); changeCountry()">
+								<option value=0>Elegir</option>
+								<option value=1>MercadoPago/ 1 año</option>
+								<option value=2>MercadoPago/ 2 años</option>
+								<option value=3>MercadoPago/ sin límite</option>
+							</select>
+						</div>
+						<div class="col form-group">
+							<label for="inputTextDuration">Hasta</label> <input type="text"
+								class="form-control" id="inputTextDuration" disabled>
+						</div>
+
+						<script type="text/javascript">
+							function changeCountry() {
+								var kindOfPayment = document
+										.getElementById("kindOfPayment");
+								var inputTextDuration = document
+										.getElementById("inputTextDuration");
+
+								if (kindOfPayment.value == "1") {
+									var now = new Date().toLocaleString();
+									var expire = new Date(new Date()
+											.setFullYear(new Date()
+													.getFullYear() + 1));
+									inputTextDuration.value = expire;
+								}
+
+								if (kindOfPayment.value == "2") {
+									var now = new Date().toLocaleString();
+									var expire = new Date(new Date()
+											.setFullYear(new Date()
+													.getFullYear() + 2));
+									inputTextDuration.value = expire;
+								}
+
+								if (kindOfPayment.value == "3") {
+									inputTextDuration.value = "*** Sin límite / Uso libre ***";
+								}
+
+							}
+						</script>
+					</div>
+
+					<script>
+						function setPrice() {
+							var kindOfPayment = document
+									.getElementById("kindOfPayment");
+							var price = document.getElementById("price");
+							var total = document.getElementById("total");
+							var pay1Button = document
+									.getElementById("pay1Button");
+							var pay2Button = document
+									.getElementById("pay2Button");
+							var pay3Button = document
+									.getElementById("pay3Button");
+
+							if (kindOfPayment.value == "0") {
+								price.textContent = "$0.-";
+								total.textContent = "$0.-";
+								pay1Button.style.display = "none";
+								pay2Button.style.display = "none";
+								pay3Button.style.display = "none";
+							}
+
+							if (kindOfPayment.value == "1") {
+								price.textContent = "$250.-";
+								total.textContent = "$250.-";
+								pay1Button.style.display = "block";
+								pay2Button.style.display = "none";
+								pay3Button.style.display = "none";
+
+							}
+
+							if (kindOfPayment.value == "2") {
+								price.textContent = "$400.-";
+								total.textContent = "$400.-";
+								pay1Button.style.display = "none";
+								pay2Button.style.display = "block";
+								pay3Button.style.display = "none";
+							}
+
+							if (kindOfPayment.value == "3") {
+								price.textContent = "$550.-";
+								total.textContent = "$550.-";
+								pay1Button.style.display = "none";
+								pay2Button.style.display = "none";
+								pay3Button.style.display = "block";
+							}
+						}
+					</script>
+				</div>
+
+				<div id="imageProductCheckout"
+					style="float: left; padding-left: 30px;">
+					<div>
+						<img id="onlineCheckoutQR" src="../img/pet-qr-online.png"
+							style="border-radius: 7px !important; box-shadow: 5px 5px black;" class="img-fluid">
+					</div>
+				</div>
+
+				<div id="tableTotalPrice" style="padding: 10px">
+					<table
+						class="table responsive-table table-hover table-striped table-bordered table-dark"
+						style="color: white">
+						<thead>
+							<tr>
+								<td>Cantidad</td>
+								<td>Detalle</td>
+								<td>Precio</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Código-QR online</td>
+								<td id="price">$0.-</td>
+							</tr>
+							<tr>
+								<td>0</td>
+								<td>Envío</td>
+								<td id="shipping">$0.-</td>
+							</tr>
+							<tr class="bg-info">
+								<td>Total</td>
+								<td></td>
+								<td id="total">$0.-</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
 			<!-- MercadoPago start -->
 			<div class="row">
-				<div class="col-12 text-center">
-					
-<a mp-mode="dftl"style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align:center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8" name="MP-payButton" class='blue-ar-l-sq-arall'>Pagar ahora</a>
-<script type="text/javascript">
-(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-</script>
-					
+				<div id="pay1Button" class="col-12 text-center"
+					style="display: none">
+
+					<a mp-mode="dftl"
+						style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center"
+						href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8"
+						name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a>
+					<script type="text/javascript">
+						(function() {
+							function $MPC_load() {
+								window.$MPC_loaded !== true
+										&& (function() {
+											var s = document
+													.createElement("script");
+											s.type = "text/javascript";
+											s.async = true;
+											s.src = document.location.protocol
+													+ "//secure.mlstatic.com/mptools/render.js";
+											var x = document
+													.getElementsByTagName('script')[0];
+											x.parentNode.insertBefore(s, x);
+											window.$MPC_loaded = true;
+										})();
+							}
+							window.$MPC_loaded !== true ? (window.attachEvent ? window
+									.attachEvent('onload', $MPC_load)
+									: window.addEventListener('load',
+											$MPC_load, false))
+									: null;
+						})();
+					</script>
+
 				</div>
-			</div>	
-				
-			<script type="text/javascript">
-				(function() {
-					function $MPC_load() {
-						window.$MPC_loaded !== true
-								&& (function() {
-									var s = document.createElement("script");
-									s.type = "text/javascript";
-									s.async = true;
-									s.src = document.location.protocol
-											+ "//secure.mlstatic.com/mptools/render.js";
-									var x = document
-											.getElementsByTagName('script')[0];
-									x.parentNode.insertBefore(s, x);
-									window.$MPC_loaded = true;
-								})();
-					}
-					window.$MPC_loaded !== true ? (window.attachEvent ? window
-							.attachEvent('onload', $MPC_load) : window
-							.addEventListener('load', $MPC_load, false)) : null;
-				})();
-			</script>
+
+				<div id="pay2Button" class="col-12  text-center"
+					style="display: none">
+					<a mp-mode="dftl"
+						style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center"
+						href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-20dfe390-1c48-4704-a27d-658c65a3f910"
+						name="MP-payButton" class='blue-ar-l-rn-none'>Pagar</a>
+					<script type="text/javascript">
+						(function() {
+							function $MPC_load() {
+								window.$MPC_loaded !== true
+										&& (function() {
+											var s = document
+													.createElement("script");
+											s.type = "text/javascript";
+											s.async = true;
+											s.src = document.location.protocol
+													+ "//secure.mlstatic.com/mptools/render.js";
+											var x = document
+													.getElementsByTagName('script')[0];
+											x.parentNode.insertBefore(s, x);
+											window.$MPC_loaded = true;
+										})();
+							}
+							window.$MPC_loaded !== true ? (window.attachEvent ? window
+									.attachEvent('onload', $MPC_load)
+									: window.addEventListener('load',
+											$MPC_load, false))
+									: null;
+						})();
+					</script>
+				</div>
+
+				<div id="pay3Button" class="col-12  text-center"
+					style="display: none">
+					<a mp-mode="dftl"
+						style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center"
+						href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-128c322a-ed79-455b-b74d-5cf09ac4703f"
+						name="MP-payButton" class='blue-ar-l-rn-none'>Pagar</a>
+					<script type="text/javascript">
+						(function() {
+							function $MPC_load() {
+								window.$MPC_loaded !== true
+										&& (function() {
+											var s = document
+													.createElement("script");
+											s.type = "text/javascript";
+											s.async = true;
+											s.src = document.location.protocol
+													+ "//secure.mlstatic.com/mptools/render.js";
+											var x = document
+													.getElementsByTagName('script')[0];
+											x.parentNode.insertBefore(s, x);
+											window.$MPC_loaded = true;
+										})();
+							}
+							window.$MPC_loaded !== true ? (window.attachEvent ? window
+									.attachEvent('onload', $MPC_load)
+									: window.addEventListener('load',
+											$MPC_load, false))
+									: null;
+						})();
+					</script>
+				</div>
+
+			</div>
 			<!-- MercadoPago ends -->
-			
-			<hr style="border: 1px solid lightgreen !important;" >
-			<p id="checkoutDisclaimer1" style="text-align:justify">Va a pagar por medio de MercadoPago, nosotros no gestionamos, no manipulamos ni guardamos ninguno de sus datos de pago, sea del tipo que fuere, tarjetas o efectivo y tenga en cuenta además que este sitio posee Certificado <i class="fas fa-lock" style="color:LimeGreen"></i> SSL de encriptación (candado verde en url) para que nadie vea ningún tipo de dato suyo.</p>
-			<p id="checkoutDisclaimer2" style="color:lightgreen; text-align:justify">Compre Ahora y reciba ya mismo el Código de activación al mail, puede descargar las veces que quiera los códigos en diferentes tamaños.</p>
-			<br><br><br><br><br>
+
+			<hr style="border: 1px solid DarkViolet !important;">
+			<div class="transparency">
+				<p id="checkoutDisclaimer1" style="text-align: justify; padding:5px">
+					Va a pagar por medio de MercadoPago, nosotros no gestionamos, no
+					manipulamos ni guardamos ninguno de sus datos de pago, sea del tipo
+					que fuere, tarjetas o efectivo y tenga en cuenta además que este
+					sitio posee Certificado <i class="fas fa-lock"
+						style="color: LimeGreen"></i> SSL de encriptación (candado verde
+					en url) para que nadie vea ningún tipo de dato suyo.
+				</p>
+				<p id="checkoutDisclaimer2"
+					style="color: lightgreen; text-align: justify; padding:5px;">Compre Ahora y
+					reciba ya mismo el Código de activación al mail, puede descargar
+					las veces que quiera los códigos en diferentes tamaños.</p>
+			</div>
+			<br> <br> <br> <br> <br>
 		</div>
 	</div>
-	
+
 	<script>
-		function alertEmailCheck(){
-		$(document).ready(function(){
-			$.alert({
-					title:"Atención",
-					type:"blue",
-					columnClass:"col-md",
-					content:"<html><body><ol><li><p style='text-align: justify'>No salga de su cuenta hasta no haber recibido la pantalla de pago exitoso.<li>El mail más importante es el que ponga en MercadoPago para recibir su comprobante de pago, en la misma direción recibirá su código QR.</li><li>Si lo colocó correctamente, lo buscó y el mismo no está ni siquiera en la carpeta de spam no se preocupe que lo enviamos manualmente sólo comuníquese a <a href='mailto:info@molokotech.com'><span class='badge badge-lg badge-danger'>info@molokotech.com</span></a> con:<br>• Usuario<br>• La fecha y hora del pago.</p></li></li></ol></body></html>"
-				});
-			});
+		function alertEmailCheck() {
+			$(document)
+					.ready(
+							function() {
+								$
+										.alert({
+											title : "Atención",
+											type : "blue",
+											columnClass : "col-md",
+											content : "<html><body><ol><li><p style='text-align: justify'>No salga de su cuenta hasta no haber recibido la pantalla de pago exitoso.<li>El mail más importante es el que ponga en MercadoPago para recibir su comprobante de pago, en la misma direción recibirá su código QR.</li><li>Si lo colocó correctamente, lo buscó y el mismo no está ni siquiera en la carpeta de spam no se preocupe que lo enviamos manualmente sólo comuníquese a <a href='mailto:info@molokotech.com'><span class='badge badge-lg badge-danger'>info@molokotech.com</span></a> con:<br>• Usuario<br>• La fecha y hora del pago.</p></li></li></ol></body></html>"
+										});
+							});
 		}
 	</script>
 

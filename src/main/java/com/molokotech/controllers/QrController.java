@@ -67,7 +67,7 @@ public class QrController {
 		PrintName.printUser(model);
 		return "index";
 	}
-
+	
 	@RequestMapping("/pricing")
 	public String pricing(Model model) {
 		PrintName.printUser(model);

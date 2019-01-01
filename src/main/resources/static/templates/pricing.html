@@ -1,91 +1,197 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head th:replace="default :: header"></head>
 
 <body>
-    <nav th:replace="default :: bar"></nav>
-    <div id="container" >
-        <div class="container-fluid center-block" style="display:inline-block;  margin: 0 auto;">
-            <div class="column order-1 containerProduct" id="col1">
-                <img src="../img/pet-qr.png" class="img-fluid imgSelected qrImages"/>
-                <div class="transparency">
-                    <div class="rowPadding">• Etiqueta QR física<i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Tamaño QR 3x3 cm <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Sin gastos mensuales <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Datos básicos <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Historia clínica <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Salud en general <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Alimentación <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Medios de contacto <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Mapa de hogar del animal <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Lat. long. y hora de última lectura <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Descarga ilimitada de 5 modelos <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                	<div class="rowPadding">• Posibilidad de tener más de una copia del código <i class="fas fa-check" style="color:lightgreen;"></i></div>
-            		<a onclick="moreInfoPetQr()"><span class="badge badge-pill badge-danger moreInfo">+ info</span></a>
-                </div>
-                <div><button onclick="" class="btn btn-md btn-info buttons">Puntos de venta</button></div>
-            </div>
-            <div class="column order-2 containerProduct" id="col2" style="position:relative;top:0;left:0;" >
-                <img src="../img/pet-qr-online.png" onmouseover="onhover()" class="img-fluid imgSelected qrImages" style="position:relative;top:0;left:0;"/>
-            <img alt="Recomendado por Pet-QR" src="../img/recommended.png" style="position:absolute; left:150px;">
-                <div class="transparency">
-                    <div class="rowPadding">• Etiqueta QR descarga<i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Tamaños 3x3, 4x4, 5x5, 6x6 cm <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Sin gastos mensuales <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Sin tiempos de espera, Lo querés lo tenés <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Configurable a cualquier país del mundo <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Datos básicos <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Historia clínica <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Salud en general <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Alimentación <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Medios de contacto <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Mapa de hogar del animal <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Lat. long. y hora de última lectura <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Descarga ilimitada de 20 modelos <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Instrucciones de impresión <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">• Posibilidad de tener más de una copia del código <i class="fas fa-check" style="color:lightgreen;"></i></div>
-                <a onclick="moreInfoPetQrOnline()"><span class="badge badge-pill badge-danger moreInfo">+ info</span></a>
-                
-                <script type="text/javascript">
-	                function onhover(){
-	                	$.alert({
-	                		columnClass:"col-md-6",
-	                		type:"blue",
-	                		title:"<i style='color:lightblue' class='fas fa-shield-alt'></i> Medidas de seguridad",
-	                		content:"<html><body><p style='text-align:justify'>A pesar que nuestra web utiliza SSL (Cifrado de datos absolutos entre los dos puntos), nosotros no utilizamos ni capturamos ningún tipo de datos de los medios de pago, por ende la transacción será por MercadoPago, TodoPago o el medio que haya elegido, esto con el fin de darle seguridad y confianza al cliente.</p><br><label style='font-weight:bold'><img src='../img/iconoPet75.png' style='height:30px;width:30px'> Pet-QR</label></body></html>"
-	                	});
-	                }
-                </script>
-                
-                </div>
-               <div> 
-               <br>
-					<button onclick="checkoutPage()" class="btn btn-md btn-warning">Comprar</button><br><br>
-					<p th:if="${currentUser} == Invitado" style="color:pink;background:rgba(0,0,0,0.5); border-radius:5px">Checkout - Recuerde estar logueado.</p>
-					<p th:unless="${currentUser} == Invitado" style="color:lightgreen;background:rgba(0,0,0,0.5); border-radius:5px">Usted está logueado y listo para comprar.</p>
-					
-	            	<script>
-		            	function checkoutPage(){
-		            		window.location.href = "/online-checkout";	
-		            	}
-	            	</script>
-            	
-            	</div>
-            </div>
-            <div class="column order-3 containerProduct" id="col3">
-                <img src="../img/vetCloud.png" class="img-fluid imgSelected" style="border-radius:7px;"/>
-                <div class="transparency">
-                    <div class="rowPadding">100 Hist. clínicas cloud<i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">Schedule de vacunación y visitas Vet.<i class="fas fa-check" style="color:lightgreen;"></i></div>
-                    <div class="rowPadding">Descargas de H.C. a PDF<i class="fas fa-check" style="color:lightgreen;"></i></div>
-                	<span class="badge badge-pill badge-danger moreInfo">+ info</span>
-                </div>
-                <div><button onclick="" class="btn btn-md buttons">Contratar</button></div>
-            </div>
-        </div>
-    <br><br><br><br><br>
-    </div>
-    <footer th:replace="default :: footer"></footer>
+
+	<nav th:replace="default :: bar"></nav>
+	<div id="container" style="padding: 30px">
+		<div id="dataPricingContainer"
+			class="container-fluid transparencyWithoutPadding">
+			<div class="container-fluid center-block"
+				style="display: inline-block; margin: 0 auto;">
+				<div class="column order-1 containerProduct" id="col1">
+					<img src="../img/pet-qr.png" class="img-fluid imgSelected qrImages" />
+					<div class="transparency">
+						<div class="rowPadding">
+							• Etiqueta QR física<i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Tamaño QR 3x3 cm <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Sin gastos mensuales <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Datos básicos <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Historia clínica <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Salud en general <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Alimentación <i class="fas fa-check" style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Medios de contacto <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Mapa de hogar del animal <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Lat. long. y hora de última lectura <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Descarga ilimitada de 5 modelos <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Posibilidad de tener más de una copia del código <i
+								class="fas fa-check" style="color: lightgreen;"></i>
+						</div>
+						<a onclick="moreInfoPetQr()"><span
+							class="badge badge-pill badge-danger moreInfo">+ info</span></a>
+					</div>
+					<div>
+						<button onclick="" class="btn btn-md btn-info buttons">Puntos
+							de venta</button>
+					</div>
+				</div>
+				<div class="column order-2 containerProduct" id="col2"
+					style="position: relative; top: 0; left: 0">
+					<img src="../img/pet-qr-online.png" onmouseover="onhover()"
+						class="img-fluid imgSelected qrImages"
+						style="position: relative; top: 0; left: 0;" /> <img
+						alt="Recomendado por Pet-QR" src="../img/recommended.png"
+						style="position: absolute; top: 20px; left: 120px;">
+					<div class="transparency">
+						<div class="rowPadding">
+							• Etiqueta QR descarga<i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Tamaños 3x3, 4x4, 5x5, 6x6 cm <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Sin gastos mensuales <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Sin tiempos de espera, Lo querés lo tenés <i
+								class="fas fa-check" style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Configurable a cualquier país del mundo <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Datos básicos <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Historia clínica <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Salud en general <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Alimentación <i class="fas fa-check" style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Medios de contacto <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Mapa de hogar del animal <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Lat. long. y hora de última lectura <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Descarga ilimitada de 20 modelos <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Instrucciones de impresión <i class="fas fa-check"
+								style="color: lightgreen;"></i>
+						</div>
+						<div class="rowPadding">
+							• Posibilidad de tener más de una copia del código <i
+								class="fas fa-check" style="color: lightgreen;"></i>
+						</div>
+						<a onclick="moreInfoPetQrOnline()"><span
+							class="badge badge-pill badge-danger moreInfo">+ info</span></a>
+
+						<script type="text/javascript">
+							function onhover() {
+								$
+										.alert({
+											columnClass : "col-md-6",
+											type : "blue",
+											title : "<i style='color:lightblue' class='fas fa-shield-alt'></i> Medidas de seguridad",
+											content : "<html><body><p style='text-align:justify'>A pesar que nuestra web utiliza SSL (Cifrado de datos absolutos entre los dos puntos), nosotros no utilizamos ni capturamos ningún tipo de datos de los medios de pago, por ende la transacción será por MercadoPago, TodoPago o el medio que haya elegido, esto con el fin de darle seguridad y confianza al cliente.</p><br><label style='font-weight:bold'><img src='../img/iconoPet75.png' style='height:30px;width:30px'> Pet-QR</label></body></html>"
+										});
+							}
+						</script>
+
+					</div>
+					<div>
+						<br>
+						<button onclick="checkoutPage()" class="btn btn-md btn-warning">Comprar</button>
+						<br>
+						<br>
+						<p th:if="${currentUser} == Invitado"
+							style="color: pink; background: rgba(0, 0, 0, 0.5); border-radius: 5px">Checkout
+							- Recuerde estar logueado.</p>
+						<p th:unless="${currentUser} == Invitado"
+							style="color: lightgreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px">Usted
+							está logueado y listo para comprar.</p>
+
+						<script>
+							function checkoutPage() {
+								window.location.href = "/online-checkout";
+							}
+						</script>
+
+					</div>
+				</div>
+				<!--             <div class="column order-3 containerProduct" id="col3"> -->
+				<!--                 <img src="../img/vetCloud.png" class="img-fluid imgSelected" style="border-radius:7px;"/> -->
+				<!--                 <div class="transparency"> -->
+				<!--                     <div class="rowPadding">100 Hist. clínicas cloud<i class="fas fa-check" style="color:lightgreen;"></i></div> -->
+				<!--                     <div class="rowPadding">Schedule de vacunación y visitas Vet.<i class="fas fa-check" style="color:lightgreen;"></i></div> -->
+				<!--                     <div class="rowPadding">Descargas de H.C. a PDF<i class="fas fa-check" style="color:lightgreen;"></i></div> -->
+				<!--                 	<span class="badge badge-pill badge-danger moreInfo">+ info</span> -->
+				<!--                 </div> -->
+				<!--                 <div><button onclick="" class="btn btn-md buttons">Contratar</button></div> -->
+				<!--             </div> -->
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+	</div>
+	<footer th:replace="default :: footer"></footer>
 </body>
 
 </html>

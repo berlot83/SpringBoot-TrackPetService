@@ -7,8 +7,9 @@
 
 	<div class="container">
 		<div id="signUpFormMainDiv" class="container-fluid">
+		<div class="transparencyWithoutPadding" style="padding:10px">
 			<H5>Registro de usuario</H5>
-			<hr>
+			<hr style="border: 1px solid DarkViolet !important;">
 			<form class="needs-validation" action="#" th:action="@{/sign-up}"
 				th:object="${user}" method="POST">
 				<div class="row" id="mainContentDivsSignUp">
@@ -58,6 +59,7 @@
 				</div>
 
 			</form>
+			</div>
 		</div>
 	</div>
 	<br>
