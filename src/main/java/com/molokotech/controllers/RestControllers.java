@@ -174,11 +174,12 @@ public class RestControllers {
 		System.out.println(accessToken);
 
 		MP mp = new MP(accessToken);
-		JSONObject json = mp.get("/v1/payments/4391970308");
+		JSONObject json = mp.get("/v1/payments/"+id);
 		
 		
 		if(topic.equals("payment")) {
 			String email = json.getJSONObject("response").getJSONObject("payer").getString("email");
+			System.out.println(email);
 			
 			/* Start checking, sending and reemplacing sellecdOnline java attribute*/
 			PrepaidQR prepaidQR = null;
@@ -218,7 +219,6 @@ public class RestControllers {
 			/* Override "En Venta" for "Vendido a ... " to stop resending other Users*/
 			prepaidQR.setSelledOnline("Vendido a " + email);
 			prepaidQrService.createPrepaidQR(prepaidQR);
-			
 			
 		}
 		
