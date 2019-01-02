@@ -179,7 +179,6 @@ public class RestControllers {
 		
 		if(topic.equals("payment")) {
 			String email = json.getJSONObject("response").getJSONObject("payer").getString("email");
-			String firstName = json.getJSONObject("response").getJSONObject("payer").getString("firstName");
 			
 			/* Start checking, sending and reemplacing sellecdOnline java attribute*/
 			PrepaidQR prepaidQR = null;
@@ -205,7 +204,7 @@ public class RestControllers {
 					mimeMessage.setSubject("Código QR adquirido.");
 					mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 					mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
-					mimeMessage.setText(firstName+", gracias por tu compra, el id del QR es = " + idPrepaidQR +", lo que tenés que hacer es ir a nuestra web, ingresar a Pet-QR ==> Activar un QR prepago ==> Ingresá el código que recibiste y listo, fijate de completar todo lo que puedas del formulario. Una vez completo Tocá el botón rojo y cuando te salga el QR probalo desde la PC, si sale todo bien tendrías que ver todos los datos que pusiste.");
+					mimeMessage.setText("Gracias por tu compra, el id del QR es = " + idPrepaidQR +", lo que tenés que hacer es ir a nuestra web, ingresar a Pet-QR ==> Activar un QR prepago ==> Ingresá el código que recibiste y listo, fijate de completar todo lo que puedas del formulario. Una vez completo Tocá el botón rojo y cuando te salga el QR probalo desde la PC, si sale todo bien tendrías que ver todos los datos que pusiste.");
 				}
 			};
 
