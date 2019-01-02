@@ -1,8 +1,8 @@
 /* @charset "ISO-8859-1"; */
 html, body {
-/* 	position: relative; */
+	/* 	position: relative; */
 	height: 100%;
-	height:100vh;
+	height: 100vh;
 	width: 100%;
 }
 
@@ -57,9 +57,9 @@ body {
 	text-shadow: 1px 2px black;
 }
 
-.transparencyWithoutPadding{
-	background:rgba(0,0,0,0.5) !important;
-    border-radius: 10px !important;
+.transparencyWithoutPadding {
+	background: rgba(0, 0, 0, 0.5) !important;
+	border-radius: 10px !important;
 }
 
 #divMainForm {
@@ -114,7 +114,7 @@ a:hover {
 		font-size: small !important;
 	}
 	#footer { //
-		height: 70px;
+		height: 70px !important;
 		background-color: black;
 		position: relative;
 		left: 0;
@@ -124,9 +124,14 @@ a:hover {
 		vertical-align: middle;
 		bottom: 0;
 	}
-	
-	#navigationBar{
+	#navigationBar {
 		font-size: small !important;
+	}
+	#divAgeCreated {
+		display: none;
+	}
+	#footerBrand {
+		font-size: x-small;
 	}
 }
 
@@ -152,8 +157,7 @@ a:hover {
 		vertical-align: middle;
 		bottom: 0;
 	}
-	
-	#navigationBar{
+	#navigationBar {
 		font-size: small !important;
 	}
 }
@@ -180,8 +184,7 @@ a:hover {
 		vertical-align: middle;
 		bottom: 0;
 	}
-	
-	#navigationBar{
+	#navigationBar {
 		font-size: small !important;
 	}
 }
