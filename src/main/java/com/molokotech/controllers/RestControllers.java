@@ -171,9 +171,11 @@ public class RestControllers {
 		MercadoPago.SDK.setClientId("4306840655072811");
 		MercadoPago.SDK.configure("4306840655072811", "uT7N5Y0B5lj9rophOy50yEh3EkEJo7jO");
 		String accessToken = MercadoPago.SDK.getAccessToken();
+		System.out.println(accessToken);
 
 		MP mp = new MP(accessToken);
 		JSONObject json = mp.get("/v1/payments/4391970308");
+		
 		
 		if(topic.equals("payment")) {
 			String email = json.getJSONObject("response").getJSONObject("payer").getString("email");
