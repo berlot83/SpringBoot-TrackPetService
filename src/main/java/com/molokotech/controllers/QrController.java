@@ -164,7 +164,7 @@ public class QrController {
 		
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
-				mimeMessage.setSubject("Active su cuenta en Pet-QR.");
+				mimeMessage.setSubject("Cambio de contraseña Pet-QR.");
 				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(userTemp.getEmail()));
 				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
 				mimeMessage.setText("https://pet-qr.com/recovery-pass?token="+userTemp.getEmailToken()+"&username="+user.getName());
@@ -212,7 +212,7 @@ public class QrController {
 			model.addAttribute("problem", "No se pudo realizar la operación");
 			System.out.println("El usuario buscado es null");
 		}
-		return "/recovery-pass";
+		return "recovery-pass";
 	}
 	/* End change pass methods */
 
