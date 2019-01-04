@@ -203,12 +203,12 @@
 		<a th:if="${currentUser == 'Invitado'}" class="nav-link"
 			href="/sign-up" id="registerButton"><i class="fas fa-sign-in-alt"></i>
 			Registro</a>
-
 	</nav>
 	<!-- End logout divs -->
 	<!-- End menu bar -->
 
 	<footer th:fragment="footer" id="footer" class="text-white mt-4">
+	<div th:if="${error != null}" class="alert alert-danger" id="error">Debe tener una cuenta para ingresar a esta sección.</div>
 		<div class="container-fluid py-3">
 			<div class="row">
 				<div id="footerBrand" class="col-md-6">

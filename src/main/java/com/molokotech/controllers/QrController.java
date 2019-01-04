@@ -332,6 +332,13 @@ public class QrController {
 		model.addAttribute("user", user);
 
 		List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
+		/* Start comprove list exist */
+		if(user == null) {
+			model.addAttribute("error", "Debe tener una cuenta para ingresar a esta sección.");
+			return "index";
+		}
+		/* End comprove list exist */
+		
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getUserName() != null) {
 				if(list.get(i).getUserName().equals(user.getName())) {
@@ -343,7 +350,7 @@ public class QrController {
 			}
 		}
 		model.addAttribute("list", resultList);
-		 return "account";
+		return "account";
 	}
 
 }
