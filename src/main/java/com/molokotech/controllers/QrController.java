@@ -160,6 +160,12 @@ public class QrController {
 	public String recoveryPass(@ModelAttribute User user, Model model) {
 		PrintName.printUser(model);
 		User userTemp = userService.findUser(user.getName());
+		
+		if(userTemp == null) {
+			model.addAttribute("error", "Parece que ese no es un usuario activo.");
+			return "change-pass";
+		}
+		
 		System.out.println(userTemp.getEmail() + " " + userTemp.getName());
 		
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
