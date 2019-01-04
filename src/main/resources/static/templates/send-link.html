@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="default :: header"></header>
+<body>
+	<nav th:replace="default :: bar"></nav>
+	<div class="container">
+		<div class="container-fluid" id="sendLinkMainDiv">
+			<div id="dataLinkDiv">
+				<h3>Estado:</h3>
+				<p>Verifique en su correo el link de cambio de contraseña, una vez que haya cambiado la misma, ingrese al link de abajo para loguearse.</p>
+
+				<a href="/login">Login</a>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="default :: footer"></footer>
+</body>
+
+</html>

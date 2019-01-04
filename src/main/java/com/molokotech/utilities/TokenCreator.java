@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.Random;
 
 
-/* Not in use right now, because we are using MongoDB ObjectId */
+/* Used on sign up to insert email token to recovery pass */
 public class TokenCreator {
 	
 	public static String createAleatoryToken() {

@@ -1,6 +1,7 @@
 package com.molokotech.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
@@ -11,7 +12,12 @@ public class User {
 	private String email;
 	private String password;
 	private String[] authorities;
-	private String name; 
+	private String name;
+	private String emailToken;
+	private boolean enabled;
+	@Transient
+	private String copyPassword;
+	
 	/*
 	 * name is indexed on DB without any annotation because throws exception always,
 	 * because delete collection were needed so do not annotation
@@ -66,6 +72,30 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmailToken() {
+		return emailToken;
+	}
+
+	public void setEmailToken(String emailToken) {
+		this.emailToken = emailToken;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getCopyPassword() {
+		return copyPassword;
+	}
+
+	public void setCopyPassword(String copyPassword) {
+		this.copyPassword = copyPassword;
 	}
 
 }

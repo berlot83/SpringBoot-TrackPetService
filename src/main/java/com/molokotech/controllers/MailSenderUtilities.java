@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.molokotech.model.Order;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
+import com.molokotech.service.UserService;
+import com.molokotech.utilities.PrintName;
+
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 
@@ -20,6 +23,9 @@ import javax.mail.internet.InternetAddress;
 @RestController
 public class MailSenderUtilities {
 
+	@Autowired
+	public UserService userService;
+	
 	@Autowired
 	public JavaMailSender emailSender;
 
@@ -91,6 +97,13 @@ public class MailSenderUtilities {
 		} catch (MailException ex) {
 			System.err.println(ex.getMessage());
 		}
+	}
+	
+	@GetMapping("/send-activation-mail")
+	public void sendActivationMail(User user) {
+		
+
+		
 	}
 
 }

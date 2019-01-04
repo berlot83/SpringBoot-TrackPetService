@@ -50,6 +50,8 @@ public class PageConfig implements WebMvcConfigurer {
 		registry.addViewController("/online-checkout").setViewName("online-checkout");
 		registry.addViewController("/account").setViewName("account");
 		registry.addViewController("/delete").setViewName("delete");
+		registry.addViewController("/change-pass").setViewName("change-pass");
+		registry.addViewController("/send-link").setViewName("send-link");
 		
 	}
 

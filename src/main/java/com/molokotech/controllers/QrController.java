@@ -10,6 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -22,14 +23,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
 import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.PrintName;
+import com.molokotech.utilities.TokenCreator;
 import com.mongodb.MongoWriteException;
 
 @Component
@@ -118,19 +124,97 @@ public class QrController {
 
 	@PostMapping("/sign-up")
 	public String greetingSubmit(@ModelAttribute User user, Model model) {
-		try {
-			String[] authorities = { "USER" };
-			user.setAuthorities(authorities);
-			userService.saveUser(user);
+		
+		/* Search existing users Start*/
+		if(userService.findUser(user.getName()) == null) {
+			try {
+				String[] authorities = { "USER" };
+				user.setAuthorities(authorities);
+				user.setEmailToken(TokenCreator.createAleatoryToken());
+				userService.saveUser(user);
+			} catch (Exception e) {
+				System.out.println("Entró en exceptción");
+				System.out.println(e.getMessage());
+				return "sign-up";
+			}			
 			return "success";
-		} catch (Exception e) {
-			model.addAttribute("errorMsg", "Ese usuario ya está registrado");
-			System.out.println("Entró en exceptción");
-			System.out.println(e.getMessage());
+		}else {
+			model.addAttribute("errorMsg", "Ese usuario ya está registrado");			
 			return "sign-up";
 		}
+		/* Search existing users End */
+		
 	}
 	/* End Sign-up */
+	
+	
+	/* Start change pass methods */
+	@GetMapping("/change-pass")
+	public String changePass(Model model) {
+		PrintName.printUser(model);
+		model.addAttribute("user", new User());
+		return "change-pass";
+	}
+	
+	@PostMapping("/change-pass")
+	public String recoveryPass(@ModelAttribute User user, Model model) {
+		PrintName.printUser(model);
+		User userTemp = userService.findUser(user.getName());
+		System.out.println(userTemp.getEmail() + " " + userTemp.getName());
+		
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setSubject("Active su cuenta en Pet-QR.");
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(userTemp.getEmail()));
+				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
+				mimeMessage.setText("https://pet-qr.com/recovery-pass?token="+userTemp.getEmailToken()+"&username="+user.getName());
+			}
+		};
+			try {
+				this.emailSender.send(preparator);
+			} catch (MailException ex) {
+				System.err.println(ex.getMessage());
+			}
+			return "send-link";
+	}
+	
+	@GetMapping("/recovery-pass")
+	public String changePass(@RequestParam String token, @RequestParam String username, Model model) {
+		PrintName.printUser(model);
+		User user = userService.findUser(username);
+		System.out.println("get "+user.getId());
+		model.addAttribute("user", user);
+		return "recovery-pass";
+	}
+	
+	@PostMapping("/recovery-pass")
+	public String changePassForm(@ModelAttribute User user, User userPersisted, @RequestBody String password, @RequestBody String copyPassword, Model model) {
+		PrintName.printUser(model);
+		
+		userPersisted = userService.findById(user.getId());
+		System.out.println("post "+user.getId());
+		if((user != null) && (user.getPassword().equals(user.getCopyPassword()))) {
+			
+			try {
+				userPersisted.setPassword(user.getPassword());
+				userService.saveUser(userPersisted);
+				
+				model.addAttribute("success", "El cambio se realizó con éxito");
+				System.out.println("Password changed");
+
+			}catch(Exception error) {
+				model.addAttribute("problem", "No se pudo realizar la operación");
+				System.out.println(error);
+				System.out.println("");
+				System.out.println(error.getMessage());
+			}
+		}else {
+			model.addAttribute("problem", "No se pudo realizar la operación");
+			System.out.println("El usuario buscado es null");
+		}
+		return "/recovery-pass";
+	}
+	/* End change pass methods */
 
 	/* Prepaid QR Controllers to enter or not to the form */
 	@GetMapping("/prepaid-qr")

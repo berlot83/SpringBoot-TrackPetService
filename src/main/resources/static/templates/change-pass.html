@@ -1,0 +1,23 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+<header th:replace="default :: header"></header>
+<body>
+	<nav th:replace="default :: bar"></nav>
+<div class="container" style="margin:30px;">
+<div class="container-fluid" id="changePassDivContainer">
+<div id="dataChangePass">
+	<form action="#" th:action="@{/change-pass}" method="POST" th:object="${user}">
+		<div class="form-group">
+			<label for="name" style="font-size:26px"><i style="color:Coral" class="fas fa-user"></i> Usuario:</label>
+			<input type="text" th:field="*{name}" class="form-control">
+			<small style="color:pink"><i style="color:lightgreen" class="fas fa-envelope"></i> Usted recibirá un email con un link para el cambio de contraseña, en la casilla que declaró al registrarse.</small>
+		</div>
+
+			<button class="btn btn-lg btn-warning" type="submit">Enviar</button>
+	</form>
+</div>
+</div>
+</div>
+	<footer th:replace="default :: footer"></footer>
+</body>
+
+</html>
