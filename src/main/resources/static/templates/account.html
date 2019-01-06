@@ -4,158 +4,296 @@
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">
 		<div id="accountMainDiv" class="container-fluid">
-		<div id="dataAccountDiv" class="transparency" >
-			<h3><img src="../img/iconoPet75.png" style="width:38px;height:38px;"> Cuenta</h3>
-			<hr style="border: 1px solid white !important;">
-			<div class="form-group">
-				<label><i style="color:lightblue" class="fas fa-user"></i> Nombre de usuario:</label>
-				<p th:text="${user?.name}"></p>
-			</div>
-
-			<div class="form-group">
-				<label><i style="color:lightblue" class="fas fa-envelope"></i> Email:</label>
-				<p th:text="${user?.email}"></p>
-			</div>
-			
-			<br>
-			
-			<div class="form-group">
-				<h4>Administración códigos QR:</h4>
+			<div id="dataAccountDiv" class="transparency">
+				<h3>
+					<img src="../img/iconoPet75.png" style="width: 38px; height: 38px;">
+					Cuenta
+				</h3>
 				<hr style="border: 1px solid white !important;">
-			</div>
+				<div class="form-group">
+					<label><i style="color: lightblue" class="fas fa-user"></i>
+						Nombre de usuario:</label>
+					<p th:text="${user?.name}"></p>
+				</div>
 
-			<div>
-				<table id="accountTable"
-					class="table table-dark table-responsive table-striped rounded">
-					<thead>
-						<tr>
-							<td>Indice</td>
-							<td>QR id</td>
-							<td>Nombre Mascota</td>
-							<td>Acciones</td>
-						</tr>
-					</thead>
-					<tbody th:block th:each="listIterate ,iStat : ${list}">
-						<tr>
-							<td th:text="${iStat?.count}"></td>
-							<td><a th:href="@{'/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${list[iStat?.index].id}"></a></td>
-							<td th:text="${listIterate?.pet?.petName}"></td>
-							<td>
-								<a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color:lightgreen" class="fas fa-search"></i></a>
-								<a th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i style="color:lemonChiffon" class="fas fa-edit"></i></a>
-								<a href="#" onclick="deleteQr()" ><i class="far fa-trash-alt" style="color:tomato" ></i></a>
-								<i style="color:pink" class="fas fa-exclamation-triangle"></i>
-								 
-								 </td>
-								 <script>
-									 function deleteQr(){
-										 $.confirm({
-											 type:"red",
-											    title: 'Confirme la eliminación!',
-											    content: "<html><p>Confirma que desea Borrar el QR con id:   <strong>[[${list[iStat?.index].id}]]</strong>?</p><p style='text-align:justify'>Tenga en cuenta que está interactuando con nuestro servidor por ende los datos no podrán ser recuperados</p></html>",
-											    buttons: {
-											        confirm: {
-											            text: 'Borrar',
-											            btnClass: 'btn-red',
-											            keys: ['enter', 'shift'],
-											            action: function(){
-												            $.alert('Confirmada eliminación de QR!, los datos No podrán ser recuperados}');
-												            window.location.href="[[@{'/delete?id='+${list[iStat?.index].id}}]]"
-											            }
-											        },
-												    cancel: function () {
-											            $.alert({type: "blue",
-											            		title: "Acción:",
-											            		content:'Cancelada'});
-											        }
-	
-											    }
-											});
-									 }
-								 </script>
-						</tr>
-					</tbody>
-				</table>
-				</th:block>
+				<div class="form-group">
+					<label><i style="color: lightblue" class="fas fa-envelope"></i>
+						Email:</label>
+					<p th:text="${user?.email}"></p>
+				</div>
+
+				<br>
+
+				<div class="form-group">
+					<h4>Administración códigos QR:</h4>
+					<hr style="border: 1px solid white !important;">
+				</div>
+
+				<div>
+				 <!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
+					<input type="hidden" th:value="${listIterate?.strBase64}" id="strBase64" /><br>
+					<input type="hidden" th:value="${list[iStat?.index].id}" id="id" />
+					
+					<table id="accountTable"
+						class="table table-dark table-responsive table-striped rounded">
+						<thead>
+							<tr>
+								<td>Indice</td>
+								<td>QR id</td>
+								<td>Nombre Mascota</td>
+								<td>Acciones</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${iStat?.count}"></td>
+								<td><a th:href="@{'/id/'+${list[iStat?.index].id}}"
+									th:id="'idValue'+${iStat?.index}"
+									th:text="${list[iStat?.index].id}"></a></td>
+								<td th:text="${listIterate?.pet?.petName}"></td>
+								<td><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i
+										style="color: lightgreen" class="fas fa-search"></i></a> <a
+									th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i
+										style="color: lemonChiffon" class="fas fa-edit"></i></a> <a
+									href="#" onclick="deleteQr()"><i class="far fa-trash-alt"
+										style="color: tomato"></i></a> <i style="color: pink"
+									class="fas fa-exclamation-triangle"></i></td>
+								<script>
+									function deleteQr() {
+										$
+												.confirm({
+													type : "red",
+													title : 'Confirme la eliminación!',
+													content : "<html><p>Confirma que desea Borrar el QR con id:   <strong>[[${list[iStat?.index].id}]]</strong>?</p><p style='text-align:justify'>Tenga en cuenta que está interactuando con nuestro servidor por ende los datos no podrán ser recuperados</p></html>",
+													buttons : {
+														confirm : {
+															text : 'Borrar',
+															btnClass : 'btn-red',
+															keys : [ 'enter',
+																	'shift' ],
+															action : function() {
+																$
+																		.alert('Confirmada eliminación de QR!, los datos No podrán ser recuperados}');
+																window.location.href = "[[@{'/delete?id='+${list[iStat?.index].id}}]]"
+															}
+														},
+														cancel : function() {
+															$
+																	.alert({
+																		type : "blue",
+																		title : "Acción:",
+																		content : 'Cancelada'
+																	});
+														}
+
+													}
+												});
+									}
+								</script>
+							</tr>
+						</tbody>
+					</table>
+					<!--/*/ </th:block> /*/-->
 				</div>
 				<!-- Start Gallery -->
 				<div id="qrGallery">
-				
-					<!--  Start Carousel -->
-<!-- 	<div id="carouselExampleControls" class="carousel slide" -->
-<!-- 		data-ride="carousel" style="color: violet"> -->
-<!-- 		<div class="carousel-inner"> -->
-<!-- 			<div class="carousel-item active"> -->
-<!-- 				<img class="img-fluid w-100 imageCarousel" -->
-<!-- 					src="../img/carousel1.jpg" alt="First slide"> -->
-<!-- 				<div class="carousel-caption d-none d-md-block" -->
-<!-- 					style="color: #5b3f83"> -->
-<!-- 					<h2>Porque amás tu mascota...</h2> -->
-<!-- 					<h4 style="text-shadow: 1px 1px white;">Querés mejor para ella</h4> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="carousel-item"> -->
-<!-- 				<img class="img-fluid w-100 imageCarousel" -->
-<!-- 					src="../img/carousel2.jpg" alt="Second slide"> -->
-<!-- 				<div class="carousel-caption d-none d-md-block" -->
-<!-- 					style="color: #5b3f83"> -->
-<!-- 					<h2>Harías cualquier cosa por tu amigo...</h2> -->
-<!-- 					<h4 style="text-shadow: 1px 1px white;">Porque te quiere y no -->
-<!-- 						lo vas a abandonar</h4> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="carousel-item"> -->
-<!-- 				<img class="img-fluid w-100 imageCarousel" -->
-<!-- 					src="../img/carousel3.jpg" alt="Third slide"> -->
-<!-- 				<div class="carousel-caption d-none d-md-block" -->
-<!-- 					style="color: #5b3f83"> -->
-<!-- 					<h2>Solo resta que alguien se fije en él...</h2> -->
-<!-- 					<h4 style="text-shadow: 1px 1px white;">Colocale todos los -->
-<!-- 						datos que quieras, los llevará adonde vaya</h4> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="carousel-item"> -->
-<!-- 				<img class="img-fluid w-100 imageCarousel" -->
-<!-- 					src="../img/carousel4.jpg" alt="Four slide"> -->
-<!-- 				<div class="carousel-caption d-none d-md-block" -->
-<!-- 					style="color: #5b3f83"> -->
-<!-- 					<h2>El nunca te abandonaría...</h2> -->
-<!-- 					<h4 style="text-shadow: 1px 1px white;">Te buscará hasta el -->
-<!-- 						final, vos podés hacer lo mismo</h4> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
 
-<!-- 			<div class="carousel-item"> -->
-<!-- 				<img class="img-fluid w-100 imageCarousel" -->
-<!-- 					src="../img/prepaidQR1366x700.jpg" alt="Five slide"> -->
-<!-- 				<div class="carousel-caption d-none d-md-block" -->
-<!-- 					style="color: #5b3f83"> -->
-<!-- 					<h2>Ya no hay distancias que te impidan protegerlo...</h2> -->
-<!-- 					<h4 style="text-shadow: 1px 1px white;">Lo comprás, y luego lo -->
-<!-- 						descargás e imprimís la veces que quieras, con el diseño que más -->
-<!-- 						te guste...</h4> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-
-<!-- 		</div> -->
-<!-- 		<a class="carousel-control-prev" href="#carouselExampleControls" -->
-<!-- 			role="button" data-slide="prev"> <span -->
-<!-- 			class="carousel-control-prev-icon" aria-hidden="true"></span> <span -->
-<!-- 			class="sr-only">Atrás</span> -->
-<!-- 		</a> <a class="carousel-control-next" href="#carouselExampleControls" -->
-<!-- 			role="button" data-slide="next"> <span -->
-<!-- 			class="carousel-control-next-icon" aria-hidden="true"></span> <span -->
-<!-- 			class="sr-only">Siguiente</span> -->
-<!-- 		</a> -->
-<!-- 	</div> -->
-	<!--  End Carousel -->
-				
 				</div>
 				<!-- End Gallery -->
+
+				<br>
+				<br>
+
+				<h5>Modelos Predefinidos de descarga</h5>
+				<!-- Grid row -->
+				<div class="row">
+
+					<!-- Grid column -->
+					<!--   <div class="col-md-12 d-flex justify-content-center mb-5"> -->
+
+					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="all">All</button> -->
+					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button> -->
+					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button> -->
+
+					<!--   </div> -->
+					<!-- Grid column -->
+
+				</div>
+				<!-- Grid row -->
+
+				<!-- Grid row -->
+				<div class="gallery transparency" id="gallery" style="padding: 10px">
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 2">
+						<img class="img-fluid zoom" src="../img/design/pet-qr.png"
+							alt="Card image cap" onclick="imageDesignPet()">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/pitbull-1.png"
+						onclick="imageDesignPitbull1()"	alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/pitbull-2.png"
+							onclick="imageDesignPitbull2()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 2">
+						<img class="img-fluid zoom" src="../img/design/pitbull-3.png"
+							onclick="imageDesignPitbull3()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 2">
+						<img class="img-fluid zoom" src="../img/design/rottweiler-1.png"
+							onclick="imageDesignRottweiler()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/warning-dog-1.png"
+							onclick="imageDesignOnBoard()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/bird-1.png"
+							onclick="imageDesignBird1()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/bird-2.png"
+						 	onclick="imageDesignBird2()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/bird-3.png"
+							onclick="imageDesignBird3()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/fish-1.png"
+							onclick="imageDesignFish1()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/fish-2.png"
+							onclick="imageDesignFish2()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/fish-3.png"
+							onclick="imageDesignFish3()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/dogOnBoardPink.png"
+							onclick="imageDesignDogOnBoardPink()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/dogOnBoardYellow.png"
+							onclick="imageDesignDogOnBoardYellow()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/birds-heart.png"
+							onclick="imageDesignBirdsHeart()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/animal-raccoon.png"
+							onclick="imageDesignRaccoon()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/heart-1.png"
+							onclick="imageDesignHeart1()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/heart-2.png"
+							onclick="imageDesignHeart2()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/google-logo-1.png"
+							onclick="imageDesignGoogle1()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/google-logo-2.png"
+							onclick="imageDesignGoogle2()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/google-logo-3.png"
+							onclick="imageDesignGoogle3()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/argentine-flag.png"
+							onclick="imageDesignArgentineFlag()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="mb-3 pics animation all 1">
+						<img class="img-fluid zoom" src="../img/design/usa-flag-75x75.png"
+							onclick="imageDesignUsaFlag()" alt="Card image cap">
+					</div>
+					<!-- Grid column -->
+
+				</div>
+				<!-- Grid row -->
+
 				<br> <br> <br> <br>
 			</div>
 		</div>
-		
+
 		<footer th:replace="default :: footer"></footer>
 	</div>
 </body>

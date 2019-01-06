@@ -134,77 +134,7 @@
 			
 			<!-- Map End -->
 
-				<h5>Descarga</h5>
-				<hr>
-				<p>Brindamos la descarga del código QR por las siguientes
-					causas:</p>
-				<ol>
-					<li>Es nativo en el servicio de venta online y lo heredan
-						aquellas que realizan una compra del QR en forma física.</li>
-					<li>La reposición digital del mismo en caso de pérdidas</li>
-					<li>La reutilzación en caso de grandes cantidades de animales,
-						ejemplo si tenés diez perros y todos ellos comparten el mismo
-						tutor puede que te convenga utilizar uno para todos.*</li>
-					<li>Por si se quieren realizar copias para llevar el control
-						clínico de la mascota.</li>
-					<li>El mismo puede ser impreso y colocado en cualquier lugar,
-						desde agendas, hojas y hasta en la heladera.</li>
-				</ol>
-
-				<h3>Diseños para descarga:</h3>
-				<ol>
-					<li>Con Huella de Fondo<br>
-						<button class="btn btn-sm btn-warning" onclick="imageDesignPaw()">Descargar</button>
-					</li>
-					<br>
-					<li>Con logo de Fondo<br>
-						<button class="btn btn-sm btn-success" onclick="imageDesignLogo()">Descargar</button>
-					</li>
-					<br>
-					<li>Sin fondo<br>
-						<button class="btn btn-sm btn-primary"
-							onclick="imageDesignWithoutLogo()">Descargar</button>
-					</li>
-					<br>
-					<li>Con Logo centrado<br>
-						<button class="btn btn-sm btn-info"
-							onclick="imageDesignCenteredLogo()">Descargar</button>
-					</li>
-					<br>
-					<li>Huella rosa<br>
-						<button class="btn btn-sm btn-warning" onclick="imageDesignPinkPaw()">Descargar</button>
-					</li>
-					<br>
-					<li>Corazón centrado<br>
-						<button class="btn btn-sm btn-danger" onclick="imageDesignHeath()">Descargar</button>
-					</li>
-					<br>
-					<li>Sin diseño en PDF (Para que le des diseño si querés)<br>
-						<button class="btn btn-sm" onclick="imageDesignBlankPDF()">Descargar
-							original A4 PDF</button>
-					</li>
-					<br>
-					<li>Sin diseño en JPG (photoshop, paint o cualquier programa de diseño)<br>
-						<button class="btn btn-sm" onclick="downloadNowJPG()">Descargar
-							original JPG</button>
-					</li>
-					<br>
-					<li>Sin diseño en PNG (photoshop, paint o cualquier programa de diseño)<br>
-						<button class="btn btn-sm" onclick="downloadNowPNG()">Descargar
-							original PNG</button>
-					</li>
-					<br>
-				</ol>
-
-
-				<br> <br> <small>* Hay que tener en cuenta que
-					aunque se copien o impriman muchos, todos siempre van a tener
-					acceso a los mismos datos de la nube, por ende sólo serviría para
-					cuando es una persona que comparte muchos animales.</small> <br> <br>
-				<br>
 			</div>
-			
-			<p th:text="${prepaidQR.owner.email}" id="mail" ></p>
 			
 			<script>
 			/* Needs to be here to wait charge email input, not onload */
