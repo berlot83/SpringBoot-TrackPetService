@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="default :: header"></head>
+
 <body>
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">
@@ -11,8 +12,7 @@
 				</h3>
 				<hr style="border: 1px solid white !important;">
 				<div class="form-group">
-					<label><i style="color: lightblue" class="fas fa-user"></i>
-						Nombre de usuario:</label>
+					<label><i style="color: lightblue" class="fas fa-user"></i> Nombre de usuario:</label>
 					<p th:text="${user?.name}"></p>
 				</div>
 
@@ -30,10 +30,6 @@
 				</div>
 
 				<div>
-				 <!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
-					<input type="hidden" th:value="${listIterate?.strBase64}" id="strBase64" /><br>
-					<input type="hidden" th:value="${list[iStat?.index].id}" id="id" />
-					
 					<table id="accountTable"
 						class="table table-dark table-responsive table-striped rounded">
 						<thead>
@@ -42,8 +38,10 @@
 								<td>QR id</td>
 								<td>Nombre Mascota</td>
 								<td>Acciones</td>
+								<td>Diseños</td>
 							</tr>
 						</thead>
+				 <!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
 						<tbody>
 							<tr>
 								<td th:text="${iStat?.count}"></td>
@@ -56,8 +54,16 @@
 									th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i
 										style="color: lemonChiffon" class="fas fa-edit"></i></a> <a
 									href="#" onclick="deleteQr()"><i class="far fa-trash-alt"
-										style="color: tomato"></i></a> <i style="color: pink"
-									class="fas fa-exclamation-triangle"></i></td>
+										style="color: tomato"></i></a> <i style="color: pink" class="fas fa-exclamation-triangle"></i></td> 
+										<!-- Form button to send object to download page -->
+										<td>
+											<form action="#" th:action="@{/download}" th:method="POST" th:object="${prepaidQR}">
+													<button type="submit" class="btn btn-sm btn-info"><i class="fas fa-download"></i></button>
+													<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
+													<input type="hidden" th:value="${list[iStat?.index].strBase64}" id="strBase64" name="strBase64" />
+											</form>
+										</td>
+									
 								<script>
 									function deleteQr() {
 										$
@@ -93,202 +99,9 @@
 							</tr>
 						</tbody>
 					</table>
-					<!--/*/ </th:block> /*/-->
-				</div>
-				<!-- Start Gallery -->
-				<div id="qrGallery">
-
-				</div>
-				<!-- End Gallery -->
-
+				<!--/*/ </th:block> /*/-->
 				<br>
 				<br>
-
-				<h5>Modelos Predefinidos de descarga</h5>
-				<!-- Grid row -->
-				<div class="row">
-
-					<!-- Grid column -->
-					<!--   <div class="col-md-12 d-flex justify-content-center mb-5"> -->
-
-					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="all">All</button> -->
-					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button> -->
-					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button> -->
-
-					<!--   </div> -->
-					<!-- Grid column -->
-
-				</div>
-				<!-- Grid row -->
-
-				<!-- Grid row -->
-				<div class="gallery transparency" id="gallery" style="padding: 10px">
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<img class="img-fluid zoom" src="../img/design/pet-qr.png"
-							alt="Card image cap" onclick="imageDesignPet()">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/pitbull-1.png"
-						onclick="imageDesignPitbull1()"	alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/pitbull-2.png"
-							onclick="imageDesignPitbull2()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<img class="img-fluid zoom" src="../img/design/pitbull-3.png"
-							onclick="imageDesignPitbull3()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<img class="img-fluid zoom" src="../img/design/rottweiler-1.png"
-							onclick="imageDesignRottweiler()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/warning-dog-1.png"
-							onclick="imageDesignOnBoard()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/bird-1.png"
-							onclick="imageDesignBird1()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/bird-2.png"
-						 	onclick="imageDesignBird2()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/bird-3.png"
-							onclick="imageDesignBird3()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/fish-1.png"
-							onclick="imageDesignFish1()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/fish-2.png"
-							onclick="imageDesignFish2()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/fish-3.png"
-							onclick="imageDesignFish3()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/dogOnBoardPink.png"
-							onclick="imageDesignDogOnBoardPink()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/dogOnBoardYellow.png"
-							onclick="imageDesignDogOnBoardYellow()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/birds-heart.png"
-							onclick="imageDesignBirdsHeart()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/animal-raccoon.png"
-							onclick="imageDesignRaccoon()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/heart-1.png"
-							onclick="imageDesignHeart1()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/heart-2.png"
-							onclick="imageDesignHeart2()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/google-logo-1.png"
-							onclick="imageDesignGoogle1()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/google-logo-2.png"
-							onclick="imageDesignGoogle2()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/google-logo-3.png"
-							onclick="imageDesignGoogle3()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/argentine-flag.png"
-							onclick="imageDesignArgentineFlag()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/usa-flag-75x75.png"
-							onclick="imageDesignUsaFlag()" alt="Card image cap">
-					</div>
-					<!-- Grid column -->
-
-				</div>
-				<!-- Grid row -->
 
 				<br> <br> <br> <br>
 			</div>

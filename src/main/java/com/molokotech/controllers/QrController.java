@@ -9,6 +9,7 @@ import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
 import org.springframework.mail.MailException;
@@ -351,6 +352,23 @@ public class QrController {
 		}
 		model.addAttribute("list", resultList);
 		return "account";
+	}
+	
+	@GetMapping("/download")
+	public String downloadDesign(Model model) {
+		PrepaidQR prepaidQR = new PrepaidQR();
+		PrintName.printUser(model);
+		model.addAttribute("prepaidQR", prepaidQR);
+		return "download";
+	}
+	
+	@PostMapping("/download")
+	public String chooseDesign(@ModelAttribute PrepaidQR prepaidQR, Model model) {
+		PrintName.printUser(model);
+		System.out.println(prepaidQR.getId());
+		System.out.println(prepaidQR.getSelledOnline());
+		
+		return "download";
 	}
 
 }

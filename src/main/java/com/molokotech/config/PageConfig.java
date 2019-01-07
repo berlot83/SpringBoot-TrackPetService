@@ -52,6 +52,7 @@ public class PageConfig implements WebMvcConfigurer {
 		registry.addViewController("/delete").setViewName("delete");
 		registry.addViewController("/change-pass").setViewName("change-pass");
 		registry.addViewController("/send-link").setViewName("send-link");
+		registry.addViewController("/download").setViewName("download");
 		
 	}
 
