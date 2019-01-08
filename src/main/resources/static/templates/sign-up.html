@@ -15,7 +15,7 @@
 				<div class="row" id="mainContentDivsSignUp">
 					<div class="col">
 						<div class="form-group">
-							<label for="name"><i class="far fa-user"></i> Usuario</label> <input
+							<label for="name"><i class="far fa-user" style="color:turquoise"></i> Usuario</label> <input
 								type="text" th:field="*{name}" id="name" name="name"
 								placeholder="Usuario" class="form-control" required>
 						</div>
@@ -24,17 +24,17 @@
 							no disponible.</div>
 
 						<div class="form-group">
-							<label for="password"><i class="fas fa-unlock"></i>
+							<label for="password"><i class="fas fa-unlock" style="color:turquoise"></i>
 								Password</label> <input type="password" th:field="*{password}"
 								maxlength="12" minlength="4" id="password" name="password"
 								placeholder="Password" class="form-control" required>
 							<div id="messages"></div>
-							<small>El formato debe ser entre 4 y 8 caractéres,
+							<small style="color:turquoise">El formato debe ser entre 4 y 8 caractéres,
 								letras, números o símbolos, combinados o sólos.</small>
 						</div>
 
 						<div class="form-group">
-							<label for="email"><i class="fas fa-at"></i> Email</label> <input
+							<label for="email"><i class="fas fa-at" style="color:turquoise"></i> Email</label> <input
 								type="email" th:field="*{email}" placeholder="Email"
 								class="form-control" required />
 						</div>

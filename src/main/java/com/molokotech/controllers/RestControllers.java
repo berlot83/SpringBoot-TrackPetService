@@ -205,7 +205,7 @@ public class RestControllers {
 					mimeMessage.setSubject("Código QR adquirido.");
 					mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 					mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
-					mimeMessage.setText("Gracias por tu compra, el id del QR es = " + idPrepaidQR +", lo que tenés que hacer es ir a nuestra web, ingresar a Pet-QR ==> Activar un QR prepago ==> Ingresá el código que recibiste y listo, fijate de completar todo lo que puedas del formulario. Una vez completo Tocá el botón rojo y cuando te salga el QR probalo desde la PC, si sale todo bien tendrías que ver todos los datos que pusiste.");
+					mimeMessage.setText("Gracias por tu compra, el id del QR es = " + idPrepaidQR +", el mail asignado es "+ email +",  lo que tenés que hacer es ir a nuestra web, ingresar a Pet-QR ==> Activar un QR prepago ==> Ingresá el código que recibiste junto con el mail y listo, fijate de completar todo lo que puedas del formulario. Una vez completo Tocá el botón rojo y cuando te salga el QR probalo desde la PC, si sale todo bien tendrías que ver todos los datos que pusiste.");
 				}
 			};
 
@@ -216,8 +216,8 @@ public class RestControllers {
 			}
 			/* Send email with id end */
 			
-			/* Override "En Venta" for "Vendido a ... " to stop resending other Users*/
-			prepaidQR.setSelledOnline("Vendido a " + email);
+			/* Override "En Venta" for the email to stop resending other Users and to verify buyer*/
+			prepaidQR.setSelledOnline(email.trim());
 			prepaidQrService.createPrepaidQR(prepaidQR);
 			
 		}

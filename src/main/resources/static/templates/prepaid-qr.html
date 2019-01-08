@@ -1,34 +1,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="default :: header"></head>
-
 <body onload="reciveIdFromAccount()">
 	<nav th:replace="default :: bar"></nav>
 	<br>
 	<br>
 	<div class="container">
 		<div id="prepaidMainDiv" class="container-fluid">
-			<h2>
+			<h2 id="titleActivateQR">
 				<i class="fas fa-paw"></i> Activar QR <i class="fas fa-qrcode"></i>
 			</h2>
 
 			<br>
 
-			<h5>Ingrese código de activación</h5>
-
 			<form action="#" th:action="@{/prepaid-qr}" th:object="${prepaidQR}"
 				method="POST">
+			<label class="form-group" for="id">Ingrese código de activación</label><br>
 				<input type="text" th:field="*{id}" id="id"
-					onkeyup="findPrepaidQrStrBase64(), findPrepaidQrSellPoint()"
-					required /> <br> <label><i class="fas fa-paw"></i></label> <small
-					style="color: pink">Código alfanumérico único de 20
+					onkeyup="findPrepaidQrStrBase64()"
+					required /> <br> <label class="form-group"><i class="fas fa-paw"></i></label> <small
+					style="color: turquoise">Código alfanumérico único de 20
 					caractéres impreso en la cinta.</small> <label><i
 					class="fas fa-paw"></i></label> <br>
-				<div id="resultDivSellPoint"></div>
+					
+					<div><label class="form-group" for="selledOnline">Email:</label><br>
+						<input type="text" th:field="*{selledOnline}" id="selledOnline" /><br>
+						<small style="color: turquoise">Casilla de Mail de MercadoPago donde le llegó el código, puede ser diferente al de su cuenta.</small>
+					</div>
+					<div th:if="${error}" class="alert alert-danger">    
+                        <p  th:text="${error}"></p>
+                    </div>
+<!-- 				<div id="resultDivSellPoint"></div> -->
 				<br>
 				<div id="resultImage"></div>
 				<br>
-				<button class="btn btn-danger" type="submit">Activar QR</button>
+				<button id="activateButtonQR" class="btn btn-info" type="submit">Activar QR</button>
 			</form>
 			<br> <br> <br> <br> <br> <br>
 		</div>
@@ -72,6 +77,7 @@
 		}
 	}
 
+	/* Disabled onclick right now */
 	function findPrepaidQrSellPoint() {
 		var xhr = new XMLHttpRequest();
 		var url = "/findPrepaidQrByIdSellPoint";
@@ -104,8 +110,25 @@
 		var idValue = url.searchParams.get("idValue");
 		var idInput = document.getElementById("id");
 		idInput.value = idValue;
-
-		/* Backup this line pretty important */
+		
+		var selledOnlineValue = url.searchParams.get("selledOnlineValue");
+		var selledOnlineInput = document.getElementById("selledOnline");
+		selledOnlineInput.value = selledOnlineValue;
+		
+		if(idValue != null || selledOnlineValue != null){
+			var titleActivateQR = document.getElementById("titleActivateQR");
+			titleActivateQR.innerHTML = "Actualizar código QR";
+			
+			idInput.readOnly = true;
+			idInput.style.backgroundColor = "turquoise";
+			selledOnlineInput.readOnly = true;
+			selledOnlineInput.style.backgroundColor = "turquoise";
+			
+			var activateButtonQR = document.getElementById("activateButtonQR");
+			activateButtonQR.innerHTML = "Actualizar datos";
+			
+		}
+		/* Backup this line pretty important, delete quotes*/
 		//     	idInput.value = idValue.replace(/["']/g, "");
 		//     	idInput.value = idValue.replace(/["']/g, "");
 	}

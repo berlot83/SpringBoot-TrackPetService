@@ -232,14 +232,17 @@ public class QrController {
 	}
 
 	@PostMapping("/prepaid-qr")
-	public String prepaidQrSubmit(@ModelAttribute PrepaidQR prepaidQR, Model modelName) {
+	public String prepaidQrSubmit(@ModelAttribute PrepaidQR prepaidQR, Model modelName, Model model) {
 		PrintName.printUser(modelName);
+		
+		String selledOnlineVerify = prepaidQrService.findById(prepaidQR.getId().toHexString()).getSelledOnline();
 		String tempSpecialId = prepaidQrService.findById(prepaidQR.getId().toHexString()).getId().toHexString();
 		String result = null;
-		if (prepaidQR.getId().toHexString() != null && prepaidQR.getId().toHexString().equals(tempSpecialId)) {
+		if (prepaidQR.getId().toHexString() != null && prepaidQR.getId().toHexString().equals(tempSpecialId) && prepaidQR.getSelledOnline().equals(selledOnlineVerify)) {
 			result = "create-prepaid-qr";
 		} else {
-			result = "error";
+			model.addAttribute("error", "El mail parece no estar asociado a este código.");
+			result = "prepaid-qr";
 		}
 		return result;
 	}

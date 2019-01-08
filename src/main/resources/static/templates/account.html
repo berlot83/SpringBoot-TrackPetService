@@ -12,16 +12,17 @@
 				</h3>
 				<hr style="border: 1px solid white !important;">
 				<div class="form-group">
-					<label><i style="color: lightblue" class="fas fa-user"></i> Nombre de usuario:</label>
+					<label><i style="color: turquoise" class="fas fa-user"></i> Nombre de usuario:</label>
 					<p th:text="${user?.name}"></p>
 				</div>
 
 				<div class="form-group">
-					<label><i style="color: lightblue" class="fas fa-envelope"></i>
-						Email:</label>
+					<label><i style="color: turquoise" class="fas fa-envelope"></i>
+						Email notificaciones de mascota:</label>
 					<p th:text="${user?.email}"></p>
+					<small style="color:turquoise">Las notificaciones de mascota incluyen la latitud y longitud de lectura, puede diferir de la casilla de activación donde recibió el código.</small>
 				</div>
-
+				
 				<br>
 
 				<div class="form-group">
@@ -37,6 +38,7 @@
 								<td>Indice</td>
 								<td>QR id</td>
 								<td>Nombre Mascota</td>
+								<td>Mail de activación</td>
 								<td>Acciones</td>
 								<td>Diseños</td>
 							</tr>
@@ -49,10 +51,11 @@
 									th:id="'idValue'+${iStat?.index}"
 									th:text="${list[iStat?.index].id}"></a></td>
 								<td th:text="${listIterate?.pet?.petName}"></td>
+								<td th:text="${list[iStat?.index].selledOnline}"></td>
 								<td><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i
 										style="color: lightgreen" class="fas fa-search"></i></a> <a
-									th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}}"><i
-										style="color: lemonChiffon" class="fas fa-edit"></i></a> <a
+									th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}+'&selledOnlineValue='+${list[iStat?.index].selledOnline}}"><i
+										style="color: PaleTurquoise" class="fas fa-edit"></i></a> <a
 									href="#" onclick="deleteQr()"><i class="far fa-trash-alt"
 										style="color: tomato"></i></a> <i style="color: pink" class="fas fa-exclamation-triangle"></i></td> 
 										<!-- Form button to send object to download page -->
