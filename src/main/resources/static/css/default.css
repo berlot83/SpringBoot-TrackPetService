@@ -18,6 +18,12 @@ html, body {
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
+	#herokuLogo{
+	width: 90px;
+	}
+	#logo{
+	width: 95px;
+	}
 	#currentUserButton {
 		float: right;
 		font-size: x-small !important;
