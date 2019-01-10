@@ -11,6 +11,9 @@
 	<div id="divContent" class="container">
 
 		<div class="container-fluid" id="divMainForm">
+		
+		<div id="dataCreatePrepaidQR" class="transparencyWithoutPadding">
+		
 			<h2 style="text-align: center">Servicio de información de
 				mascotas</h2>
 			<br>
@@ -19,7 +22,7 @@
 				<label for="idPrepaidQrCode">El código de activación es:</label>
 				<h4>
 					<span id="idPrepaidQrCode" th:text="${prepaidQR.id}"
-						class="badge badge-lg badge-danger">
+						class="badge badge-lg badge-info">
 				</h4>
 			</div>
 
@@ -28,7 +31,7 @@
 				<Label for="user">Asignado a usuario:</label>
 				<h4>
 					<span id="user" th:text="${currentUser}"
-						class="badge badge-lg badge-danger"
+						class="badge badge-lg badge-info"
 						style="color: white; text-align: center;"></span>
 				</h4>
 			</div>
@@ -61,7 +64,7 @@
 
 			<br> <br>
 			<h5>Datos básicos</h5>
-			<hr>
+			<hr style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<!-- Two colums -->
 				<div class="col">
@@ -121,7 +124,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="petname">Nombre mascota</label> <input type="text"
+						<label for="petname"><i class="fas fa-paw" style="color:turquoise"></i> Nombre mascota</label> <input type="text"
 							id="petName" placeholder="Nombre de la mascota"
 							class="form-control" required>
 					</div>
@@ -132,7 +135,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="age">Edad</label>
+						<label for="age"><i class="fas fa-birthday-cake" style="color:turquoise"></i> Edad</label>
 						<div id="resultAge"></div>
 
 						<!-- Start select age -->
@@ -168,7 +171,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="sex">Sexo</label> <select id="sex"
+						<label for="sex"><i class="fas fa-venus-mars" style="color:turquoise"></i> Sexo</label> <select id="sex"
 							onchange="pregnant()" class="form-control">
 							<option value="Macho">Macho</option>
 							<option value="Hembra">Hembra</option>
@@ -178,15 +181,15 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="weight">Peso</label> <input type="number" id="weight"
+						<label for="weight"><i class="fas fa-weight" style="color:turquoise"></i> Peso</label> <input type="number" id="weight"
 							maxlength="2" min="1" placeholder="5" class="form-control" />
 					</div>
 				</div>
 
 			</div>
 			<br> <br>
-			<h5>Vacunación</h5>
-			<hr>
+			<h5><i class="fas fa-syringe" style="color:turquoise"></i> Vacunación</h5>
+			<hr style="border: 1px solid BlueViolet !important">
 			<div class="form-group">
 				<div class="form-check">
 					<input type="checkbox" style="width: 18px; height: 18px;"
@@ -233,12 +236,12 @@
 				</div>
 			</div>
 			<br> <br>
-			<h5>Salud</h5>
-			<hr>
+			<h5><i class="fas fa-heartbeat" style="color:turquoise"></i> Salud</h5>
+			<hr  style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<div class="col-4">
 					<div class="form-group">
-						<label for="illness">Sufre efermedad</label>
+						<label for="illness"><i class="fas fa-briefcase-medical" style="color:turquoise"></i> Sufre efermedad</label>
 						<!-- Start select age -->
 						<select class="form-control" name="illness" id="illness">
 							<option value="Ninguna">Ninguna</option>
@@ -265,7 +268,7 @@
 
 				<div class="col-4">
 					<div class="form-group">
-						<label for="medicated">Está medicado</label>
+						<label for="medicated"><i class="fas fa-pills" style="color:turquoise"></i> Está medicado</label>
 						<!-- Start select Medicated -->
 						<select class="form-control" name="medicated" id="medicated">
 							<option value=true>Sí</option>
@@ -276,7 +279,7 @@
 
 				<div class="col-4">
 					<div class="form-group">
-						<label for="lastVeterinaryVisit">Ult. revisión</label> <input
+						<label for="lastVeterinaryVisit"><i class="fas fa-user-md" style="color:turquoise"></i> Ult. revisión</label> <input
 							type="date" class="form-control" name="lastVeterinaryVisit"
 							id="lastVeterinaryVisit">
 					</div>
@@ -302,25 +305,25 @@
 			</div>
 
 			<div class="form-group">
-				<label for="clinicHistory">Historia Clínica</label>
+				<label for="clinicHistory"><i class="fas fa-file-medical-alt" style="color:turquoise"></i> Historia Clínica</label>
 				<textarea name="clinicHistory" id="clinicHistory"
 					placeholder="Historia Clínica" rows="9" class="form-control"></textarea>
 			</div>
 			<br> <br>
 			<h5>Alimentación</h5>
-			<hr>
+			<hr style="border: 1px solid BlueViolet !important">
 			<br>
 			<div id="feeding" class="row">
 				<div class="col-4">
 					<div class="form-group">
-						<label for="foodBrand">Comida Bal.:</label> <input type="text"
+						<label for="foodBrand"><i class="fas fa-bone" style="color:turquoise"></i> Comida Bal.:</label> <input type="text"
 							id="foodBrand" class="form-control"
 							placeholder="Royal cannin, Proplan, etc">
 					</div>
 				</div>
 				<div class="col-4">
 					<div class="form-group">
-						<label for="quantityFood">Cantidad Grs.:</label> <input
+						<label for="quantityFood"><i class="fas fa-weight-hanging" style="color:turquoise"></i> Cantidad Grs.:</label> <input
 							type="number" min="1" id="quantityFood" class="form-control"
 							placeholder="1000 gramos (1 kg al día)">
 					</div>
@@ -338,8 +341,9 @@
 				</div>
 			</div>
 			<br> <br>
+			
 			<h5>Estado respecto a Pet-QR</h5>
-			<hr>
+			<hr style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
@@ -353,12 +357,12 @@
 				</div>
 			</div>
 			<br> <br>
-			<H5>Datos del Tutor</H5>
-			<hr>
+			<H5><i class="far fa-address-card" style="color:turquoise"></i> Datos del Tutor</H5>
+			<hr style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="ownerName">Nombre</label> <input type="text"
+						<label for="ownerName"><i class="far fa-user" style="color:turquoise"></i> Nombre</label> <input type="text"
 							name="name" id="ownerName" placeholder="Nombre del cuidador"
 							class="form-control" required>
 					</div>
@@ -374,7 +378,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="residence">País</label> <select name="residence"
+						<label for="residence"><i class="far fa-flag" style="color:turquoise"></i> País</label> <select name="residence"
 							id="residence" class="form-control" required>
 							<option value="Argentina" id="AR">Argentina</option>
 							<option value="Afganistán" id="AF">Afganistán</option>
@@ -654,7 +658,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="dni">D.N.I</label> <input type="number" name="dni"
+						<label for="dni"><i class="fas fa-fingerprint" style="color:turquoise"></i> D.N.I</label> <input type="number" name="dni"
 							id="dni" placeholder="DNI del cuidador" class="form-control"
 							required>
 					</div>
@@ -665,7 +669,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="telephone1">Teléfono</label> <input type="number"
+						<label for="telephone1"><i class="fas fa-mobile-alt" style="color:turquoise"></i> Teléfono</label> <input type="number"
 							name="telephone1" id="telephone1" placeholder="Teléfono primario"
 							class="form-control" />
 					</div>
@@ -673,7 +677,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="telephone2">Teléfono</label> <input type="number"
+						<label for="telephone2"><i class="fas fa-mobile-alt" style="color:turquoise"></i> Teléfono</label> <input type="number"
 							name="telephone2" id="telephone2"
 							placeholder="Teléfono secundario" class="form-control" />
 					</div>
@@ -683,14 +687,14 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="email">Email</label> <input type="text" name="email"
+						<label for="email"><i class="fas fa-envelope" style="color:turquoise"></i> Email</label> <input type="text" name="email"
 							id="email" placeholder="Email" class="form-control" />
 					</div>
 				</div>
 
 				<div class="col">
 					<div class="form-group">
-						<label for="facebook">Facebook</label> <input type="text"
+						<label for="facebook"><i class="fab fa-facebook" style="color:turquoise"></i> Facebook</label> <input type="text"
 							id="facebook"
 							placeholder="Como aparecés en Facebook o la direcci�n exacta."
 							class="form-control" />
@@ -699,7 +703,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="instagram">Instagram</label> <input type="text"
+						<label for="instagram"><i class="fab fa-instagram" style="color:turquoise"></i> Instagram</label> <input type="text"
 							id="instagram"
 							placeholder="Como aparecés en Instagram o la direcci�n exacta."
 							class="form-control" />
@@ -708,7 +712,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="address">Dirección principal (Dirección altura,
+				<label for="address"><i class="fas fa-map-marked-alt"  style="color:turquoise"></i> Dirección principal (Dirección altura,
 					localidad, provincia)</label> <input type="text" name="address"
 					id="address"
 					placeholder="Av. Libertador 650, Buenos Aires, Argentina"
@@ -729,7 +733,7 @@
 			<br>
 			<div class="form-group">
 				<button id="send" class="btn btn-danger" onclick="updateQr()">Almacenar
-					datos y crear Código QR</button>
+					datos y crear Código QR ==>  <i class="fas fa-qrcode"></i> + <i class="fas fa-database"></i></button>
 				<br> <small
 					style="color: lightpink; text-shadow: 0px 0px 5px black;">Importante:
 					Si al hacer click y al cabo de unos segundos no aparece el código
@@ -738,6 +742,9 @@
 					la Longitud y latitud de la dirección arriba declarada.</small>
 			</div>
 			<br> <br> <br> <br> <br> <br>
+		
+		</div>
+		
 		</div>
 	</div>
 

@@ -2,6 +2,13 @@
 	width:800px;
 }
 
+#dataCreatePrepaidQR{
+	padding:10px;
+	text-shadow: 2px 2px black;
+}
+
+
+
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 	#divMainForm{
