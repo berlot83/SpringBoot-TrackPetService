@@ -42,10 +42,7 @@
 							}
 						}).then(function (resp) {
 							
-											$.alert({
-													title:"response",
-													content:resp
-												});		
+
 			
 									/* Ajax function to upload avatar */
 									function uploadAvatarToDB(){
@@ -63,7 +60,23 @@
 										
 										xhr.onreadystatechange = function () {
 											if (xhr.readyState == 4 && xhr.status == 200) {
-												$.alert("todo ok");
+												
+												$.confirm({
+													type: "blue",
+													title: "Confirme la imagen:",
+													content: "<html><body><div style='text-align:center'><img src="+ resp +" /></div></body></html>",
+													confirm: function(){
+														$.alert("Imagen persistida en DB con éxito.");
+													},
+												    cancel: function(){
+												        $.alert({
+												        	type:'blue',
+												        	title: 'Acción',
+												        	content:'Cancelada!'
+												        });
+												    }
+												});		
+												
 											}
 										}
 									}
