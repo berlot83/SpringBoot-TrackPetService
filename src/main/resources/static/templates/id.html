@@ -19,6 +19,9 @@
 					<i class="fas fa-paw"></i> Datos básicos
 				</h5>
 				<hr>
+				<img th:if="${prepaidQR.resultBase64Avatar == null}" alt="" src="../img/withoutPhoto.png" class="img-thumbnail" style="width:150px; height:150px;" />
+				<img th:unless="${prepaidQR.resultBase64Avatar == null}" th:src="${prepaidQR.resultBase64Avatar}" style="box-shadow: 0px 0px 15px black; border-radius: 7px;" class="img-thumbnail"/>
+				
 				<p th:if="${prepaidQR.owner.residence} != null"
 					th:text="'País: ' + ${prepaidQR.owner.residence}"></p>
 				<p th:if="${prepaidQR.pet.petName} != null"

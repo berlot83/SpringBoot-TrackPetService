@@ -26,7 +26,7 @@
 						</tr>
 					</thead>
 					<tbody th:each="listIterate : ${list}"
-						th:if="${listIterate?.pet?.status}  == true">
+						th:if="${listIterate?.pet?.status}  == false">
 						<tr>
 							<td th:text="${#strings.substring(listIterate.id, 19, 24)}"></td>
 							<td th:text="${listIterate.pet.sex}"></td>

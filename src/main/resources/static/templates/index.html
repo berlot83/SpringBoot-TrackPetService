@@ -7,6 +7,17 @@
 <body>
 	<!-- Template bar -->
 	<nav th:replace="default :: bar"></nav>
+    
+    <!-- Alert start -->
+		<div th:if="${emergency}" class="alert alert-danger">    
+	              <p>El perro fue declarado como PERDIDO, busque en la DB para confirmar su estado. <a href='/db-lost-pet' style="color:DarkRed">Base de Datos</a></p>
+	    </div>
+	    
+	    <div th:if="${rescued}" class="alert alert-success">    
+	              <p>El perro fue declarado como RESCATADO, busque en la DB para confirmar su estado. <a href='/db-lost-pet' style="color:DarkGreen">Base de Datos</a></p>
+	    </div>
+	<!-- Alert end -->   
+	
 	<!--  Start Carousel -->
 	<div id="carouselExampleControls" class="carousel slide"
 		data-ride="carousel" style="color: violet">
@@ -103,8 +114,8 @@
 		</div>
 
 		<br> <br> <br> <br> <br> <br>
+ 
 	</div>
-
 
 	<!-- Template footer -->
 	<footer th:replace="default :: footer"></footer>

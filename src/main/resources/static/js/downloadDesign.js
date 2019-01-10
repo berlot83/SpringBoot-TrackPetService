@@ -4,6 +4,7 @@
 function imageDesignGeneric(logo){
 	var id = document.getElementById("id").value;
 	var strBase64 = document.getElementById("strBase64").value;
+	var resultBase64Avatar = document.getElementById("resultBase64Avatar").value;
 	var sissors = "../img/design/sissors.png"; 
 	
 	var doc = new jsPDF()
@@ -50,6 +51,10 @@ function imageDesignGeneric(logo){
 		doc.setFontSize(10);
 		doc.text(id, 53, 56);
 		doc.addImage(sissors, 101, 51, 0, 0);
+		doc.addImage(resultBase64Avatar, 56.5,89, 0, 0)
+		doc.addImage("../img/warningBar150x14.png", 'PNG' , 51.2, 89, 5, 37);
+		doc.addImage("../img/warningBar150x14.png", 'PNG' , 94, 89, 5, 37);
+		doc.addImage("../img/warningBar150X14h-short.png", 'PNG' , 70, 76, 29, 6.7);
 		
 		/* Image 70% */
 		doc.setFontSize(8);
@@ -87,12 +92,8 @@ function imageDesignGeneric(logo){
 		doc.rect(51, 76, 48, 50.5);
 		doc.addImage(footerLogo, 51, 76, 20, 0);
 		doc.setFontSize(8);
-		doc.text("https://pet-qr.com/id/", 52, 90);
-		doc.text(id, 52, 94);
-		doc.text("Si su lector no funciona", 52, 102);
-		doc.text("Coloque este código", 52, 106);
-		doc.text("en su navegador", 52, 110);
-		doc.text("Devuelva a su familia", 52, 114);
+		doc.text("https://pet-qr.com/id/", 52, 85.7);
+		doc.text(id, 52, 88.3);
 		
 		/* lg */
 		doc.setFontSize(8);

@@ -226,5 +226,15 @@ public class RestControllers {
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+
+	@RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST,  produces= {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_HTML_VALUE, MediaType.TEXT_PLAIN_VALUE, MediaType.ALL_VALUE}, consumes= {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_HTML_VALUE, MediaType.TEXT_PLAIN_VALUE, MediaType.ALL_VALUE})
+	public @ResponseBody void avatarUpload(String id, String resultBase64Avatar) {
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		
+		/* For some reason the string arrives without plus sign, and must be added coding */
+		String avatar64 = resultBase64Avatar.replaceAll(" ", "+");
+		prepaidQR.setResultBase64Avatar(avatar64);
+		prepaidQrService.createPrepaidQR(prepaidQR);
+	}
 	
 }

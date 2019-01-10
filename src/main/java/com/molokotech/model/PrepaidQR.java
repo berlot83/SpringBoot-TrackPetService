@@ -17,6 +17,7 @@ public class PrepaidQR {
 	private Pet pet;
 	private Owner owner;
 	private String selledOnline;
+	private String resultBase64Avatar;
 	
 	@Autowired
 	public PrepaidQR() {
@@ -99,6 +100,14 @@ public class PrepaidQR {
 
 	public void setSelledOnline(String selledOnline) {
 		this.selledOnline = selledOnline;
+	}
+
+	public String getResultBase64Avatar() {
+		return resultBase64Avatar;
+	}
+
+	public void setResultBase64Avatar(String resultBase64Avatar) {
+		this.resultBase64Avatar = resultBase64Avatar;
 	}
 
 

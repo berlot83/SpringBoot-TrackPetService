@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
@@ -373,5 +374,25 @@ public class QrController {
 		
 		return "download";
 	}
-
+	
+	@GetMapping("/emergency")
+	public String emergency(@RequestParam String id, Model model) {
+		PrintName.printUser(model);
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		prepaidQR.getPet().setStatus(false);
+		prepaidQrService.createPrepaidQR(prepaidQR);
+		model.addAttribute("emergency","Perdido");
+		return "index";
+	}
+	
+	@GetMapping("/rescued")
+	public String rescued(@RequestParam String id, Model model) {
+		PrintName.printUser(model);
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		prepaidQR.getPet().setStatus(true);
+		prepaidQrService.createPrepaidQR(prepaidQR);
+		model.addAttribute("rescued","Rescatado");
+		return "index";
+	}
+	
 }
