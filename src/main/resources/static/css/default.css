@@ -16,6 +16,10 @@ html, body {
 	
 }
 
+.buttonViolet{
+	background-color:#5b3f83; color:white; text-shadow: 1px 2px black; box-shadow:2px 2px black;
+}
+
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 	#herokuLogo{

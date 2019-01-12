@@ -16,10 +16,18 @@ function contact() {
 	})
 }
 
+function addBounce(id){
+	$(id).addClass('animated jello');
+}
+
+function removeBounce(id){
+	$(id).removeClass('animated jello');
+}
+
 function changeCursorToimages(){
 	var herokuLogo = document.getElementById("herokuLogo");
 	var logo = document.getElementById("logo");
-	var avatarOnDB = 	document.getElementById("profile");
+	var avatarOnDB = document.getElementById("profile");
 	
 	herokuLogo.style.cursor = "pointer";
 	logo.style.cursor = "pointer";

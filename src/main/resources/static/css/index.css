@@ -18,6 +18,10 @@ html, body {
 	bottom: 0;
 }
 
+.imageRounded{
+	border-radius: 7px 7px 7px 7px;
+}
+
 body {
 	height: 100%;
 	margin: 0;
@@ -35,8 +39,8 @@ body {
 	display: block;
 	padding: 0px;
 	margin: 0px;
-	text-shadow: 1px 1px white;
-	color: #5b3f83;
+	text-shadow: 1px 1px #5b3f83;
+	color: white;
 	font-weight: bold;
 }
 
@@ -50,7 +54,7 @@ body {
 	color: white;
 	padding-left: 15px;
 	padding-right: 15px;
-	background-image: url('../img/tile_pupure.jpg');
+	/* 	background-image: url('../img/tile_pupure.jpg'); */
 	background-repeat: repeat;
 	text-align: justify;
 	box-shadow: 0px 0px 10px black;
@@ -102,8 +106,36 @@ a:hover {
 	color: violet !important;
 }
 
+#banner1 {
+	color: white;
+	float: left;
+	text-shadow: 2px 2px black;
+	text-align: justify;
+	padding-top: 25px;
+	display: inline-block
+}
+
+.flex-container {
+	width: 90%;
+	min-height: 300px;
+	margin: 0 auto;
+	display: -webkit-flex; /* Safari */
+	display: flex; /* Standard syntax */
+}
+
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
+	#indexMasterDiv {
+		display:none;
+	}
+	
+	#masterDivMobile {
+	display:block;
+	}
+	
+	#carouselExampleControls {
+	}
+
 	body {
 		
 	}
@@ -137,6 +169,15 @@ a:hover {
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
+	
+	#indexMasterDiv {
+		display:none;
+	}
+	
+	#masterDivMobile {
+	display:block !important;
+	}
+	
 	body {
 		
 	}
@@ -164,9 +205,6 @@ a:hover {
 
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
-	body {
-		
-	}
 	h3 {
 		font-size: medium !important;
 	}

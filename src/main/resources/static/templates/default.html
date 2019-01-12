@@ -45,6 +45,7 @@
 	rel="stylesheet">
 <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Pet-Cloud</title>
 <link rel="stylesheet" type="text/css" href="../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../css/animate.css" />
 <link rel="stylesheet" type="text/css" href="../css/croppie.css" />
 <link rel="stylesheet" type="text/css" href="../css/download.css" />
 <link rel="stylesheet" type="text/css" href="../css/zoom.css" />
@@ -122,7 +123,7 @@
 		id="navigationBar">
 
 		<!-- All envolve in one div, collapse only seen on mobile screen -->
-		<div id="logoNavigation">
+		<div id="logoNavigation" class="animated jello"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 			<!-- Logo Home -->
 			<a class="nav-link navbar-brand" href="/index"><img
 				src="../img/iconoPet75.png" width="30" height="30" alt="Home">
@@ -142,10 +143,10 @@
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown dropdown-content"><a
 					class="nav-link dropdown-toggle" href="#"
-					id="navbarDropdownMenuLinkPetQR" data-toggle="dropdown"
+					id="navbarDropdownMenuLinkPetQR" data-toggle="dropdown"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
 					aria-haspopup="true" aria-expanded="false"><i
 						class="fas fa-qrcode" style="color: white"></i> Pet-QR </a>
-					<div class="dropdown-menu"
+					<div class="dropdown-menu"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
 						aria-labelledby="navbarDropdownMenuLinkPetQR"
 						style="background-color: black; color: white;">
 						<a class="dropdown-item" href="/prepaid-qr"><i
@@ -175,17 +176,17 @@
 <!-- 					</div></li> -->
 				<!-- End vet-cloud nav button -->
 
-				<li class="nav-item"><a class="nav-link" href="/pricing"><i
+				<li class="nav-item"><a class="nav-link" href="/pricing" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i
 						class="fas fa-paw"></i> Productos</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/about"><i
+				<li class="nav-item" ><a class="nav-link" href="/about" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i
 						class="fas fa-wrench"></i> QR-Ayuda</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/faq"><i
+				<li class="nav-item"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><a class="nav-link" href="/faq"><i
 						class="far fa-question-circle"></i> F.A.Q</a></li>
 
 				<li class="nav-item active"><a class="nav-link" href="#"
-					onclick="contact()"><i class="far fa-envelope"></i> Contacto</a></li>
+					onclick="contact()"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i class="far fa-envelope"></i> Contacto</a></li>
 
 			</ul>
 		</div>
@@ -193,7 +194,7 @@
 		<!-- Logout Bundle buttons, do not change the order  -->
 		<!-- Print Username -->
 		<a th:if="${currentUser}" href="/account" id="currentUserButton"
-			class="nav-link" th:text="${fullName}"></a> <a
+			class="nav-link" th:text="${fullName}" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"></a> <a   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
 			th:if="${currentUser == 'Invitado'}" class="nav-link"
 			th:href="@{/login}" id="loginButton"><i class="fas fa-user"
 			style="color: white;"></i> Log in</a>
@@ -209,7 +210,7 @@
 
 		<!-- Print Register -->
 		<a th:if="${currentUser == 'Invitado'}" class="nav-link"
-			href="/sign-up" id="registerButton"><i class="fas fa-sign-in-alt"></i>
+			href="/sign-up" id="registerButton" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i class="fas fa-sign-in-alt"></i>
 			Registro</a>
 			
 			<img id="english" src="../img/flags/flag-usa-40x25.png" alt="English" style="display:none"/>
@@ -224,12 +225,12 @@
 
 	<footer th:fragment="footer" id="footer" class="text-white mt-4">
 	<div th:if="${error != null}" class="alert alert-danger" id="error">Debe tener una cuenta para ingresar a esta sección.</div>
-		<div class="container-fluid py-3">
+		<div class="container-fluid py-3" >
 			<div class="row">
-				<div id="footerBrand" class="col-md-6">
+				<div id="footerBrand" class="col-md-6" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 					Designed by <img alt="Molokotech" id="logo"
 						src="/img/molokoalternativo.png" class="img-fluid"
-						onmouseover="changeCursorToimages()" onclick="redirectTo()"> |   | Powered by <img src="../img/heroku-logo.png" id="herokuLogo" onmouseover="changeCursorToimages()" onclick="window.location.href='https://heroku.com'" class="img-fluid" style="height:28px"><span class="small"><br>
+						onmouseover="changeCursorToimages(this)" onclick="redirectTo()"> |   | Powered by <img src="../img/heroku-logo.png" id="herokuLogo" onmouseover="changeCursorToimages(this)" onclick="window.location.href='https://heroku.com'" class="img-fluid" style="height:28px"><span class="small"><br>
 						<strong style="color: #ff8000">Vet-Cloud</strong>® y <Strong
 						style="color: #ff8000">Pet-QR</Strong>® son marcas Registradas de
 						<strong style="color: #ff8000">Molokotech Solutions</strong>.</span>
