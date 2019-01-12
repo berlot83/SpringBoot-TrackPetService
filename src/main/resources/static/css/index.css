@@ -6,6 +6,14 @@ html, body {
 	width: 100%;
 }
 
+#triangleTopLeftIndex {
+	width: 0;
+	height: 0;
+	border-top: 200px solid rgb(32, 32, 32); /* #7A52A7 */
+	border-right: 200px solid transparent;
+	position: absolute;
+}
+
 #footer { //
 	height: 70px;
 	background-color: black;
@@ -18,7 +26,7 @@ html, body {
 	bottom: 0;
 }
 
-.imageRounded{
+.imageRounded {
 	border-radius: 7px 7px 7px 7px;
 }
 
@@ -125,17 +133,19 @@ a:hover {
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
+	
+	#triangleTopLeftIndex {
+		display: none !important;
+	}
 	#indexMasterDiv {
-		display:none;
+		display: none;
 	}
-	
 	#masterDivMobile {
-	display:block;
+		display: block;
 	}
-	
 	#carouselExampleControls {
+		
 	}
-
 	body {
 		
 	}
@@ -171,13 +181,11 @@ a:hover {
 @media ( max-width : 768px) {
 	
 	#indexMasterDiv {
-		display:none;
+		display: none;
 	}
-	
 	#masterDivMobile {
-	display:block !important;
+		display: block !important;
 	}
-	
 	body {
 		
 	}

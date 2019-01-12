@@ -1,7 +1,7 @@
 html, body {
-/* 	position: relative; */
+	/* 	position: relative; */
 	height: 100%;
-	height:100vh;
+	height: 100vh;
 	width: 100%;
 }
 
@@ -16,17 +16,26 @@ html, body {
 	
 }
 
-.buttonViolet{
-	background-color:#5b3f83; color:white; text-shadow: 1px 2px black; box-shadow:2px 2px black;
+.buttonViolet {
+	background-color: #5b3f83;
+	color: white;
+	text-shadow: 1px 2px black;
+	box-shadow: 2px 2px black;
 }
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
-	#herokuLogo{
-	width: 90px;
+	#spanish {
+		display: none !important;
 	}
-	#logo{
-	width: 95px;
+	#english {
+		display: none !important;
+	}
+	#herokuLogo {
+		width: 90px;
+	}
+	#logo {
+		width: 95px;
 	}
 	#currentUserButton {
 		float: right;
@@ -39,7 +48,7 @@ html, body {
 		font-size: x-small !important;
 	}
 	#logoutButton {
-		float: right;
+		float: left;
 		font-size: x-small !important;
 	}
 	#logoNavigation {
@@ -49,6 +58,12 @@ html, body {
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
+	#spanish {
+		display: none !important;
+	}
+	#english {
+		display: none !important;
+	}
 	#currentUserButton {
 		float: right;
 		font-size: x-small !important;
