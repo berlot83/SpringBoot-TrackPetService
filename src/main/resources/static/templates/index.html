@@ -7,7 +7,7 @@
 <body>
 	<!-- Template bar -->
 	<nav th:replace="default :: bar"></nav>
-	<div id="triangleTopLeftIndex"><div  style="position:absolute; top:-200px; left:0px;" ><img src="../img/world.png"/><div onmouseout="removeBounce(this)" onmouseover="addBounce(this)" style="color:white;text-shadow: 0px 0px 5px black; position:absolute; top:0px;left:0px;padding:5px;"><strong>Compralo y administralo online <i class="fas fa-wifi" style="color:#ff8000"></i></strong></div></div></div>
+	<div id="triangleTopLeftIndex"><div  style="position:absolute; top:-200px; left:0px;" ><img src="../img/world.png" /><div onmouseout="removeBounce(this)" onmouseover="addBounce(this)" style="color:white;text-shadow: 0px 0px 5px black; position:absolute; top:0px;left:0px;padding:5px;"><strong>Compralo y administralo online <i class="fas fa-wifi" style="color:#ff8000"></i></strong></div></div></div>
 	<!-- Alert start -->
 	<div th:if="${emergency}" class="alert alert-danger">
 		<p>

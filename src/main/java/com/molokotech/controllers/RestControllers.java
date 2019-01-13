@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.Message;
@@ -50,10 +52,12 @@ import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.Owner;
 import com.molokotech.model.Pet;
 import com.molokotech.model.PrepaidQR;
+import com.molokotech.model.User;
 import com.molokotech.service.OwnerService;
 import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
+import com.molokotech.utilities.Expiration;
 import com.molokotech.utilities.GoogleMapsService;
 
 @Controller
@@ -110,6 +114,85 @@ public class RestControllers {
 	return result;
 	}
 	/* End */
+	
+	/* Manually create dinamyc QR codes with specialId and Id with strBase64 included */
+	@GetMapping("/create-pp-automatic-temp-db")
+	public @ResponseBody String insertPrepaidQrTemporalToDB(final PrepaidQR prepaidqr, @RequestParam String userInString) throws WriterException, IOException {
+		
+		/* Declare the response */
+		String result = null;
+		User user = userService.findUser(userInString);
+		
+					/* Check the user doesn't have a prepaidQR  */
+					user = userService.findById(user.getId().toString());
+					List<PrepaidQR> list = prepaidQrService.findAllPrepaidQR();
+					List<PrepaidQR> resultList = new ArrayList<>();
+					
+					/* Start comprove list exist */
+					if(list != null) {
+						for (int i = 0; i < list.size(); i++) {
+							if (list.get(i).getUserName() != null) {
+								if(list.get(i).getUserName().equals(user.getName())) {
+									resultList.add(list.get(i));
+								}
+								
+							}else {
+								System.out.println("No tiene QR asociados");
+							}
+						}
+						/* End comprove list exist */
+						
+						if(resultList.isEmpty() && !resultList.contains(prepaidqr)) {
+							
+							/* Create PrepaidQR to insert into mongoDB Start */
+							/* Create an object QR */
+							/* String specialId token it is not used right now */
+							/* Create a PrepaidQR  and assign it to an User */
+							
+							/* Upload the object and create the MongoDB ObjectId, so next we catch it and put it on the String Base64 */
+				
+							/* Create QR MongoDB ObjectId */
+							byte[] imageData = null;
+							
+							try {
+								imageData = QRCodeGenerator.generateQRCodeImageToByte("https://pet-qr.com/id/" + prepaidqr.getId(), 300, 300);
+							} catch (WriterException | IOException e) {
+								e.printStackTrace();
+							}
+							String strBase64 = QRCodeGenerator.toBase64(imageData);
+							prepaidqr.setStrBase64(strBase64);
+							
+							/* Persist the user to have control */
+							prepaidqr.setUserName(user.getName());
+							
+							/* It must be say diferent String from 'En venta' so put them 'Temporal QR' */
+							prepaidqr.setSelledOnline(user.getEmail());
+							
+							/* Set Expiration Date saving LocalDate variable to the DB */
+							prepaidqr.setExpiration(Expiration.calculateExpirationDate());
+							
+							/* Upload Again but with the String base64 updated */
+							PrepaidQR objectToUpload = prepaidQrService.createPrepaidQR(prepaidqr);
+							
+							if(objectToUpload != null) {
+								result = "El código de prueba le ha sido asignado, Id:  " + objectToUpload.getId() + ", la fecha de vencimiento es:  " + prepaidqr.getExpiration() ;
+							}else {
+								result = "Something is wrong, the object is NULL";
+							}
+							
+						}else {
+							result = "Este usuario tiene al menos un Código QR en su cuenta.";
+							System.out.println("Este usuario tiene al menos un Código QR en su cuenta.");
+						}
+						
+					}else {
+						result = "La lista parece ser nula, puede que tire un excepción.";
+						System.out.println("The list appears to be null, so gona throw an exception.");
+					}
+	return result;
+	}
+	/* End */
+	
 	
 	/* Find an object in mongoDB and if it exist take a strBase64 and shows on html Ajax call */
 	@PostMapping("/findPrepaidQrByIdStrBase64")

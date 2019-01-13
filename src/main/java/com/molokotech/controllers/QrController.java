@@ -76,6 +76,16 @@ public class QrController {
 		return "index";
 	}
 	
+
+	@RequestMapping("/temporal-qr")
+	public String temporalQR(Model model) {
+		PrintName.printUser(model);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUser(auth.getName());
+		model.addAttribute("user", user);
+		return "temporal-qr";
+	}
+	
 	@RequestMapping("/pricing")
 	public String pricing(Model model) {
 		PrintName.printUser(model);

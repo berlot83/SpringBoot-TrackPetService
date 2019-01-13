@@ -53,7 +53,7 @@ public class PageConfig implements WebMvcConfigurer {
 		registry.addViewController("/change-pass").setViewName("change-pass");
 		registry.addViewController("/send-link").setViewName("send-link");
 		registry.addViewController("/download").setViewName("download");
-		
+		registry.addViewController("/temporal-qr").setViewName("temporal-qr");
 	}
 
 	@Bean

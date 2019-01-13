@@ -1,5 +1,7 @@
 package com.molokotech.model;
 
+import java.time.LocalDate;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
@@ -18,6 +20,7 @@ public class PrepaidQR {
 	private Owner owner;
 	private String selledOnline;
 	private String resultBase64Avatar;
+	private LocalDate expiration;
 	
 	@Autowired
 	public PrepaidQR() {
@@ -108,6 +111,14 @@ public class PrepaidQR {
 
 	public void setResultBase64Avatar(String resultBase64Avatar) {
 		this.resultBase64Avatar = resultBase64Avatar;
+	}
+
+	public LocalDate getExpiration() {
+		return expiration;
+	}
+
+	public void setExpiration(LocalDate expiration) {
+		this.expiration = expiration;
 	}
 
 

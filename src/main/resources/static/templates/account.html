@@ -69,14 +69,14 @@
 											</form>
 										</td>
 										<td>
-											<form th:if="${list[iStat?.index].pet.status == true}" action="#" th:action="@{/emergency}" method="GET" th:object="${prepaidQR}" style="display:inline">
+											<form th:if="${list[iStat?.index]?.pet?.status == true}" action="#" th:action="@{/emergency}" method="GET" th:object="${prepaidQR}" style="display:inline">
 												<button class="btn btn-sm btn-danger">
 													<i style="color: pink" class="fas fa-exclamation-triangle"></i>
 												</button>
 											<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id">
 											</form>
 											
-											<form th:if="${list[iStat?.index].pet.status == false}" action="#" th:action="@{/rescued}" method="GET" th:object="${prepaidQR}" style="display:inline">
+											<form th:if="${list[iStat?.index]?.pet?.status == false}" action="#" th:action="@{/rescued}" method="GET" th:object="${prepaidQR}" style="display:inline">
 												<button class="btn btn-sm btn-success">
 													<i style="color: pink" class="fas fa-exclamation-triangle"></i>
 												</button>

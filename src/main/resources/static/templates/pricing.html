@@ -10,9 +10,9 @@
 	<div id="container" style="padding: 30px">
 		<div id="dataPricingContainer"
 			class="container-fluid transparencyWithoutPadding">
-			<div class="container-fluid center-block"
-				style="display: inline-block; margin: 0 auto;">
-				<div class="column order-1 containerProduct" id="col1">
+			<div id="mainDataContentPricing" class="container-fluid center-block"
+				style="display: flex; flex-flow: row wrap; margin: 0 auto; width:100%; vertical-align: middle">
+				<div class="column order-1" style="width:33%; flex-direction: column; vertical-align: middle" id="col1">
 					<img src="../img/pet-qr.png" class="img-fluid imgSelected qrImages" />
 					<div class="transparency">
 						<div class="rowPadding">
@@ -70,8 +70,8 @@
 							de venta</button>
 					</div>
 				</div>
-				<div class="column order-2 containerProduct" id="col2"
-					style="position: relative; top: 0; left: 0">
+				<div class="column order-2" id="col2"
+					style="position: relative; top: 0; left: 0;width:33%; flex-direction: column; vertical-align: middle" >
 					<img src="../img/pet-qr-online.png" onmouseover="onhover()"
 						class="img-fluid imgSelected qrImages"
 						style="position: relative; top: 0; left: 0;" /> <img
@@ -173,22 +173,17 @@
 
 					</div>
 				</div>
-				<!--             <div class="column order-3 containerProduct" id="col3"> -->
-				<!--                 <img src="../img/vetCloud.png" class="img-fluid imgSelected" style="border-radius:7px;"/> -->
-				<!--                 <div class="transparency"> -->
-				<!--                     <div class="rowPadding">100 Hist. clínicas cloud<i class="fas fa-check" style="color:lightgreen;"></i></div> -->
-				<!--                     <div class="rowPadding">Schedule de vacunación y visitas Vet.<i class="fas fa-check" style="color:lightgreen;"></i></div> -->
-				<!--                     <div class="rowPadding">Descargas de H.C. a PDF<i class="fas fa-check" style="color:lightgreen;"></i></div> -->
-				<!--                 	<span class="badge badge-pill badge-danger moreInfo">+ info</span> -->
-				<!--                 </div> -->
-				<!--                 <div><button onclick="" class="btn btn-md buttons">Contratar</button></div> -->
-				<!--             </div> -->
+				            <div class="column order-3" id="col3" style="width:33%;  flex-direction: column; vertical-align: middle">
+				                <div style="position:relative" class="container-fluid"><img src="../img/vetCloud.png" class="img-fluid imgSelected qrImages" style="border-radius:7px;"/></div>
+				                <div class="transparency">
+				                    <div class="rowPadding">100 Hist. clínicas cloud<i class="fas fa-check" style="color:lightgreen;"></i></div>
+				                    <div class="rowPadding">Schedule de vacunación y visitas Vet.<i class="fas fa-check" style="color:lightgreen;"></i></div>
+				                    <div class="rowPadding">Descargas de H.C. a PDF<i class="fas fa-check" style="color:lightgreen;"></i></div>
+				                	<span class="badge badge-pill badge-danger moreInfo">+ info</span>
+				                </div>
+				                <div><button onclick="window.location.href= '/temporal-qr'" class="btn btn-md buttons">Contratar</button></div>
+				            </div>
 			</div>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
 		</div>
 	</div>
 	<footer th:replace="default :: footer"></footer>
