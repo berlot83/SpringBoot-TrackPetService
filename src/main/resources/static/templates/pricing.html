@@ -3,190 +3,76 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head th:replace="default :: header"></head>
+<body onload="onLoadSecurityAdvice()">
 
-<body>
 
 	<nav th:replace="default :: bar"></nav>
-	<div id="container" style="padding: 30px">
-		<div id="dataPricingContainer"
-			class="container-fluid transparencyWithoutPadding">
-			<div id="mainDataContentPricing" class="container-fluid center-block"
-				style="display: flex; flex-flow: row wrap; margin: 0 auto; width:100%; vertical-align: middle">
-				<div class="column order-1" style="width:33%; flex-direction: column; vertical-align: middle" id="col1">
-					<img src="../img/pet-qr.png" class="img-fluid imgSelected qrImages" />
-					<div class="transparency">
-						<div class="rowPadding">
-							• Etiqueta QR física<i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Tamaño QR 3x3 cm <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Sin gastos mensuales <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Datos básicos <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Historia clínica <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Salud en general <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Alimentación <i class="fas fa-check" style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Medios de contacto <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Mapa de hogar del animal <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Lat. long. y hora de última lectura <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Descarga ilimitada de 5 modelos <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Posibilidad de tener más de una copia del código <i
-								class="fas fa-check" style="color: lightgreen;"></i>
-						</div>
-						<a onclick="moreInfoPetQr()"><span
-							class="badge badge-pill badge-danger moreInfo">+ info</span></a>
-					</div>
-					<div>
-						<button onclick="" class="btn btn-md btn-info buttons">Puntos
-							de venta</button>
-					</div>
-				</div>
-				<div class="column order-2" id="col2"
-					style="position: relative; top: 0; left: 0;width:33%; flex-direction: column; vertical-align: middle" >
-					<img src="../img/pet-qr-online.png" onmouseover="onhover()"
-						class="img-fluid imgSelected qrImages"
-						style="position: relative; top: 0; left: 0;" /> <img
-						alt="Recomendado por Pet-QR" src="../img/recommended.png"
-						style="position: absolute; top: 20px; left: 120px;">
-					<div class="transparency">
-						<div class="rowPadding">
-							• Etiqueta QR descarga<i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Tamaños 3x3, 4x4, 5x5, 6x6 cm <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Sin gastos mensuales <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Sin tiempos de espera, Lo querés lo tenés <i
-								class="fas fa-check" style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Configurable a cualquier país del mundo <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Datos básicos <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Historia clínica <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Salud en general <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Alimentación <i class="fas fa-check" style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Medios de contacto <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Mapa de hogar del animal <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Lat. long. y hora de última lectura <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Descarga ilimitada de 20 modelos <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Instrucciones de impresión <i class="fas fa-check"
-								style="color: lightgreen;"></i>
-						</div>
-						<div class="rowPadding">
-							• Posibilidad de tener más de una copia del código <i
-								class="fas fa-check" style="color: lightgreen;"></i>
-						</div>
-						<a onclick="moreInfoPetQrOnline()"><span
-							class="badge badge-pill badge-danger moreInfo">+ info</span></a>
-
-						<script type="text/javascript">
-							function onhover() {
-								$
-										.alert({
-											columnClass : "col-md-6",
-											type : "blue",
-											title : "<i style='color:lightblue' class='fas fa-shield-alt'></i> Medidas de seguridad",
-											content : "<html><body><p style='text-align:justify'>A pesar que nuestra web utiliza SSL (Cifrado de datos absolutos entre los dos puntos), nosotros no utilizamos ni capturamos ningún tipo de datos de los medios de pago, por ende la transacción será por MercadoPago, TodoPago o el medio que haya elegido, esto con el fin de darle seguridad y confianza al cliente.</p><br><label style='font-weight:bold'><img src='../img/iconoPet75.png' style='height:30px;width:30px'> Pet-QR</label></body></html>"
-										});
-							}
-						</script>
-
-					</div>
-					<div>
-						<br>
-						<button onclick="checkoutPage()" class="btn btn-md btn-warning">Comprar</button>
-						<br>
-						<br>
-						<p th:if="${currentUser} == Invitado"
-							style="color: pink; background: rgba(0, 0, 0, 0.5); border-radius: 5px">Checkout
-							- Recuerde estar logueado.</p>
-						<p th:unless="${currentUser} == Invitado"
-							style="color: lightgreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px">Usted
-							está logueado y listo para comprar.</p>
-
-						<script>
-							function checkoutPage() {
-								window.location.href = "/online-checkout";
-							}
-						</script>
-
-					</div>
-				</div>
-				            <div class="column order-3" id="col3" style="width:33%;  flex-direction: column; vertical-align: middle">
-				                <div style="position:relative" class="container-fluid"><img src="../img/vetCloud.png" class="img-fluid imgSelected qrImages" style="border-radius:7px;"/></div>
-				                <div class="transparency">
-				                    <div class="rowPadding">100 Hist. clínicas cloud<i class="fas fa-check" style="color:lightgreen;"></i></div>
-				                    <div class="rowPadding">Schedule de vacunación y visitas Vet.<i class="fas fa-check" style="color:lightgreen;"></i></div>
-				                    <div class="rowPadding">Descargas de H.C. a PDF<i class="fas fa-check" style="color:lightgreen;"></i></div>
-				                	<span class="badge badge-pill badge-danger moreInfo">+ info</span>
-				                </div>
-				                <div><button onclick="window.location.href= '/temporal-qr'" class="btn btn-md buttons">Contratar</button></div>
-				            </div>
-			</div>
+	<div id="container" class="container" style="padding: 30px; box-shadow: 0px 0px 25px black;">
+		
+		<!-- Columns sell flexbox start -->
+		<div class="pricingdiv transparency" style="text-shadow: 0px 0px 0px black; padding-top: 30px;">
+		    <ul class="theplan" style="background-color:white">
+		        <li class="title"><img src="../img/prepaidQR1366x700directSell.jpg"  class="img-fluid" style="border:2px solid white" /><br />Pet-QR tag</li>
+		        <li><b>Método:</b> Venta directa</li>
+		        <li><b>Tamaños:</b> 3,5 x 3,5 cm</li>
+		        <li><b>Gastos mensuales:</b> Ninguno</li>
+		        <li><b>Envío:</b> A cargo del comprador</li>
+		        <li><b>Límites:</b> Funciona para cualquier país, pero se envía solo Argentina</li>
+		        <li><b>Capacidades:</b> Lat. long. y hora de última lectura</li>
+		        <li><b>Mapa:</b> Mapa de hogar del animal</li>
+		        <li><a class="pricebutton" href="/online-checkout" target="_blank" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</a></li>
+		    </ul>
+		    <ul class="theplan" style="background-color:white">
+		        <li class="title"><img src="../img/prepaidQR1366x900.jpg"  class="img-fluid" style="border:2px solid white" /><br />Pet-QR online</li>
+		        <li><b>Método:</b> Descarga Online</li>
+		        <li><b>Tamaños:</b> 3,5 x 3,5 / 4,5 x 4,5 / 6,5 x 6,5 cm</li>
+		        <li><b>Gastos mensuales:</b> Ninguno</li>
+		        <li><b>Envío:</b> Free, entrega inmediata al mail</li>
+		        <li><b>Límites:</b> Funciona para y en cualquier país</li>
+		        <li><b>Capacidades:</b> Lat. long. y hora de última lectura</li>
+		        <li><b>Mapa:</b> Mapa de hogar del animal</li>
+		        <li><b>Modelos:</b> descarga ilimitada actualmente +20 modelos, un modelo nuevo por semana</li>
+		        <li><b>Impresión:</b> Instrucciones e ideas</li>
+		    	<li><b>Transferencia de código a otro usuario:</b> Sí</li>
+		        <li><b>Historia Clínica:</b> Sí</li>
+		        <li><b>BD perros perdidos:</b> Sí</li>
+		        <li><b>Garantía:</b> 30 días devolución de dinero</li>
+		        <li><a class="pricebutton" href="/online-checkout" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</a></li>
+		        </ul>
+		    <ul class="theplan" style="background-color:white">
+		        <li class="title"><img src="../img/prepaidQR1366x900onlineSell.jpg"  class="img-fluid" style="border:2px solid white" /><br />Descarga online Test</li>
+		        <li><b>Método:</b> Pet-QR online test</li>
+		        <li><b>Duración:</b> 30 días libres de uso</li>
+		        <li><b>Limitaciones:</b>Mismo uso que el online pero "No" hay transferencias, es por tiempo limitado, y no se puede tener más codígos asignados</li>
+		        <li><b>Garantía:</b> Ninguna</li>
+		        <li><a class="pricebutton" href="/temporal-qr" rel="nofollow"> Check Out</a></li>
+		    </ul>
+		    <br><br><br><br>
+		    <!-- Advice to be logued start -->
+		    	<p th:if="${currentUser} == Invitado" style="color: pink; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;">Checkout - Recuerde estar logueado para comprar. <i class="fas fa-user-times"></i> ==>   <a href="/login"><i class="fas fa-user" style="color:lightgreen"></i> Login</a></p>
+				<p th:unless="${currentUser} == Invitado" style="color: LimeGreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;">Usted está logueado y listo para comprar. <i class="fas fa-user-check"></i></p>
+			<!-- Advice to be logued end -->
 		</div>
-	</div>
+		
+		<br>
+		<br>
+		<br>
+		<br>
+
+			<!-- Columns sell flexbox end -->
+		</div>
 	<footer th:replace="default :: footer"></footer>
 </body>
-
+						<script type="text/javascript">
+ 							function onLoadSecurityAdvice() {
+ 								$
+ 										.alert({
+ 											columnClass : "col-md-6",
+ 											type : "blue",
+ 											theme:"bootstrap",
+ 											title : "<i style='color:LimeGreen' class='fas fa-shield-alt'></i> Medidas de seguridad",
+ 											content : "<html><body><p style='text-align:justify'>A pesar que nuestra web utiliza <i style='color:LimeGreen' class='fas fa-lock'></i> SSL (Cifrado de datos absolutos entre los dos puntos), nosotros no utilizamos ni capturamos ningún tipo de datos de los medios de pago, por ende la transacción será por MercadoPago, TodoPago o el medio que haya elegido, esto con el fin de darle seguridad y confianza al cliente.</p><br><label style='font-weight:bold'><img src='../img/iconoPet75.png' style='height:30px;width:30px'> Pet-QR</label></body></html>"
+ 										});
+ 							}
+ 						</script>
 </html>
