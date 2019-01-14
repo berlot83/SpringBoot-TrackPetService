@@ -10,8 +10,13 @@
 			<div id="dataTemporalDiv" class="transparency">
 				<h3>Alta QR de prueba.</h3>
 				<hr style="border: 1px solid white !important;">
-				<label><i class="fas fa-user" style="color: coral;"></i> Usuario a asignar código:</label>
-				<p th:text="${user.name}" style="color:LimeGreen"></p>
+				<div class="transparency" style="padding:10px">
+					<label for="username"><i class="fas fa-user" style="color: coral;"></i> Usuario a asignar código:</label>
+					<p th:text="${user.name}" id="username" style="color:LimeGreen"></p>
+				</div>
+				
+				<br>
+				
 				<p>Va a adjuntarse a su cuenta un qr de prueba, tenga en cuenta
 					los siguientes datos:</p>
 				<ol>
@@ -25,7 +30,13 @@
 					<li>Los QR de prueba no se pueden vender ni transferir.</li>
 				</ol>
 
-				<button onclick="createTemporalQR()" class="btn btn-md btn-info" style="margin: 0 auto;" >Adquirir ahora</button>
+				<button onclick="createTemporalQR()" class="btn btn-md btn-success" style="margin: 0 auto; text-shadow: 1px 1px black;" >Adquirir ahora</button>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
 
 				<script th:inline="javascript">
 				               function createTemporalQR(){
@@ -42,8 +53,6 @@
 				            					type:"blue",
 				            					title: "Respuesta de nuestro servidor",
 				            					content: data
-				            				
-				            							
 				            				});
 				            			}
 				            	  	}
