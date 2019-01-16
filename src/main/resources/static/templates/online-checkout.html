@@ -31,7 +31,7 @@
 		<!-- Columns paynow flexbox start -->
 		<div class="paynowDiv" style="text-shadow: 0px 0px 0px black; padding-top: 30px;">
 		    <ul class="columns" style="background-color:white">
-		        <li class="title"><img src="../img/prepaidQR1366x900.jpg"  class="img-fluid" style="border:2px solid white" /><br />Pet-QR tag</li>
+		        <li class="title"><img src="../img/prepaidQR1366x900.jpg"  class="img-fluid" style="border:2px solid white" /><br />Pet-QR Online Tag</li>
 		        <li><div class="form-group">
 						<label for="user"><i class="fas fa-flag" style="color: #7A52A7"></i> País</label>
 						<select id="selectCountry" class="form-control">
@@ -71,20 +71,29 @@
 					<label for="inputTextDuration">Hasta</label>
 					<input type="text" class="form-control" id="inputTextDuration" disabled>
 				</li>
-		        <li id="price"><b>Total:</b> ----- </li>
+		        <li><b>Total:</b><p id="price" style="text-align:center"></p></li>
 		        <li>
-			        <div id="pay1Button" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a></div>
-			    	<div id="pay2Button" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-20dfe390-1c48-4704-a27d-658c65a3f910" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a></div>
-			    	<div id="pay3Button" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-128c322a-ed79-455b-b74d-5cf09ac4703f" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a>
+			        <div id="pay1Button" onclick="scrollFunction()" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a></div>
+			    	<div id="pay2Button" onclick="scrollFunction()" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-20dfe390-1c48-4704-a27d-658c65a3f910" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a></div>
+			    	<div id="pay3Button" onclick="scrollFunction()" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-128c322a-ed79-455b-b74d-5cf09ac4703f" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a>
 				</div>
 		    	</li>
 		    </ul>
 		</div>
 		<!-- Columns paynow flexbox start -->
-		
+<br>
+<br>
+<br>
+<br>
 	</div>
-
 	<script>
+	/* Scroll to top start */
+	function scrollFunction() {
+		document.body.scrollTop = 0; // For Safari
+		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+	}
+	/* Scroll to top end */
+	
 	/* Alert email from mercado pago start */
 		function alertEmailCheck() {
 			$(document)

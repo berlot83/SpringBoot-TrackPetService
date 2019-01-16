@@ -137,28 +137,37 @@ public class QrController {
 	@PostMapping("/sign-up")
 	public String greetingSubmit(@ModelAttribute User user, Model model) {
 		
-		/* Search existing users Start*/
+		/* Search existing users Start */
+		PrintName.printUser(model);
+		/* This works fine finding the null object by name */
 		if(userService.findUser(user.getName()) == null) {
-			try {
-				String[] authorities = { "USER" };
-				user.setAuthorities(authorities);
-				user.setEmailToken(TokenCreator.createAleatoryToken());
-				userService.saveUser(user);
-			} catch (Exception e) {
-				System.out.println("Entró en exceptción");
-				System.out.println(e.getMessage());
-				return "sign-up";
-			}			
-			return "success";
+			/* For some reason use.getEmamail not return null, so i needed to take (user.getEmail()).getEmail to take the null value*/ 
+			if(userService.findUserByEmail(user.getEmail()).getEmail() == null) {
+				try {
+					String[] authorities = { "USER" };
+					user.setAuthorities(authorities);
+					user.setEmailToken(TokenCreator.createAleatoryToken());
+					userService.saveUser(user);
+				} catch (Exception e) {
+					System.out.println("Entró en exceptción");
+					System.out.println(e.getMessage());
+					return "sign-up";
+				}			
+				return "success";
+				
+			}else {
+				model.addAttribute("errorDuplicateEmailMsg", "Ese mail ya está registrado");	
+				System.out.println("parece que el mail no es null");
+				return "sign-up";			
+			}
 		}else {
-			model.addAttribute("errorMsg", "Ese usuario ya está registrado");			
+			model.addAttribute("errorMsg", "Ese usuario ya está registrado");
+			System.out.println("parece que el usuario no es null");
 			return "sign-up";
 		}
 		/* Search existing users End */
-		
 	}
 	/* End Sign-up */
-	
 	
 	/* Start change pass methods */
 	@GetMapping("/change-pass")

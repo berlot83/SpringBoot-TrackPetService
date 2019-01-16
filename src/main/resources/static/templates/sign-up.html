@@ -39,6 +39,9 @@
 								class="form-control" required />
 						</div>
 
+						<div th:if="${errorDuplicateEmailMsg} != null" class="alert alert-danger"
+							style="text-shadow: 0px 0px 3px white; color: red;">Email ya registrado.</div>
+
 						<div class="form-check">
 							<input id="termsAndConditionInput" type="checkbox"
 								class="form-check-input" required> <label

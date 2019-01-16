@@ -56,9 +56,7 @@
 								<td><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i
 										style="color: lightgreen" class="fas fa-search"></i></a> <a
 									th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}+'&selledOnlineValue='+${list[iStat?.index].selledOnline}}"><i
-										style="color: PaleTurquoise" class="fas fa-edit"></i></a> <a
-									href="#" onclick="deleteQr()"><i class="far fa-trash-alt"
-										style="color: tomato"></i></a></td> 
+										style="color: PaleTurquoise" class="fas fa-edit"></i></a> <a href="#" onclick="deleteQr()"><i class="far fa-trash-alt" style="color: tomato"></i> <a th:onclick="transferCode()" href="#" ><i class="fas fa-exchange-alt" style="color:DarkViolet"></i></a></td> 
 										<!-- Form button to send object to download page -->
 										<td>
 											<form action="#" th:action="@{/download}" th:method="POST" th:object="${prepaidQR}">
@@ -83,6 +81,50 @@
 											<input type="hidden" th:value="${list[iStat?.index].id}" name="id">
 											</form>
 										</td>
+										
+										<script th:inline="javascript">
+										function transferCode(idPrepaidQR){
+											var idPrepaidQR = [[${list[iStat?.index].id.toString()}]];
+											console.log(idPrepaidQR);
+											
+											$.confirm({
+												theme:"bootstrap",
+												title:"Tranferir código a otro usuario <i class='fas fa-exchange-alt' style='color:DarkViolet'></i>",
+												content:"Cuándo sirve esta opción?<br><ol><li>Cuando querés transferirlo por venta.</li><li>Cuando sabés que no vas a tener más mascota</li><li>Cuando querés darlo en forma de regalo.</li><li>Cuando el que lo quiere no puede pagar por los medios disponibles.</li><li>Esta opción es irreversible como la eliminación.</li></ol><label><i class='fas fa-user' style='color:LimeGreen''></i> Usuario Activo Destintario:</label><input type='text' id='emailDestinatary' style='background-color:pink; text-align:center; margin: 0 auto;' placeholder='Email del destinatario'>",
+												buttons:{
+													confirm: function(){
+														var xhr = new XMLHttpRequest();
+														var emailDestinatary = document.getElementById("emailDestinatary").value;
+														var url = "/transfer?emailDestinatary="+emailDestinatary+"&idPrepaidQR="+idPrepaidQR;
+
+															xhr.onreadystatechange = function () {
+															if (xhr.readyState == 4 && xhr.status == 200) {
+																$.alert({
+																	title: "Respuesta del servidor",
+																	theme: "bootstrap",																	
+																	content: xhr.responseText,
+																	buttons:{
+																		confirm: function(){
+																			location.reload();
+																		}
+																	}
+																});
+															}
+														}	
+													xhr.open("GET", url, true);
+													xhr.send();
+													},
+													cancel: function(){
+													
+													}
+												}
+												
+											});
+											
+											
+											
+										}
+										</script>
 									
 								<script>
 									function deleteQr() {

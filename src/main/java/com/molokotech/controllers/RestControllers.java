@@ -320,4 +320,34 @@ public class RestControllers {
 		prepaidQrService.createPrepaidQR(prepaidQR);
 	}
 	
+	@RequestMapping("/transfer")
+	public String tranfer(@RequestParam String emailDestinatary, @RequestParam String idPrepaidQR) {
+		List<User> list = userService.findAll();
+		User userDestinatary = null;
+		String result = null;
+		
+		/* If user exist, assign new variable */
+		for(int i = 0; i < list.size(); i++ ) {
+			if(list.get(i).getEmail().equals(emailDestinatary)) {
+				userDestinatary = list.get(i);
+				result = "Usuario encontrado y transferido <i class='fas fa-user-check' style='color:LimeGreen'></i>";
+				System.out.println("user found");
+			}else {
+				System.out.println("user not found");
+			}
+		}
+		
+		/* Verify if the prepaid exist, if not just response, if exist override activation email and userName to finde it */
+		PrepaidQR prepaidQR = prepaidQrService.findById(idPrepaidQR);
+		if(prepaidQR != null) {
+			/* override userName and selledOnLine on PrepaidQR object */
+			prepaidQR.setUserName(userDestinatary.getName());
+			prepaidQR.setSelledOnline(emailDestinatary);
+			prepaidQrService.createPrepaidQR(prepaidQR);
+		}else {
+			result = "Este Código QR parece ser null y no se puede transferir, si el problema persiste comuníquese a info@molokotech.com";
+		}
+		return result;
+	}
+	
 }

@@ -68,8 +68,8 @@ public class UserService{
 		return user;
 	}
 	
-	public List<User> read(List<User> list) {
-		return list;
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 
 	public void update(@PathParam("id") User user) {
