@@ -27,11 +27,9 @@ function removeBounce(id){
 function changeCursorToimages(){
 	var herokuLogo = document.getElementById("herokuLogo");
 	var logo = document.getElementById("logo");
-	var avatarOnDB = document.getElementById("profile");
 	
 	herokuLogo.style.cursor = "pointer";
 	logo.style.cursor = "pointer";
-	avatarOnDB.style.cursor = "pointer";
 }
 
 function redirectTo() {
@@ -89,6 +87,20 @@ function termsAndCondition() {
 		title: 'Términos y condiciones',
 		content: 'Molokotech y todos sus representantes no se se hacen responsables de posibles pérdidas de mascotas, la inte'
 	});
+
+	/* Should aplly this code */
+//	$.confirm({
+//	    title: 'Title',
+//	    content: 'url:terms.txt',
+//	    onContentReady: function () {
+//	        var self = this;
+//	        this.setContentPrepend('<div>Prepended text</div>');
+//	        setTimeout(function () {
+//	            self.setContentAppend('<div>Appended text after 2 seconds</div>');
+//	        }, 2000);
+//	    },
+//	    columnClass: 'medium',
+//	});
 }
 
 function changeFlag(){
@@ -177,3 +189,36 @@ function getLocalization(){
  
 }
 
+/* QR-Ayuda start */
+function showAnswerView(){
+	$(document).ready(function() {
+		$("#aViewTemplate").click(function() {
+			$("#divViewTemplate").fadeToggle(900);
+		});
+	});
+}
+
+function showAnswerModify(link){
+	$(document).ready(function() {
+		$(link).click(function() {
+			$("#divModifyTemplate").fadeToggle(900);
+		});
+	});
+}
+
+function showAnswerDelete(link){
+	$(document).ready(function() {
+		$(link).click(function() {
+			$("#divDeleteCode").fadeToggle(900);
+		});
+	});	
+}
+
+function showAnswerTransfer(link){
+	$(document).ready(function() {
+		$(link).click(function() {
+			$("#divTransferCode").fadeToggle(900);
+		});
+	});	
+}
+/* QR-ayuda end */

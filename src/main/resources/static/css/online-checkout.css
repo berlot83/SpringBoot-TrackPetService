@@ -22,8 +22,8 @@ html, body {
 	.triangleTopleft {
 		width: 0;
 		height: 0;
-		border-top: 200px solid #7A52A7;
-		border-right: 200px solid transparent;
+		border-top: 250px solid #7A52A7;
+		border-right: 250px solid transparent;
 		position: absolute;
 	}
 	

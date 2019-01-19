@@ -29,7 +29,7 @@
 							th:if="${listIterate?.pet?.status}  == false">
 						<tbody>
 							<tr>
-								<td><img alt="Perfil" id="profile" onmouseover="changeCursorToimages()" th:onclick="viewImage()" th:src="${listIterate?.resultBase64Avatar}" style="height:30%"></td>
+								<td><img th:if="${listIterate?.resultBase64Avatar != null}" alt="Perfil" id="profile" onmouseover="changeCursorToimagesDB(this)" th:onclick="viewImage([[${listIterate?.resultBase64Avatar}]])" th:src="${listIterate?.resultBase64Avatar}" style="height:45px"><img th:unless="${listIterate?.resultBase64Avatar != null}" alt="Perfil" id="profile" onmouseover="changeCursorToimagesDB(this)" th:onclick="viewImage([[${listIterate?.resultBase64Avatar}]])" src="../img/withoutPhoto.png" style="height:45px"></td>
 								<td th:text="${#strings.substring(listIterate.id, 19, 24)}"></td>
 								<td th:text="${listIterate?.pet?.sex}"></td>
 								<td th:text="${listIterate?.pet?.petName}"></td>
@@ -47,14 +47,22 @@
 									window.location.href = "https://pet-qr.com/id/"+ idManually;
 								}
 								
-								function viewImage(){
+								function viewImage(id){
 									$.alert({
 										type:"red",
 										theme:"dark",
 										columnClass:"col-xs-4",
 										title:'Perdido/a:  ' + [[${listIterate?.pet?.petName}]],
-										content: "<html><body><div style='text-align:center'><img alt="+ [[${listIterate?.pet?.petName}]] +" src="+[[${listIterate?.resultBase64Avatar}]]+" /></div></body></html>"
+										content: "<html><body><div style='text-align:center'><img alt="+ [[${listIterate?.pet?.petName}]] +" src="+id+" /></div></body></html>"
 									});
+								}
+								
+								function changeCursorToimagesDB(id){
+									console.log(id);
+									var avatarOnDB = document.getElementById("profile");
+									avatarOnDB.style.cursor = "pointer";
+
+									
 								}
 							</script>
 							<!-- Search script manually end -->

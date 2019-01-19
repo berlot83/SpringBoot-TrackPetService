@@ -1,26 +1,26 @@
-
-
-#mainContainerAbout{
-    text-shadow: 0px 0px 5px rgba(0,0,0,1);
-    text-align: justify;
-    box-shadow: 0px 0px 15px black;
-    color: white;
-    background-image: url('../img/tile_pupure.jpg');
-    background-repeat: repeat;
-    text-shadow:1px 2px black;
-    height:2500px;
+#mainContainerAbout {
+	text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+	text-align: justify;
+	box-shadow: 0px 0px 15px black;
+	color: white;
+	background-image: url('../img/tile_pupure.jpg');
+	background-repeat: repeat;
+	text-shadow: 1px 2px black;
+	height: 2500px;
 }
 
-.imgProduct{
+.imgProduct {
 	box-shadow: 0px 0px 25px black;
 	border-radius: 15px !important;
 }
 
-
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
-	body {
+	.aboutDiv{
+		width:100%;
+	}
 	
+	body {
 		padding: 2px !important;
 		margin: 2px !important;
 	}
@@ -28,13 +28,17 @@
 		font-size: medium !important;
 	}
 	#mainContainerAbout {
-		width:100%;
+		width: 100%;
 		font-size: small !important;
 	}
 }
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
+	.aboutDiv{
+		width:100%;
+	}
+	
 	body {
 		padding: 2px !important;
 		margin: 2px !important;
@@ -43,13 +47,17 @@
 		font-size: medium !important;
 	}
 	#mainContainerAbout {
-		width:100%;
+		width: 100%;
 		font-size: small !important;
 	}
 }
 
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
+	.aboutDiv{
+	width:100%;
+	}
+	
 	body {
 		padding: 2px !important;
 		margin: 2px !important;
@@ -58,11 +66,38 @@
 		font-size: medium !important;
 	}
 	#mainContainerAbout {
-		width:100%;
+		width: 100%;
 		font-size: small !important;
 	}
 }
 
 /*  Extra large devices (large desktops, 1200px and up) */
 @media ( min-width : 1200px) {
+}
+
+/* Flex-Box start */
+.aboutDiv{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: center;
+  font-family:'Mali', cursive;
+}
+
+.aboutDiv div.columns{
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  border: 1px solid gray;
+  transition: all .5s;
+}
+
+.aboutDiv ul.columns li{
+  padding: 10px 10px;
+  position: relative;
+  border-bottom: 1px solid #eee;
 }

@@ -75,7 +75,6 @@ public class QrController {
 		PrintName.printUser(model);
 		return "index";
 	}
-	
 
 	@RequestMapping("/temporal-qr")
 	public String temporalQR(Model model) {

@@ -9,7 +9,7 @@
 		<div style="position: relative; left: 5px;">
 			<strong
 				style="text-shadow: 1px 2px black; font-size: 20px !important;">Checkout
-				<img src="../img/mp64x64.png">
+				<img id="logoPaymentMobile" src="../img/mp64x64.png" style="width:64px;height:64px;">
 			</strong>
 		</div>
 	</div>
@@ -17,10 +17,10 @@
 
 	<!-- CSS triangle Start -->
 	<div id="triangle-topleft" style="color: white">
-		<div style="position: absolute; top: -165px; left: 15px">
+		<div style="position: absolute; top: -185px; left: 15px">
 			<strong
 				style="text-shadow: 1px 2px black; font-size: 20px !important;">Checkout
-				<img src="../img/mp64x64.png">
+				<img id="logoPaymentDesktop" src="../img/mp64x64.png" style="width:64px;height:64px;">
 			</strong>
 		</div>
 	</div>
@@ -32,22 +32,25 @@
 		<div class="paynowDiv" style="text-shadow: 0px 0px 0px black; padding-top: 30px;">
 		    <ul class="columns" style="background-color:white">
 		        <li class="title"><img src="../img/prepaidQR1366x900.jpg"  class="img-fluid" style="border:2px solid white" /><br />Pet-QR Online Tag</li>
-		        <li><div class="form-group">
+		        <li>
+		        	<div class="form-group">
 						<label for="user"><i class="fas fa-flag" style="color: #7A52A7"></i> País</label>
-						<select id="selectCountry" class="form-control">
-								<option value=1>Argentina</option>
-								<option value=2>Colombia</option>
-								<option value=3>Uruguay</option>
-								<option value=4>Chile</option>
-								<option value=5>Venezuela</option>
-								<option value=6>Ecuador</option>
-								<option value=7>Paraguay</option>
-								<option value=8>Bolivia</option>
-								<option value=9>Colombia</option>
-								<option value=10>Brazil</option>
-								<option value=11>Peru</option>
-							</select>
-						</div>
+						<select id="selectCountry" onchange="selectCountryPayment()" class="form-control">
+							<option value=1>Argentina</option>
+							<option value=2>Colombia</option>
+							<option value=3>Uruguay</option>
+							<option value=4>Chile</option>
+							<option value=5>Venezuela</option>
+							<option value=6>Ecuador</option>
+							<option value=7>Paraguay</option>
+							<option value=8>Bolivia</option>
+							<option value=9>Colombia</option>
+							<option value=10>Brazil</option>
+							<option value=11>Peru</option>
+							<option value=11>España</option>
+							<option value=11>EEUU</option>
+						</select>
+					</div>
 				</li>
 		        <li>
 						<label for="user"><i class="fas fa-user" style="color: #7A52A7"></i> Usuario:</label>
@@ -58,26 +61,57 @@
 						<p th:if="${user.email != null}" th:text="${user.email}" style="color: LimeGreen; margin-left: 20px;"></p>
 						<p th:unless="${user.email != null}"></p>
 				</li>
-		        <li>
-					<label for="user"><i class="far fa-credit-card" style="color: #7A52A7"></i> F. de pago</label>
-					<select id="kindOfPayment" class="form-control" onchange="setPrice()">
+				
+			<!-- Payment Li PayPal start -->
+		        <li id="paypal" style="display:none;">
+			<!-- PayPal for the rest countries start -->
+					<label for="user" style="text-align:left"><i class="far fa-credit-card" style="color: #7A52A7"></i> <strong>F. de pago:</strong> <img src="../img/paypal-logo-horizontal-20x80.png" class="text-center"></label>
+					<select id="kindOfPaymentPayPal" class="form-control" onchange="">
 						<option value=0>Elegir</option>
-						<option value=1>MercadoPago/ 1 año</option>
-						<option value=2>MercadoPago/ 2 años</option>
-						<option value=3>MercadoPago/ sin límite</option>
+						<option value=1>PayPal/ Compra definitiva/ sin límite de uso</option>
 					</select>
+				<!-- PayPal for the rest countries end -->
+					<br>
+				<!-- Total paypal start -->	
+					<b>Total:</b><p style="text-align:center">u$s 13,99.-</p>
+				<!-- Total paypal end -->
+				
+				<!-- PayPal for the rest of the countries start -->
+					<div id="paypalButton" class="col-12 text-center">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="KKFHUS8MDJZ86">
+							<input type="image" src="https://www.paypalobjects.com/es_XC/AR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+							<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</div>				
+		    	<!-- PayPal for the rest of the countries end -->
 				</li>
-		        <li>
-					<label for="inputTextDuration">Hasta</label>
-					<input type="text" class="form-control" id="inputTextDuration" disabled>
-				</li>
-		        <li><b>Total:</b><p id="price" style="text-align:center"></p></li>
-		        <li>
-			        <div id="pay1Button" onclick="scrollFunction()" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-ccf601ae-4b1d-44e6-b218-e1077b8433a8" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a></div>
-			    	<div id="pay2Button" onclick="scrollFunction()" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-20dfe390-1c48-4704-a27d-658c65a3f910" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a></div>
-			    	<div id="pay3Button" onclick="scrollFunction()" class="col-12 text-center" style="display: none"><a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-128c322a-ed79-455b-b74d-5cf09ac4703f" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a>
-				</div>
+		     <!-- Payment Li PayPal end -->   
+		        
+		     <!-- Payment Li MercadoPago start -->  
+		     	<li id="mercadopago" style="text-align:left">
+		        	<!-- MercadoPago start -->
+					<label for="user" style="text-align:left"><i class="far fa-credit-card" style="color: #7A52A7"></i> <strong>F. de pago:</strong> <img src="../img/mercadopago-logo-20x67.png" /></label>
+					<select id="kindOfPayment" class="form-control" onchange="">
+						<option value=0>Elegir</option>
+						<option value=1>MercadoPago/ Compra definitiva/ sin límite de uso</option>
+					</select>
+					<!-- MercadoPago end-->
+		        
+		        <br>
+		        <!-- Total mercadopago start -->
+		        	<b>Total:</b><p style="text-align:center">$ 550.-</p>		  
+		        <!-- Total mercadopago end -->
+		        
+		        <!-- MercadoPago for Argentina only start -->
+			    	<div id="mercadopagoButton" onclick="scrollFunction()" class="col-12 text-center">
+			    		<a mp-mode="dftl" style="font-family: 'Mali', cursive !important; margin-bottom: 15px; text-align: center" href="https://www.mercadopago.com/mla/checkout/start?pref_id=310115679-128c322a-ed79-455b-b74d-5cf09ac4703f" name="MP-payButton" class='blue-ar-l-rn-arall'>Pagar</a>
+			    	</div>
+				<!-- MercadoPago for Argentina only end -->
 		    	</li>
+		    <!-- Payment Li MercadoPago end -->
+		    
 		    </ul>
 		</div>
 		<!-- Columns paynow flexbox start -->
@@ -86,7 +120,30 @@
 <br>
 <br>
 	</div>
-	<script>
+
+<script>
+	/* Show MercadoPago (Argentina only) or PayPay on depends the election, is on CSS, pretty simple way */
+	function selectCountryPayment(){
+		var logoPaymentMobile = document.getElementById("logoPaymentMobile");
+		var logoPaymentDesktop = document.getElementById("logoPaymentDesktop");
+		var selectCountry = document.getElementById("selectCountry").value;
+		var paypal = document.getElementById("paypal");
+		var mercadopago = document.getElementById("mercadopago");
+		
+		if(selectCountry == "1"){
+			mercadopago.style.display = "block";
+			paypal.style.display = "none";
+			logoPaymentDesktop.src = "../img/mp64x64.png";
+			logoPaymentMobile.src = "../img/mp64x64.png";
+		}else{
+			mercadopago.style.display = "none";
+			paypal.style.display = "block";
+			logoPaymentDesktop.src="../img/paypalLogo.png";
+			logoPaymentMobile.src = "../img/paypalLogo.png";
+		}
+	}
+	/* Select way of payment End */
+	
 	/* Scroll to top start */
 	function scrollFunction() {
 		document.body.scrollTop = 0; // For Safari
@@ -109,149 +166,34 @@
 							});
 		}
 	/* Alert email from mercado pago end */
-	
-	/* Set price depending time, one year, two year or lifetime start */
-	function setPrice() {
-		var kindOfPayment = document
-				.getElementById("kindOfPayment");
-		var price = document.getElementById("price");
-		var total = document.getElementById("total");
-		var inputTextDuration = document.getElementById("inputTextDuration");
-		var pay1Button = document
-				.getElementById("pay1Button");
-		var pay2Button = document
-				.getElementById("pay2Button");
-		var pay3Button = document
-				.getElementById("pay3Button");
+</script>
 
-		if (kindOfPayment.value == "0") {
-			price.textContent = "$0.-";
-			pay1Button.style.display = "none";
-			pay2Button.style.display = "none";
-			pay3Button.style.display = "none";
-		}
-
-		if (kindOfPayment.value == "1") {
-			price.textContent = "$250.-";
-			pay1Button.style.display = "block";
-			pay2Button.style.display = "none";
-			pay3Button.style.display = "none";
-			
-			var now = new Date().toLocaleString();
-			var expire = new Date(new Date()
-					.setFullYear(new Date()
-							.getFullYear() + 1));
-			inputTextDuration.value = expire;
-
-		}
-
-		if (kindOfPayment.value == "2") {
-			price.textContent = "$400.-";
-			pay1Button.style.display = "none";
-			pay2Button.style.display = "block";
-			pay3Button.style.display = "none";
-			
-			var now = new Date().toLocaleString();
-			var expire = new Date(new Date()
-					.setFullYear(new Date()
-							.getFullYear() + 2));
-			inputTextDuration.value = expire;
-		}
-
-		if (kindOfPayment.value == "3") {
-			price.textContent = "$550.-";
-			pay1Button.style.display = "none";
-			pay2Button.style.display = "none";
-			pay3Button.style.display = "block";
-			
-			inputTextDuration.value = "*** Sin límite / Uso libre ***";
-		}
-	}
-	/* Set price depending time, one year, two year or lifetime end */
-	</script>
-		
-		
-
-				<!-- Script Button 1 start -->
-					<script type="text/javascript">
-						(function() {
-							function $MPC_load() {
-								window.$MPC_loaded !== true
-										&& (function() {
-											var s = document
-													.createElement("script");
-											s.type = "text/javascript";
-											s.async = true;
-											s.src = document.location.protocol
-													+ "//secure.mlstatic.com/mptools/render.js";
-											var x = document
-													.getElementsByTagName('script')[0];
-											x.parentNode.insertBefore(s, x);
-											window.$MPC_loaded = true;
-										})();
-							}
-							window.$MPC_loaded !== true ? (window.attachEvent ? window
-									.attachEvent('onload', $MPC_load)
-									: window.addEventListener('load',
-											$MPC_load, false))
-									: null;
+<!-- Script MercadoPago start -->
+<script type="text/javascript">
+		(function() {
+			function $MPC_load() {
+				window.$MPC_loaded !== true
+						&& (function() {
+							var s = document
+									.createElement("script");
+							s.type = "text/javascript";
+							s.async = true;
+							s.src = document.location.protocol
+									+ "//secure.mlstatic.com/mptools/render.js";
+							var x = document
+									.getElementsByTagName('script')[0];
+							x.parentNode.insertBefore(s, x);
+							window.$MPC_loaded = true;
 						})();
-					</script>
-				<!-- Script Button 1 end -->	
-					
-				<!-- Script button 2 start -->
-					<script type="text/javascript">
-						(function() {
-							function $MPC_load() {
-								window.$MPC_loaded !== true
-										&& (function() {
-											var s = document
-													.createElement("script");
-											s.type = "text/javascript";
-											s.async = true;
-											s.src = document.location.protocol
-													+ "//secure.mlstatic.com/mptools/render.js";
-											var x = document
-													.getElementsByTagName('script')[0];
-											x.parentNode.insertBefore(s, x);
-											window.$MPC_loaded = true;
-										})();
-							}
-							window.$MPC_loaded !== true ? (window.attachEvent ? window
-									.attachEvent('onload', $MPC_load)
-									: window.addEventListener('load',
-											$MPC_load, false))
-									: null;
-						})();
-					</script>
-				<!-- Script button 2 end -->
-
-				<!-- Script button 3 start -->
-					<script type="text/javascript">
-						(function() {
-							function $MPC_load() {
-								window.$MPC_loaded !== true
-										&& (function() {
-											var s = document
-													.createElement("script");
-											s.type = "text/javascript";
-											s.async = true;
-											s.src = document.location.protocol
-													+ "//secure.mlstatic.com/mptools/render.js";
-											var x = document
-													.getElementsByTagName('script')[0];
-											x.parentNode.insertBefore(s, x);
-											window.$MPC_loaded = true;
-										})();
-							}
-							window.$MPC_loaded !== true ? (window.attachEvent ? window
-									.attachEvent('onload', $MPC_load)
-									: window.addEventListener('load',
-											$MPC_load, false))
-									: null;
-						})();
-					</script>
-					<!-- Script button 3 end -->
+			}
+			window.$MPC_loaded !== true ? (window.attachEvent ? window
+					.attachEvent('onload', $MPC_load)
+					: window.addEventListener('load',
+							$MPC_load, false))
+					: null;
+	})();
+</script>
+	<!-- Script MercadoPago button end -->
 	<footer th:replace="default :: footer"></footer>
 </body>
 </html>

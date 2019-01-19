@@ -13,37 +13,37 @@
 						id="id"></span>
 				</h4>
 				<p th:if="${prepaidQR.userName} != null"
-					th:text="'Usuario asignado: ' + ${prepaidQR.userName}"></p>
+					th:utext="'<strong style=color:coral>Usuario asignado:</strong> ' + ${prepaidQR.userName}"></p>
 				<br>
 				<h5>
-					<i class="fas fa-paw"></i> Datos básicos
+					<i class="fas fa-paw" style="color:pink"></i> Datos básicos
 				</h5>
 				<hr>
 				<img th:if="${prepaidQR.resultBase64Avatar == null}" alt="" src="../img/withoutPhoto.png" class="img-thumbnail" style="width:150px; height:150px;" />
 				<img th:unless="${prepaidQR.resultBase64Avatar == null}" th:src="${prepaidQR.resultBase64Avatar}" style="box-shadow: 0px 0px 15px black; border-radius: 7px;" class="img-thumbnail"/>
 				
 				<p th:if="${prepaidQR.owner.residence} != null"
-					th:text="'País: ' + ${prepaidQR.owner.residence}"></p>
+					th:utext="'<strong style=color:coral>País:</strong> ' + ${prepaidQR.owner.residence}"></p>
 				<p th:if="${prepaidQR.pet.petName} != null"
-					th:text="'Nombre: ' + ${prepaidQR.pet.petName}"></p>
+					th:utext="'<strong style=color:coral>Nombre:</strong> ' + ${prepaidQR.pet.petName}"></p>
 				<p th:if="${prepaidQR.pet.age} <= 2018"
-					th:text="'Nacimimento: ' + ${prepaidQR.pet.age}"></p>
+					th:utext="'<strong style=color:coral>Nacimimento:</strong> ' + ${prepaidQR.pet.age}"></p>
 				<p th:if="${prepaidQR.pet.sex} != null"
-					th:text="'Sexo: ' + ${prepaidQR.pet.sex}"></p>
+					th:utext="'<strong style=color:coral>Sexo:</strong> ' + ${prepaidQR.pet.sex}"></p>
 
 				<br>
 				<h5>
-					<i class="fas fa-heartbeat"></i> Estado de salud
+					<i class="fas fa-heartbeat" style="color:red"></i> Estado de salud
 				</h5>
 				<hr>
 				<p th:if="${prepaidQR.pet.clinicHistory} != null"
-					th:text="'Historia Clínica: ' + ${prepaidQR.pet.clinicHistory}"></p>
+					th:utext="'<strong style=color:coral>Historia Clínica:</strong> ' + ${prepaidQR.pet.clinicHistory}"></p>
 				<p th:if="${prepaidQR.pet.illness} != null"
-					th:text="'Enfermedades: ' + ${prepaidQR.pet.illness}"></p>
+					th:utext="'<strong style=color:coral>Enfermedades:</strong> ' + ${prepaidQR.pet.illness}"></p>
 
-				<p th:if="${prepaidQR.pet.medicated} == true">Medicado: Sí</p>
+				<p th:if="${prepaidQR.pet.medicated} == true"><strong style="color:coral">Medicado:</strong> Sí</p>
 				<p th:unless="${prepaidQR.pet.medicated} == true"
-					th:text="'Medicado: ' + ${prepaidQR.pet.medicated}">Medicado:
+					th:utext="'<strong style=color:coral>Medicado:</strong> ' + ${prepaidQR.pet.medicated}">Medicado:
 					No</p>
 
 
@@ -69,56 +69,56 @@
 				</table>
 				<br>
 				<p th:if="${prepaidQR.pet.lastVeterinaryVisit} != null"
-					th:text="'Últ.visita veterinaria: ' + ${prepaidQR.pet.lastVeterinaryVisit}"></p>
+					th:utext="'<strong style=color:coral>Últ.visita veterinaria:</strong> ' + ${prepaidQR.pet.lastVeterinaryVisit}"></p>
 
-				<p th:if="${prepaidQR.pet.neuteredPet} == true">Castrado: Sí</p>
-				<p th:unless="${prepaidQR.pet.neuteredPet} == true">Castrado: No</p>
+				<p th:if="${prepaidQR.pet.neuteredPet} == true"><strong style="color:coral">Castrado:</strong> Sí</p>
+				<p th:unless="${prepaidQR.pet.neuteredPet} == true"><strong style=color:coral>Castrado:</strong> No</p>
 
-				<p th:if="${prepaidQR.pet.pregnant} == true">Preñiada: Sí</p>
-				<p th:unless="${prepaidQR.pet.pregnant} == true">Preñiada: No</p>
+				<p th:if="${prepaidQR.pet.pregnant} == true"><strong style=color:coral>Preñiada:</strong> Sí</p>
+				<p th:unless="${prepaidQR.pet.pregnant} == true"><strong style=color:coral>Preñiada:</strong> No</p>
 
 				<br>
 
 				<h5>
-					<i class="fas fa-fish"></i> Alimentación
+					<i class="fas fa-fish" style="color:lightblue"></i> Alimentación
 				</h5>
 				<hr>
 				<p th:if="${prepaidQR.pet.foodBrand} != null"
-					th:text="'Marca de Comida bal: ' + ${prepaidQR.pet.foodBrand}"></p>
+					th:utext="'<strong style=color:coral>Marca de Comida bal:</strong> ' + ${prepaidQR.pet.foodBrand}"></p>
 				<p th:if="${prepaidQR.pet.quantityFood} != null"
-					th:text="'Cantidad comida Balanceada: ' + ${prepaidQR.pet.quantityFood} + ' gr'"></p>
+					th:utext="'<strong style=color:coral>Cantidad comida Balanceada:</strong> ' + ${prepaidQR.pet.quantityFood} + ' gr'"></p>
 				<p th:if="${prepaidQR.pet.coockedFood} != null"
-					th:text="'Comida húmeda: ' + ${prepaidQR.pet.coockedFood}"></p>
+					th:utext="'<strong style=color:coral>Comida húmeda:</strong> ' + ${prepaidQR.pet.coockedFood}"></p>
 				<br>
 				<h5>
-					<i class="fas fa-paw"></i> Estado
+					<i class="fas fa-paw" style="color:pink"></i> Estado
 				</h5>
 				<hr>
-				<p th:if="${prepaidQR.pet.status} != false">Normal</p>
+				<p th:if="${prepaidQR.pet.status} != false"><strong style=color:coral>Normal</strong></p>
 				<p th:unless="${prepaidQR.pet.status} != false"
 					style="color: deeppink;">Perdido!!!, contáctese con los tutores
 					por favor.</p>
 				<br>
 				<h5>
-					<i class="fas fa-user"></i> Datos de contacto
+					<i class="fas fa-user" style="color:lightgreen"></i> Datos de contacto
 				</h5>
 				<hr>
 				<p th:if="${prepaidQR.owner.ownerName} != null"
-					th:text="'Tutor: ' + ${prepaidQR.owner.ownerName} + ' ' + ${prepaidQR.owner.ownerLastname}"></p>
+					th:utext="'<strong style=color:coral>Tutor:</strong> ' + ${prepaidQR.owner.ownerName} + ' ' + ${prepaidQR.owner.ownerLastname}"></p>
 				<p th:if="${prepaidQR.owner.dni} != null"
-					th:text="'Dni: ' + ${prepaidQR.owner.dni}"></p>
+					th:utext="'<strong style=color:coral>Dni:</strong> ' + ${prepaidQR.owner.dni}"></p>
 				<p th:if="${prepaidQR.owner.telephone1} != null"
-					th:text="'Teléfono: ' + ${prepaidQR.owner.telephone1}"></p>
+					th:utext="'<strong style=color:coral>Teléfono:</strong> ' + ${prepaidQR.owner.telephone1}"></p>
 				<p th:if="${prepaidQR.owner.telephone2} != null"
-					th:text="'Teléfono: ' + ${prepaidQR.owner.telephone2}"></p>
+					th:utext="'<strong style=color:coral>Teléfono:</strong> ' + ${prepaidQR.owner.telephone2}"></p>
 				<p th:if="${prepaidQR.owner.email} != null"
-					th:text="${prepaidQR.owner.email}" id="mail"></p>
+					th:text="${prepaidQR.owner.email}" id="mail" style="color:LimeGreen"></p>
 				<p th:if="${prepaidQR.owner.address} != null"
-					th:text="'Dirección: ' + ${prepaidQR.owner.address}"></p>
+					th:utext="'<strong style=color:coral>Dirección:</strong> ' + ${prepaidQR.owner.address}"></p>
 				<p th:if="${prepaidQR.owner.facebook} != null"
-					th:text="'Facebook: ' + ${prepaidQR.owner.facebook}"></p>
+					th:utext="'<strong style=color:coral>Facebook:</strong> ' + ${prepaidQR.owner.facebook}"></p>
 				<p th:if="${prepaidQR.owner.instagram} != null"
-					th:text="'Instagram: ' + ${prepaidQR.owner.instagram}"></p>
+					th:utext="'<strong style=color:coral>Instagram:</strong> ' + ${prepaidQR.owner.instagram}"></p>
 				<input type="hidden" th:value="${prepaidQR.strBase64}"
 					id="strBase64"></input> <br>
 
@@ -127,18 +127,39 @@
 			<hr>
 			<!-- Map Start -->
 			<p>Dirección declarada donde reside la mascota</p> 
-			<div>
+			<div id="testcanvas">
 			<input type="hidden" th:value="${prepaidQR.owner.latitude}" id="latitude"/>
 			<input type="hidden" th:value="${prepaidQR.owner.longitude}" id="longitude"/>
 				<div id="map" class="container-fluid"></div>
 			</div>
-			<br>
-			<br>
+			
+<!-- 			<button onclick="takeScreenShoot()">Screenshoot</button> -->
+<!-- 			<br> -->
+<!-- 			<br> -->
+<!-- 			<img id="put" src="" alt=""> -->
 			
 			<!-- Map End -->
 
 			</div>
 			
+			<script>
+			function takeScreenShoot(){
+				html2canvas($("#testcanvas"), {
+					useCORS: true,
+				        optimized: false,
+				        allowTaint: false,
+				        onrendered: function(canvas) {
+				            // canvas is the final rendered <canvas> element
+				            var myImage = canvas.toDataURL("image/jpeg");
+				   //         window.open(myImage);
+				   document.getElementById("put").src= myImage;
+				        }
+				    });
+				
+			}
+			
+			
+			</script>
 			<script>
 			/* Needs to be here to wait charge email input, not onload */
 			$( document ).ready(function() {
