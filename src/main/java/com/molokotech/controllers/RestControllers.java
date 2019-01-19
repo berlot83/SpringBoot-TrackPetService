@@ -350,4 +350,13 @@ public class RestControllers {
 		return result;
 	}
 	
+	
+	@RequestMapping(value = "/notifications-paypal", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<?> notificationsPayPal(String topic, String id) throws JSONException, Exception {
+		
+		
+		
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
 }
