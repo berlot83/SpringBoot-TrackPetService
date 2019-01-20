@@ -7,7 +7,10 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.paypal.core.Constants;
 import com.paypal.core.rest.APIContext;
@@ -22,7 +25,7 @@ public class IPNListener {
 	private OAuthTokenCredential oAuthTokenCredential;
 	
 	
-	@RequestMapping(value = "/paypal-listener")
+	@RequestMapping(value = "/paypal-listener", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.ALL_VALUE})
 	public void listen(HttpServletRequest request) {
 		//Loger.startLogger();
 		// For a full list of configuration parameters refer in wiki page.
@@ -35,17 +38,20 @@ public class IPNListener {
 		//configMap.put("acct1.Signature", "AYeQQfJjGppIxobZXMrXM1SVL-QEIAaDSZRT1KIkgYRzvsT-j8HzT5kFX_1aik4XRpNmTgW88d4FRa6Q");
 		
 	    Properties properties = new Properties();
-	    properties.putAll(configMap);
 	    PayPalResource.initConfig(properties);
 
 	    configMap.put("clientId", "AYeQQfJjGppIxobZXMrXM1SVL-QEIAaDSZRT1KIkgYRzvsT-j8HzT5kFX_1aik4XRpNmTgW88d4FRa6Q");
 	    configMap.put("clientSecret", "EJiKr-GV63FopxeSpkpEUMnz7ys9balWNFUNznq0K5VXjqkcexf-E9ZUx75KgH8zMkh2X0ZB4NnwzNU_");
-	    
+	    properties.putAll(configMap);
+
 	    oAuthTokenCredential = new OAuthTokenCredential(
 	            configMap.get(Constants.CLIENT_ID),
 	            configMap.get(Constants.CLIENT_SECRET),
 	            configMap
 	    );
+	    
+	    System.out.println(oAuthTokenCredential);
+	    
 		
 		
 //		String clientId = "AYeQQfJjGppIxobZXMrXM1SVL-QEIAaDSZRT1KIkgYRzvsT-j8HzT5kFX_1aik4XRpNmTgW88d4FRa6Q";
