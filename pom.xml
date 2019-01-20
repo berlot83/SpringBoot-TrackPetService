@@ -28,8 +28,6 @@
 		<maven-jar-plugin.version>2.6</maven-jar-plugin.version>
 	</properties>
 
-
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -123,8 +121,6 @@
 		<version> 1.0.36 </version>
 		</dependency>
 
-
-
 		<dependency>
 			<groupId>com.mercadopago</groupId>
 			<artifactId>sdk</artifactId>
@@ -137,7 +133,20 @@
 			<artifactId>spring-boot-starter-json</artifactId>
 			<version>2.1.0.RELEASE</version>
 		</dependency>
-
+	
+	<!-- PayPal dependencies start -->
+		<dependency>
+			<groupId>com.paypal.sdk</groupId>
+			<artifactId>merchantsdk</artifactId>
+			<version>LATEST</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.paypal.sdk</groupId>
+			<artifactId>permissionssdk</artifactId>
+			<version>2.4.109</version>
+		</dependency>
+	<!-- PayPal dependencies end -->
 
 	</dependencies>
 

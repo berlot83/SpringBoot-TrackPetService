@@ -7,7 +7,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
@@ -59,6 +61,7 @@ import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.Expiration;
 import com.molokotech.utilities.GoogleMapsService;
+import com.paypal.ipn.IPNMessage;
 
 @Controller
 @RestController
@@ -352,9 +355,14 @@ public class RestControllers {
 	
 	
 	@RequestMapping(value = "/notifications-paypal", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<?> notificationsPayPal(String topic, String id) throws JSONException, Exception {
+	public ResponseEntity<?> notificationsPayPal(Map<String, String> ipnMap) throws JSONException, Exception {
 		
-		
+		Map<String,String> configMap = new HashMap<String,String>();
+		configMap.put("mode", "sandbox");
+		// Account Credential
+		configMap.put("acct1.UserName", "jb-us-seller_api1.paypal.com");
+		configMap.put("acct1.Password", "WX4WTU3S8MY44S7F");
+		configMap.put("acct1.Signature", "AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
 		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
