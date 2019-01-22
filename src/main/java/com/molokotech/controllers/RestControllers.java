@@ -417,6 +417,10 @@ public class RestControllers {
 				System.err.println(ex.getMessage());
 			}
 			/* Send email with id end */
+
+			/* Override "En Venta" for the email to stop resending other Users and to verify buyer*/
+			prepaidQR.setSelledOnline(payerEmail.trim());
+			prepaidQrService.createPrepaidQR(prepaidQR);
 			
 		}		
 		else{
