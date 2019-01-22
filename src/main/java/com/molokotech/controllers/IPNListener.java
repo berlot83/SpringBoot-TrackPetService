@@ -38,6 +38,11 @@ public class IPNListener {
 		IPNMessage ipnlistener = new IPNMessage(request, configMap);
 		boolean isIpnVerified = ipnlistener.validate();
 		String transactionType = ipnlistener.getTransactionType();
+		
+		Map<String, String> ipnMap = ipnlistener.getIpnMap();
+		
+		
+		
 		Map<String, String> map = ipnlistener.getIpnMap();
 		
 		System.out.println("******* IPN (name:value) pair : " + map + "  " + "######### TransactionType : "
@@ -47,10 +52,16 @@ public class IPNListener {
 			System.out.println("Verified IPN");
 			System.out.println(transactionType);
 			System.out.println(map);
-		}
+		}		
 		else{
 			System.out.println("Not a valid IPN Request!");
 		}
+		
+		System.out.println("");
+		System.out.println("");
+		String payerEmail = map.get("payer_email");
+		System.out.println(payerEmail);
+		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
