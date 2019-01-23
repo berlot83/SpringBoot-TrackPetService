@@ -1,23 +1,17 @@
 package com.molokotech.controllers;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
-
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.coyote.http2.Http2Protocol;
-import org.codehaus.jettison.json.JSONArray;
+import org.apache.tomcat.util.http.parser.AcceptLanguage;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +24,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,17 +32,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.maps.errors.ApiException;
 import com.google.zxing.WriterException;
 import com.mercadopago.MP;
 import com.mercadopago.MercadoPago;
-import com.mercadopago.core.MPApiResponse;
-import com.mercadopago.exceptions.MPException;
-import com.mercadopago.resources.Payment;
-import com.mercadopago.resources.datastructures.merchantorder.Payer;
 import com.molokotech.base64.QRCodeGenerator;
 import com.molokotech.model.Owner;
 import com.molokotech.model.Pet;
@@ -63,6 +48,7 @@ import com.molokotech.service.UserService;
 import com.molokotech.utilities.Expiration;
 import com.molokotech.utilities.GoogleMapsService;
 import com.paypal.ipn.IPNMessage;
+import com.sun.jersey.core.header.AcceptableLanguageTag;
 
 @Controller
 @RestController
@@ -428,6 +414,12 @@ public class RestControllers {
 		}
 		
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/get-language")
+	public String getLanguage() {
+
+	return Locale.getDefault().getLanguage();
 	}
 	
 }
