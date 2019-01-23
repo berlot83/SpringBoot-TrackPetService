@@ -379,7 +379,7 @@ public class RestControllers {
 		System.out.println(payerEmail);
 
 		/* Check if is verified */
-		if (isIpnVerified) {
+		//if (isIpnVerified) {
 			System.out.println("Verified IPN");
 		/* End check */
 
@@ -422,10 +422,10 @@ public class RestControllers {
 			prepaidQR.setSelledOnline(payerEmail.trim());
 			prepaidQrService.createPrepaidQR(prepaidQR);
 			
-		}		
-		else{
-			System.out.println("Not a valid IPN Request!");
-		}
+//		}		
+//		else{
+//			System.out.println("Not a valid IPN Request!");
+//		}
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
