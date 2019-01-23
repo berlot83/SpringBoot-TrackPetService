@@ -1,6 +1,17 @@
 html, body{
 }
 
+
+#triangle-topleft-pricing {
+	width: 0;
+	height: 0;
+	border-top: 200px solid #7A52A7;
+	border-right: 200px solid transparent;
+	position: absolute;
+}
+
+
+
 #fullcontainer{
     background-image: url('../img/tile_pupure.jpg');
     background-repeat: repeat;

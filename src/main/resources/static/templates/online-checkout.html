@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="default :: header"></head>
 
-<body onload="alertEmailCheck()">
+<body>
 	<nav th:replace="default :: bar"></nav>
 
 <!-- CSS rectangle mobile only Start -->
@@ -78,12 +78,21 @@
 				
 				<!-- PayPal for the rest of the countries start -->
 					<div id="paypalButton" class="col-12 text-center">
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick">
-							<input type="hidden" name="hosted_button_id" value="KKFHUS8MDJZ86">
-							<input type="image" src="https://www.paypalobjects.com/es_XC/AR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-							<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-						</form>
+<!-- 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"> -->
+<!-- 							<input type="hidden" name="cmd" value="_s-xclick"> -->
+<!-- 							<input type="hidden" name="hosted_button_id" value="KKFHUS8MDJZ86"> -->
+<!-- 							<input type="image" src="https://www.paypalobjects.com/es_XC/AR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"> -->
+<!-- 							<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1"> -->
+<!-- 						</form> -->
+						
+							<!-- SandBox need to be override / We have a big problem with Charset, soesnt admit utf-8, alway windows 1252, so fail if adrress or other data have accent or other char -->
+							<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="charset" value="utf-8">
+								<input type="hidden" name="cmd" value="_s-xclick">
+								<input type="hidden" name="hosted_button_id" value="AXH99AT9PLRAC">
+								<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+								<img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+							</form>
 					</div>				
 		    	<!-- PayPal for the rest of the countries end -->
 				</li>
@@ -114,6 +123,8 @@
 		    
 		    </ul>
 		</div>
+		    <p style="background: rgba(0, 0, 0, 0.5); text-align:center; border-radius: 5px; padding: 5px;"><i style='color:LimeGreen;' class='fas fa-shield-alt'></i> Cifrado de datos <i style='color:LimeGreen' class='fas fa-lock'></i> SSL, nadie verá su información financiera.</p>
+		<p style="background: rgba(0, 0, 0, 0.5); text-align:center; border-radius: 5px; padding: 5px;">Recibirá su código en la casilla de mail declarada a <strong style="color:gold">MercadoPago</strong> o <strong style="color:CornflowerBlue">PayPal</strong>, para activarlo visite <a href="/prepaid-qr" style="color:turquoise">aquí</a>.</p>
 		<!-- Columns paynow flexbox start -->
 <br>
 <br>
@@ -121,19 +132,19 @@
 <br>
 	</div>
 	
-	<!-- Test paypal sandbox -->
-	<h5>Paypal Sandbox</h5>
+	<!-- Test paypal sandbox deactivate, delete if necesary -->
+<!-- 	<h5>Paypal Sandbox</h5> -->
+	<!-- We have a big problem with Charset, soesnt admit utf-8, alway windows 1252, so fail if adrress or other data have accent or other char -->
+<!-- 	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top"> -->
+<!-- 		<input type="hidden" name="charset" value="utf-8"> -->
+<!-- 		<input type="hidden" name="cmd" value="_s-xclick"> -->
+<!-- 		<input type="hidden" name="hosted_button_id" value="AXH99AT9PLRAC"> -->
+<!-- 		<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"> -->
+<!-- 		<img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1"> -->
+<!-- 	</form> -->
 	
-	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-		<input type="hidden" name="charset" value="utf-8">
-		<input type="hidden" name="cmd" value="_s-xclick">
-		<input type="hidden" name="hosted_button_id" value="AXH99AT9PLRAC">
-		<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		<img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-	</form>
-	
 	<!-- Test paypal sandbox -->
-<br><br><br><br><br><br><br><br>
+<br><br><br><br>
 <script>
 	/* Show MercadoPago (Argentina only) or PayPay on depends the election, is on CSS, pretty simple way */
 	function selectCountryPayment(){
@@ -163,22 +174,6 @@
 		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 	}
 	/* Scroll to top end */
-	
-	/* Alert email from mercado pago start */
-		function alertEmailCheck() {
-			$(document)
-					.ready(
-							function() {
-								$
-										.alert({
-											title : "Atención",
-											type : "blue",
-											columnClass : "col-md",
-											content : "<html><body><ol><li><p style='text-align: justify'>No salga de su cuenta hasta no haber recibido la pantalla de pago exitoso.<li>El mail más importante es el que ponga en MercadoPago para recibir su comprobante de pago, en la misma direción recibirá su código QR.</li><li>Si lo colocó correctamente, lo buscó y el mismo no está ni siquiera en la carpeta de spam no se preocupe que lo enviamos manualmente sólo comuníquese a <a href='mailto:info@molokotech.com'><span class='badge badge-lg badge-danger'>info@molokotech.com</span></a> con:<br>• Usuario<br>• La fecha y hora del pago.</p></li></li></ol></body></html>"
-										});
-							});
-		}
-	/* Alert email from mercado pago end */
 </script>
 
 <!-- Script MercadoPago start -->
