@@ -57,6 +57,8 @@
 				<p th:unless="${currentUser} == Invitado" style="color: LimeGreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;">Usted está logueado y listo para comprar. <i class="fas fa-user-check"></i></p> 
 				<p style="background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"> • <i style='color:LimeGreen;' class='fas fa-shield-alt'></i> Cifrado de datos <i style='color:LimeGreen' class='fas fa-lock'></i> SSL, nadie verá su información financiera.</p>
 			<!-- Advice to be logued end -->
+			<p th:text="#{app.title}"></p>
+		<p th:text="${#locale.language}"></p>
 		</div>
 		
 		<br>
