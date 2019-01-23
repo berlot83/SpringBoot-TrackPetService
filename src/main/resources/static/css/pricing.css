@@ -22,11 +22,12 @@ html, body{
 
 
 .pricingdiv{
+  font-family: 'Mali', cursive !important;
   display: flex;
   flex-wrap: wrap;
   font-size: 16px;
   justify-content: center;
-  font-family: 'Source Sans Pro', Arial, sans-serif;
+  /* font-family: 'Source Sans Pro', Arial, sans-serif; */
 
 }
 
