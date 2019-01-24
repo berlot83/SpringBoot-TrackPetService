@@ -16,10 +16,10 @@
                 <form action="/login" method="POST" >
                     
                     <div th:if="${param.error}" class="alert alert-danger">    
-                        Usuario o password incorrectos.
+                        <span th:text="#{login.userpasswrong}"></span>
                     </div>
                     <div th:if="${param.logout}" class="alert alert-warning"> 
-                        Saliste.
+                        <span th:text="login.logout"></span>
                     </div>
                     <div class="form-group">
                         <label for="username"><i class="fas fa-user" style="color:HotPink"></i> Usuario:</label><br>
