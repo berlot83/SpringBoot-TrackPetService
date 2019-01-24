@@ -7,22 +7,15 @@
 <body>
 	<!-- Template bar -->
 	<nav th:replace="default :: bar"></nav>
-	<div id="triangleTopLeftIndex"><div  style="position:absolute; top:-200px; left:0px;" ><img src="../img/world.png" /><div onmouseout="removeBounce(this)" onmouseover="addBounce(this)" style="color:white;text-shadow: 0px 0px 5px black; position:absolute; top:0px;left:0px;padding:5px;"><strong>Compralo y administralo online <i class="fas fa-wifi" style="color:#ff8000"></i></strong></div></div></div>
+	<div id="triangleTopLeftIndex"><div  style="position:absolute; top:-200px; left:0px;" ><img src="../img/world.png" /><div onmouseout="removeBounce(this)" onmouseover="addBounce(this)" style="color:white;text-shadow: 0px 0px 5px black; position:absolute; top:0px;left:0px;padding:5px;"><strong th:text="#{index.buyandadmin}"></strong> <i class="fas fa-wifi" style="color:#ff8000"></i></div></div></div>
 	<!-- Alert start -->
 	<div th:if="${emergency}" class="alert alert-danger">
-		<p>
-			El perro fue declarado como PERDIDO, busque en la DB para confirmar
-			su estado. <a href='/db-lost-pet' style="color: DarkRed">Base de
-				Datos</a>
-		</p>
+		<p th:text="#{index.lostdogdeclaration}"></p> <a th:text="#{index.db}" href='/db-lost-pet' style="color: DarkRed"> </a>
 	</div>
 
 	<div th:if="${rescued}" class="alert alert-success">
-		<p>
-			El perro fue declarado como RESCATADO, busque en la DB para confirmar
-			su estado. <a href='/db-lost-pet' style="color: DarkGreen">Base
-				de Datos</a>
-		</p>
+		<p th:text="#{index.rescuedog}"></p> <a th:text="#{index.db}" href='/db-lost-pet' style="color: DarkGreen"> </a>
+		
 	</div>
 	<!-- Alert end -->
 	<div class="container">
@@ -40,9 +33,8 @@
 								style="border-radius: 7px;">
 							<div class="carousel-caption d-none d-md-block transparency"
 								style="color: white; text-shadow: 1px 2px black;">
-								<h4>Porque amás tu mascota...</h4>
-								<h6 style="text-shadow: 1px 2px black;">Querés mejor para
-									ella</h6>
+								<h4 th:text="#{index.carousel.title1}"></h4>
+								<h6 style="text-shadow: 1px 2px black;" th:text="#{index.carousel.subtitle1}"></h6>
 							</div>
 						</div>
 						<div class="carousel-item">
@@ -51,9 +43,8 @@
 								style="border-radius: 7px;">
 							<div class="carousel-caption d-none d-md-block transparency"
 								style="color: white; text-shadow: 1px 2px black;">
-								<h4>Harías cualquier cosa por tu amigo...</h4>
-								<h6 style="text-shadow: 1px 2px black;">Porque te quiere y
-									no lo vas a abandonar</h6>
+								<h4 th:text="#{index.carousel.title2}"></h4>
+								<h6 th:text="#{index.carousel.subtitle2}" style="text-shadow: 1px 2px black;"></h6>
 							</div>
 						</div>
 						<div class="carousel-item">
@@ -62,9 +53,8 @@
 								style="border-radius: 7px;">
 							<div class="carousel-caption d-none d-md-block transparency"
 								style="color: white; text-shadow: 1px 2px black;">
-								<h4>Solo resta que alguien se fije en él...</h4>
-								<h6 style="text-shadow: 1px 2px black;">Colocale todos los
-									datos que quieras, los llevará adonde vaya</h6>
+								<h4 th:text="#{index.carousel.title3}"></h4>
+								<h6 style="text-shadow: 1px 2px black;" th:text="#{index.carousel.subtitle3}"></h6>
 							</div>
 						</div>
 						<div class="carousel-item">
@@ -73,9 +63,8 @@
 								style="border-radius: 7px;">
 							<div class="carousel-caption d-none d-md-block transparency"
 								style="color: white; text-shadow: 1px 2px black;">
-								<h4>El nunca te abandonaría...</h4>
-								<h6 style="text-shadow: 1px 2px black;">Te buscará hasta el
-									final, vos podés hacer lo mismo</h6>
+								<h4 th:text="#{index.carousel.title4}"></h4>
+								<h6 style="text-shadow: 1px 2px black;" th:text="#{index.carousel.subtitle4}"></h6>
 							</div>
 						</div>
 
@@ -85,22 +74,20 @@
 								style="border-radius: 7px;">
 							<div class="carousel-caption d-none d-md-block transparency"
 								style="color: white; text-shadow: 1px 2px black;">
-								<h4>Ya no hay distancias que te impidan protegerlo...</h4>
-								<h6 style="text-shadow: 1px 2px black;">Lo comprás, y luego
-									lo descargás e imprimís la veces que quieras, con el diseño que
-									más te guste...</h6>
+								<h4 th:text="#{index.carousel.title5}"></h4>
+								<h6 style="text-shadow: 1px 2px black;" th:text="#{index.carousel.subtitle5}"></h6>
 							</div>
 						</div>
 
 					</div>
 					<a class="carousel-control-prev" href="#carouselExampleControls"
 						role="button" data-slide="prev"> <span
-						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-						class="sr-only">Atrás</span>
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span th:text="#{index.back}"
+						class="sr-only"></span>
 					</a> <a class="carousel-control-next" href="#carouselExampleControls"
 						role="button" data-slide="next"> <span
-						class="carousel-control-next-icon" aria-hidden="true"></span> <span
-						class="sr-only">Siguiente</span>
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span th:text="#{index.forward}"
+						class="sr-only"></span>
 					</a>
 				</div>
 				<!--  End Carousel -->
@@ -110,10 +97,7 @@
 					class="container-fluid transparency">
 					<div>
 						<p id="banner1">
-							<img alt="Pet-QR" src="../img/iconoPet75.png"
-								style="width: 30px; height: 30px"> Pet-QR ofrece
-							Geolocalización y control total sobre tus códigos QR. Subí a tu
-							mascota a la nube ya mismo
+							<img alt="Pet-QR" src="../img/iconoPet75.png" style="width: 30px; height: 30px; padding:3px;" th:text="#{index.carousel.panel}">
 						</p>
 						.
 					</div>
@@ -121,17 +105,15 @@
 						<div class="form-group">
 							<button class="btn btn-lg buttonViolet form-group"
 								onclick="window.location.href= '/pricing'"
-								onmouseout="removeBounce(this)" onmouseover="addBounce(this)">Comprar
-								QR</button>
+								onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.buyqr}"></button>
 							<br>
 							<button class="btn btn-lg buttonViolet form-group"
 								onclick="window.location.href= '/prepaid-qr'"
-								onmouseout="removeBounce(this)" onmouseover="addBounce(this)">Activar
-								QR</button>
+								onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.activateqr}"></button>
 							<br>
 						</div>
 						<div style="display: inline-block; padding: 20px">
-							<span class="badge badge-danger">Ver Ejemplo</span><img
+							<span th:text="#{index.viewexample}" class="badge badge-danger"></span><img
 								src="../img/pdfIcon75.png" alt="" id="pdfimage" 
 								style="width: 64px" onclick="viewPdf()"
 								onmouseover="addBounce(this), changeCursorPdf()"
@@ -149,7 +131,6 @@
 						</script>
 
 					</div>
-					<!-- 					<small style="color:pink">* Para activar primero tiene que comprar y recibirá el código en su email.</small> -->
 				</div>
 				<!-- Button end -->
 
@@ -157,21 +138,14 @@
 			<br>
 			<div id="indexSecondPanel" class="flex-container" style="padding-top: 20px; padding-bottom: 20px" onmouseover="addRubberBand(this)" onmouseout="removeRubberBand(this)">
 				<div id="secondPanel1Div" class="container-fluid" style="width: 35%">
-					<img src="../img/presentation.png" alt="Ejemplo"
-						style="width: 300px; padding-bottom: 20px;" />
+					<img src="../img/presentation.png" alt="Ejemplo" style="width: 300px; padding-bottom: 20px;" />
 				</div>
 
 				<div id="secondPanel2Div" style="color: white; width: 65%"
 					class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fas fa-qrcode" style="color: BlueViolet"></i> Qué es
-						Pet-QR?,
-					</h3>
-					<p id="introduction" style="text-align: justify">Es un sistema
-						automatizado de creación de códigos QR online almacenados en la
-						cloud, dedicado únicamente a mascotas. El mismo te permite acceder
-						a los datos con la sola lectura del código con "cualquier" lector
-						QR, no necesitas descargar ningún programa en especial.</p>
+					<i class="fas fa-qrcode" style="color: BlueViolet; font-size:28px; display:inline;float:left; padding:5px;"></i>
+					<h3 th:text="#{index.panel1.petqr}"></h3>
+					<p id="introduction" style="text-align: justify" th:text="#{index.panel1.petqr.description}"></p>
 				</div>
 			</div>
 
@@ -182,15 +156,9 @@
 				<div id="thirdPanel1Div"
 					style="padding: 20px; color: white; width: 65%"
 					class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fab fa-steam-square" style="color: coral"></i> Cómo
-						funciona?
-					</h3>
-					<p>Nuestra plataforma avanzada, crea tres códigos QR en alta
-						calidad, el más pequeño de un tamaño real de 3.5 x 3.5 cm, 4.5 x
-						4.5 cm y 6.5 x 6.5cm, para ser impresos sublimados o colocados
-						donde el dueño lo desee, los mismos pueden descargarse sin límite.
-					</p>
+					<i class="fab fa-steam-square" style="color: coral; font-size:28px; float: left; padding: 5px;"></i>
+					<h3 th:text="#{index.panel2.how}"></h3>
+					<p th:text="#{index.panel2.how.description}"></p>
 				</div>
 
 				<div id="thirdPanel2Div" class="container-fluid" style="width: 35%">
@@ -233,15 +201,9 @@
 				<div id="fourPanel2Div"
 					style="padding: 20px; color: white; width: 65%"
 					class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fas fa-cogs" style="color: lightgreen"></i> Control
-						Total
-					</h3>
-					<p id="introduction">Administración total sobre tus códigos,
-						modificar, ver, borrar, cambiar diseño de logo y crear alerta de
-						pérdida instantánea que coloca al perro en nuestra base de datos,
-						asi como la opción de transferencia definitiva de código a otro
-						usuario.</p>
+					<i class="fas fa-cogs" style="color: lightgreen; font-size:28px; float:left; padding-right: 7px;"></i>
+					<h3 th:text="#{index.panel3.control}"></h3>
+					<p id="introduction" th:text="#{index.panel3.control.description}"></p>
 				</div>
 
 			</div>
@@ -252,16 +214,9 @@
 				<div id="fivePanel1Div"
 					style="padding-top: 20px; padding-bottom: 20px; color: white; width: 65%"
 					class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fas fa-wifi" style="color: deeppink"></i> Cómo se envía?
-					</h3>
-					<p id="introduction">
-						No hay límites con respecto a los envíos, ya que el mismo es
-						automático, apenas se realiza la compra a la casilla de email,
-						realmente para nosotros da lo mismo que estés en Argentina Capital
-						Federal o en la China. Es un sistema absolutamente innovador que
-						rompe los estandares de venta física de chapas id.<br>
-					</p>
+					<i class="fas fa-wifi" style="color: deeppink; font-size:28px; float:left; padding-right: 7px;"></i>
+					<h3 th:text="#{index.panel4.shipping}"></h3>
+					<p id="introduction" th:text="#{index.panel4.shipping.description}"></p>
 				</div>
 
 				<div id="fivePanel2Div" class="container-fluid" style="width: 35%">
@@ -272,13 +227,11 @@
 			</div>
 			<div style="margin: 0 auto; text-align:center;width:80%; padding: 20px;" class="transparency">
 				<span class="badge badge-lg badge-info form-group"
-					style="margin: 0 auto;">Empiece ya mismo con una prueba por
-					30 días.</span><br>
+					style="margin: 0 auto;" th:text="#{index.panel5.starnow}"></span><br>
 				<button class="btn btn-warning form-group" onclick="window.location.href='/pricing'"
-					style="color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong>Comience ya mismo</strong></button>
+					style="color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}">Comience ya mismo</strong></button>
 				<br> <small style="color: pink; margin: 0 auto;"
-					class="form-group">Pasado ése período de tiempo el código
-					será eliminado de la DB.</small><br>
+					class="form-group" th:text="#{index.panel5.starnow.description}"></small><br>
 			</div>
 			<br>
 			<br>

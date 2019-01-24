@@ -151,10 +151,8 @@
 						aria-labelledby="navbarDropdownMenuLinkPetQR"
 						style="background-color: black; color: white;">
 						<a class="dropdown-item" href="/prepaid-qr"><i
-							class="fas fa-qrcode" style="color: white"></i> Activar QR
-							prepago</a> <a class="dropdown-item" href="/db-lost-pet"><i
-							class="fas fa-database" style="color: white"></i> DB mascotas
-							perdidas</a>
+							class="fas fa-qrcode" style="color: white"></i> <span th:text="#{default.activeqr}"></span></a> <a class="dropdown-item" href="/db-lost-pet"><i
+							class="fas fa-database" style="color: white"></i> <span th:text="#{default.dbpets}"></span></a>
 					</div></li>
 
 				<!-- Start vet-cloud nav button -->
@@ -177,17 +175,16 @@
 <!-- 					</div></li> -->
 				<!-- End vet-cloud nav button -->
 
-				<li class="nav-item"><a class="nav-link" href="/pricing" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i
-						class="fas fa-paw"></i> Productos</a></li>
+				<li class="nav-item"><a class="nav-link" href="/pricing" onmouseout="removeBounce(this)" onmouseover="addBounce(this)" ><i class="fas fa-paw" ></i> <span th:text="#{default.products}"></span></a></li>
 
 				<li class="nav-item" ><a class="nav-link" href="/about" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i
-						class="fas fa-wrench"></i> QR-Ayuda</a></li>
+						class="fas fa-wrench"></i> <span th:text="#{default.help}"></span></a></li>
 
 				<li class="nav-item"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><a class="nav-link" href="/faq"><i
 						class="far fa-question-circle"></i> F.A.Q</a></li>
 
 				<li class="nav-item active"><a class="nav-link" href="#"
-					onclick="contact()"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i class="far fa-envelope"></i> Contacto</a></li>
+					onclick="contact()"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i class="far fa-envelope"></i> <span th:text="#{default.contact}"></span></a></li>
 
 			</ul>
 		</div>
@@ -205,50 +202,26 @@
 			<button style="text-shadow: 1px 2px black;" type="submit"
 				th:if="${currentUser != 'Invitado'}" class="nav-link btn btn-danger"
 				id="logoutButton">
-				<i class="fas fa-sign-out-alt"></i> Salir
+				<i class="fas fa-sign-out-alt"></i> <span th:text="#{default.logout}"></span>
 			</button>
 		</form>
 
 		<!-- Print Register -->
 		<a th:if="${currentUser == 'Invitado'}" class="nav-link"
 			href="/sign-up" id="registerButton" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i class="fas fa-sign-in-alt"></i>
-			Registro</a>
+			<span th:text="#{default.register}"></span></a>
 
-<div th:switch="__${#locale.language}__">
-    <p th:case="en"><img id="english" src="../img/flags/flag-usa-40x25.png" alt="English" style="display:none"/> English</p>
-    <p th:case="es"><img id="spanish" src="../img/flags/spain-flag-40x25.png" alt="Español" /> Español</p>
-    <p th:case="*">English</p>
-</div>
-
-			
-<!-- 			<img id="english" src="../img/flags/flag-usa-40x25.png" alt="English" style="display:none"/> -->
-<!-- 			<img id="spanish" src="../img/flags/spain-flag-40x25.png" alt="Español" /> -->
-<!-- 			<select id="selectLanguage" onchange="changeLanguage()"> -->
-<!-- 				<option>Elija</option> -->
-<!-- 				<option th:value="es">Español</option> -->
-<!-- 				<option th:value="en">Inglés</option> -->
-<!-- 			</select> -->
-        
-        <script>
-//         function changeLanguage(){
-//         	var selectLanguage = document.getElementById("selectLanguage").value;
-//         	if(selectLanguage == "en"){
-//         		window.location.href = "?lang=en";
-        		
-//         	}else{
-//         		window.location.href = "?lang=es";
-//         	}
-        	
-//         }
-        
-        </script>
-			
+		<a th:switch="__${#locale.language}__" class="nav-link">
+		    <a th:case="en"><img id="english" src="../img/flags/flag-usa-40x25.png" alt="English"/> English</a>
+		    <a th:case="es"><img id="spanish" src="../img/flags/spain-flag-40x25.png" alt="Español"/> Español</a>
+		    <a th:case="*">English</a>
+		</a>
 	</nav>
 	<!-- End logout divs -->
 	<!-- End menu bar -->
 
 	<footer th:fragment="footer" id="footer" class="text-white mt-4">
-	<div th:if="${error != null}" class="alert alert-danger" id="error">Debe tener una cuenta para ingresar a esta sección.</div>
+	<div th:if="${error != null}" th:text="#{default.erroraccount}" class="alert alert-danger" id="error"></div>
 		<div class="container-fluid py-3" >
 			<div class="row">
 				<div id="footerBrand" class="col-md-6" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
@@ -258,7 +231,6 @@
 						<strong style="color: #ff8000">Vet-Cloud</strong>® y <Strong
 						style="color: #ff8000">Pet-QR</Strong>® son marcas Registradas de
 						<strong style="color: #ff8000">Molokotech Solutions</strong>.</span>
-
 
 
 				</div>
