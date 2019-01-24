@@ -6,34 +6,32 @@
 	<br>
 	<div class="container">
 		<div id="prepaidMainDiv" class="container-fluid">
-			<h2 id="titleActivateQR">
-				<i class="fas fa-paw"></i> Activar QR <i class="fas fa-qrcode"></i>
-			</h2>
+			<i class="fas fa-paw" style="font-size:32px; float:left"></i>
+			<h2 id="titleActivateQR" th:text="#{prepaidqr.title}"></h2>
 
 			<br>
 
 			<form action="#" th:action="@{/prepaid-qr}" th:object="${prepaidQR}"
 				method="POST">
-			<label class="form-group" for="id">Ingrese código de activación</label><br>
+			<label class="form-group" for="id" th:text="#{prepaidqr.insertactivationcode}"></label><br>
 				<input type="text" th:field="*{id}" id="id"
 					onkeyup="findPrepaidQrStrBase64()"
 					required /> <br> <label class="form-group"><i class="fas fa-paw"></i></label> <small
-					style="color: turquoise">Código alfanumérico único de 20
-					caractéres impreso en la cinta.</small> <label><i
+					style="color: turquoise" th:text="#{prepaidqr.codedetails}"></small> <label><i
 					class="fas fa-paw"></i></label> <br>
 					
 					<div><label class="form-group" for="selledOnline">Email:</label><br>
 						<input type="text" th:field="*{selledOnline}" id="selledOnline" /><br>
-						<small style="color: turquoise">Casilla de Mail de MercadoPago donde le llegó el código, puede ser diferente al de su cuenta.</small>
+						<small style="color: turquoise" th:text="#{prepaidqr.activationemail}"></small>
 					</div>
 					<div th:if="${errorMailAsociated}" class="alert alert-danger" style="color:DarkRed;text-shadow:0px 1px black; ">    
-                        <p  th:text="${errorMailAsociated}"></p>
+                        <p  th:text="#{prepaidqr.errormailassociatte}"></p>
                     </div>
 <!-- 				<div id="resultDivSellPoint"></div> -->
 				<br>
 				<div id="resultImage"></div>
 				<br>
-				<button id="activateButtonQR" class="btn btn-info" type="submit">Activar QR</button>
+				<button id="activateButtonQR" class="btn btn-info" type="submit" th:text="#{prepaidqr.activatebutton}"></button>
 			</form>
 			<br> <br> <br> <br> <br> <br>
 		</div>

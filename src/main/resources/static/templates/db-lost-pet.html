@@ -6,23 +6,23 @@
 		<div class="container">
 			<div class="container-fluid" id="lostPetContainer" style="height:100vh; padding:20px;">
 				<div class="transparencyWithoutPadding">
-				<h2 style="padding:20px;">Lista de Mascotas perdidas de Pet-QR</h2>
+				<h2 style="padding:20px;" th:text="#{db.title}"></h2>
 				
-				<p  style="margin:20px;">Acá se muestra la lista cpn datos "muy básicos" de mascotas, que habiendo adquirido Pet-QR fueron declaradas como perdidas, en las listas <strong>No se muestran números de contacto ni ubicaciones</strong> para proteger la privacidad del usuario, sino que es una orientación para aquel que la encuentre y pueda ver si coinciden los últimos 5 dígitos del ID con los de la DB.</p>
+				<p  style="margin:20px;" th:text="#{db.description}"></p>
 	
 				<div th:if="${list} != null" id="tableContainer" class="container-fluid">
 					<table id="lostTable" class="table table-dark table-responsive table-striped rounded">
 						<thead>
-							<tr><td>Perfil</td>
-								<td>Ult. dig. id</td>
-								<td>Sexo</td>
-								<td>Nombre</td>
-								<td>Raza</td>
-								<td>Nacimiento</td>
-								<td>Medicado</td>
-								<td>Enfermedad</td>
-								<td>Marca Comida</td>
-								<td>País</td>
+							<tr><td th:text="#{db.table.profile}">Perfil</td>
+								<td th:text="#{db.table.id}">Ult. dig. id</td>
+								<td th:text="#{db.table.sex}">Sexo</td>
+								<td th:text="#{db.table.name}">Nombre</td>
+								<td th:text="#{db.table.raze}">Raza</td>
+								<td th:text="#{db.table.birthday}">Nacimiento</td>
+								<td th:text="#{db.table.medicated}">Medicado</td>
+								<td th:text="#{db.table.illness}">Enfermedad</td>
+								<td th:text="#{db.table.food}">Marca Comida</td>
+								<td th:text="#{db.table.country}">País</td>
 							</tr>
 						</thead>
 						<th:block th:each="listIterate : ${list}"
@@ -73,10 +73,10 @@
 				
 				<br>
 					
-				<h4>Ingreso manual de id:</h4>	
-				<p  style="margin:20px;">Si por alguna razón tu celular o tablet no cuenta con cualquier <strong>lector de códigos QR</strong>, podés ver todos los datos ingresando estos datos a la barra de direcciones de tu navegador web</p>
-				<label style="color:turquoise; margin:20px;">https://pet-qr.com/id/</label><input id="idManually" type="text" placeholder="Código alfanumérico QR">
-				<button class="btn btn-sm btn-success" onclick="findManuallyId()">Ver Datos</button>	
+				<h4 th:text="#{db.manualingress.title}"></h4>	
+				<p  style="margin:20px;" th:text="#{db.manualingress.description}"></p>
+				<label style="color:turquoise; margin:20px;">https://pet-qr.com/id/</label><input id="idManually" type="text" placeholder="Code QR">
+				<button class="btn btn-sm btn-success" onclick="findManuallyId()" th:text="#{db.viewbutton}"></button>	
 				</th:block>
 		<br>
 		<br>
