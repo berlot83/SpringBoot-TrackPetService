@@ -5,8 +5,8 @@
 	<div class="container">
 		<div class="container-fluid" id="sendLinkMainDiv">
 			<div id="dataLinkDiv">
-				<h3>Estado:</h3>
-				<p>Verifique en su correo el link de cambio de contraseña, una vez que haya cambiado la misma, ingrese al link de abajo para loguearse.</p>
+				<h3 th:text="#{sendlink.state}">Estado:</h3>
+				<p th:text="#{sendlink.emailverify}">Verifique en su correo el link de cambio de contraseña, una vez que haya cambiado la misma, ingrese al link de abajo para loguearse.</p>
 
 				<a href="/login">Login</a>
 			</div>

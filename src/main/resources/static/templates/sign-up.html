@@ -8,7 +8,7 @@
 	<div class="container">
 		<div id="signUpFormMainDiv" class="container-fluid">
 		<div class="transparencyWithoutPadding" style="padding:10px">
-			<H5>Registro de usuario</H5>
+			<H5 th:text="#{signup.title}"></H5>
 			<hr style="border: 1px solid DarkViolet !important;">
 			<form class="needs-validation" action="#" th:action="@{/sign-up}"
 				th:object="${user}" method="POST">

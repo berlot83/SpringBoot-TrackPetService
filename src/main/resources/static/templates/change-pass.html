@@ -7,16 +7,16 @@
 <div id="dataChangePass" class="container-fluid">
 	<form action="#" th:action="@{/change-pass}" method="POST" th:object="${user}">
 		<div class="form-group">
-			<label for="name" style="font-size:26px"><i style="color:Coral" class="fas fa-user"></i> Usuario:</label>
+			<label for="name" style="font-size:26px"><i style="color:Coral" class="fas fa-user"></i> <span th:text="#{changepass.userlabel}">Usuario:</span></label>
 			<input type="text" th:field="*{name}" class="form-control">
-			<small style="color:pink"><i style="color:lightgreen" class="fas fa-envelope"></i> Usted recibirá un email con un link para el cambio de contraseña, en la casilla que declaró al registrarse.</small>
+			<small style="color:pink"><i style="color:lightgreen" class="fas fa-envelope"></i> <span th:text="#{changepass.adviceemailwithlink}">Usted recibirá un email con un link para el cambio de contraseña, en la casilla que declaró al registrarse.</span></small>
 		</div>
 
-			<button class="btn btn-lg btn-warning" type="submit">Enviar</button>
+			<button class="btn btn-lg btn-warning" type="submit" th:text="#{changepass.sendbutton}">Enviar</button>
 	</form>
 	
 	<br>
-					<div th:if="${error}" class="alert alert-danger" id="problem">Parece que ese usuario no existe.</div>
+					<div th:if="${error}" class="alert alert-danger" id="problem"><span th:text="#{changepass.errorusernotexist}">Parece que ese usuario no existe.</span></div>
 </div>
 </div>
 </div>

@@ -34,7 +34,7 @@
 		        <li class="title"><img src="../img/prepaidQR1366x900.jpg"  class="img-fluid" style="border:2px solid white" /><br />Pet-QR Online Tag</li>
 		        <li>
 		        	<div class="form-group">
-						<label for="user"><i class="fas fa-flag" style="color: #7A52A7"></i> País</label>
+						<label for="user"><i class="fas fa-flag" style="color: #7A52A7"></i> <span th:text="#{checkout.countrylabel}">País</span></label>
 						<select id="selectCountry" onchange="selectCountryPayment()" class="form-control">
 							<option value=1>Argentina</option>
 							<option value=2>Colombia</option>
@@ -53,7 +53,7 @@
 					</div>
 				</li>
 		        <li>
-						<label for="user"><i class="fas fa-user" style="color: #7A52A7"></i> Usuario:</label>
+						<label for="user"><i class="fas fa-user" style="color: #7A52A7"></i> <span th:text="#{checkout.userlabel}">Usuario:</span></label>
 						<p id="user" th:if="${user.name} != null" th:text="${user.name}" style="color: LimeGreen; margin-left: 20px;"></p>
 				</li>
 		        <li>
@@ -65,7 +65,7 @@
 			<!-- Payment Li PayPal start -->
 		        <li id="paypal" style="display:none;">
 			<!-- PayPal for the rest countries start -->
-					<label for="user" style="text-align:left"><i class="far fa-credit-card" style="color: #7A52A7"></i> <strong>F. de pago:</strong> <img src="../img/paypal-logo-horizontal-20x80.png" class="text-center"></label>
+					<label for="user" style="text-align:left"><i class="far fa-credit-card" style="color: #7A52A7"></i> <strong th:text="#{checkout.waypayment}">F. de pago:</strong> <img src="../img/paypal-logo-horizontal-20x80.png" class="text-center"></label>
 					<select id="kindOfPaymentPayPal" class="form-control" onchange="">
 						<option value=0>Elegir</option>
 						<option value=1>PayPal/ Compra definitiva/ sin límite de uso</option>
@@ -123,8 +123,8 @@
 		    
 		    </ul>
 		</div>
-		    <p style="background: rgba(0, 0, 0, 0.5); text-align:center; border-radius: 5px; padding: 5px;"><i style='color:LimeGreen;' class='fas fa-shield-alt'></i> Cifrado de datos <i style='color:LimeGreen' class='fas fa-lock'></i> SSL, nadie verá su información financiera.</p>
-		<p style="background: rgba(0, 0, 0, 0.5); text-align:center; border-radius: 5px; padding: 5px;">Recibirá su código en la casilla de mail declarada a <strong style="color:gold">MercadoPago</strong> o <strong style="color:CornflowerBlue">PayPal</strong>, para activarlo visite <a href="/prepaid-qr" style="color:turquoise">aquí</a>.</p>
+		    <p style="background: rgba(0, 0, 0, 0.5); text-align:center; border-radius: 5px; padding: 5px;"><i style='color:LimeGreen;' class='fas fa-shield-alt'></i> <span th:text="checkout.ssl">Cifrado de datos</span> <i style='color:LimeGreen' class='fas fa-lock'></i> <span th:text="#{checkout.ssl.privacy}">SSL, nadie verá su información financiera.</span></p>
+		<p style="background: rgba(0, 0, 0, 0.5); text-align:center; border-radius: 5px; padding: 5px;"><span th:text="#{checkout.advice.recibecode1}">Recibirá su código en la casilla de mail declarada a</span> <strong style="color:gold">MercadoPago</strong> <span th:text="#{checkout.advice.recibecode2}">o</span> <strong style="color:CornflowerBlue">PayPal</strong><span th:text="#{checkout.advice.recibecode3}">, para activarlo visite</span> <a href="/prepaid-qr" style="color:turquoise">aquí</a>.</p>
 		<!-- Columns paynow flexbox start -->
 <br>
 <br>

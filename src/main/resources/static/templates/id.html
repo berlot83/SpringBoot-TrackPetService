@@ -12,48 +12,47 @@
 					<span class="badge badge-lg badge-danger" th:text="${prepaidQR.id}"
 						id="id"></span>
 				</h4>
-				<p th:if="${prepaidQR.userName} != null"
-					th:utext="'<strong style=color:coral>Usuario asignado:</strong> ' + ${prepaidQR.userName}"></p>
+				<p th:if="${prepaidQR.userName} != null">
+					<strong style=color:coral th:text="#{id.assignedusername}">Usuario asignado: </strong><span th:text="${prepaidQR.userName}"></span></p>
 				<br>
 				<h5>
-					<i class="fas fa-paw" style="color:pink"></i> Datos básicos
+					<i class="fas fa-paw" style="color:pink"></i> <span th:text="#{id.basicinfo}">Datos básicos</span>
 				</h5>
 				<hr>
 				<img th:if="${prepaidQR.resultBase64Avatar == null}" alt="" src="../img/withoutPhoto.png" class="img-thumbnail" style="width:150px; height:150px;" />
 				<img th:unless="${prepaidQR.resultBase64Avatar == null}" th:src="${prepaidQR.resultBase64Avatar}" style="box-shadow: 0px 0px 15px black; border-radius: 7px;" class="img-thumbnail"/>
 				
-				<p th:if="${prepaidQR.owner.residence} != null"
-					th:utext="'<strong style=color:coral>País:</strong> ' + ${prepaidQR.owner.residence}"></p>
-				<p th:if="${prepaidQR.pet.petName} != null"
-					th:utext="'<strong style=color:coral>Nombre:</strong> ' + ${prepaidQR.pet.petName}"></p>
-				<p th:if="${prepaidQR.pet.age} <= 2018"
-					th:utext="'<strong style=color:coral>Nacimimento:</strong> ' + ${prepaidQR.pet.age}"></p>
-				<p th:if="${prepaidQR.pet.sex} != null"
-					th:utext="'<strong style=color:coral>Sexo:</strong> ' + ${prepaidQR.pet.sex}"></p>
+				<p th:if="${prepaidQR.owner.residence} != null">
+					<strong style=color:coral th:text="#{id.country}">País:</strong> <span th:text="${prepaidQR.owner.residence}"></span></p>
+				<p th:if="${prepaidQR.pet.petName} != null">
+					<strong style=color:coral th:text="#{id.petname}">Nombre:</strong> <span th:text="${prepaidQR.pet.petName}"></span></p>
+				<p th:if="${prepaidQR.pet.age} <= 2018">
+					<strong style=color:coral th:text="#{id.birthday}">Nacimimento:</strong> <span th:text="${prepaidQR.pet.age}"></span></p>
+				<p th:if="${prepaidQR.pet.sex} != null">
+					<strong style=color:coral th:text="#{id.sex}">Sexo:</strong> <span th:text="${prepaidQR.pet.sex}"></span></p>
 
 				<br>
 				<h5>
-					<i class="fas fa-heartbeat" style="color:red"></i> Estado de salud
+					<i class="fas fa-heartbeat" style="color:red"></i> <span th:text="#{id.health.title}">Estado de salud</span>
 				</h5>
 				<hr>
-				<p th:if="${prepaidQR.pet.clinicHistory} != null"
-					th:utext="'<strong style=color:coral>Historia Clínica:</strong> ' + ${prepaidQR.pet.clinicHistory}"></p>
-				<p th:if="${prepaidQR.pet.illness} != null"
-					th:utext="'<strong style=color:coral>Enfermedades:</strong> ' + ${prepaidQR.pet.illness}"></p>
+				<p th:if="${prepaidQR.pet.clinicHistory} != null">
+					<strong style=color:coral th:text="#{id.hc}">Historia Clínica:</strong> <span th:text="${prepaidQR.pet.clinicHistory}"></span></p>
+				<p th:if="${prepaidQR.pet.illness} != null">
+					<strong style=color:coral th:text="#{id.illness}">Enfermedades:</strong> <span th:text="${prepaidQR.pet.illness}"></span></p>
 
-				<p th:if="${prepaidQR.pet.medicated} == true"><strong style="color:coral">Medicado:</strong> Sí</p>
-				<p th:unless="${prepaidQR.pet.medicated} == true"
-					th:utext="'<strong style=color:coral>Medicado:</strong> ' + ${prepaidQR.pet.medicated}">Medicado:
-					No</p>
+				<p th:if="${prepaidQR.pet.medicated} == true"><strong style="color:coral" th:text="#{id.medicated}">Medicado:</strong> Sí</p>
+				<p th:unless="${prepaidQR.pet.medicated} == true">
+					<strong style=color:coral th:text="#{id.medicated}">Medicado:</strong> No</p>
 
 
 				<table class="table table-dark table-bordered table-responsive">
 					<thead>
 						<tr>
-							<td>V. Antirábica</td>
-							<td>V. Polivalente</td>
-							<td>V. Sextuple</td>
-							<td>V. Octuple</td>
+							<td th:text="#{id.vaccineantirabic}">V. Antirábica</td>
+							<td th:text="#{id.vaccinepolivalent}">V. Polivalente</td>
+							<td th:text="#{id.vaccinesextuple}">V. Sextuple</td>
+							<td th:text="#{id.vaccineoctuple}">V. Octuple</td>
 						</tr>
 						<tr>
 							<td><p th:if="${prepaidQR.pet.medicated} != null"
@@ -68,57 +67,57 @@
 					</thead>
 				</table>
 				<br>
-				<p th:if="${prepaidQR.pet.lastVeterinaryVisit} != null"
-					th:utext="'<strong style=color:coral>Últ.visita veterinaria:</strong> ' + ${prepaidQR.pet.lastVeterinaryVisit}"></p>
+				<p th:if="${prepaidQR.pet.lastVeterinaryVisit} != null">
+					<strong style=color:coral th:text="#{id.lastveterinaryvisit}">Últ.visita veterinaria:</strong> <span th:text="${prepaidQR.pet.lastVeterinaryVisit}"></span></p>
 
-				<p th:if="${prepaidQR.pet.neuteredPet} == true"><strong style="color:coral">Castrado:</strong> Sí</p>
-				<p th:unless="${prepaidQR.pet.neuteredPet} == true"><strong style=color:coral>Castrado:</strong> No</p>
+				<p th:if="${prepaidQR.pet.neuteredPet} == true"><strong style="color:coral" th:text="#{id.neuteredpet}">Castrado:</strong> Sí</p>
+				<p th:unless="${prepaidQR.pet.neuteredPet} == true"><strong style=color:coral th:text="#{id.neuteredpet}">Castrado:</strong> No</p>
 
-				<p th:if="${prepaidQR.pet.pregnant} == true"><strong style=color:coral>Preñiada:</strong> Sí</p>
-				<p th:unless="${prepaidQR.pet.pregnant} == true"><strong style=color:coral>Preñiada:</strong> No</p>
+				<p th:if="${prepaidQR.pet.pregnant} == true"><strong style=color:coral th:text="#{id.pregnant}">Preñiada:</strong> Sí</p>
+				<p th:unless="${prepaidQR.pet.pregnant} == true"><strong style=color:coral th:text="#{id.pregnant}">Preñiada:</strong> No</p>
 
 				<br>
 
 				<h5>
-					<i class="fas fa-fish" style="color:lightblue"></i> Alimentación
+					<i class="fas fa-fish" style="color:lightblue"></i> <span th:text="#{id.food.title}">Alimentación</span>
 				</h5>
 				<hr>
-				<p th:if="${prepaidQR.pet.foodBrand} != null"
-					th:utext="'<strong style=color:coral>Marca de Comida bal:</strong> ' + ${prepaidQR.pet.foodBrand}"></p>
-				<p th:if="${prepaidQR.pet.quantityFood} != null"
-					th:utext="'<strong style=color:coral>Cantidad comida Balanceada:</strong> ' + ${prepaidQR.pet.quantityFood} + ' gr'"></p>
-				<p th:if="${prepaidQR.pet.coockedFood} != null"
-					th:utext="'<strong style=color:coral>Comida húmeda:</strong> ' + ${prepaidQR.pet.coockedFood}"></p>
+				<p th:if="${prepaidQR.pet.foodBrand} != null">
+					<strong style=color:coral th:text="#{id.brandfood}">Marca de Comida bal:</strong> <span th:text="${prepaidQR.pet.foodBrand}"></span></p>
+				<p th:if="${prepaidQR.pet.quantityFood} != null">
+					<strong style=color:coral th:text="#{id.quantityfood}">Cantidad comida Balanceada:</strong> <span th:text="${prepaidQR.pet.quantityFood}"></span> gr</p>
+				<p th:if="${prepaidQR.pet.coockedFood} != null">
+					<strong style=color:coral th:text="#{id.freshfood}">Comida húmeda:</strong> <span th:text="${prepaidQR.pet.coockedFood}"></span></p>
 				<br>
 				<h5>
-					<i class="fas fa-paw" style="color:pink"></i> Estado
+					<i class="fas fa-paw" style="color:pink"></i> <span th:text="#{id.status.title}">Estado</span>
 				</h5>
 				<hr>
-				<p th:if="${prepaidQR.pet.status} != false"><strong style=color:coral>Normal</strong></p>
+				<p th:if="${prepaidQR.pet.status} != false"><strong style=color:coral th:text="#{id.status.normal}">Normal</strong></p>
 				<p th:unless="${prepaidQR.pet.status} != false"
-					style="color: deeppink;">Perdido!!!, contáctese con los tutores
+					style="color: deeppink;" th:text="#{id.status.lost}">Perdido!!!, contáctese con los tutores
 					por favor.</p>
 				<br>
 				<h5>
-					<i class="fas fa-user" style="color:lightgreen"></i> Datos de contacto
+					<i class="fas fa-user" style="color:lightgreen"></i> <span th:text="#{id.owner.title}">Datos de contacto</span>
 				</h5>
 				<hr>
-				<p th:if="${prepaidQR.owner.ownerName} != null"
-					th:utext="'<strong style=color:coral>Tutor:</strong> ' + ${prepaidQR.owner.ownerName} + ' ' + ${prepaidQR.owner.ownerLastname}"></p>
-				<p th:if="${prepaidQR.owner.dni} != null"
-					th:utext="'<strong style=color:coral>Dni:</strong> ' + ${prepaidQR.owner.dni}"></p>
-				<p th:if="${prepaidQR.owner.telephone1} != null"
-					th:utext="'<strong style=color:coral>Teléfono:</strong> ' + ${prepaidQR.owner.telephone1}"></p>
-				<p th:if="${prepaidQR.owner.telephone2} != null"
-					th:utext="'<strong style=color:coral>Teléfono:</strong> ' + ${prepaidQR.owner.telephone2}"></p>
-				<p th:if="${prepaidQR.owner.email} != null"
-					th:text="${prepaidQR.owner.email}" id="mail" style="color:LimeGreen"></p>
-				<p th:if="${prepaidQR.owner.address} != null"
-					th:utext="'<strong style=color:coral>Dirección:</strong> ' + ${prepaidQR.owner.address}"></p>
-				<p th:if="${prepaidQR.owner.facebook} != null"
-					th:utext="'<strong style=color:coral>Facebook:</strong> ' + ${prepaidQR.owner.facebook}"></p>
-				<p th:if="${prepaidQR.owner.instagram} != null"
-					th:utext="'<strong style=color:coral>Instagram:</strong> ' + ${prepaidQR.owner.instagram}"></p>
+				<p th:if="${prepaidQR.owner.ownerName} != null">
+					<strong style=color:coral th:text="#{id.ownername}">Tutor:</strong> <span th:text="${prepaidQR.owner.ownerName}"></span> <span th:text="${prepaidQR.owner.ownerLastname}"></span></p>
+				<p th:if="${prepaidQR.owner.dni} != null">
+					<strong style=color:coral th:text="#{id.idlegalnumber}">Dni:</strong> <span th:text="${prepaidQR.owner.dni}"></span></p>
+				<p th:if="${prepaidQR.owner.telephone1} != null">
+					<strong style=color:coral th:text="#{id.phone1}">Teléfono:</strong> <span th:text="${prepaidQR.owner.telephone1}"></span></p>
+				<p th:if="${prepaidQR.owner.telephone2} != null">
+					<strong style=color:coral th:text="#{id.phone2}">Teléfono:</strong> <span th:text="${prepaidQR.owner.telephone2}"></span></p>
+				<p th:if="${prepaidQR.owner.email} != null">
+					<strong style=color:coral th:text="#{id.email}">Email:</strong> <span th:text="${prepaidQR.owner.email}" id="mail" style="color:LimeGreen"></span></p>
+				<p th:if="${prepaidQR.owner.address} != null">
+					<strong style=color:coral th:text="#{id.address}">Dirección:</strong> <span th:text="${prepaidQR.owner.address}"></span></p>
+				<p th:if="${prepaidQR.owner.facebook} != null">
+					<strong style=color:coral th:text="#{id.facebook}">Facebook:</strong> <span th:text="${prepaidQR.owner.facebook}"></span></p>
+				<p th:if="${prepaidQR.owner.instagram} != null">
+					<strong style=color:coral th:text="#{id.instagram}">Instagram:</strong> <span th:text="${prepaidQR.owner.instagram}"></span></p>
 				<input type="hidden" th:value="${prepaidQR.strBase64}"
 					id="strBase64"></input> <br>
 
