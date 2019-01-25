@@ -4,7 +4,7 @@
 <title>Track Pet services Controller Page</title>
 </head>
 
-<body onload="advice(), initMap()">
+<body onload="initMap(), retrivePrepaidQR()">
 
 	<nav th:replace="default :: bar"></nav>
 
@@ -729,6 +729,11 @@
 				<div id="map" class="container-fluid"></div>
 			</div>
 			<!-- Map End -->
+			<br>
+			<div id="videoDiv" class="form-group">
+				<label for="videoUrl">Video Youtube</label><br>
+				<input type="text" id="videoUrl" class="form-control">
+			</div>
 
 			<br>
 			<div class="form-group">
@@ -747,7 +752,7 @@
 		
 		</div>
 	</div>
-
+	
 	<!--Template footer-->
 	<footer th:replace="default :: footer"></footer>
 </body>

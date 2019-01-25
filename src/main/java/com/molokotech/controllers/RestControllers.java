@@ -418,8 +418,16 @@ public class RestControllers {
 	
 	@GetMapping("/get-language")
 	public String getLanguage() {
-
-	return Locale.getDefault().getLanguage();
+		return Locale.getDefault().getLanguage();
+	}
+	
+	@RequestMapping(value = "/retrivePrepaidQR", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public String retrivePrepaidQR(@RequestParam String id) {
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		Gson gson = new Gson();
+		String result = gson.toJson(prepaidQR);
+		
+		return result;
 	}
 	
 }

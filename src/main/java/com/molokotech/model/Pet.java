@@ -29,7 +29,8 @@ public class Pet {
 	private boolean pregnant;
 	private String coockedFood;
 	private String lastVeterinaryVisit;
-
+	private String videoUrl;
+	
 	public Pet() {
 
 	}
@@ -200,6 +201,14 @@ public class Pet {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 
 

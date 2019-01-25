@@ -121,5 +121,4 @@ public class PrepaidQR {
 		this.expiration = expiration;
 	}
 
-
 }

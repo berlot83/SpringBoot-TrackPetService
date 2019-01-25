@@ -2,7 +2,7 @@
 
 <head th:replace="default :: header"></head>
 
-<body onload="initMap(), moveToLocation()">
+<body onload="initMap(), moveToLocation(), youtube_parser()">
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">
 		<div th:if="${prepaidQR} != null" id="idMainContent"
@@ -122,6 +122,35 @@
 					<strong style="color:coral" th:text="#{id.instagram}">Instagram:</strong> <span th:text="${prepaidQR.owner.instagram}"></span></p>
 				<input type="hidden" th:value="${prepaidQR.strBase64}"
 					id="strBase64"></input> <br>
+
+			<h5>Video</h5>
+			<hr>
+			<iframe th:if="${prepaidQR.pet.videoUrl != null} and ${prepaidQR.pet.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
+			</iframe>
+			<p th:unless="${prepaidQR.pet.videoUrl != null} and ${prepaidQR.pet.videoUrl != ''}">No hay Video para mostrar</p>
+<br>			
+			
+<script th:inline="javascript">
+/* Parser Videos Youtube take care from this code */
+function youtube_parser(){
+		setTimeout(function(){
+						var url = [[${prepaidQR.pet.videoUrl}]];
+						var iframe = document.getElementById("iframeYoutube");
+						var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+						var match = url.match(regExp);
+						if (match && match[7].length == 11){
+						    var b = match[7];
+						    alert("https://www.youtube.com/embed/"+b)
+						    iframe.src = "https://www.youtube.com/embed/"+b;
+						}else{
+						    console.log("Incorrect URL or a conecction problem with Youtube");
+						}
+	
+	}, 2000);
+
+}
+</script>
+
 
 			<h5>Mapas</h5>
 			<hr>

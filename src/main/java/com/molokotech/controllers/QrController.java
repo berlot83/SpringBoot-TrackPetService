@@ -257,12 +257,16 @@ public class QrController {
 		String selledOnlineVerify = prepaidQrService.findById(prepaidQR.getId().toHexString()).getSelledOnline();
 		String tempSpecialId = prepaidQrService.findById(prepaidQR.getId().toHexString()).getId().toHexString();
 		String result = null;
+		
 		if (prepaidQR.getId().toHexString() != null && prepaidQR.getId().toHexString().equals(tempSpecialId) && prepaidQR.getSelledOnline().equals(selledOnlineVerify)) {
 			result = "create-prepaid-qr";
 		} else {
 			modelError.addAttribute("errorMailAsociated", "El mail parece no estar asociado a este código.");
 			result = "prepaid-qr";
 		}
+		
+		
+		
 		return result;
 	}
 	/* End prepaidControllers */
@@ -412,5 +416,5 @@ public class QrController {
 		model.addAttribute("rescued","Rescatado");
 		return "index";
 	}
-	
+		
 }
