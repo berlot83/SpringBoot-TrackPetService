@@ -90,12 +90,12 @@ public class PageConfig implements WebMvcConfigurer {
 	}
 	
 	/* Thymeleaf local config start */
-	@Bean
-	public LocaleResolver localeResolver() {
-	    SessionLocaleResolver slr = new SessionLocaleResolver();
-	    slr.setDefaultLocale(Locale.US);
-	    return slr;
-	}
+//	@Bean
+//	public LocaleResolver localeResolver() {
+//	    SessionLocaleResolver slr = new SessionLocaleResolver();
+//	    slr.setDefaultLocale(Locale.US);
+//	    return slr;
+//	}
 	
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
