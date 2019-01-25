@@ -8,29 +8,29 @@
 	<div class="container">
 		<div class="container-fluid" >
 			<div id="dataTemporalDiv" class="transparency">
-				<h3>Alta QR de prueba.</h3>
+				<h3 th:text="#{temporalqr.title}">Alta QR de prueba.</h3>
 				<hr style="border: 1px solid white !important;">
 				<div class="transparency" style="padding:10px">
-					<label for="username"><i class="fas fa-user" style="color: coral;"></i> Usuario a asignar código:</label>
+					<label for="username"><i class="fas fa-user" style="color: coral;"></i> <span th:text="#{temporalqr.assignuser}">Usuario a asignar código:</span></label>
 					<p th:text="${user.name}" id="username" style="color:LimeGreen"></p>
 				</div>
 				
 				<br>
 				
-				<p>Va a adjuntarse a su cuenta un qr de prueba, tenga en cuenta
+				<p th:text="#{temporalqr.subtitletable}">Va a adjuntarse a su cuenta un qr de prueba, tenga en cuenta
 					los siguientes datos:</p>
 				<ol>
-					<li>Para poder adquirir un QR de prueba es necesario sí o sí
+					<li th:text="#{temporalqr.li1}">Para poder adquirir un QR de prueba es necesario sí o sí
 						una cuenta.</li>
-					<li>La cuenta no debe tener ningún QR activo.</li>
-					<li>Los QR de prueba duran un mes exacto sin excepción.</li>
-					<li>Los QR de prueba son de prueba por ende a pesar que se
+					<li th:text="#{temporalqr.li2}">La cuenta no debe tener ningún QR activo.</li>
+					<li th:text="#{temporalqr.li3}">Los QR de prueba duran un mes exacto sin excepción.</li>
+					<li th:text="#{temporalqr.li4}">Los QR de prueba son de prueba por ende a pesar que se
 						pague pasado el mes se elimina, por ende solo hay que comprarloy
 						recibir otro código QR.</li>
-					<li>Los QR de prueba no se pueden vender ni transferir.</li>
+					<li th:text="#{temporalqr.li5}">Los QR de prueba no se pueden vender ni transferir.</li>
 				</ol>
 
-				<button onclick="createTemporalQR()" class="btn btn-md btn-success" style="margin: 0 auto; text-shadow: 1px 1px black;" >Adquirir ahora</button>
+				<button th:text="#{temporalqr.addtemporalqrbutton}" onclick="createTemporalQR()" class="btn btn-md btn-success" style="margin: 0 auto; text-shadow: 1px 1px black;" >Adquirir ahora</button>
 				
 				<br>
 				<br>
