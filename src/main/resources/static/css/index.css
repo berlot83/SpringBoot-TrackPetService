@@ -119,35 +119,55 @@ a:hover {
 	float: left;
 	text-shadow: 2px 2px black;
 	text-align: justify;
-	padding-top: 25px;
-	display: inline-block
+	display: inline-block;
 }
 
-.flex-container {
-	width: 90%;
-	min-height: 300px;
-	margin: 0 auto;
-	display: -webkit-flex; /* Safari */
-	display: flex; /* Standard syntax */
+.panel{
+	color:white;
+	padding:20px;
+	text-align: justify;
+	text-shadow: 1px 2px black;
 }
+
+	.flex-container {
+		margin: auto;
+		width: 100%;
+	  	-ms-box-orient: horizontal;
+	  	display: -webkit-box;
+	  	display: -moz-box;
+	  	display: -ms-flexbox;
+	  	display: -moz-flex;
+	  	display: -webkit-flex;
+	  	display: flex;
+	}
+	
+	div.columns{
+		padding:10px;
+	}
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 	
+	#carouselExampleControls{
+		width:100% !important;
+		margin: 2px;
+		padding: 3px;
+	}
+	
+	#textFirstPanel{
+		width:100% !important;
+		margin: 2px;
+		padding: 3px;
+	}
+	
+	.flex-container{
+		flex-flow: wrap;
+		flex-direction: column;
+		font-size: small !important;
+	}
+	
 	#triangleTopLeftIndex {
 		display: none !important;
-	}
-	#indexMasterDiv {
-		display: none;
-	}
-	#masterDivMobile {
-		display: block;
-	}
-	#carouselExampleControls {
-		
-	}
-	body {
-		
 	}
 	h3 {
 		font-size: medium !important;
@@ -179,16 +199,24 @@ a:hover {
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
+
+	#carouselExampleControls{
+		width:100% !important;
+		padding: 3px;
+		margin: 2px;
+	}
 	
-	#indexMasterDiv {
-		display: none;
+	#textFirstPanel{
+		width:100% !important;
+		padding: 3px;
+		margin: 2px;
 	}
-	#masterDivMobile {
-		display: block !important;
+	
+	.flex-container{
+		flex-direction: column;
+		font-size: small !important;
 	}
-	body {
-		
-	}
+	
 	h3 {
 		font-size: medium !important;
 	}
@@ -213,6 +241,18 @@ a:hover {
 
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
+	#carouselExampleControls{
+		width:100%;
+		padding: 3px;
+		margin: 2px;
+	}
+	
+	#textFirstPanel{
+		width:100%;
+		padding: 3px;
+		margin: 2px;
+	}
+	
 	h3 {
 		font-size: medium !important;
 	}

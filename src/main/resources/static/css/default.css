@@ -25,6 +25,7 @@ html, body {
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
+	
 	#spanish {
 		display: none !important;
 	}
@@ -58,11 +59,14 @@ html, body {
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
+	
 	#spanish {
 		display: none !important;
+		font-size: x-small !important;
 	}
 	#english {
 		display: none !important;
+		font-size: x-small !important;
 	}
 	#currentUserButton {
 		float: right;
@@ -85,6 +89,7 @@ html, body {
 
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
+	
 	#currentUserButton {
 		font-size: x-small !important;
 		float: right;

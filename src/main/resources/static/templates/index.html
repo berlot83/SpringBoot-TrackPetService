@@ -19,13 +19,10 @@
 	</div>
 	<!-- Alert end -->
 	<div class="container">
-		<div id="indexMasterDiv" class="container-fluid transparency"
-			style="background-image: url(../img/tile_pupure.jpg); padding-top: 20px; box-shadow: 0px 0px 25px black;">
-			<div id="indexFirstPanel" class="flex-container">
+		<div id="indexMasterDiv" class="container-fluid" style="background-image: url(../img/tile_pupure.jpg); padding-top: 20px; box-shadow: 0px 0px 25px black;">
+				<div class="flex-container transparency panel">
 				<!--  Start Carousel -->
-				<div id="carouselExampleControls"
-					class="carousel slide container-fluid" data-ride="carousel"
-					style="color: violet; width: 75%;">
+				<div id="carouselExampleControls" class="carousel slide container-fluid" data-ride="carousel" style="width: 65%; color: violet;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img class="img-fluid w-100 imageCarousel"
@@ -93,146 +90,97 @@
 				<!--  End Carousel -->
 
 				<!-- Button start -->
-				<div id="buttonsFirstPanel" style="width: 25%;"
-					class="container-fluid transparency">
-					<div>
+				<div style="width: 35%;" id="textFirstPanel">
 						<p id="banner1">
 							<img alt="Pet-QR" src="../img/iconoPet75.png" style="width: 30px; height: 30px; padding:3px;" th:text="#{index.carousel.panel}">
 						</p>
-						.
-					</div>
-					<div style="display: inline-block;" class="d-flex">
-						<div class="form-group">
-							<button class="btn btn-lg buttonViolet form-group"
-								onclick="window.location.href= '/pricing'"
-								onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.buyqr}"></button>
-							<br>
-							<button class="btn btn-lg buttonViolet form-group"
-								onclick="window.location.href= '/prepaid-qr'"
-								onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.activateqr}"></button>
-							<br>
+						<div style="display:inline-block">
+							<div class="form-group">
+								<button class="btn btn-lg buttonViolet form-group"
+									onclick="window.location.href= '/pricing'"
+									onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.buyqr}"></button>
+								<br>
+								<button class="btn btn-lg buttonViolet form-group"
+									onclick="window.location.href= '/prepaid-qr'"
+									onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.activateqr}"></button>
+								<br>
+							</div>
 						</div>
-						<div style="display: inline-block; padding: 20px">
-							<span th:text="#{index.viewexample}" class="badge badge-danger"></span><img
-								src="../img/pdfIcon75.png" alt="" id="pdfimage" 
-								style="width: 64px" onclick="viewPdf()"
-								onmouseover="addBounce(this), changeCursorPdf()"
-								onmouseout="removeBounce(this)" />
+						<div style="display:inline-block">
+							<div style="float:left; padding: 20px">
+								<span th:text="#{index.viewexample}" class="badge badge-danger"></span>
+							</div>
+							<div>	
+								<img src="../img/pdfIcon75.png" alt="" id="pdfimage" style="width: 64px" onclick="viewPdf()" onmouseover="addBounce(this), changeCursorPdf()" onmouseout="removeBounce(this)" />
+							</div>
 						</div>
-
-						<script>
-							function viewPdf() {
-								window.location.href = "/img/petQR_example.pdf";
-							}
-							function changeCursorPdf() {
-								var pdf = document.getElementById("pdfimage");
-								pdf.style.cursor = "pointer";
-							}
-						</script>
-
 					</div>
 				</div>
+
 				<!-- Button end -->
 
-			</div>
 			<br>
-			<div id="indexSecondPanel" class="flex-container" style="padding-top: 20px; padding-bottom: 20px" onmouseover="addRubberBand(this)" onmouseout="removeRubberBand(this)">
-				<div id="secondPanel1Div" class="container-fluid" style="width: 35%">
-					<img src="../img/presentation.png" alt="Ejemplo" style="width: 300px; padding-bottom: 20px;" />
-				</div>
 
-				<div id="secondPanel2Div" style="color: white; width: 65%"
-					class="transparencyWithoutPadding container-fluid">
+			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms">
+					<img src="../img/presentation.png" alt="Ejemplo" style="padding: 15px;" class="img-fluid" />
+				</div>
+				<div class="columms">
 					<i class="fas fa-qrcode" style="color: BlueViolet; font-size:28px; display:inline;float:left; padding:5px;"></i>
 					<h3 th:text="#{index.panel1.petqr}"></h3>
-					<p id="introduction" style="text-align: justify" th:text="#{index.panel1.petqr.description}"></p>
+					<p style="text-align: justify;" th:text="#{index.panel1.petqr.description}"></p>
 				</div>
 			</div>
-
-			<div id="indexThirdPanel" class="flex-container"
-				onmouseover="addRubberBand(this)"
-				style="padding-top: 20px; padding-bottom: 20px"
-				onmouseout="removeRubberBand(this)">
-				<div id="thirdPanel1Div"
-					style="padding: 20px; color: white; width: 65%"
-					class="transparencyWithoutPadding container-fluid">
+			
+			<br>
+			
+			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms">
 					<i class="fab fa-steam-square" style="color: coral; font-size:28px; float: left; padding: 5px;"></i>
 					<h3 th:text="#{index.panel2.how}"></h3>
-					<p th:text="#{index.panel2.how.description}"></p>
+					<p th:text="#{index.panel2.how.description}" style="padding:10px"></p>
 				</div>
-
-				<div id="thirdPanel2Div" class="container-fluid" style="width: 35%">
-					<img src="../img/prepaidQR1366x900.jpg" alt="Ejemplo"
-						style="width: 300px; padding-bottom: 20px;" />
+				<div class="columms">
+					<img src="../img/prepaidQR1366x900.jpg" class="img-fluid" alt="Ejemplo" style="padding: 15px;" />
 				</div>
-
 			</div>
 
-			<script>
-				function addRubberBand(id) {
-					$(id).addClass('animated rubberBand');
-				}
-
-				function removeRubberBand(id) {
-					$(id).removeClass('animated rubberBand');
-				}
-			</script>
-
-			<div id="indexFourPanel" class="flex-container"
-				style="padding-top: 20px; padding-bottom: 20px"
-				onmouseover="addRubberBand(this)"
-				onmouseout="removeRubberBand(this)">
-				<div id="fourPanel1Div" class="container-fluid" style="width: 35%">
-					<img src="../img/controlPanel.png" alt="Ejemplo"
-						style="width: 300px; padding-bottom: 20px;"
-						onclick="viewControlPanel()" />
+			<br>
+		
+			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms">
+					<img src="../img/controlPanel.png" alt="Ejemplo" class="img-fluid" style="padding: 15px;" onclick="viewControlPanel()" />
 				</div>
-				<script>
-					function viewControlPanel() {
-						$
-								.alert({
-									title : "Panel de Control",
-									columnClass : 'col-md-8',
-									content : "<html><body><div><img src='/img/controlPanel.png' /><br><p>Como se observa en el último código, el botón de alerta está en verde ya que el mismo se declaró como perdido.</p></div></body></html>"
-								});
-					}
-				</script>
-
-				<div id="fourPanel2Div"
-					style="padding: 20px; color: white; width: 65%"
-					class="transparencyWithoutPadding container-fluid">
+				<div class="columms">
 					<i class="fas fa-cogs" style="color: lightgreen; font-size:28px; float:left; padding-right: 7px;"></i>
 					<h3 th:text="#{index.panel3.control}"></h3>
-					<p id="introduction" th:text="#{index.panel3.control.description}"></p>
+					<p id="introduction" th:text="#{index.panel3.control.description}" style="padding:10px"></p>
 				</div>
-
 			</div>
 
-			<div id="indexFivePanel" class="flex-container" style="padding: 20px"
-				onmouseover="addRubberBand(this)"
-				onmouseout="removeRubberBand(this)">
-				<div id="fivePanel1Div"
-					style="padding-top: 20px; padding-bottom: 20px; color: white; width: 65%"
-					class="transparencyWithoutPadding container-fluid">
+			<br>
+
+			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms">
 					<i class="fas fa-wifi" style="color: deeppink; font-size:28px; float:left; padding-right: 7px;"></i>
 					<h3 th:text="#{index.panel4.shipping}"></h3>
-					<p id="introduction" th:text="#{index.panel4.shipping.description}"></p>
+					<p id="introduction" th:text="#{index.panel4.shipping.description}"  style="padding:10px"></p>
 				</div>
-
-				<div id="fivePanel2Div" class="container-fluid" style="width: 35%">
-					<img src="../img/prepaidQR1366x900.jpg" id="prepaidQRimage"
-						alt="Ejemplo" style="width: 300px; padding-bottom: 20px;" />
+				<div class="columms">
+					<img src="../img/prepaidQR1366x900.jpg" class="img-fluid" id="prepaidQRimage" alt="Ejemplo" style="padding: 15px;" />
 				</div>
-
 			</div>
-			<div style="margin: 0 auto; text-align:center;width:80%; padding: 20px;" class="transparency">
-				<span class="badge badge-lg badge-info form-group"
-					style="margin: 0 auto;" th:text="#{index.panel5.starnow}"></span><br>
-				<button class="btn btn-warning form-group" onclick="window.location.href='/pricing'"
-					style="color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}">Comience ya mismo</strong></button>
-				<br> <small style="color: pink; margin: 0 auto;"
-					class="form-group" th:text="#{index.panel5.starnow.description}"></small><br>
+			
+			<br>
+			
+			<div class="transparency panel" style="text-align:center; display:flex; flex-direction:column;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<span class="badge badge-lg badge-info form-group" style="margin: 0 auto; font-size:16px" th:text="#{index.panel5.starnow}"></span>
+				<br>
+				<button class="btn btn-lg btn-warning form-group" onclick="window.location.href='/pricing'" style="color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}">Comience ya mismo</strong></button>
+				<br>
+				<small style="color: pink; margin: 0 auto;" class="form-group" th:text="#{index.panel5.starnow.description}"></small><br>
 			</div>
+			
 			<br>
 			<br>
 			<br>
@@ -242,246 +190,38 @@
 				</div>
 		<!-- End background tiles -->
 
-
-
-		<!-- Div mobile edition start -->
-		<!--  Start Carousel -->
-		<div id="masterDivMobile" style="background-image: url(../img/tile_pupure.jpg); padding-top: 20px; width: 100%!important; box-shadow: 0px 0px 25px black; display:none" class="container-fluid">
-			
-			<!-- first Panel start -->
-			<div id="carouselExampleControls"
-				class="carousel slide container-fluid" data-ride="carousel"
-				style="color: violet; width: 100%;">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img class="img-fluid w-100 imageCarousel"
-							src="../img/carousel1.jpg" alt="First slide"
-							style="border-radius: 7px;">
-						<div class="carousel-caption d-none d-md-block transparency"
-							style="color: white; text-shadow: 1px 2px black;">
-							<h4>Porque amás tu mascota...</h4>
-							<h6 style="text-shadow: 1px 2px black;">Querés mejor para
-								ella</h6>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img class="img-fluid w-100 imageCarousel"
-							src="../img/carousel2.jpg" alt="Second slide"
-							style="border-radius: 7px;">
-						<div class="carousel-caption d-none d-md-block transparency"
-							style="color: white; text-shadow: 1px 2px black;">
-							<h4>Harías cualquier cosa por tu amigo...</h4>
-							<h6 style="text-shadow: 1px 2px black;">Porque te quiere y
-								no lo vas a abandonar</h6>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img class="img-fluid w-100 imageCarousel"
-							src="../img/carousel3.jpg" alt="Third slide"
-							style="border-radius: 7px;">
-						<div class="carousel-caption d-none d-md-block transparency"
-							style="color: white; text-shadow: 1px 2px black;">
-							<h4>Solo resta que alguien se fije en él...</h4>
-							<h6 style="text-shadow: 1px 2px black;">Colocale todos los
-								datos que quieras, los llevará adonde vaya</h6>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img class="img-fluid w-100 imageCarousel"
-							src="../img/carousel4.jpg" alt="Four slide"
-							style="border-radius: 7px;">
-						<div class="carousel-caption d-none d-md-block transparency"
-							style="color: white; text-shadow: 1px 2px black;">
-							<h4>El nunca te abandonaría...</h4>
-							<h6 style="text-shadow: 1px 2px black;">Te buscará hasta el
-								final, vos podés hacer lo mismo</h6>
-						</div>
-					</div>
-
-					<div class="carousel-item">
-						<img class="img-fluid w-100 imageCarousel"
-							src="../img/prepaidQR1366x700.jpg" alt="Five slide"
-							style="border-radius: 7px;">
-						<div class="carousel-caption d-none d-md-block transparency"
-							style="color: white; text-shadow: 1px 2px black;">
-							<h4>Ya no hay distancias que te impidan protegerlo...</h4>
-							<h6 style="text-shadow: 1px 2px black;">Lo comprás, y luego
-								lo descargás e imprimís la veces que quieras, con el diseño que
-								más te guste...</h6>
-						</div>
-					</div>
-
-				</div>
-				<a class="carousel-control-prev" href="#carouselExampleControls"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Atrás</span>
-				</a> <a class="carousel-control-next" href="#carouselExampleControls"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Siguiente</span>
-				</a>
-			</div>
-			<!--  End Carousel -->
-			
-							<!-- Button start -->
-				<div id="buttonsFirstPanel" style="width: 100%; text-align:justify" class="container-fluid transparency">
-					<div>
-						<p id="banner1" style="text-align:justify" >
-							<img alt="Pet-QR" src="../img/iconoPet75.png"
-								style="width: 30px; height: 30px"> Pet-QR es un sistema complejo de acceso a datos, entre ellos los de 
-							Geolocalización, historia clínica y muchos más, brindando un control total sobre tus códigos QR.<br>
-							
-							<strong style="color:turquoise">Subí a tu mascota a la nube ya mismo</strong>
-						</p>
-						.
-					</div>
-					<div style="display: inline-block;" class="d-flex">
-						<div class="form-group">
-							<button class="btn btn-sm buttonViolet form-group"
-								onclick="window.location.href= '/pricing'"
-								onmouseout="removeBounce(this)" onmouseover="addBounce(this)">Comprar
-								QR</button>
-							<br>
-							<button class="btn btn-sm buttonViolet form-group"
-								onclick="window.location.href= '/prepaid-qr'"
-								onmouseout="removeBounce(this)" onmouseover="addBounce(this)">Activar
-								QR</button>
-							<br>
-						</div>
-						<div style="display: inline-block; padding: 20px">
-							<span class="badge badge-danger">Ver Ejemplo</span><img
-								src="../img/pdfIcon75.png" alt="" id="pdfimage"
-								style="width: 64px" onclick="viewPdf()"
-								onmouseover="addBounce(this), changeCursorPdf()"
-								onmouseout="removeBounce(this)" />
-						</div>
-
-						<script>
-							function viewPdf() {
-								window.location.href = "/img/petQR_example.pdf";
-							}
-							function changeCursorPdf() {
-								var pdf = document.getElementById("pdfimage");
-								pdf.style.cursor = "pointer";
-							}
-						</script>
-
-					</div>
-				<small style="color:pink">* Para activar primero tiene que comprar y recibirá el código en su email.</small>
-				</div>
-				<!-- Button end -->
-				<!-- first Panel end -->		
-<hr>
-
-				<!-- second Panel start-->
-				<div id="secondPanel1Div" class="container-fluid" style="width: 100%;">
-					<img src="../img/presentation.png" alt="Ejemplo" style="width: 300px; padding-bottom: 20px; padding-top:20px;"  onmouseover="addRubberBand(this)" onmouseout="removeRubberBand(this)"/>
-				</div>
-				<div id="secondPanel2Div" style="color: white; width: 100%"
-					class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fas fa-qrcode" style="color: BlueViolet"></i> Qué es
-						Pet-QR?,
-					</h3>
-					<p id="introduction" style="text-align: justify">Es un sistema
-						automatizado de creación de códigos QR online almacenados en la
-						cloud, dedicado únicamente a mascotas. El mismo te permite acceder
-						a los datos con la sola lectura del código con "cualquier" lector
-						QR, no necesitas descargar ningún programa en especial.</p>
-				</div>
-			<!-- Second Panel end -->
-			
-			<hr>
-			
-			<!-- Third Panel start -->
-				<div id="thirdPanel2Div" class="container-fluid" style="width: 100%">
-					<img src="../img/prepaidQR1366x900.jpg" alt="Ejemplo" style="width: 300px; padding-bottom: 20px;" class="imageRounded"  onmouseover="addRubberBand(this)" onmouseout="removeRubberBand(this)"/>
-				</div>
-
-				<div id="thirdPanel1Div" style="padding: 20px; color: white; width: 100%; text-align:justify" class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fab fa-steam-square" style="color: coral"></i> Cómo
-						funciona?
-					</h3>
-					<p>Nuestra plataforma avanzada, crea tres códigos QR en alta
-						calidad, el más pequeño de un tamaño real de 3.5 x 3.5 cm, 4.5 x
-						4.5 cm y 6.5 x 6.5cm, para ser impresos sublimados o colocados
-						donde el dueño lo desee, los mismos pueden descargarse sin límite.
-					</p>
-				</div>
-				<!-- Third Panel end -->
-
-				<hr>
-				
-				<!-- Fourth Panel start -->
-				<div id="fourPanel1Div" class="container-fluid" style="width: 100%">
-					<img src="../img/controlPanel.png" alt="Ejemplo" style="width: 300px; padding-bottom: 20px;" onclick="viewControlPanel()"  onmouseover="addRubberBand(this)" onmouseout="removeRubberBand(this)" />
-				</div>
-				<script>
-					function viewControlPanel() {
-						$
-								.alert({
-									title : "Panel de Control",
-									columnClass : 'col-md-8',
-									content : "<html><body><div><img src='/img/controlPanel.png' /><br><p>Como se observa en el último código, el botón de alerta está en verde ya que el mismo se declaró como perdido.</p></div></body></html>"
-								});
-					}
-				</script>
-
-				<div id="fourPanel2Div"
-					style="padding: 20px; color: white; width: 100%; text-align:justify" class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fas fa-cogs" style="color: lightgreen"></i> Control
-						Total
-					</h3>
-					<p id="introduction">Administración total sobre tus códigos,
-						modificar, ver, borrar, cambiar diseño de logo y crear alerta de
-						pérdida instantánea que coloca al perro en nuestra base de datos,
-						asi como la opción de transferencia definitiva de código a otro
-						usuario.</p>
-				</div>
-				<!-- Fouth Panel end -->
-				
-				<hr>
-				
-				<!-- Five Panel start -->
-				<div id="fivePanel2Div" class="container-fluid" style="width: 100%;"  onmouseover="addRubberBand(this)" onmouseout="removeRubberBand(this)">
-					<img src="../img/prepaidQR1366x900.jpg" id="prepaidQRimage" alt="Ejemplo" style="width: 300px; padding-bottom: 20px; padding-top:20px" />
-				</div>
-
-				<div id="fivePanel1Div" style="padding-top: 20px; padding-bottom: 20px; color: white; width: 100%; text-align:justify" class="transparencyWithoutPadding container-fluid">
-					<h3>
-						<i class="fas fa-wifi" style="color: deeppink"></i> Cómo se envía?
-					</h3>
-					<p id="introduction">
-						No hay límites con respecto a los envíos, ya que el mismo es
-						automático, apenas se realiza la compra a la casilla de email,
-						realmente para nosotros da lo mismo que estés en Argentina Capital
-						Federal o en la China. Es un sistema absolutamente innovador que
-						rompe los estandares de venta física de chapas id.<br>
-					</p>
-				</div>
-				<!-- Five Panel end -->
-				<br>
-				<!-- Six Panel start -->
-				<div style="margin: 0 auto; text-align:center; padding:15px" class="container-fluid transparency">
-					<span class="badge badge-lg badge-info form-group" style="margin: 0 auto;">Empiece ya mismo con una prueba por 30 días.</span><br>
-				<button class="btn btn-warning form-group" style="color: black; margin: 0 auto;" onclick="window.location.href='/pricing'">Comience ya mismo</button>
-				<br>
-					<small style="color: pink; margin: 0 auto;" class="form-group">Pasado ése período de tiempo el código será eliminado de la DB.</small><br>
-			<br><br><br><br><br>
-			</div>
-				<!-- Six Panel end -->
-
-		</div>
-		<br><br><br><br>
-		<!-- Div mobile edition end -->
-		
-
-
-
 	</div>
+
+<script>
+	function viewControlPanel() {
+		$
+				.alert({
+					title : "Panel de Control",
+					columnClass : 'col-md-8',
+					content : "<html><body><div><img src='/img/controlPanel.png' /><br><p>Como se observa en el último código, el botón de alerta está en verde ya que el mismo se declaró como perdido.</p></div></body></html>"
+				});
+	}
+</script>
+
+<script>
+	function addRubberBand(id) {
+		$(id).addClass('animated rubberBand');
+	}
+
+	function removeRubberBand(id) {
+		$(id).removeClass('animated rubberBand');
+	}
+</script>
+
+<script>
+	function viewPdf() {
+		window.location.href = "/img/petQR_example.pdf";
+	}
+	function changeCursorPdf() {
+		var pdf = document.getElementById("pdfimage");
+		pdf.style.cursor = "pointer";
+	}
+</script>
 
 	<!-- Template footer -->
 	<footer th:replace="default :: footer"></footer>
