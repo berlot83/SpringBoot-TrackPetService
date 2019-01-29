@@ -37,10 +37,12 @@ import com.google.zxing.WriterException;
 import com.mercadopago.MP;
 import com.mercadopago.MercadoPago;
 import com.molokotech.base64.QRCodeGenerator;
+import com.molokotech.model.Buyer;
 import com.molokotech.model.Owner;
 import com.molokotech.model.Pet;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
+import com.molokotech.service.BuyerService;
 import com.molokotech.service.OwnerService;
 import com.molokotech.service.PetService;
 import com.molokotech.service.PrepaidQrService;
@@ -64,6 +66,8 @@ public class RestControllers {
 	OwnerService ownerService;
 	@Autowired
 	JavaMailSender emailSender;
+	@Autowired
+	BuyerService buyerService;
 	
 	/* Manually create dinamyc QR codes with specialId and Id with strBase64 included */
 	@GetMapping("/create-pp-to-db")
@@ -345,7 +349,7 @@ public class RestControllers {
 	public ResponseEntity<?> listener(HttpServletRequest request, HttpServletRequest response) {
 
 		Map<String, String> configMap = new HashMap<>();
-		configMap.put("mode", "live");
+		configMap.put("mode", "sandbox");
 		configMap.put("acct1.UserName", "berlot83_api1.yahoo.com.ar");
 		configMap.put("acct1.Password", "DUU3SLX82NFKPSEQ");
 		configMap.put("acct1.Signature", "AVO4ngS4QK8KXIH04mEbcSuZHWY4AD2YGHkFDxfa1O13qrWw-RK31nTp");
@@ -362,6 +366,7 @@ public class RestControllers {
 		System.out.println("");
 		System.out.println("");
 		String payerEmail = map.get("payer_email");
+		
 		System.out.println(payerEmail);
 
 		/* Check if is verified */
@@ -407,6 +412,28 @@ public class RestControllers {
 			/* Override "En Venta" for the email to stop resending other Users and to verify buyer*/
 			prepaidQR.setSelledOnline(payerEmail.trim());
 			prepaidQrService.createPrepaidQR(prepaidQR);
+			
+			/* Test upload buyer start */
+			try {
+				String payerName = map.get("first_name");
+				String payerLastname = map.get("last_name");
+				String payerAddressCountry = map.get("address_country");
+				String payerAddressCity = map.get("address_city");
+				String payerId = map.get("payer_id");
+				
+				Buyer buyer = new Buyer();
+				buyer.setName(payerName);
+				buyer.setLastname(payerLastname);
+				buyer.setEmail(payerEmail);
+				buyer.setAddressCountry(payerAddressCountry);
+				buyer.setAddressCity(payerAddressCity);
+				buyer.setiDprepaidQR(idPrepaidQR);
+				buyer.setPayerId(payerId);
+				buyerService.createBuyer(buyer);
+			}catch(Exception error) {
+				System.out.println("Some error occurre, verify if the pament was succesfull and if this data was uploaded.");
+			}
+			/* Test upload buyer end */
 			
 		}		
 		else{
