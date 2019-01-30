@@ -124,9 +124,15 @@
 				</div>
 
 				<!-- Button end -->
-
+			
+			<div id="main" class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms">
+					<h1 style="color:white" th:text="#{index.title}"></h1>
+					<h3 style="color:white" th:text="#{index.subtitle}"></h3>
+					<p th:text="#{index.paragraph}"></p>
+				</div>
+			</div>
 			<br>
-
 			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 				<div class="columms">
 					<img src="../img/presentation.png" alt="Ejemplo" style="padding: 15px;" class="img-fluid" />
