@@ -119,7 +119,12 @@
 							</div>
 							
 						</div>
-							<div class="fb-share-button" data-href="https://pet-qr.com" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpet-qr.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+						<!-- Share buttons start -->
+							<div style="display:flex; flex-direction:column">
+								<div class="fb-share-button" style="padding-top:5px" data-href="https://pet-qr.com" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpet-qr.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+								<div style="padding-top:5px"><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Customize%20your%20online%20QR%20Code%20for%20your%20Pet!" data-size="large" size="large">Tweet</a></div>
+							</div>
+						<!-- Share buttons end -->
 					</div>
 				</div>
 
@@ -208,6 +213,26 @@
 		<!-- End background tiles -->
 
 	</div>
+<!-- Twitter library start -->
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
+<!-- Twitter library end -->
 
 <script>
 	function viewControlPanel() {
