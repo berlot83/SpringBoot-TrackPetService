@@ -125,19 +125,21 @@
 
 				<!-- Button end -->
 			
-			<div id="main" class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms">
+			<div id="main" class="flex-container transparency panel"  style="width:100%" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms" id="paragraph"  style="width:65%">
 					<h1 style="color:white" th:text="#{index.title}"></h1>
 					<h3 style="color:white" th:text="#{index.subtitle}"></h3>
 					<p th:text="#{index.paragraph}"></p>
 				</div>
-				<div class="columns">
-					<img src="../img/pet-tag-qr-1.png" id="pet-tag-1" alt="Pet-QR-Tag" style="width:400px; height:auto; padding: 15px">
+				<div class="columns" style="width:35%">
+					<img src="../img/pet-tag-qr-1.png" id="pet-tag-1" class="img-fluid" alt="Pet-QR-Tag" style="min-width:250px">
 				</div>
 			</div>
+			
 			<br>
+			
 			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms">
+				<div class="columms" id="firstImage">
 					<img src="../img/presentation.png" alt="Ejemplo" style="padding: 15px;" class="img-fluid" />
 				</div>
 				<div class="columms">
@@ -156,7 +158,7 @@
 					<p th:text="#{index.panel2.how.description}" style="padding:10px"></p>
 				</div>
 				<div class="columms">
-					<img src="../img/prepaidQR1366x900.jpg" class="img-fluid" alt="Ejemplo" style="padding: 15px;" />
+					<img src="../img/pet-tag-qr-3.jpg" id="pet-tag-qr-3" class="img-fluid" alt="Pet-QR-Tag" style="padding: 15px;" />
 				</div>
 			</div>
 
@@ -175,14 +177,14 @@
 
 			<br>
 
-			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms">
+			<div class="flex-container transparency panel" style="width:100%" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms" style="width:65%" id="paragraph2">
 					<i class="fas fa-wifi" style="color: deeppink; font-size:28px; float:left; padding-right: 7px;"></i>
 					<h3 th:text="#{index.panel4.shipping}"></h3>
 					<p id="introduction" th:text="#{index.panel4.shipping.description}"  style="padding:10px"></p>
 				</div>
-				<div class="columms">
-					<img src="../img/pet-tag-qr-2.png" id="pet-tag-2" alt="Ejemplo" style="padding: 15px; width:400px; height:auto;" />
+				<div class="columms" style="width:35%" id="secondImage">
+					<img src="../img/pet-tag-qr-2.png" class="img-fluid" id="pet-tag-2" alt="Pet-QR-Tag" style="min-width:250px" />
 				</div>
 			</div>
 			
