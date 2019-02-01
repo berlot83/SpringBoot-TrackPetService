@@ -163,7 +163,7 @@
 					<p th:text="#{index.panel2.how.description}" style="padding:10px"></p>
 				</div>
 				<div class="columms">
-					<img src="../img/pet-tag-qr-3.jpg" id="pet-tag-qr-3" class="img-fluid" alt="Pet-QR-Tag" style="padding: 15px;" />
+					<img src="../img/pet-tag-qr-3.jpg" id="pet-tag-qr-3" class="img-fluid" alt="Pet-QR-Tag" style="padding: 10px;" />
 				</div>
 			</div>
 
@@ -182,16 +182,28 @@
 
 			<br>
 
-			<div class="flex-container transparency panel" style="width:100%" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms" style="width:65%" id="paragraph2">
+			<div class="flex-container transparency panel"  onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms"  id="paragraph2">
 					<i class="fas fa-wifi" style="color: deeppink; font-size:28px; float:left; padding-right: 7px;"></i>
 					<h3 th:text="#{index.panel4.shipping}"></h3>
 					<p id="introduction" th:text="#{index.panel4.shipping.description}"  style="padding:10px"></p>
 				</div>
-				<div class="columms" style="width:35%" id="secondImage">
-					<img src="../img/pet-tag-qr-2.png" class="img-fluid" id="pet-tag-2" alt="Pet-QR-Tag" style="min-width:250px" />
+				<div class="columms"  id="secondImage">
+					<img src="../img/pet-tag-qr-2.png" class="img-fluid" id="pet-tag-2" alt="Pet-QR-Tag" style="padding:10px" />
 				</div>
 			</div>
+			
+			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms">
+					<img src="../img/qrTagFreezer.jpg" alt="Ejemplo" class="img-fluid" style="padding: 15px;" onclick="viewControlPanel()" />
+				</div>
+				<div class="columms">
+					<i class="fas fa-cogs" style="color: lightgreen; font-size:28px; float:left; padding-right: 7px;"></i>
+					<h3 th:text="#{index.panel6}"></h3>
+					<p id="introduction" th:text="#{index.panel6.freezer.description}" style="padding:10px"></p>
+				</div>
+			</div>
+			
 			
 			<br>
 			
