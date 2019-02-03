@@ -25,8 +25,8 @@
 	<div class="parallax-window" id="parallaxIndex" data-parallax="scroll" data-image-src="../img/parallaxPetQR.jpg" style="box-shadow:0px 0px 25px black;"></div>
 	
 	<!-- Alert end -->
-	<div class="container" style="padding-top:50px;">
-		<div id="indexMasterDiv" class="container-fluid" style="background-image: url(../img/tile_pupure.jpg); padding-top: 15px; box-shadow: 0px 0px 25px black; border-radius:15px">
+	<div id="veryFirstContainer" class="container" style="padding-top:30px;">
+		<div id="indexMasterDiv" class="container-fluid" style="background-image: url(../img/tile_pupure.jpg); padding-top:5px; box-shadow: 0px 0px 25px black; border-radius:15px">
 				<div class="flex-container transparency panel">
 				<!--  Start Carousel -->
 				<div id="carouselExampleControls" class="carousel slide container-fluid" data-ride="carousel" style="width: 65%; color: violet;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
@@ -133,14 +133,14 @@
 
 				<!-- Button end -->
 			
-			<div id="main" class="flex-container transparency panel"  style="width:100%" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms" id="paragraph"  style="width:65%">
-					<h1 style="color:white" th:text="#{index.title}"></h1>
-					<h3 style="color:white" th:text="#{index.subtitle}"></h3>
-					<p th:text="#{index.paragraph}"></p>
+			<div id="main" class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div class="columms" id="paragraph">
+					<h1 style="color:white; text-align:justify" th:text="#{index.title}"></h1>
+					<h3 style="color:white; text-align:justify" th:text="#{index.subtitle}"></h3>
+					<p style="text-align:justify" th:text="#{index.paragraph}"></p>
 				</div>
-				<div class="columns" style="width:35%">
-					<img src="../img/pet-tag-qr-1.png" id="pet-tag-1" class="img-fluid" alt="Pet-QR-Tag" style="min-width:250px">
+				<div class="columns">
+					<img src="../img/pet-tag-qr-1.png" id="pet-tag-1" class="img-fluid" alt="Pet-QR-Tag" style="padding: 5px;">
 				</div>
 			</div>
 			
@@ -166,7 +166,7 @@
 					<p th:text="#{index.panel2.how.description}" style="padding:10px"></p>
 				</div>
 				<div class="columms">
-					<img src="../img/pet-tag-qr-3.jpg" id="pet-tag-qr-3" class="img-fluid" alt="Pet-QR-Tag" style="padding: 10px;" />
+					<img src="../img/pet-tag-qr-3.jpg" id="pet-tag-qr-3" class="img-fluid" alt="Pet-QR-Tag" style="padding: 15px;" />
 				</div>
 			</div>
 

@@ -148,6 +148,15 @@ a:hover {
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 
+#veryFirstContainer{
+	padding-top:3px !important;
+	
+}
+	
+	#indexMasterDiv{
+	padding-top: 5px !important;
+	}
+	
 	#parallaxIndex{
 	display:none;
 	}
