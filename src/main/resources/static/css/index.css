@@ -147,6 +147,10 @@ a:hover {
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
+
+	#parallaxIndex{
+	display:none;
+	}
 	
 	#carouselExampleControls{
 		width:100% !important;
