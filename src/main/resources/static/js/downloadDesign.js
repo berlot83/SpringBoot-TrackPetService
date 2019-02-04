@@ -5,6 +5,7 @@ function imageDesignGeneric(logo){
 	var id = document.getElementById("id").value;
 	var strBase64 = document.getElementById("strBase64").value;
 	var resultBase64Avatar = document.getElementById("resultBase64Avatar").value;
+	var base64Backside = document.getElementById("base64Backside").value;
 	var sissors = "../img/design/sissors.png"; 
 	
 	var doc = new jsPDF()
@@ -80,10 +81,10 @@ function imageDesignGeneric(logo){
 		doc.setFontSize(7);
 		doc.text("https://pet-qr.com/id/", 2, 72);
 		doc.text(id, 2, 75);
-		doc.text("Si su lector no funciona", 2, 80);
-		doc.text("Coloque este código", 2, 83);
-		doc.text("en su navegador", 2, 86);
-		doc.text("Devuelva a su familia", 2, 92);
+//		doc.text("Si su lector no funciona", 2, 80);
+//		doc.text("Coloque este código", 2, 83);
+//		doc.text("en su navegador", 2, 86);
+//		doc.text("Devuelva a su familia", 2, 92);
 		
 		/* md */
 		doc.setFontSize(8);
@@ -102,13 +103,10 @@ function imageDesignGeneric(logo){
 		doc.rect(112, 96, 66.3, 70);
 		doc.addImage(footerLogo, 112, 96, 20, 0);
 		doc.setFontSize(10);
-		doc.text("https://pet-qr.com/id/", 114, 120);
-		doc.text(id, 114, 125);
-		doc.text("Si su lector no funciona", 114, 135);
-		doc.text("Coloque este código", 114, 140);
-		doc.text("en su navegador", 114, 145);
-		doc.text("Devuelva a su familia", 114, 150);
-		/* Reverse start */
+		doc.text("https://pet-qr.com/id/", 132.5, 99.5);
+		doc.text(id, 132.5, 102.5);
+		doc.addImage(base64Backside, 114,103,0,0);
+		/* Reverse end */
 		
 		var date = Date(Date.now()); 
 		

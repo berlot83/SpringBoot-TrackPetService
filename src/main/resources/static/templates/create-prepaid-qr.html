@@ -725,12 +725,23 @@
 			</div>
 
 			<!-- Map Start -->
-			<div>
+			<div id="testcanvas">
 				<div id="map" class="container-fluid"></div>
 			</div>
 			<!-- Map End -->
+			
+			<!-- Button to upload start backside map image -->
+			<div style="display:flex; flex-direction:column">
+				<button class="btn btn-lg btn-primary" id="export" onclick="takePhoto()">Pic Backside Tag, centering the map</button>
+			</div>
+			<!-- Button to upload end backside map image -->
+
 			<br>
+			<br>
+			
 			<div id="videoDiv" class="form-group">
+			<h5>Choose a video from Youtube</h5>
+			<hr>
 				<label for="videoUrl">Video Youtube</label><br>
 				<input type="text" id="videoUrl" class="form-control">
 			</div>
@@ -746,12 +757,93 @@
 					Google, ya que el sistema permitirá continuar SOLO si pudo obtener
 					la Longitud y latitud de la dirección arriba declarada.</small>
 			</div>
+			
 			<br> <br> <br> <br> <br> <br>
 		
 		</div>
 		
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		function takePhoto(){
+            //get transform value
+            var transform=$(".gm-style>div:first>div:first>div:last>div").css("transform")
+            var comp=transform.split(",") //split up the transform matrix
+            var mapleft=parseFloat(comp[4]) //get left value
+            var maptop=parseFloat(comp[5])  //get top value
+            $(".gm-style>div:first>div:first>div:last>div").css({ //get the map container. not sure if stable
+              "transform":"none",
+              "left":mapleft,
+              "top":maptop,
+            })
+
+            html2canvas($('#testcanvas'),
+            {   
+              /* Html2canvas properties */
+              scale:2,
+              scale:144,
+              useCORS: true,
+              onrendered: function(canvas)
+              {
+
+				    var extra_canvas = document.createElement('canvas');
+                		extra_canvas.setAttribute('width', 235);
+                		extra_canvas.setAttribute('height', 235);
+					var ctx = extra_canvas.getContext("2d");
+						ctx.drawImage(canvas, (canvas.width/2)-117.5, (canvas.height/2)-117.5, 235, 235, 0, 0, 235, 235);
+				    var finalimage = extra_canvas.toDataURL('image/png');
+
+				    /* Start Ajax call  */
+				    if(finalimage != null){
+				    	var id = document.getElementById("idPrepaidQrCode").textContent;
+						var base64Backside = finalimage;
+						
+						console.log(finalimage);
+						
+						var xhr = new XMLHttpRequest();
+						var url = "/uploadBackside";
+						
+						xhr.open("POST", url, true);
+						xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						xhr.send("id="+id+"&base64Backside="+base64Backside);
+						
+						xhr.onreadystatechange = function () {
+							if (xhr.readyState == 4 && xhr.status == 200) {
+								
+								$.confirm({
+									type: "blue",
+									title: "Confirme la imagen:",
+									content: "<html><body><div style='text-align:center'><img src="+ base64Backside +" /></div></body></html>",
+									confirm: function(){
+										$.alert("Imagen persistida en DB con éxito.");
+									},
+								    cancel: function(){
+								        $.alert({
+								        	type:'blue',
+								        	title: 'Acción',
+								        	content:'Cancelada!'
+								        });
+								    }
+								});		
+								
+							}
+						}
+	
+				    }
+		    	/* End Ajax call */
+				    
+				
+                $(".gm-style>div:first>div:first>div:last>div").css({
+                  left:0,
+                  top:0,
+                  "transform":transform
+                })
+
+              }
+            });
+        }
+	</script>
 	
 	
 		<!-- Start Google Maps Javascript -->

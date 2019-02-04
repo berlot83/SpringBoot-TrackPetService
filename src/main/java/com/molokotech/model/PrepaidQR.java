@@ -20,6 +20,7 @@ public class PrepaidQR {
 	private Owner owner;
 	private String selledOnline;
 	private String resultBase64Avatar;
+	private String base64Backside;
 	private LocalDate expiration;
 	
 	@Autowired
@@ -119,6 +120,14 @@ public class PrepaidQR {
 
 	public void setExpiration(LocalDate expiration) {
 		this.expiration = expiration;
+	}
+
+	public String getBase64Backside() {
+		return base64Backside;
+	}
+
+	public void setBase64Backside(String base64Backside) {
+		this.base64Backside = base64Backside;
 	}
 
 }

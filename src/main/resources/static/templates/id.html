@@ -159,36 +159,12 @@ function youtube_parser(){
 			<div id="testcanvas">
 			<input type="hidden" th:value="${prepaidQR.owner.latitude}" id="latitude"/>
 			<input type="hidden" th:value="${prepaidQR.owner.longitude}" id="longitude"/>
-				<div id="map" class="container-fluid"></div>
+				<div id="map" class="container-fluid" ></div>
 			</div>
-			
-<!-- 			<button onclick="takeScreenShoot()">Screenshoot</button> -->
-<!-- 			<br> -->
-<!-- 			<br> -->
-<!-- 			<img id="put" src="" alt=""> -->
-			
 			<!-- Map End -->
 
 			</div>
 			
-			<script>
-			function takeScreenShoot(){
-				html2canvas($("#testcanvas"), {
-					useCORS: true,
-				        optimized: false,
-				        allowTaint: false,
-				        onrendered: function(canvas) {
-				            // canvas is the final rendered <canvas> element
-				            var myImage = canvas.toDataURL("image/jpeg");
-				   //         window.open(myImage);
-				   document.getElementById("put").src= myImage;
-				        }
-				    });
-				
-			}
-			
-			
-			</script>
 			<script>
 			/* Needs to be here to wait charge email input, not onload */
 			$( document ).ready(function() {
