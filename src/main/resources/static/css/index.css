@@ -147,7 +147,7 @@ a:hover {
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
-
+	
 #veryFirstContainer{
 	padding-top:3px !important;
 	
@@ -158,7 +158,11 @@ a:hover {
 	}
 	
 	#parallaxIndex{
-	display:none;
+		display:none;
+	}
+	
+	#parallaxTemplate{
+		display:none;
 	}
 	
 	#carouselExampleControls{

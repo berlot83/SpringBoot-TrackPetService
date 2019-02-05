@@ -23,6 +23,7 @@
 	</div>
 	
 	<div class="parallax-window" id="parallaxIndex" data-parallax="scroll" data-image-src="../img/parallaxPetQR.jpg" style="box-shadow:0px 0px 25px black;"></div>
+	<div class="parallax-window" id="parallaxTemplate" data-parallax="scroll" data-image-src="../img/parallaxTemplate.jpg" style="box-shadow:0px 0px 25px black;"></div>
 	
 	<!-- Alert end -->
 	<div id="veryFirstContainer" class="container" style="padding-top:30px;">
@@ -148,7 +149,7 @@
 			
 			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 				<div class="columms" id="firstImage">
-					<img src="../img/presentation.png" alt="Ejemplo" style="padding: 15px;" class="img-fluid" />
+					<img src="../img/parallaxTemplate.jpg" alt="Ejemplo" style="padding: 15px;" class="img-fluid" />
 				</div>
 				<div class="columms">
 					<i class="fas fa-qrcode" style="color: BlueViolet; font-size:28px; display:inline;float:left; padding:5px;"></i>
@@ -211,7 +212,7 @@
 			<br>
 			
 			<div class="transparency panel" style="text-align:center; display:flex; flex-direction:column;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<span class="badge badge-lg badge-info form-group" style="margin: 0 auto; font-size:16px" th:text="#{index.panel5.starnow}"></span>
+				<span class="badge badge-lg badge-info form-group" style="margin: 0 auto; font-size:16px;" th:text="#{index.panel5.starnow}"></span>
 				<br>
 				<button class="btn btn-lg btn-warning form-group" onclick="window.location.href='/pricing'" style="color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}">Comience ya mismo</strong></button>
 				<br>
