@@ -1,5 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="default :: header"></head>
+<head th:replace="default :: header">
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/prepaid-qr.css" />
+</head>
+
 <body onload="reciveIdFromAccount()">
 	<nav th:replace="default :: bar"></nav>
 	<br>

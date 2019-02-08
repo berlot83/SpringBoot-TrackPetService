@@ -2,7 +2,10 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<head th:replace="default :: header"></head>
+<head>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/temporal-qr.css" />
+</head>
 <body>
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">

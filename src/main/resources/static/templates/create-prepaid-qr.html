@@ -1,7 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="default :: header">
-<title>Track Pet services Controller Page</title>
+<head>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/create-prepaid-qr.css" />
+	<link rel="stylesheet" type="text/css" href="../css/croppie.css" />
+	<script type="text/javascript" src="../js/avatar.js"></script>
+	<script type="text/javascript" src="../js/croppie.js"></script>
+	<script type="text/javascript" src="../js/croppie.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/maps.css" />
+	<script type="text/javascript" src="../js/html2canvas.js"></script>
+	
 </head>
 
 <body onload="initMap(), retrivePrepaidQR()">

@@ -1,5 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="default :: header"></head>
+<head>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/db-lost-pet.css" />
+</head>
+
 	<body style="height:100%;">
 		<nav th:replace="default :: bar"></nav>
 	

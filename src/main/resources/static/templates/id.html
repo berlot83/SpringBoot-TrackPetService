@@ -1,6 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="default :: header"></head>
+<head>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/id.css" />
+	<link rel="stylesheet" type="text/css" href="../css/maps.css" />
+</head>
 
 <body onload="initMap(), moveToLocation(), youtube_parser()">
 	<nav th:replace="default :: bar"></nav>

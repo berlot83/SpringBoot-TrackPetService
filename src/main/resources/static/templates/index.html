@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="default :: header">
+<head>
+	<div th:include="default :: header"></div>
+	<style>
+	.parallax-window {
+	    min-height: 700px;
+	    background: transparent;
+	}
+	</style>
+	<script type="text/javascript" src="../js/parallax.js"></script>
 </head>
 
 <body>
 	<!-- Share info start -->
-	<div th:replace="default :: share"></div>
+		<div th:replace="default :: share"></div>
 	<!-- Share info end -->
 
 	<!-- Template bar -->

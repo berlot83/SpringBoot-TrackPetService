@@ -2,7 +2,11 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<head th:replace="default :: header"></head>
+<head>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/pricing.css" />
+	<script type="text/javascript" src="../js/pricing.js"></script>
+</head>
 <body>
 
 

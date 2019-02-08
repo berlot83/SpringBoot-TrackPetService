@@ -1,5 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<header th:replace="default :: header"></header>
+<header>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/recovery-pass.css" />
+</header>
 <body>
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">

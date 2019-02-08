@@ -1,6 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="default :: header"></head>
+<head>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/sign-up.css" />
+</head>
 
 <body>
 	<nav th:replace="default :: bar"></nav>

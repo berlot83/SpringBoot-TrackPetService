@@ -1,5 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="default :: header"></head>
+<head>
+	<div th:include="default :: header"></div>
+	<link rel="stylesheet" type="text/css" href="../css/zoom.css" />
+	<link rel="stylesheet" type="text/css" href="../css/download.css" />
+	<link rel="stylesheet" type="text/css" href="../css/gallery.css" />
+	<script type="text/javascript" src="../js/gallery.js"></script>
+	<script type="text/javascript" src="../js/download.js"></script>
+	<script type="text/javascript" src="../js/downloadDesign.js"></script>
+</head>
 <nav th:replace="default :: bar"></nav>
 
 <footer th:replace="default :: footer"></footer>
