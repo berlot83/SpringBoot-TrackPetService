@@ -35,10 +35,11 @@
 	
 	<!-- Alert end -->
 	<div id="veryFirstContainer" class="container" style="padding-top:30px;">
-		<div id="indexMasterDiv" class="container-fluid" style="background-image: url(../img/tile_pupure.jpg); padding-top:5px; box-shadow: 0px 0px 25px black; border-radius:15px">
-				<div class="flex-container transparency panel">
+		<div id="indexMasterDiv" class="container-fluid" style="background-image: url(../img/tile_pupure.jpg); padding-top:15px; box-shadow: 0px 0px 25px black; border-radius:15px">
+		<div class="transparencyWithPadding">
+				<div class="flex-container panel">
 				<!--  Start Carousel -->
-				<div id="carouselExampleControls" class="carousel slide container-fluid" data-ride="carousel" style="width: 65%; color: violet;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div id="carouselExampleControls" class="carousel slide container-fluid" data-ride="carousel" style="width: 80%; color: violet;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img class="img-fluid w-100 imageCarousel"
@@ -106,138 +107,222 @@
 				<!--  End Carousel -->
 
 				<!-- Button start -->
-				<div style="width: 35%;" id="textFirstPanel">
+				<div style="width: 20%;" id="textFirstPanel">
 						<p id="banner1">
 							<img alt="Pet-QR" src="../img/iconoPet75.png" style="width: 30px; height: 30px; padding:3px;" th:text="#{index.carousel.panel}">
 						</p>
 						<div style="display:inline-block">
 							<div class="form-group">
-								<button class="btn btn-lg buttonViolet form-group"
+								<button class="btn btn-lg buttonViolet form-group halfCol"
 									onclick="window.location.href= '/pricing'"
 									onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.buyqr}"></button>
 								<br>
-								<button class="btn btn-lg buttonViolet form-group"
+								<button class="btn btn-lg buttonViolet form-group halfCol"
 									onclick="window.location.href= '/prepaid-qr'"
 									onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.activateqr}"></button>
 								<br>
 							</div>
 						</div>
-						<div style="display:inline-block">
+						
+						<!-- Share buttons start -->
+						<div style="display:flex;">
+							<div style="padding:3px"><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Customize%20your%20online%20QR%20Code%20for%20your%20Pet!" data-size="large" size="large">Tweet</a></div>
+							<div style="padding:3px" class="fb-share-button" data-href="https://pet-qr.com" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpet-qr.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+							  <!-- Your like button code -->
+							<div  style="padding:3px" class="fb-like" data-href="https://pet-qr.com" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+						</div>
+						<!-- Share buttons end -->
+
+						<!-- PDF div start -->
+						<div style="display:flex" id="pdfDiv">
 							<div style="float:left; padding: 20px">
 								<span th:text="#{index.viewexample}" class="badge badge-danger"></span>
 							</div>
 							<div>	
 								<img src="../img/pdfIcon75.png" alt="" id="pdfimage" style="width: 64px" onclick="viewPdf()" onmouseover="addBounce(this), changeCursorPdf()" onmouseout="removeBounce(this)" />
 							</div>
-							
 						</div>
-						<!-- Share buttons start -->
-							<div style="display:flex; flex-direction:column">
-								<div style="padding-top:5px"><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Customize%20your%20online%20QR%20Code%20for%20your%20Pet!" data-size="large" size="large">Tweet</a></div>
-								<div class="fb-share-button" data-href="https://pet-qr.com" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpet-qr.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
-								  <!-- Your like button code -->
-								<div style="padding-top:5px" class="fb-like" data-href="https://pet-qr.com" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
-							</div>
-						<!-- Share buttons end -->
+						<!-- PDF div end -->
 					</div>
+					<!-- Button end -->
 				</div>
-
-				<!-- Button end -->
+				<!-- First Panel end -->
+			
+			<div class="rounded" style="background-color:gray;font-style:italic;padding:10px;height:70px; color:white; text-shadow:1px 1px black;" th:text="#{index.disclaimer}"></div>
 			
 			<div id="main" class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms" id="paragraph">
+				<div class="columms halfCol" id="paragraph">
 					<h1 style="color:white; text-align:justify" th:text="#{index.title}"></h1>
 					<h3 style="color:white; text-align:justify" th:text="#{index.subtitle}"></h3>
 					<p style="text-align:justify" th:text="#{index.paragraph}"></p>
 				</div>
-				<div class="columns">
-					<img src="../img/pet-tag-qr-1.jpg" id="pet-tag-1" class="img-fluid" alt="Pet-QR-Tag" style="padding: 5px;">
+				<div class="columns halfCol">
+					<img src="../img/pet-tag-qr-2.jpg" id="pet-tag-2" class="img-fluid" alt="Pet-QR-Tag" style="padding: 5px; border-radius:10px">
 				</div>
 			</div>
 			
-			<br>
 			
-			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms" id="firstImage">
-					<img src="../img/parallaxTemplate.jpg" alt="Ejemplo" style="padding: 15px;" class="img-fluid" />
-				</div>
-				<div class="columms">
-					<i class="fas fa-qrcode" style="color: BlueViolet; font-size:28px; display:inline;float:left; padding:5px;"></i>
-					<h3 th:text="#{index.panel1.petqr}"></h3>
-					<p style="text-align: justify;" th:text="#{index.panel1.petqr.description}"></p>
-				</div>
-			</div>
-			
-			<br>
-			
-			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms">
-					<i class="fab fa-steam-square" style="color: coral; font-size:28px; float: left; padding: 5px;"></i>
-					<h3 th:text="#{index.panel2.how}"></h3>
-					<p th:text="#{index.panel2.how.description}" style="padding:10px"></p>
-				</div>
-				<div class="columms">
-					<img src="../img/pet-tag-qr-3.jpg" id="pet-tag-qr-3" class="img-fluid" alt="Pet-QR-Tag" style="padding: 15px;" />
-				</div>
-			</div>
+			<div class="tab-content flex-container backgroundGradient rounded">
 
-			<br>
-		
-			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms">
-					<img src="../img/controlPanel.png" alt="Ejemplo" class="img-fluid" style="padding: 15px;" onclick="viewControlPanel()" />
+                            <div id="compare" style="width:100%">
+                            <h3 style="padding:10px"><i style="color:LimeGreen" class="fas fa-search"></i> <span th:text="#{index.compare.title}"></span></h3>
+                                <table class="table table-striped table-hover table-bordered bg-light rounded" style="margin:20 auto;">
+                                    <tbody>
+                                        <tr>
+                                            <th width="40%" class="text-center" th:text="#{index.table.header.detail}"></th>
+                                            <th width="20%" class="text-center"><i style="color:#892EE4" class="fas fa-qrcode"></i> <span th:text="#{index.table.header.header1}"></span></th>
+                                            <th width="20%" class="text-center"><i style="color:#FF8A8A" class="fas fa-microchip"></i> <span th:text="#{index.table.header.header2}"></span></th>
+                                            <th width="20%" class="text-center"><i style="color:#2FAACE" class="fas fa-tag"></i> <span th:text="#{index.table.header.header3}"></span></th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.visible}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td  class="text-center"><i class="fas fa-check check"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.cloud}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.update}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                        </tr>   
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.invasive}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                        </tr>  
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.ch}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.account}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.contactmethods}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.unlimitedrestore}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                       <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.noshipping}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                       
+                                       <tr>
+  	                                        <td class="text-right" th:text="#{index.table.detail.custommessage}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                       <tr>
+  	                                        <td class="text-right" th:text="#{index.table.detail.video}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                       <tr>
+  	                                        <td class="text-right" th:text="#{index.table.detail.map}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                       <tr>
+  	                                        <td class="text-right" th:text="#{index.table.detail.sizes}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                        <tr>
+  	                                        <td class="text-right" th:text="#{index.table.detail.transfer}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                       <tr>
+  	                                        <td class="text-right" th:utext="#{index.table.detail.db}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-question" style="color:blue"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
+                                        <tr>
+                                            <td class="text-right" th:text="#{index.table.detail.printable}"></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                        </tr>
+                                             
+                                    </tbody>
+                                </table>
+                            </div>                        
+                        </div>
+				<br>
+				
+				<div class="rounded backgroundGradient">
+					<h3 style="padding:10px"><i style="color:#6755E3" class="fas fa-play"></i> <span th:text="#{index.howto.title}"></span></h3>
+					<div style="display:flex; justify-content: center;" class="howitworksTable container-fluid">
+							<ul class="col">
+							<li class="title"><img alt="Sing up" src="../img/signup150.png" class="img-fluid"></li>
+								<li><b th:text="#{index.howto.signup.title}">1) Sign Up.</b></li>
+								<li><i style="color:#ff8000" class="fas fa-long-arrow-alt-right"></i> <span th:text="#{index.howto.signup.createaccount}"></span></li>
+								<li><small style="color:DarkGreen" th:text="#{index.howto.signup.30daysfree}"></small></li>
+								<li><button class="btn btn-lg button" onclick="window.location.href='/sign-up'" style="background-color:rgb(40, 193, 203)"  th:text="#{index.howto.signup.buttonsignup}">Sign Up</button></li>
+							</ul>
+							<ul class="col">
+							<li class="title"><img alt="Login" src="../img/login150.png" class="img-fluid"></li>
+								<li><b th:text="#{index.howto.login.title}">2) Login</b></li>
+								<li><i style="color:#ff8000" class="fas fa-long-arrow-alt-right"></i> <span  th:text="#{index.howto.login.loginto}"></span></li>
+								<li><small style="color:DarkGreen" th:text="#{index.howto.login.loginneeded}"></small></li>
+								<li><button class="btn btn-lg button" onclick="window.location.href='/login'" style="background-color:rgb(249, 111, 118)" th:text="#{index.howto.login.buttonlogin}">Login</button></li>
+							</ul>
+							<ul class="col">
+							<li  class="title"><img alt="Activate QR code" src="../img/activate150.png" class="img-fluid"></li>
+								<li><b th:text="#{index.howto.activation.title}">3) Activation code</b></li>
+								<li><i style="color:#ff8000" class="fas fa-long-arrow-alt-right"></i> <span  th:utext="#{index.howto.activation.chooseproduct}"></span>  <button class="btn btn-sm btn-primary" onclick="window.location.href='/pricing'" th:text="#{index.howto.activation.chooseproduct.button}"></button></li>
+								<li><i style="color:#ff8000" class="fas fa-long-arrow-alt-right"></i> <span  th:text="#{index.howto.activation.checkemail}"></span></li>
+								<li><small style="color:DarkGreen" th:text="#{index.howto.activation.putactivationcode}"></small></li>
+								<li><button class="btn btn-lg button" onclick="window.location.href='/prepaid-qr'" style="background-color:rgb(210, 117, 251)" th:text="#{index.howto.activation.buttonactivation}">Activate QR</button></li>
+							</ul>
+					</div>
 				</div>
-				<div class="columms">
-					<i class="fas fa-cogs" style="color: lightgreen; font-size:28px; float:left; padding-right: 7px;"></i>
-					<h3 th:text="#{index.panel3.control}"></h3>
-					<p id="introduction" th:text="#{index.panel3.control.description}" style="padding:10px"></p>
-				</div>
-			</div>
-
-			<br>
-
-			<div class="flex-container transparency panel"  onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms"  id="paragraph2">
-					<i class="fas fa-wifi" style="color: deeppink; font-size:28px; float:left; padding-right: 7px;"></i>
-					<h3 th:text="#{index.panel4.shipping}"></h3>
-					<p id="introduction" th:text="#{index.panel4.shipping.description}"  style="padding:10px"></p>
-				</div>
-				<div class="columms"  id="secondImage">
-					<img src="../img/pet-tag-qr-2.jpg" class="img-fluid" id="pet-tag-2" alt="Pet-QR-Tag" style="padding:10px" />
-				</div>
-			</div>
 			
-			<div class="flex-container transparency panel" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<div class="columms">
-					<img src="../img/qrTagfreezer.jpg" alt="Pet QR tag to the refrigerator" class="img-fluid" style="padding: 15px;" />
-				</div>
-				<div class="columms">
-					<i class="fas fa-cogs" style="color: lightgreen; font-size:28px; float:left; padding-right: 7px;"></i>
-					<h3 th:text="#{index.panel6}"></h3>
-					<p id="introduction" th:text="#{index.panel6.freezer.description}" style="padding:10px"></p>
-				</div>
-			</div>
-			
-			<br>
-			<br>
+			<!-- Commented and disable data start -->
+			<!-- Commented and disable data end -->
 			
 			<div class="transparency panel" style="text-align:center; display:flex; flex-direction:column;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
-				<span class="badge badge-lg badge-info form-group" style="margin: 0 auto; font-size:16px;" th:text="#{index.panel5.starnow}"></span>
-				<br>
-				<button class="btn btn-lg btn-warning form-group" onclick="window.location.href='/pricing'" style="color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}">Comience ya mismo</strong></button>
-				<br>
-				<small style="color: pink; margin: 0 auto;" class="form-group" th:text="#{index.panel5.starnow.description}"></small><br>
+				<span class="badge badge-lg badge-info form-group" style="margin: 0 auto; font-size:16px; padding:3px;" th:text="#{index.panel5.starnow}"></span>
+				<button class="btn btn-lg btn-warning form-group" onclick="window.location.href='/pricing'" style="padding:3px;color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}">Comience ya mismo</strong></button>
+				<small style="color: pink; margin: 0 auto; padding:3px;" class="form-group" th:text="#{index.panel5.starnow.description}"></small><br>
 			</div>
 			
 			<br>
 			<br>
 			<br>
-			<br>
-			<br>
-			<br>
-				</div>
+			
+		</div>
 		<!-- End background tiles -->
 
+	</div>
 	</div>
 <!-- Twitter library start -->
 <script>

@@ -1,7 +1,6 @@
 html, body{
 }
 
-
 #triangle-topleft-pricing {
 	width: 0;
 	height: 0;
@@ -9,8 +8,6 @@ html, body{
 	border-right: 200px solid transparent;
 	position: absolute;
 }
-
-
 
 #fullcontainer{
     background-image: url('../img/tile_pupure.jpg');
@@ -20,7 +17,6 @@ html, body{
     margin: 0 auto;
 }
 
-
 .pricingdiv{
   font-family: 'Mali', cursive !important;
   display: flex;
@@ -28,7 +24,6 @@ html, body{
   font-size: 16px;
   justify-content: center;
   /* font-family: 'Source Sans Pro', Arial, sans-serif; */
-
 }
 
 .pricingdiv ul.theplan{

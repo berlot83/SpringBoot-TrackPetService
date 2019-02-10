@@ -14,6 +14,10 @@ html, body {
 	position: absolute;
 }
 
+.backgroundGradient{
+	  background-image: linear-gradient(white, #6755E3);
+}
+
 #footer { //
 	height: 70px;
 	background-color: black;
@@ -73,6 +77,117 @@ body {
 	background: rgba(0, 0, 0, 0.5) !important;
 	border-radius: 10px !important;
 }
+
+.transparencyWithPadding {
+	background: rgba(0, 0, 0, 0.5) !important;
+	padding:10px;
+	border-radius: 10px !important;
+}
+
+.check{
+	color:LimeGreen;
+
+}
+
+.cancel{
+	color:red;
+	text-align:center;
+}
+
+.howitworksTable{
+  font-family: 'Mali', cursive !important;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  justify-content: center;
+}
+
+.howitworksTable ul.col{
+  background-color: #eef0f0 !important;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  width: 300px; /* width of each table */
+  margin: 20px; /* spacing between tables */
+  margin-bottom: 1em;
+  border: 1px solid gray;
+  transition: all .5s;
+}
+	
+
+.howitworksTable ul.col:hover{ /* when mouse hover over pricing table */
+  transform: scale(1.05);
+  transition: all .5s;
+  z-index: 100;
+  box-shadow: 0 0 10px gray;
+}
+
+.howitworksTable ul.col .center{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.howitworksTable ul.col img{
+  max-width: 100%;
+  height: auto;
+}
+
+.howitworksTable ul.col li{
+  padding: 10px 10px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.howitworksTable ul.col li.title{
+  font-weight: bold;
+  text-align: center;
+  padding: 30px 10px;
+/*   background: rgb(40, 193, 203); */
+    background-image: linear-gradient(rgb(40, 193, 203), white);
+  color: white;
+  box-shadow: 0 -10px 5px rgba(0,0,0,.1) inset;
+  text-transform: uppercase;
+  text-shadow: 1px 2px black;
+}
+
+.howitworksTable ul.col:nth-of-type(2) li.title{
+/*   background: rgb(249, 111, 118); */
+   background-image: linear-gradient(rgb(249, 111, 118), white);
+  color: white;
+  text-shadow: 1px 2px black;
+}
+    
+.howitworksTable ul.col:nth-of-type(3) li.title{
+  background-image: linear-gradient(rgb(210, 117, 251), white);
+/*   background: lightgreen; rgb(210, 117, 251) */
+  color: white;
+  text-shadow: 1px 2px black;
+}
+
+.howitworksTable ul.col li b{
+  text-transform: uppercase;
+}
+.howitworksTable ul.col li.title b{
+  font-size: 110%;
+}
+
+.howitworksTable ul.col:last-of-type{ /* remove right margin in very last table */
+  margin-right: 0;
+}
+
+/*very last LI within each pricing UL */
+.howitworksTable ul.col li:last-of-type{
+  text-align: center;
+  margin-top: auto; /*align last LI (price botton li) to the very bottom of UL */
+}  	
+	
+.button{
+	color:white;
+	text-shadow: 1px 3px black;
+}	
 
 #divMainForm {
 	box-shadow: 0px 0px 15px black;
@@ -143,6 +258,12 @@ a:hover {
 	
 	div.columns{
 		padding:10px;
+	}
+	
+	.halfCol{
+		flex-grow: 0;
+   		flex-shrink: 0;
+   flex-basis: 50%;
 	}
 
 /*  Small devices (landscape phones, 576px and up) */
