@@ -22,18 +22,19 @@
 				<input type="hidden" th:value="${prepaidQR.strBase64}" id="strBase64" style="display:none"/>
 				<input type="hidden" th:value="${prepaidQR.resultBase64Avatar}" style="display:none" id="resultBase64Avatar" />
 				<input type="hidden" th:value="${prepaidQR.base64Backside}" style="display:none" id="base64Backside" />
+				<input type="text" th:value="${pet?.petName}" style="display:block" id="petName" />
+				<input type="text" th:value="${pet?.raze}" style="display:block" id="raze" />
+				<input type="text" th:value="${pet?.illness}" style="display:block" id="illness" />
+				<input type="text" th:if="${pet?.medicated == false}" th:value="No" style="display:block" id="medicated" />
+				<input type="text" th:unless="${pet?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
+				<input type="text" th:if="${pet?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
+				<input type="text" th:unless="${pet?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
+				<input type="text" th:value="${owner?.telephone1}" style="display:block" id="telephone1" />
+				<input type="text" th:value="${owner?.telephone2}" style="display:block" id="telephone2" />
+				<input type="text" th:value="${owner?.email}" style="display:block" id="email" />
+				
 				<!-- Grid row -->
 				<div class="row">
-
-					<!-- Grid column -->
-					<!--   <div class="col-md-12 d-flex justify-content-center mb-5"> -->
-
-					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="all">All</button> -->
-					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button> -->
-					<!--     <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button> -->
-
-					<!--   </div> -->
-					<!-- Grid column -->
 
 				</div>
 				<!-- Grid row -->

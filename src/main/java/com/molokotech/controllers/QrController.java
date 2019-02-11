@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.molokotech.model.Owner;
+import com.molokotech.model.Pet;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
 import com.molokotech.service.PetService;
@@ -264,9 +266,6 @@ public class QrController {
 			modelError.addAttribute("errorMailAsociated", "El mail parece no estar asociado a este código.");
 			result = "prepaid-qr";
 		}
-		
-		
-		
 		return result;
 	}
 	/* End prepaidControllers */
@@ -382,18 +381,34 @@ public class QrController {
 	
 	@GetMapping("/download")
 	public String downloadDesign(Model model) {
+		/* Create an PrepaidQR Object */
 		PrepaidQR prepaidQR = new PrepaidQR();
+		
+		/* Create an Pet Object to add the PrepaidQR, because for some reason in Form action do not attach inner objects */
+		Pet pet = new Pet();
+		
+		/* Create an Owner Object to add the PrepaidQR, because for some reason in Form action do not attach inner objects */
+		Owner owner = new Owner();
+		
+		/* Set the Pet to the PrepaidQR */
+		prepaidQR.setPet(pet);
+
+		/* Set the Owner to the PrepaidQR */
+		prepaidQR.setOwner(owner);
+		
 		PrintName.printUser(model);
+		
+		/* Add the attribute to the HTML */
 		model.addAttribute("prepaidQR", prepaidQR);
 		return "download";
 	}
-	
+
+	/* Be aware to do not delete @Model Attribute PrepaidQR and Pet they are in dependency */
 	@PostMapping("/download")
-	public String chooseDesign(@ModelAttribute PrepaidQR prepaidQR, Model model) {
+	public String chooseDesign(@ModelAttribute PrepaidQR prepaidQR, @ModelAttribute Pet pet, @ModelAttribute Owner owner, Model model) {
 		PrintName.printUser(model);
 		System.out.println(prepaidQR.getId());
 		System.out.println(prepaidQR.getSelledOnline());
-		
 		return "download";
 	}
 	
