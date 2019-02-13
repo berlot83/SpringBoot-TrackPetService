@@ -16,17 +16,17 @@
 	  	<h5 style="color:pink" th:text="#{qrhelp.title}">Instrucciones del panel de control</h5>
 	  		<div><img class="img-fluid" src="../img/controlPanel.png" style="width:800px; padding:5px" /></div>
 	  	<ul>
-	  		<li><i style="color: lightgreen;" class="fas fa-search"></i><a id="aViewTemplate" onclick="showAnswerView()" th:text="#{qrhelp.viewtemplate}">Ver plantilla</a>
+	  		<li><i style="color: lightgreen;" class="fas fa-search"></i> <a id="aViewTemplate" onclick="showAnswerView()" th:text="#{qrhelp.viewtemplate}">Ver plantilla</a>
 	  			<div id="divViewTemplate" class="answer" style="padding-bottom:20px;" th:text="#{qrhelp.viewtemplate.description}">
 					Esta opción nos lleva directamente a la plantilla con los datos, cada vez que hagamos cambios u modificaciones de datos podemos corroborar como quedaron, asi como también reutilizar la información.
 				</div>
 	  		</li>
-	  		<li><i style="color: PaleTurquoise" class="fas fa-edit"></i><a  id="aModifyTemplate" onclick="showAnswerModify(this)" th:text="#{qrhelp.modifytemplate}"> Modificar plantilla</a>
+	  		<li><i style="color: PaleTurquoise" class="fas fa-edit"></i> <a  id="aModifyTemplate" onclick="showAnswerModify(this)" th:text="#{qrhelp.modifytemplate}"> Modificar plantilla</a>
 	  			<div id="divModifyTemplate" class="answer" style="padding-bottom:20px;" th:text="#{qrhelp.modifytemplate.description}">
 					Esta opción modifica la plantilla, es necesario si o si estar logueado e ingresar desde el panel de control.
 				</div>
 			</li>
-	  		<li><i class="far fa-trash-alt" style="color: tomato"></i><a  id="aDeleteCode" onclick="showAnswerDelete(this)" th:text="#{qrhelp.deletetemplate}"> Borrar código</a>
+	  		<li><i class="far fa-trash-alt" style="color: tomato"></i> <a  id="aDeleteCode" onclick="showAnswerDelete(this)" th:text="#{qrhelp.deletetemplate}"> Borrar código</a>
 	  			<div id="divDeleteCode" class="answer" style="padding-bottom:20px;" th:text="#{qrhelp.deletetemplate.description}">
 					Esta opción elimina todo el código de la DB, no sólo la plantilla, es necesario si o si estar logueado e ingresar desde el panel de control, la información eliminada en esta opción es irrecuperable, por eso es recomendable transferir el código a otro usuario.
 				</div>
@@ -37,7 +37,7 @@
 				</div>
 	  		
 	  		</li>
-	  		<li><i class="fas fa-download" style="color:lightblue"></i> <span th:text="#{qrhelp.changedeisgn}">Cambiar diseño</span></li>
+	  		<li><i class="fas fa-download" style="color:lightblue"></i> <span th:text="#{qrhelp.changedesign}"> Cambiar diseño</span></li>
 	  		<li><i style="color: pink" class="fas fa-exclamation-triangle"></i> <span th:text="#{qrhelp.sendalert}">Enviar alerta de mascota perdida a la DB</span></li>
 		</ul>
 	</div>
