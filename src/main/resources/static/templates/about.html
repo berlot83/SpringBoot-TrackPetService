@@ -11,124 +11,58 @@
 	<div class="container inline-block">
 		<div class="container-fluid" id="mainContainerAbout">
 
-<!-- 			<br> <br> -->
-<!-- 				<h3>Preguntas frecuentes sobre los QR:</h3> -->
-<!-- 				<div style="float: left" class="container-fluid"> -->
-<!-- 					<img class="img-fluid" src="../img/densidad.png" -->
-<!-- 						style="margin: 0 auto;" /> -->
-<!-- 				</div> -->
-<!-- 				<div style="float: left; margin-top: 20px;" class="container-fluid"> -->
-<!-- 					<p>Acá vamos a responder algunas preguntas técnicas sobre los -->
-<!-- 						códigos QR en general y los nuestros en particular</p> -->
-
-<!-- 					<p>1) Es un módulo para almacenar información en una matriz de -->
-<!-- 						puntos. (Quick response)</p> -->
-
-<!-- 					<p>2) La densidad de bytes (cantidad de puntos negros) es -->
-<!-- 						importante a la hora de la lectura y la distancia en que se va a -->
-<!-- 						leer.</p> -->
-<!-- 					<p>3) Permiten un margen de error de aprox. el 30% como máximo, -->
-<!-- 						por eso vemos a veces imagenes en el medio.</p> -->
-<!-- 					<p>4) Nuestros códigos QR almacenan una ruta a una cloud donde -->
-<!-- 						están los datos de la mascota. Por ende la cantidad de datos -->
-<!-- 						ingresada es irrelevante ya que el QR siempre será el mismo.</p> -->
-<!-- 					<p>5) Los colores, tanto de los puntos negros como el fondo del -->
-<!-- 						QR afectan su lectura. Por ende intentar colocar colores suaves y -->
-<!-- 						un fondo muy oscuro dificultará su lectura.</p> -->
-<!-- 					<p>6) Los dibujos superpuestos de gran tamaño afectan la -->
-<!-- 						lectura del mismo, hay tolerancias como los logos centrales de -->
-<!-- 						menor tamaño.</p> -->
-<!-- 					<p>7) El tamaño óptimo de impresión es de 3x3 cm en adelante, -->
-<!-- 						menos que ése tamaño dificulta su lectura, no solo para el -->
-<!-- 						dispositivo, sino para aquel que tiene que acercarse todavía más -->
-<!-- 						para leerlo.</p> -->
-<!-- 					<p>8) La calidad de impresión de los mismos debe ser buena, por -->
-<!-- 						éso se recomienda impresoras laser por sobre las de tinta.</p> -->
-<!-- 					<p>9) La distancia máxima de lectura es de 1:10, significa, que -->
-<!-- 						si el QR tiene 2x2 cm, la distancia debe ser de 20 cm máximo. -->
-<!-- 					<p> -->
-
-<!-- 						<br> -->
-<!-- 						<br> -->
-<!-- 					<div class="container-fluid" style="display: inline-block"> -->
-<!-- 						<h5 style="text-align: center">Ejemplo visible del tamaño más -->
-<!-- 							pequeño (3,5 x 3,5 cm)</h5> -->
-<!-- 						<br> -->
-<!-- 						<div class="container-fluid"> -->
-<!-- 							<img alt="" src="../img/productImage1.jpg" -->
-<!-- 								class="img-fluid imgProduct"> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-
-<!-- 						<div class="container-fluid"> -->
-<!-- 							<img alt="" src="../img/productImage2.jpg" -->
-<!-- 								class="img-fluid imgProduct"> -->
-<!-- 						</div> -->
-
-<!-- 						<br> -->
-
-<!-- 						<div class="container-fluid"> -->
-<!-- 							<img alt="" src="../img/productImage3.jpg" -->
-<!-- 								class="img-fluid imgProduct"> -->
-<!-- 						</div> -->
-
-<!-- 						<br> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<br> <br> <br> <br> <br> <br> <br> -->
-<!-- 				<br> <br> <br> <br> <br> <br> <br> -->
 <div id="instructions" class="aboutDiv container-fluid">
 	<div class="columns container-fluid transparency" style="padding:10px;border-radius:15px">
-	  	<h5 style="color:pink">Instrucciones del panel de control</h5>
+	  	<h5 style="color:pink" th:text="#{qrhelp.title}">Instrucciones del panel de control</h5>
 	  		<div><img class="img-fluid" src="../img/controlPanel.png" style="width:800px; padding:5px" /></div>
 	  	<ul>
-	  		<li><i style="color: lightgreen;" class="fas fa-search"></i><a id="aViewTemplate" onclick="showAnswerView()">Ver plantilla</a>
-	  			<div id="divViewTemplate" class="answer" style="padding-bottom:20px;">
+	  		<li><i style="color: lightgreen;" class="fas fa-search"></i><a id="aViewTemplate" onclick="showAnswerView()" th:text="#{qrhelp.viewtemplate}">Ver plantilla</a>
+	  			<div id="divViewTemplate" class="answer" style="padding-bottom:20px;" th:text="#{qrhelp.viewtemplate.description}">
 					Esta opción nos lleva directamente a la plantilla con los datos, cada vez que hagamos cambios u modificaciones de datos podemos corroborar como quedaron, asi como también reutilizar la información.
 				</div>
 	  		</li>
-	  		<li><i style="color: PaleTurquoise" class="fas fa-edit"></i><a  id="aModifyTemplate" onclick="showAnswerModify(this)"> Modificar plantilla</a>
-	  			<div id="divModifyTemplate" class="answer" style="padding-bottom:20px;">
+	  		<li><i style="color: PaleTurquoise" class="fas fa-edit"></i><a  id="aModifyTemplate" onclick="showAnswerModify(this)" th:text="#{qrhelp.modifytemplate}"> Modificar plantilla</a>
+	  			<div id="divModifyTemplate" class="answer" style="padding-bottom:20px;" th:text="#{qrhelp.modifytemplate.description}">
 					Esta opción modifica la plantilla, es necesario si o si estar logueado e ingresar desde el panel de control.
 				</div>
 			</li>
-	  		<li><i class="far fa-trash-alt" style="color: tomato"></i><a  id="aDeleteCode" onclick="showAnswerDelete(this)"> Borrar código</a>
-	  			<div id="divDeleteCode" class="answer" style="padding-bottom:20px;">
+	  		<li><i class="far fa-trash-alt" style="color: tomato"></i><a  id="aDeleteCode" onclick="showAnswerDelete(this)" th:text="#{qrhelp.deletetemplate}"> Borrar código</a>
+	  			<div id="divDeleteCode" class="answer" style="padding-bottom:20px;" th:text="#{qrhelp.deletetemplate.description}">
 					Esta opción elimina todo el código de la DB, no sólo la plantilla, es necesario si o si estar logueado e ingresar desde el panel de control, la información eliminada en esta opción es irrecuperable, por eso es recomendable transferir el código a otro usuario.
 				</div>
 			</li>
-	  		<li><i class="fas fa-exchange-alt" style="color:DarkViolet"></i><a  id="aTransferCode" onclick="showAnswerTransfer(this)"> Transferir código</a>
-	  			<div id="divTransferCode" class="answer" style="padding-bottom:20px;">
+	  		<li><i class="fas fa-exchange-alt" style="color:DarkViolet"></i><a  id="aTransferCode" onclick="showAnswerTransfer(this)" th:text="#{qrhelp.transfercode}"> Transferir código</a>
+	  			<div id="divTransferCode" class="answer" style="padding-bottom:20px;" th:text="#{qrhelp.transfercode}">
 					Esta opción transfiere el código QR con la información que contenga a otro usuario de la plataforma, si el mismo no existe no lo transfiere, una vez realizada la transferencia el mismo código es irrecuperable.
 				</div>
 	  		
 	  		</li>
-	  		<li><i class="fas fa-download" style="color:lightblue"></i> Cambiar diseño</li>
-	  		<li><i style="color: pink" class="fas fa-exclamation-triangle"></i> Enviar alerta de mascota perdida a la DB</li>
+	  		<li><i class="fas fa-download" style="color:lightblue"></i> <span th:text="#{qrhelp.changedeisgn}">Cambiar diseño</span></li>
+	  		<li><i style="color: pink" class="fas fa-exclamation-triangle"></i> <span th:text="#{qrhelp.sendalert}">Enviar alerta de mascota perdida a la DB</span></li>
 		</ul>
 	</div>
 </div>
 
 <div class="aboutDiv">
 	<div class="columns container-fluid transparency" style="padding:10px; border-radius:15px">
-	  	<h5 style="color:pink">Influyen en la lectura</h5>
+	  	<h5 style="color:pink" th:text="#{qrhelp.precautionreading.title}">Influyen en la lectura</h5>
 	  	<ul>
-	  		<li>Distancia de lectura</li>
-	  		<li>Tamaño</li>
-	  		<li>Densidad de información</li>
-	  		<li>Calidad de impresión</li>
-	  		<li>Color del fondo</li>
-	  		<li>Nivel de error</li>
+	  		<li th:text="#{qrhelp.precautionreading.distanceofreading}">Distancia de lectura</li>
+	  		<li th:text="#{qrhelp.precautionreading.size}">Tamaño</li>
+	  		<li th:text="#{qrhelp.precautionreading.volumeofbits}">Densidad de información</li>
+	  		<li th:text="#{qrhelp.precautionreading.printquality}">Calidad de impresión</li>
+	  		<li th:text="#{qrhelp.precautionreading.backgroundcolor}">Color del fondo</li>
+	  		<li th:text="#{qrhelp.precautionreading.errorlevel}">Nivel de error</li>
 		</ul>
 	</div>
 	<div class="columns container-fluid transparency" style="padding:10px; border-radius:15px">
-		<h5 style="color:lightgreen">Recomendaciones</h5>
+		<h5 style="color:lightgreen" th:text="#{qrhelp.recomendations.title}">Recomendaciones</h5>
 		<ul>
-	  		<li>Leer a 1/10, por ende si mide 3x3, leer a 30 cm </li>
-	  		<li>Tamaño recomendado, de 3 cm para arriba</li>
-	  		<li>Con densidad baja, o mejor dicho poca información cargada</li>
-	  		<li>Con color de fondo blanco</li>
-	  		<li>Nivel de error nunca mayor al 30% (Logo central)</li>
+	  		<li th:text="#{qrhelp.recomendations.recommendeddistance}">Leer a 1/10, por ende si mide 3x3, leer a 30 cm </li>
+	  		<li th:text="#{qrhelp.recomendations.recommendedsize}">Tamaño recomendado, de 3 cm para arriba</li>
+	  		<li th:text="#{qrhelp.recomendations.lowvolumebits}">Con densidad baja, o mejor dicho poca información cargada</li>
+	  		<li th:text="#{qrhelp.recomendations.backgroundcolorwhite}">Con color de fondo blanco</li>
+	  		<li th:text="#{qrhelp.recomendations.errorlevelmax30}">Nivel de error nunca mayor al 30% (Logo central)</li>
 		</ul>
 	</div>
 </div>
