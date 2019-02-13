@@ -1,15 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<div th:include="default :: header"></div>
+	<div th:replace="default :: header"></div>
 	<link rel="stylesheet" type="text/css" href="../css/create-prepaid-qr.css" />
 	<link rel="stylesheet" type="text/css" href="../css/croppie.css" />
 	<script type="text/javascript" src="../js/avatar.js"></script>
 	<script type="text/javascript" src="../js/croppie.js"></script>
 	<script type="text/javascript" src="../js/croppie.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../css/maps.css" />
-	<script type="text/javascript" src="../js/html2canvas.js"></script>
-	
 </head>
 
 <body onload="initMap(), retrivePrepaidQR()">
@@ -22,21 +19,20 @@
 		
 		<div id="dataCreatePrepaidQR" class="transparencyWithoutPadding">
 		
-			<h2 style="text-align: center">Servicio de información de
+			<h2 style="text-align: center" th:text=#{create-prepaid-qr.title}>Servicio de información de
 				mascotas</h2>
 			<br>
 			<!-- Needed to identify the id to update to -->
 			<div class="form-group">
-				<label for="idPrepaidQrCode">El código de activación es:</label>
+				<label for="idPrepaidQrCode" th:text=#{create-prepaid-qr.activationcodelabel}>El código de activación es:</label>
 				<h4>
-					<span id="idPrepaidQrCode" th:text="${prepaidQR.id}"
-						class="badge badge-lg badge-info">
+					<span id="idPrepaidQrCode" th:text="${prepaidQR.id}" class="badge badge-lg badge-info"></span>
 				</h4>
 			</div>
 
 			<!-- Needed to update the name of the username -->
 			<div class="form-group">
-				<Label for="user">Asignado a usuario:</label>
+				<Label for="user" th:text=#{create-prepaid-qr.assigneduser}>Asignado a usuario:</label>
 				<h4>
 					<span id="user" th:text="${currentUser}"
 						class="badge badge-lg badge-info"
@@ -53,6 +49,7 @@
 <!-- 						style="color: white; text-align: center;"></span> -->
 <!-- 				</h4> -->
 <!-- 			</div> -->
+
 			<div class="container-fluid d-flex p-3 text-white" style="text-shadow: 1px 1px black;">
 				<div id="demo-basic" style="width:150px;height:150px;" class="img-fluid rounded float-left p-2 bg-secondary">
 					<img src="../img/withoutPhoto.png" id="crop" class="img-thumbnail" style="box-shadow: 2px 2px black;"/>
@@ -62,8 +59,8 @@
 					<input type='file' id='file' name="file" accept="image/*" onchange="loadFile(event), cropImageAndSave()" style="text-shadow: 1px 2px black;display:inline-block;float:left;box-shadow: 2px 2px black;" class="btn btn-sm btn-info"/>
 					<br>
 					<br>
-					<button id="basic-result" class="basic-result btn btn-sm btn-info" style="float:left; box-shadow: 2px 2px black;text-shadow: 1px 2px black;">Recortar</button>
-					<br><br><small style="color:deeppink">Toque Recortar cuando haya centrado la imagen así se persiste en DB.</small><br><small>Esta imagen puede ser agregada a los modelos más grandes del código QR.</small>
+					<button id="basic-result" class="basic-result btn btn-sm btn-info" style="float:left; box-shadow: 2px 2px black;text-shadow: 1px 2px black;" th:text=#{create-prepaid-qr.cutphotobutton}>Recortar</button>
+					<br><br><small style="color:deeppink" th:text=#{create-prepaid-qr.cutphoto1}>Toque Recortar cuando haya centrado la imagen así se persiste en DB.</small><br><small th:text=#{create-prepaid-qr.cutphoto2}>Esta imagen puede ser agregada a los modelos más grandes del código QR.</small>
 					<img id='crop' />
 					<!-- end upload -->
 				</div>
@@ -71,13 +68,13 @@
 		<br><br><br>
 
 			<br> <br>
-			<h5>Datos básicos</h5>
+			<h5 th:text=#{create-prepaid-qr.basicdata.title}>Datos básicos</h5>
 			<hr style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<!-- Two colums -->
 				<div class="col">
 					<div class="form-group">
-						<label for="raze">Raza</label>
+						<label for="raze" th:text=#{create-prepaid-qr.basicdata.razelabel}>Raza</label>
 						<!-- Start selector raze -->
 						<select class="form-control" name="raze" id="raze">
 							<option value="Otra" selected>Otra</option>
@@ -134,7 +131,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="petname"><i class="fas fa-paw" style="color:turquoise"></i> Nombre mascota</label> <input type="text"
+						<label for="petname"><i class="fas fa-paw" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.petnamelabel}></span>Nombre mascota</label> <input type="text"
 							id="petName" placeholder="Nombre de la mascota"
 							class="form-control" required>
 					</div>
@@ -145,7 +142,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="age"><i class="fas fa-birthday-cake" style="color:turquoise"></i> Edad</label>
+						<label for="age"><i class="fas fa-birthday-cake" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.agelabel}>Edad</span></label>
 						<div id="resultAge"></div>
 
 						<!-- Start select age -->
@@ -181,31 +178,31 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="sex"><i class="fas fa-venus-mars" style="color:turquoise"></i> Sexo</label> <select id="sex"
+						<label for="sex"><i class="fas fa-venus-mars" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.sexlabel}>Sexo</span></label> <select id="sex"
 							onchange="pregnant()" class="form-control">
-							<option value="Macho">Macho</option>
-							<option value="Hembra">Hembra</option>
+							<option value="Macho" th:text=#{create-prepaid-qr.basicdata.optionmale}>Macho</option>
+							<option value="Hembra" th:text=#{create-prepaid-qr.basicdata.optionfemale}>Hembra</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="col">
 					<div class="form-group">
-						<label for="weight"><i class="fas fa-weight" style="color:turquoise"></i> Peso</label> <input type="number" id="weight"
+						<label for="weight"><i class="fas fa-weight" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.weightlabel}>Peso</span></label> <input type="number" id="weight"
 							maxlength="2" min="1" placeholder="5" class="form-control" />
 					</div>
 				</div>
 
 			</div>
 			<br> <br>
-			<h5><i class="fas fa-syringe" style="color:turquoise"></i> Vacunación</h5>
+			<h5><i class="fas fa-syringe" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.vaccinestitle}>Vacunación</span></h5>
 			<hr style="border: 1px solid BlueViolet !important">
 			<div class="form-group">
 				<div class="form-check">
 					<input type="checkbox" style="width: 18px; height: 18px;"
 						class="form-check-input" id="checkVaccines"
 						onchange="checkVaccines()" value=true> <label
-						class="form-check-label">Vacunas</label>
+						class="form-check-label" th:text=#{create-prepaid-qr.basicdata.vaccineslabel}>Vacunas</label>
 				</div>
 			</div>
 
@@ -213,7 +210,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="dateAntiRabicVaccine">Antirábica</label> <input
+						<label for="dateAntiRabicVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.antirabic}>Antirábica</label> <input
 							type="date" class="form-control" name="dateAntiRabicVaccine"
 							id="dateAntiRabicVaccine" disabled>
 					</div>
@@ -221,7 +218,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="datePolivalentVaccine">Polivalente</label> <input
+						<label for="datePolivalentVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.polivalent}>Polivalente</label> <input
 							type="date" class="form-control" name="datePolivalentVaccine"
 							id="datePolivalentVaccine" disabled>
 					</div>
@@ -231,7 +228,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="dateSextupleVaccine">Sextuple</label> <input
+						<label for="dateSextupleVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.sextuple}>Sextuple</label> <input
 							type="date" class="form-control" name="dateSextupleVaccine"
 							id="dateSextupleVaccine" disabled>
 					</div>
@@ -239,19 +236,19 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="dateOctupleVaccine">Octuple</label> <input type="date"
+						<label for="dateOctupleVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.octuple}>Octuple</label> <input type="date"
 							class="form-control" name="dateOctupleVaccine"
 							id="dateOctupleVaccine" disabled>
 					</div>
 				</div>
 			</div>
 			<br> <br>
-			<h5><i class="fas fa-heartbeat" style="color:turquoise"></i> Salud</h5>
+			<h5><i class="fas fa-heartbeat" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.basicdata.healthtitle}>Salud</span></h5>
 			<hr  style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<div class="col-4">
 					<div class="form-group">
-						<label for="illness"><i class="fas fa-briefcase-medical" style="color:turquoise"></i> Sufre efermedad</label>
+						<label for="illness"><i class="fas fa-briefcase-medical" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.health.illness}>Sufre efermedad</span></label>
 						<!-- Start select age -->
 						<select class="form-control" name="illness" id="illness">
 							<option value="Ninguna">Ninguna</option>
@@ -278,18 +275,18 @@
 
 				<div class="col-4">
 					<div class="form-group">
-						<label for="medicated"><i class="fas fa-pills" style="color:turquoise"></i> Está medicado</label>
+						<label for="medicated"><i class="fas fa-pills" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.health.medicated}>Está medicado</span></label>
 						<!-- Start select Medicated -->
 						<select class="form-control" name="medicated" id="medicated">
-							<option value=true>Sí</option>
-							<option value=false>No</option>
+							<option value=true th:text="#{create-prepaid-qr.basicdata.health.medicated.yes}">Sí</option>
+							<option value=false th:text="#{create-prepaid-qr.basicdata.health.medicated.no}">No</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="col-4">
 					<div class="form-group">
-						<label for="lastVeterinaryVisit"><i class="fas fa-user-md" style="color:turquoise"></i> Ult. revisión</label> <input
+						<label for="lastVeterinaryVisit"><i class="fas fa-user-md" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.health.lastveterinary}>Ult. revisión</span></label> <input
 							type="date" class="form-control" name="lastVeterinaryVisit"
 							id="lastVeterinaryVisit">
 					</div>
@@ -298,42 +295,42 @@
 
 			<div class="row">
 				<div class="col form-group">
-					<label for="neuteredPet">Castrado</label> <select id="neuteredPet"
+					<label for="neuteredPet" th:text=#{create-prepaid-qr.basicdata.neuteredPet}>Castrado</label> <select id="neuteredPet"
 						class="form-control">
-						<option value=false>No</option>
-						<option value=true>Sí</option>
+						<option value=false th:text=#{create-prepaid-qr.basicdata.neuteredPet.no}>No</option>
+						<option value=true th:text=#{create-prepaid-qr.basicdata.neuteredPet.yes}>Sí</option>
 					</select>
 				</div>
 
 				<div class="col form-group">
-					<label for="pregnant">Embarazo</label> <select id="pregnant"
+					<label for="pregnant" th:text=#{create-prepaid-qr.basicdata.pregnant}>Embarazo</label> <select id="pregnant"
 						class="form-control" disabled>
-						<option value=false>No</option>
-						<option value=true>Sí</option>
+						<option value=false th:text=#{create-prepaid-qr.basicdata.pregnant.no}>No</option>
+						<option value=true th:text=#{create-prepaid-qr.basicdata.pregnant.yes}>Sí</option>
 					</select>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="clinicHistory"><i class="fas fa-file-medical-alt" style="color:turquoise"></i> Historia Clínica</label>
+				<label for="clinicHistory"><i class="fas fa-file-medical-alt" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.hc}>Historia Clínica</span></label>
 				<textarea name="clinicHistory" id="clinicHistory"
 					placeholder="Historia Clínica" rows="9" class="form-control"></textarea>
 			</div>
 			<br> <br>
-			<h5>Alimentación</h5>
+			<h5 th:text=#{create-prepaid-qr.basicdata.feedingtitle}>Alimentación</h5>
 			<hr style="border: 1px solid BlueViolet !important">
 			<br>
 			<div id="feeding" class="row">
 				<div class="col-4">
 					<div class="form-group">
-						<label for="foodBrand"><i class="fas fa-bone" style="color:turquoise"></i> Comida Bal.:</label> <input type="text"
+						<label for="foodBrand"><i class="fas fa-bone" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.feeding.petfood}>Comida Bal.:</span></label> <input type="text"
 							id="foodBrand" class="form-control"
 							placeholder="Royal cannin, Proplan, etc">
 					</div>
 				</div>
 				<div class="col-4">
 					<div class="form-group">
-						<label for="quantityFood"><i class="fas fa-weight-hanging" style="color:turquoise"></i> Cantidad Grs.:</label> <input
+						<label for="quantityFood"><i class="fas fa-weight-hanging" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.feedingquantity}>Cantidad Grs.:</span></label> <input
 							type="number" min="1" id="quantityFood" class="form-control"
 							placeholder="1000 gramos (1 kg al día)">
 					</div>
@@ -341,38 +338,38 @@
 
 				<div class="col-4">
 					<div class="form-group">
-						<label for="coockedFood">Comida h.:</label> <select
+						<label for="coockedFood" th:text=#{create-prepaid-qr.basicdata.feeding.cooked}>Comida h.:</label> <select
 							id="coockedFood" class="form-control">
-							<option value="Nunca">Nunca</option>
-							<option value="A veces">A veces</option>
-							<option value="Todos los días">Todos los días</option>
+							<option value="Nunca" th:text=#{create-prepaid-qr.basicdata.feeding.never}>Nunca</option>
+							<option value="A veces" th:text=#{create-prepaid-qr.basicdata.feeding.sometimes}>A veces</option>
+							<option value="Todos los días" th:text=#{create-prepaid-qr.basicdata.feeding.every}>Todos los días</option>
 						</select>
 					</div>
 				</div>
 			</div>
 			<br> <br>
 			
-			<h5>Estado respecto a Pet-QR</h5>
+			<h5 th:text=#{create-prepaid-qr.basicdata.statustitle}>Estado respecto a Pet-QR</h5>
 			<hr style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="status">Estado</label>
+						<label for="status" th:text=#{create-prepaid-qr.basicdata.statuslabel}>Estado</label>
 						<!-- Start select status -->
 						<select class="form-control" name="status" id="status">
-							<option value="true">Normal</option>
-							<option value="false">Perdido</option>
+							<option value="true" th:text=#{create-prepaid-qr.basicdata.status.normal}>Normal</option>
+							<option value="false" th:text=#{create-prepaid-qr.basicdata.status.lost}>Perdido</option>
 						</select>
 					</div>
 				</div>
 			</div>
 			<br> <br>
-			<H5><i class="far fa-address-card" style="color:turquoise"></i> Datos del Tutor</H5>
+			<H5><i class="far fa-address-card" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.ownerdatatitle}>Datos del Tutor</span></H5>
 			<hr style="border: 1px solid BlueViolet !important">
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="ownerName"><i class="far fa-user" style="color:turquoise"></i> Nombre</label> <input type="text"
+						<label for="ownerName"><i class="far fa-user" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.ownername}>Nombre</span></label> <input type="text"
 							name="name" id="ownerName" placeholder="Nombre del cuidador"
 							class="form-control" required>
 					</div>
@@ -380,7 +377,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="ownerLastname">Apellido</label> <input type="text"
+						<label for="ownerLastname"> <span th:text=#{create-prepaid-qr.basicdata.ownerlastname}>Apellido</span></label> <input type="text"
 							name="lastname" id="ownerLastname"
 							placeholder="Apellido del cuidador" class="form-control" required>
 					</div>
@@ -388,7 +385,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="residence"><i class="far fa-flag" style="color:turquoise"></i> País</label> <select name="residence"
+						<label for="residence"><i class="far fa-flag" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.ownercountry}>País</span></label> <select name="residence"
 							id="residence" class="form-control" required>
 							<option value="Argentina" id="AR">Argentina</option>
 							<option value="Afganistán" id="AF">Afganistán</option>
@@ -668,7 +665,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="dni"><i class="fas fa-fingerprint" style="color:turquoise"></i> D.N.I</label> <input type="number" name="dni"
+						<label for="dni"><i class="fas fa-fingerprint" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.ownerdocument}>D.N.I</span></label> <input type="number" name="dni"
 							id="dni" placeholder="DNI del cuidador" class="form-control"
 							required>
 					</div>
@@ -679,7 +676,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
-						<label for="telephone1"><i class="fas fa-mobile-alt" style="color:turquoise"></i> Teléfono</label> <input type="number"
+						<label for="telephone1"><i class="fas fa-mobile-alt" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.ownertelephone1}>Teléfono</span></label> <input type="number"
 							name="telephone1" id="telephone1" placeholder="Teléfono primario"
 							class="form-control" />
 					</div>
@@ -687,7 +684,7 @@
 
 				<div class="col">
 					<div class="form-group">
-						<label for="telephone2"><i class="fas fa-mobile-alt" style="color:turquoise"></i> Teléfono</label> <input type="number"
+						<label for="telephone2"><i class="fas fa-mobile-alt" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.ownertelephone2}>Teléfono</span></label> <input type="number"
 							name="telephone2" id="telephone2"
 							placeholder="Teléfono secundario" class="form-control" />
 					</div>
@@ -722,11 +719,11 @@
 			</div>
 
 			<div class="form-group">
-				<label for="address"><i class="fas fa-map-marked-alt"  style="color:turquoise"></i> Dirección principal (Dirección altura,
-					localidad, provincia)</label> <input type="text" name="address"
+				<label for="address"><i class="fas fa-map-marked-alt"  style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.address}>Dirección principal (Dirección altura,
+					localidad, provincia)</span></label> <input type="text" name="address"
 					id="address"
 					placeholder="Av. Libertador 650, Buenos Aires, Argentina"
-					class="form-control is-invalid" /> <small class="form-text"
+					class="form-control is-invalid" /> <small th:text=#{create-prepaid-qr.basicdata.usegooglemaps} class="form-text"
 					style="color: pink; text-align: justify;">Es necesario
 					utilizar el "motor" automático de direcciones para extraer la
 					latitud y longitud requerida por la App, si no se utiliza, el mismo
@@ -742,7 +739,7 @@
 			
 			<!-- Button to upload start backside map image -->
 			<div style="display:flex; flex-direction:column">
-				<button class="btn btn-lg btn-primary" id="export" onclick="takePhoto()">Pic Backside Tag, centering the map</button>
+				<button class="btn btn-lg btn-primary" id="export" onclick="takePhoto()" th:text=#{create-prepaid-qr.basicdata.picbacksidebutton}>Pic Backside Tag, centering the map</button>
 			</div>
 			<!-- Button to upload end backside map image -->
 
@@ -750,18 +747,18 @@
 			<br>
 			
 			<div id="videoDiv" class="form-group">
-			<h5>Choose a video from Youtube</h5>
+			<h5 th:text=#{create-prepaid-qr.basicdata.choosevideoyoutubetitle}>Choose a video from Youtube</h5>
 			<hr>
-				<label for="videoUrl">Video Youtube</label><br>
+				<label for="videoUrl" th:text=#{create-prepaid-qr.basicdata.choosevideoyoutube}>Video Youtube</label><br>
 				<input type="text" id="videoUrl" class="form-control">
 			</div>
 
 			<br>
 			<div class="form-group">
-				<button id="send" class="btn btn-danger" onclick="updateQr()">Almacenar
-					datos y crear Código QR ==>  <i class="fas fa-qrcode"></i> + <i class="fas fa-database"></i></button>
+				<button id="send" class="btn btn-danger" onclick="updateQr()"><span th:text=#{create-prepaid-qr.basicdata.storedata}>Almacenar
+					datos y crear Código QR</span> ==>  <i class="fas fa-qrcode"></i> + <i class="fas fa-database"></i></button>
 				<br> <small
-					style="color: lightpink; text-shadow: 0px 0px 5px black;">Importante:
+					style="color: lightpink; text-shadow: 0px 0px 5px black;" th:text=#{create-prepaid-qr.basicdata.mustbevalidadress}>Importante:
 					Si al hacer click y al cabo de unos segundos no aparece el código
 					creado, revisar la dirección que sea válida para el motor de
 					Google, ya que el sistema permitirá continuar SOLO si pudo obtener
@@ -776,7 +773,7 @@
 	</div>
 	
 	<script type="text/javascript">
-		function takePhoto(){
+	function takePhoto(){
             //get transform value
             var transform=$(".gm-style>div:first>div:first>div:last>div").css("transform")
             var comp=transform.split(",") //split up the transform matrix
@@ -800,7 +797,7 @@
                 		extra_canvas.setAttribute('height', 235);
 					var ctx = extra_canvas.getContext("2d");
 						ctx.drawImage(canvas, (canvas.width/2)-117.5, (canvas.height/2)-117.5, 235, 235, 0, 0, 235, 235);
-				    var finalimage = extra_canvas.toDataURL('image/png');
+				    var finalimage = extra_canvas.toDataURL('image/jpg'); /* Must stay as JPG */
 
 				    /* Start Ajax call  */
 				    if(finalimage != null){
@@ -853,6 +850,84 @@
         }
 	</script>
 	
+	<!-- Scripting test html2canvas promise  -->
+	<script type="text/javascript">
+	/* On Promise, render ok, but fails with grey image */
+	
+// 	var testcanvas = document.getElementById('testcanvas');	
+// 	function takePhoto(){
+//             //get transform value
+//             var transform=$(".gm-style>div:first>div:first>div:last>div").css("transform")
+//             var comp=transform.split(",") //split up the transform matrix
+//             var mapleft=parseFloat(comp[4]) //get left value
+//             var maptop=parseFloat(comp[5])  //get top value
+//             $(".gm-style>div:first>div:first>div:last>div").css({ //get the map container. not sure if stable
+//               "transform":"none",
+//               "left":mapleft,
+//               "top":maptop,
+//             })
+
+            
+//             	html2canvas($("#testcanvas")[0]).then(function(canvas) {
+
+// 				    var extra_canvas = document.createElement('canvas');
+//                 		extra_canvas.setAttribute('width', 600);
+//                 		extra_canvas.setAttribute('height', 600);
+// 					var ctx = extra_canvas.getContext("2d");
+// 						ctx.drawImage(canvas, (canvas.width/2)-117.5, (canvas.height/2)-117.5, 235, 235, 0, 0, 600, 600);
+// 				    var finalimage = extra_canvas.toDataURL('image/jpg');
+
+// 				    /* Start Ajax call  */
+// 				    if(finalimage != null){
+// 				    	var id = document.getElementById("idPrepaidQrCode").textContent;
+// 						var base64Backside = finalimage;
+						
+// 						console.log(finalimage);
+						
+// 						var xhr = new XMLHttpRequest();
+// 						var url = "/uploadBackside";
+						
+// 						xhr.open("POST", url, true);
+// 						xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// 						xhr.send("id="+id+"&base64Backside="+base64Backside);
+						
+// 						xhr.onreadystatechange = function () {
+// 							if (xhr.readyState == 4 && xhr.status == 200) {
+								
+// 								$.confirm({
+// 									type: "blue",
+// 									title: "Confirme la imagen:",
+// 									content: "<html><body><div style='text-align:center'><img src="+ base64Backside +" /></div></body></html>",
+// 									confirm: function(){
+// 										$.alert("Imagen persistida en DB con éxito.");
+// 									},
+// 								    cancel: function(){
+// 								        $.alert({
+// 								        	type:'blue',
+// 								        	title: 'Acción',
+// 								        	content:'Cancelada!'
+// 								        });
+// 								    }
+// 								});		
+								
+// 							}
+// 						}
+	
+// 				    }
+// 		    	/* End Ajax call */
+				    
+				
+//                 $(".gm-style>div:first>div:first>div:last>div").css({
+//                   left:0,
+//                   top:0,
+//                   "transform":transform
+//                 })
+//             	});
+
+//         }
+	</script>
+	<!-- End Promise -->
+	
 	
 		<!-- Start Google Maps Javascript -->
 		<script type="text/javascript" src="../js/googleApis.js"></script>
@@ -863,7 +938,8 @@
 		<!-- Javascript maps libraries -->
 	
 	<!--Template footer-->
-	<footer th:replace="default :: footer"></footer>
+	<footer th:replace="default :: footer">
+	</footer>
 </body>
 
 </html>
