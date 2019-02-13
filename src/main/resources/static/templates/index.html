@@ -316,12 +316,10 @@
 					</div>
 				</div>
 			
-			<!-- Commented and disable data start -->
-			<!-- Commented and disable data end -->
-			
 			<div class="transparency panel" style="text-align:center; display:flex; flex-direction:column;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 				<button class="btn btn-lg btn-warning form-group" onclick="window.location.href='/pricing'" style="padding:3px;color: black; margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}"></strong></button>
-				<span class="badge badge-lg badge-info form-group" style="margin: 0 auto; font-size:16px; padding:3px;" th:text="#{index.panel5.starnow}"></span>
+				<small style="margin: 0 auto; font-size:16px; padding:3px;" th:text="#{index.panel5.starnow}"></small>
+			<button onclick="window.location.href='/temporal-qr'" class="btn btn-lg btn-success" style="padding:3px;color: white; margin: 0 auto; text-shadow: 1px 2px black;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">Start Free trial</button>
 				<small style="color: pink; margin: 0 auto; padding:3px;" class="form-group" th:text="#{index.panel5.starnow.description}"></small><br>
 			</div>
 			

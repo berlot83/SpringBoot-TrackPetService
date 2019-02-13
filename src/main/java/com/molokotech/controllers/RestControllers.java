@@ -8,10 +8,7 @@ import java.util.Map;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.tomcat.util.http.parser.AcceptLanguage;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +47,6 @@ import com.molokotech.service.UserService;
 import com.molokotech.utilities.Expiration;
 import com.molokotech.utilities.GoogleMapsService;
 import com.paypal.ipn.IPNMessage;
-import com.sun.jersey.core.header.AcceptableLanguageTag;
 
 @Controller
 @RestController

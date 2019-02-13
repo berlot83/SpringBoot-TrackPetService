@@ -1,17 +1,11 @@
 package com.molokotech.controllers;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Transient;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -28,9 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.molokotech.model.Owner;
 import com.molokotech.model.Pet;
 import com.molokotech.model.PrepaidQR;
@@ -40,7 +31,6 @@ import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.PrintName;
 import com.molokotech.utilities.TokenCreator;
-import com.mongodb.MongoWriteException;
 
 @Component
 @Controller
