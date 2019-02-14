@@ -1,19 +1,46 @@
 function contact() {
 	$.confirm({
-		type: 'blue',
-		title: "<h5><strong><img src='../img/iconoPet75.png' style='widh:40px; height:40px;' /> Contacto</strong></h5>",
-		columnClass: 'col-md-6 col-md-offset-3',
-		content: '<ol><li>En todos los casos abajo declarados enviar a esta dirección de mail <a href="mailto:molokotech.com"><span class="badge badge-warning">info@molokotech.com</span></a></li><li>Para ser "Usuario Proveedor" solicitar boton de pago colocando en asunto <strong style="color:DarkViolet">"Proveedor"</strong>.</li><li>Para consultar por capacidad de distribuir QR físicos a veterinarias indique en el asunto <strong style="color:DarkBlue">"Distribución"</strong>, nuestra intención es incentivar la venta online.</li><li>Para consultas generales sobre el sistema y/o alcances de responsabilidad coloque en el asunto <strong style="color:DarkRed">"Consulta"</strong>.</li><li>Para reclamos de cualquier tipo, soporte para solucionar problemas si los hubiere, coloque en el asunto <strong style="color:DarkGreen">"Reclamo"</strong>.</li></ol>',
-		
-		buttons: {
-			danger: {
-				text: 'Continuar',
-				confirmButton: 'btn-red', // multiple classes.
-				btnClass: 'btn-blue',
-				action: function () { }
-			}
-		}
-	})
+	    title: "Contact us:",
+	    type: 'purple',
+	    columnClass: 'col-md-6',
+	    content: '' +
+	    "<html xmlns:th='http://www.thymeleaf.org'><body><div id='aboutDiv' style='display:flex;'><div style='flex-grow: 0; flex-shrink: 0; flex-basis: 50%;'><img class='img-fluid' style='' src='../img/qr400moloko.png' alt='Molokotech'><span style='color:LimeGreen; text-shadow:1px 1px black;'><strong style='color:orange'>Molokotech</strong> is an IT agency with a great Development Team.</span></div>"+
+	    "<div class='form-group' style='flex-grow: 0; flex-shrink: 0; flex-basis: 50%;'>" +
+	    "<form id='actionForm' action='/send-contact-form' th:action='@{/send-contact-form}' th:method='GET' th:object='${formMessage}'>"+
+	    '<input type="text" id="name" name="name" placeholder="Your name" class="name form-control" required /><br>' +
+	    '<input type="text" id="email" name="email" placeholder="Your email" class="name form-control" required /><br>' +
+	    '<input type="text" id="subject" name="subject" placeholder="Subject" class="name form-control" required /><br>' +
+	    "<textarea id='description' name='description' placeholder='Description message' rows='5' class='name form-control' required />" +
+	    '</div>' +
+	    '<div>' +
+	    '</body></html>',
+	    buttons: {
+	        confirm: {
+	            text: 'Submit',
+	            btnClass: 'btn-purple',
+	            action: function () {
+	            	var form = document.getElementById("actionForm");
+	            	var name = document.getElementById("name").value;
+	            	var email = document.getElementById("email").value;
+	            	var subject = document.getElementById("subject").value;
+	            	var description = document.getElementById("description").value;
+	            	
+	            	if(name != "" && email != "" && subject != "" && description != ""){
+	            		form.submit();
+	            	}else{
+	            		$.alert({
+	            			type: 'red',
+	            			title: '<strong>Incomplete data</strong>',
+	            			content: 'Please check that all the inputs must be filled and try again.'
+	            		});
+	            	}
+	            }
+	        },
+	        cancel: function () {
+	            //close
+	        },
+	    },
+	});
 }
 
 function addBounce(id){
