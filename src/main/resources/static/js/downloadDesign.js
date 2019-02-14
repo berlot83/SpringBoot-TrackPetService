@@ -55,7 +55,7 @@ function imageDesignGeneric(logo){
 	doc.setFontSize(10);
 	doc.text(112, 85, '6,3 x 6,7 cm / 2,48 x 2,64 inch');
 	/* Placeholder end */
-	
+
 		/* Image 40% */
 		doc.setFontSize(8);
 		doc.text("Frente / front", 1, 4);
