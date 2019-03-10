@@ -261,24 +261,24 @@ div.columns {
 	/* cellphones */
 	#pLogo {
 		width: 30px !important;
-		top: 35px !important;
+		top: 30px !important;
 		left: -20px !important;
 	}
 	#titleStarter1 {
 		font-size: 8px !important;
-		width: 100px !important;
+		max-width: 100px !important;
 		top: 65px !important;
 		left: -35px !important;
 	}
 	#titleStarter2 {
 		font-size: 9px !important;
-		width: 90px !important;
+		max-width: 90px !important;
 		top: 75px !important;
 		left: -25px !important;
 	}
 	#titleStarter3 {
 		font-size: 9px !important;
-		width: 105px !important;
+		max-width: 105px !important;
 		top: 85px !important;
 		left: -20px !important;
 	}
@@ -325,8 +325,13 @@ div.columns {
 	}
 	#footer { //
 		height: 70px !important;
-		background-color: black; position : relative; left : 0; width : 100%;
-		color : white; text-align : left; vertical-align : middle;
+		background-color: black;
+		position: relative;
+		left: 0;
+		width: 100%;
+		color: white;
+		text-align: left;
+		vertical-align: middle;
 		bottom: 0;
 		position: relative;
 		left: 0;
@@ -344,7 +349,7 @@ div.columns {
 }
 
 /*  Medium devices (tablets, 768px and up) */
-@media ( max-width : 768px) {
+@media ( device-width : 768px) {
 	#pLogo {
 		width: 70px !important;
 		top: -5px !important;
@@ -368,13 +373,7 @@ div.columns {
 		top: 97px !important;
 		left: -18px !important;
 	}
-	/* 	#loginBox { */
-	/* 	margin: 0 auto; */
-	/* 		position: absolute !important; */
-	/* 		left: 0 !important; */
-	/* 		top: 0 !important; */
-	/* 		margin: 10px !important; */
-	/* 	} */
+
 	#loginDiv {
 		margin: 0 auto !important;
 		position: relative !important;
@@ -421,7 +420,7 @@ div.columns {
 }
 
 /*  Large devices (desktops, 992px and up) */
-@media ( max-width : 992px) {
+@media ( device-width : 992px) {
 	h3 {
 		font-size: medium !important;
 	}
@@ -443,5 +442,56 @@ div.columns {
 		position: absolute;
 		left: 10%;
 		top: 30%;
+	}
+	
+			/* cellphones */
+		#pLogo {
+			width: 100px !important;
+			top: 30px !important;
+			left: -20px !important;
+		}
+		#titleStarter1 {
+			font-size: 12px !important;
+			max-width: 150px !important;
+			top: 135px !important;
+			left: -35px !important;
+		}
+		#titleStarter2 {
+			font-size: 14px !important;
+			max-width: 150px !important;
+			top: 150px !important;
+			left: -25px !important;
+		}
+		#titleStarter3 {
+			font-size: 15px !important;
+			max-width: 150px !important;
+			top: 165px !important;
+			left: -20px !important;
+		}
+	@media ( device-width : 1024px) {
+		/* cellphones */
+		#pLogo {
+			width: 80px !important;
+			top: 10px !important;
+			left: -20px !important;
+		}
+		#titleStarter1 {
+			font-size: 8px !important;
+			max-width: 100px !important;
+			top: 65px !important;
+			left: -35px !important;
+		}
+		#titleStarter2 {
+			font-size: 9px !important;
+			max-width: 90px !important;
+			top: 75px !important;
+			left: -25px !important;
+		}
+		#titleStarter3 {
+			font-size: 9px !important;
+			max-width: 105px !important;
+			top: 85px !important;
+			left: -20px !important;
+		}
 	}
 }
