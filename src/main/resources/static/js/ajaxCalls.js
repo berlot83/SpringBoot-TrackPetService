@@ -691,14 +691,48 @@ function chooseAnimal(id, dog, cat, horse, hamsterFishTank, fish){
 				confirm:{ 
 					btnClass: 'btn-blue',
 					action: function(){
-						var chooseanimal = document.getElementById("chooseanimal");
-						chooseanimal.submit();
+						/* No used right now, ajax improve */
+						//var chooseanimal = document.getElementById("chooseanimal");
+						//chooseanimal.submit();
+						/* No used right now, ajax improve */
 
-						setTimeout(function(){window.location.reload();}, 5500);
-						/* Another Js function dependency alert */
 						
-	//					getActiveStatus(id);
-						//console.log(id);
+						/* Ajax select animal start */
+						
+						var xhr1 = new XMLHttpRequest();
+						
+						/* Create the response variable */
+						var typeAnimal = null;
+						
+						/* Get the selected value */
+						var radios = document.getElementsByName("typeAnimal");
+						for (var i = 0; i < radios.length; i++) {
+							if(radios[i].checked){
+								typeAnimal = radios[i].value;
+							}
+						}
+						
+						var url = "/select-animal?id="+id+"&typeAnimal="+typeAnimal;
+						
+						xhr1.open("GET", url, true);
+						xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						xhr1.send();
+						xhr1.onreadystatechange = function () {
+							if (xhr1.readyState == 4 && xhr1.status == 200) {
+								/* If everything is ok just reload to get the new button on the Control Panel */
+								$.alert({
+									type:"purple",
+									title:"Change",
+									content:"Wait a few seconds to improve new Animal."
+								});
+								
+								setTimeout(function(){window.location.reload();}, 2000);
+							}else{
+								
+							}
+						}
+						/* Ajax select animal end */
+						
 				}
 			},
 				cancel:{

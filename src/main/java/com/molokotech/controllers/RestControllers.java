@@ -649,12 +649,22 @@ public class RestControllers {
 		return result;
 	}
 	
-	@PostMapping("/select-animal")
+//	@PostMapping("/select-animal")
+//	public void selectAnimal(@RequestParam String id, @RequestParam String typeAnimal) {
+//		System.out.println(id);
+//		System.out.println(typeAnimal);
+//		prepaidQrService.addTypeAnimal(id, typeAnimal);
+//	}
+
+	@GetMapping("/select-animal")
 	public void selectAnimal(@RequestParam String id, @RequestParam String typeAnimal) {
 		System.out.println(id);
 		System.out.println(typeAnimal);
 		prepaidQrService.addTypeAnimal(id, typeAnimal);
+		
+		System.out.println(typeAnimal);
 	}
+	
 	
 	@PostMapping("/get-selected-animal")
 	public @ResponseBody String getSelectedAnimal(@RequestParam String id) {
@@ -691,12 +701,14 @@ public class RestControllers {
 				}
 				
 			}else {
-				System.out.println("No tiene QR asociados");
+				/* Test all QR codes that are not of the account, use for test only */
+				//System.out.println("No tiene QR asociados");
 			}
 		}
 		
 		for(PrepaidQR iterate : resultList) {
-			System.out.println(iterate.getId());
+			/* Test all QR codes on the account, use for test only */
+			//System.out.println(iterate.getId());
 		}
 		
 		return resultList;

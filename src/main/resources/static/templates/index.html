@@ -32,6 +32,19 @@
 		</div>
 	</div>
 	
+	<div id="disclaimer" th:if="${#session == null}"><strong style="" class="animated flipInX delay-2s"><span style="color:Gold">"</span>The awesome of <a onclick="mpat()"><span style="color:blue">M</span>.<span style="color:red">P</span>.<span style="color:Gold">A</span>.<span style="color:LimeGreen">T</span>.</a> is that you can "store" almost 5 animals in one QR-code...<span style="color:Gold">"</span></strong> </div>
+	
+	<script>
+	function mpat(){
+		$.alert({
+			type:"purple",
+			title:"<i class='fa fa-paw' style='color:deeppink'></i> Multi Porpuse Animal Tag",
+			content:"<html><body><span style='text-align:justify'>It's a QR code that can handle more than one animal, so you can Store dog, cat, rodents even horses and fishes, the QR code shows one Animal at time, but you can choose the one whoose active now. Power control within your pets.</span></body></html>"
+			
+		});
+	}
+	
+	</script>
 	
 	<div th:if="${#session != null}" style="position:absolute; left:77%; top:13%;" id="logoStarterAnimation">
 	   <img src="../img/iconoPet75.png" style="position:absolute; left:33px; top:0px;" class="animated flipInX delay-2s" id="pLogo">
