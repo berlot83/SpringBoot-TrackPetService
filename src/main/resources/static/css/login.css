@@ -1,5 +1,6 @@
 #loginBox {
-	width: auto;
+/* 	width: auto; */
+width: 400px;
 	margin: 0 auto;
 	max-width:400px;
 	border-radius : 10px;
@@ -52,6 +53,11 @@
 		text-align: justify;
 	}
 	
+	#loginBox{
+	/* resize */
+		width: auto;
+	}
+	
 }
 
 /*  Medium devices (tablets, 768px and up) */
@@ -87,9 +93,10 @@
 		text-align: justify;
 	}
 	#loginBox {
+		width: auto;
 		position: relative !important;
-/* 		left: 0 !important; */
-/* 		top: 0 !important; */
+		left: 0 !important;
+		top: 0 !important;
 /* 		margin-left: 10px; */
 /* 		margin-right: 10px; */
 	}

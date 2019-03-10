@@ -14,7 +14,9 @@
 
 	<nav th:replace="default :: bar"></nav>
 
-		<div class="container-fluid page-container">
+		<div class="page-container">
+		
+		<div class="container-fluid">
 		
 		<div id="dataCreatePrepaidQR" class="card background-colors" >
 			<h2 style="text-align: center" class="card-header secondary-color white-text text-center py-4"><button class="btn rounded btn-info" style="float:left" onclick="window.location.href='/account'"><i class="fas fa-angle-left"></i></button><div> M.P.A.T</div></h2>
@@ -41,7 +43,7 @@
 			
 			<div id="body">
 			
-			<div style="padding:30px; margin:30px;"  class="white-transparency rounded">
+			<div style="padding:20px; margin:20px;" id="mainForm"  class="white-transparency rounded">
 			
 			<!-- Needed to identify the id to update to -->
 			<div class="form-group">
@@ -99,6 +101,9 @@
 			</div>
 			
 			</div>
+			
+			</div>
+			
 		</div>
 	
 	<!--Template footer-->

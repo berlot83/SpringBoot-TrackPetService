@@ -5,23 +5,23 @@ function imageDesignGeneric(logo){
 	var id = document.getElementById("id").value;
 	var strBase64 = document.getElementById("strBase64").value;
 	
-	if(document.getElementById("resultBase64Avatar").value == null || document.getElementById("resultBase64Avatar").value == ""){
-		$.alert({
-			type: "red",
-			title:"Atention",
-			content:"You don't upload an avatar for this animal, just go to <a style='color:red' href='/account'>M.P.A.T</a>, just tap the button for the animal you want and upload the photo and rext tap Cut to persit it into the DB."});
-	}else{
-		var	resultBase64Avatar = document.getElementById("resultBase64Avatar").value;
-	}
-	
-//	if(document.getElementById("base64Backside").value == null || document.getElementById("base64Backside").value == ""){
+//	if(document.getElementById("resultBase64Avatar").value == null || document.getElementById("resultBase64Avatar").value == ""){
 //		$.alert({
 //			type: "red",
 //			title:"Atention",
-//			content:"Apparently you don't upload the backside of the tag in you personal account settings, just go to <a style='color:red' href='/user'>User edit data</a>, go to the map and tap the button to select your location, if you don't wanna declare it, just select anywere or a public place."});
+//			content:"You don't upload an avatar for this animal, just go to <a style='color:red' href='/account'>M.P.A.T</a>, just tap the button for the animal you want and upload the photo and rext tap Cut to persit it into the DB."});
 //	}else{
-//		var base64Backside = document.getElementById("base64Backside").value;
+//		var	resultBase64Avatar = document.getElementById("resultBase64Avatar").value;
 //	}
+	
+	if(document.getElementById("base64Backside").value == null || document.getElementById("base64Backside").value == ""){
+		$.alert({
+			type: "red",
+			title:"Atention",
+			content:"Apparently you don't upload the backside of the tag in you personal account settings, just go to <a style='color:red' href='/user'>User edit data</a>, go to the map and tap the button to select your location, if you don't wanna declare it, just select anywere or a public place."});
+	}else{
+		var base64Backside = document.getElementById("base64Backside").value;
+	}
 	
 	/* PrepaidQR variables end */
 	
@@ -92,7 +92,7 @@ function imageDesignGeneric(logo){
 		doc.setFontSize(9.2);
 		doc.text(id, 53, 56);
 		doc.addImage(sissors,'PNG', 101, 51, 0, 0);
-		doc.addImage(resultBase64Avatar,'PNG', 56.5,89, 0, 0)
+//		doc.addImage(resultBase64Avatar,'PNG', 56.5,89, 0, 0)
 		doc.addImage("../img/warningBar150x14.png", 'PNG' , 51.2, 89, 5, 37);
 		doc.addImage("../img/warningBar150x14.png", 'PNG' , 94, 89, 5, 37);
 		doc.addImage("../img/warningBar150X14h-short.png", 'PNG' , 70, 76, 29, 6.7);
@@ -118,19 +118,19 @@ function imageDesignGeneric(logo){
 		/* Start qr sm */
 		doc.rect(1, 60, 33.4, 34.9);
 		doc.addImage(litlePaw, 26, 86.5 ,0,0);
-		//doc.addImage(backgroundLowOpacity, 7.5, 67.5, 0, 0);
+		doc.addImage(backgroundLowOpacity, 7.5, 67.5, 0, 0);
 		doc.addImage(footerLogo,'PNG', 1, 60, 20, 0);
 		doc.setFontSize(6.5);
 		doc.text("https://pet-qr.com/id/", 2, 69);
 		doc.text(id, 2, 71.5);
-//		doc.text("Raze: " + raze, 2, 78.5);
-//		doc.text("Illness: " + illness, 2, 81);
-//		doc.text("Medicated: " + medicated, 2, 83.5);
-//	
+		doc.text("Raze: " + raze, 2, 78.5);
+		doc.text("Illness: " + illness, 2, 81);
+		doc.text("Medicated: " + medicated, 2, 83.5);
+	
 		doc.setFontSize(9);
 		doc.text(petName, 2, 76);
 		doc.text("Tel 1: " + telephone1, 2, 80);
-//		doc.text(email, 2, 91);
+		doc.text(email, 2, 91);
 		
 		/* md */
 		doc.setFontSize(8);
@@ -151,7 +151,7 @@ function imageDesignGeneric(logo){
 		doc.setFontSize(9);
 		doc.text("https://pet-qr.com/id/", 132.5, 99.5);
 		doc.text(id, 132.5, 102.5);
-//		doc.addImage(base64Backside, 114,103,0,0);
+		doc.addImage(base64Backside, 114,103,0,0);
 		/* Reverse end */
 		
 		var date = Date(Date.now()); 

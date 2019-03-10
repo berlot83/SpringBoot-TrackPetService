@@ -6,7 +6,28 @@
 <nav th:replace="default :: bar"></nav>
 
 		<div id="horseDiv" th:fragment="horseFragment">
-			
+
+<style>
+@media ( max-width : 576px) {
+	#avatarDiv{
+	flex-direction: column;
+	}
+	label{
+	font-size:x-small !important;
+	}
+	#mainForm{
+	padding: 2px !important;
+	margin: 2px !important;	
+	flex-direction: column;
+	}
+	html{
+		font-size: x-small !important;
+	}
+	#mainUser {
+		width: 100% !important;
+	}
+}
+</style>
 			<!-- Start Avatar div common for all types -->
 			<div id="avatarDiv" class="container-fluid d-flex p-3 text-white" style="text-shadow: 1px 1px black;">
 				<div id="demo-basic" style="width:150px;height:150px;" class="img-fluid rounded float-left p-2 bg-secondary">

@@ -6,6 +6,27 @@
 <nav th:replace="default :: bar"></nav>
 			
 		<div id="fishDiv" th:fragment="fishFragment" class="form-group">
+<style>
+@media ( max-width : 576px) {
+	#avatarDiv{
+	flex-direction: column;
+	}
+	label{
+	font-size:x-small !important;
+	}
+	#mainForm{
+	padding: 2px !important;
+	margin: 2px !important;	
+	flex-direction: column;
+	}
+	html{
+		font-size: x-small !important;
+	}
+	#mainUser {
+		width: 100% !important;
+	}
+}
+</style>
 			<h5>Fishes</h5>
 			<hr>
 				<label for="quantity">Group of fishes:</label><br>

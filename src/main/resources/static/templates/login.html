@@ -13,7 +13,7 @@
     <div id="loginBox" th:fragment="login">
         <div class="row" style="margin: 0 auto !important;">
             <div class="col" style="margin:10px; max-width:400px" id="login">
-                    <H3><img src="../img/iconoPet75.png" width="35" height="35" alt="Pet-Cloud"> Login</H3>
+                    <H4><img src="../img/iconoPet75.png" width="35" height="35" alt="Pet-Cloud"> Login</H4>
                 <form action="/login" method="POST" style="margin-bottom:0px !important" >
                     
                     <div th:if="${param.error}" class="alert alert-danger">    
@@ -37,7 +37,7 @@
 					
                     <div class="form-group" style="margin-bottom:0px !important">
                         <button type="submit" name="submit" class="btn purple-gradient" style=";">Login</button>
-                    <a href="/change-pass"><i class="fas fa-lock-open" style="color:coral"></i> <span style="color:grey" th:text="#{login.forgotmypassword}">Olvidé mi contraseña</span></a>
+                    <a href="/change-pass"><small><i class="fas fa-lock-open" style="color:coral"></i> <span style="color:grey">Olvidé mi pass</span></small></a>
                     </div>
                 </form>
             </div>

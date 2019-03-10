@@ -5,7 +5,30 @@
 <body>
 <nav th:replace="default :: bar"></nav>
 
-		<div id="horseDiv" th:fragment="ratFragment">
+		<div id="ratDiv" th:fragment="ratFragment">
+		
+<style>
+@media ( max-width : 576px) {
+	#avatarDiv{
+		flex-direction: column;
+	}
+	label{
+		font-size:x-small !important;
+	}
+	#mainForm{
+		padding: 2px !important;
+		margin: 2px !important;	
+		flex-direction: column;
+	}
+	html{
+		font-size: x-small !important;
+	}
+	#mainUser {
+		width: 100% !important;
+	}
+}
+</style>
+		
 			<h5>Rodents</h5>
 			<hr>
 			
