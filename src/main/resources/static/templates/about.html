@@ -12,8 +12,8 @@
 		<div class="container-fluid" id="mainContainerAbout">
 
 <div id="instructions" class="aboutDiv container-fluid">
-	<div class="columns container-fluid transparency" style="padding:10px;border-radius:15px">
-	  	<h5 style="color:pink" th:text="#{qrhelp.title}">Instrucciones del panel de control</h5>
+	<div class="columns container-fluid white-transparency rounded" style="padding:10px;">
+	  	<h5 th:text="#{qrhelp.title}">Instrucciones del panel de control</h5>
 	  		<div><img class="img-fluid" src="../img/controlPanel.png" style="width:800px; padding:5px" /></div>
 	  	<ul>
 	  		<li><i style="color: lightgreen;" class="fas fa-search"></i> <a id="aViewTemplate" onclick="showAnswerView()" th:text="#{qrhelp.viewtemplate}">Ver plantilla</a>
@@ -44,8 +44,8 @@
 </div>
 
 <div class="aboutDiv">
-	<div class="columns container-fluid transparency" style="padding:10px; border-radius:15px">
-	  	<h5 style="color:pink" th:text="#{qrhelp.precautionreading.title}">Influyen en la lectura</h5>
+	<div class="columns container-fluid white-transparency rounded" style="padding:10px;">
+	  	<h5 th:text="#{qrhelp.precautionreading.title}">Influyen en la lectura</h5>
 	  	<ul>
 	  		<li th:text="#{qrhelp.precautionreading.distanceofreading}">Distancia de lectura</li>
 	  		<li th:text="#{qrhelp.precautionreading.size}">Tamaño</li>
@@ -55,8 +55,8 @@
 	  		<li th:text="#{qrhelp.precautionreading.errorlevel}">Nivel de error</li>
 		</ul>
 	</div>
-	<div class="columns container-fluid transparency" style="padding:10px; border-radius:15px">
-		<h5 style="color:lightgreen" th:text="#{qrhelp.recomendations.title}">Recomendaciones</h5>
+	<div class="columns container-fluid white-transparency rounded" style="padding:10px;">
+		<h5 th:text="#{qrhelp.recomendations.title}">Recomendaciones</h5>
 		<ul>
 	  		<li th:text="#{qrhelp.recomendations.recommendeddistance}">Leer a 1/10, por ende si mide 3x3, leer a 30 cm </li>
 	  		<li th:text="#{qrhelp.recomendations.recommendedsize}">Tamaño recomendado, de 3 cm para arriba</li>
@@ -67,10 +67,10 @@
 	</div>
 </div>
 
-<script>
-
-</script>
-
+<br>
+<br>
+<br>
+<br>
 			</div>
 		</div>
 	<footer th:replace="default :: footer"></footer>

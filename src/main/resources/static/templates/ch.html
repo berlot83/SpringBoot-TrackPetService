@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:include="default :: header"></div>
+	<script type="text/javascript" src="../js/gallery.js"></script>
+	<script type="text/javascript" src="../js/download.js"></script>
+	<script type="text/javascript" src="../js/downloadCH.js"></script>
+</head>
+<nav th:replace="default :: bar"></nav>
+
+<footer th:replace="default :: footer"></footer>
+<body onload="adviceVariablesNull()">
+
+	<div class="container">
+		<div class="container-fluid" id="downloadMainContainerDiv" style="height:100%; background-image: linear-gradient(grey, RebeccaPurple); box-shadow: 0px 0px 35px black">
+			<div id="dataDownloadMainContainerDiv" style="height:100%">
+				<h5><i style="color: coral" class="fas fa-download"></i> Historias clínicas</h5>
+				<hr style="border: 1px solid DarkViolet !important">
+					<input type="hidden" th:value="${pet?.petName}" style="display:block" id="petName" />
+					<input type="hidden" th:value="${pet?.raze}" style="display:block" id="raze" />
+					<input type="hidden" th:value="${pet?.illness}" style="display:block" id="illness" />
+					<input type="hidden" th:if="${pet?.medicated == false}" th:value="No" style="display:block" id="medicated" />
+					<input type="hidden" th:unless="${pet?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
+					<input type="hidden" th:if="${pet?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
+					<input type="hidden" th:unless="${pet?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
+					<input type="hidden" th:value="${pet?.dateAntiRabicVaccine}" style="display:block" id="dateAntiRabicVaccine" />
+					<input type="hidden" th:value="${pet?.datePolivalentVaccine}" style="display:block" id="datePolivalentVaccine" />
+					<input type="hidden" th:value="${pet?.dateSextupleVaccine}" style="display:block" id="dateSextupleVaccine" />
+					<input type="hidden" th:value="${pet?.dateOctupleVaccine}" style="display:block" id="dateOctupleVaccine" />
+					<input type="hidden" th:value="${pet?.lastVeterinaryVisit}" style="display:block" id="lastVeterinaryVisit" />
+					<input type="hidden" th:value="${pet?.clinicHistory}" style="display:block" id="clinicHistory" />
+				<button class="btn btn-primary" onclick="chDownload()">Clinic History</button>
+			<br><br><br><br><br>
+			</div>
+			
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,32 +1,27 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:with="lang=${#locale.language}" th:lang="${lang}">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head th:fragment="header">
 <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79204873-3"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-79204873-3');
 </script>
 
 <!-- Meta tags start -->
 <meta name="google-site-verification" content="qHGfk3wy2ViO8dbJYqIqH2qse0mrsEzaVGJdihu1gXA" />
 <meta name="msvalidate.01" content="78E99D48650540E98A0BE41EB707A33F" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="identifier-url" content="https://pet-qr.com/" />
 <meta name="title" content="Pet-QR" />
-<meta name="description"
-	content="For animal safety, QR codes for pets" />
-<meta name="abstract"
-	content="Códigos QR online para mascotas en el acto, sin envíos." />
+<meta name="description" content="For animal safety, QR codes for pets" />
+<meta name="abstract" content="Códigos QR online para mascotas en el acto, sin envíos." />
 <meta name="keywords" content="tag, dog tag, find pet, find dog, mascota, veterinarias, perro, perro qr, gato qr, qr, pet, code, code qr, pet qr, dog qr, dog, cat, qr tag, tag, dog id, dog tag, pet license, dog license, fema, pet safety, lost dog, lost cat, lost pet, iot, internet of things, search and rescue, sar, qr code, pet identification, veterinarian" />
 <meta name="author" content="Pet-QR" />
 <meta name="revisit-after" content="15" />
@@ -37,14 +32,12 @@
 
 <!-- Favicon start -->
 <link rel="apple-touch-icon" sizes="180x180" href="/appleTouchIcon.png">
-<link rel="icon" type="image/png" href="../img/iconoPet32x32.png"
-	sizes="32x32">
-<link rel="icon" type="image/png" href="../img/iconoPet16x16.png"
-	sizes="16x16">
+<link rel="icon" type="image/png" href="../img/iconoPet32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../img/iconoPet16x16.png" sizes="16x16">
 <meta name="theme-color" content="#ffffff">
 <!-- Favicon end -->
 
-<link href="https://fonts.googleapis.com/css?family=Mali:500" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Mali:500|Material+Icons" rel="stylesheet">
 <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Pet-Cloud</title>
 <link rel="stylesheet" type="text/css" href="../css/default.css" />
 <link rel="stylesheet" type="text/css" href="../css/animate.css" />
@@ -56,31 +49,21 @@
 <script type="text/javascript" src="../js/various.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/maps.css" />
 
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	crossorigin="anonymous" />
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous" />
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
+<!-- Material design start libs -->
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" /> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" />
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
+<!-- Material design end libs -->
 
 <link charset="utf-8" rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
 <!-- Be aware HTML2canvas, for some reason is the library start -->
 <script
@@ -88,8 +71,21 @@
 	integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs"
 	crossorigin="anonymous"></script>	
 <!-- Be aware HTML2canvas, for some reason is the library end -->
-<title th:text="#{app.title}"></title>
 
+<!-- Onesignal push notifications start -->
+<link rel="manifest" href="/manifest.json" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "eba885be-83f7-4a38-9048-bbaac1ad78f6",
+    });
+  });
+</script>
+<!-- Onesignal push notifications end -->
+
+<title th:text="#{app.title}"></title>
 </head>
 
 <body>
@@ -154,38 +150,14 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 
 			<ul class="navbar-nav">
-				<li class="nav-item dropdown dropdown-content"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDropdownMenuLinkPetQR" data-toggle="dropdown"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
-					aria-haspopup="true" aria-expanded="false"><i
-						class="fas fa-qrcode" style="color: white"></i> Pet-QR </a>
+				<li class="nav-item dropdown dropdown-content"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkPetQR" data-toggle="dropdown"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)" aria-haspopup="true" aria-expanded="false"><i class="fas fa-qrcode" style="color: white"></i> Pet-QR </a>
 					<div class="dropdown-menu"   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
 						aria-labelledby="navbarDropdownMenuLinkPetQR"
 						style="background-color: black; color: white;">
 						<a class="dropdown-item" href="/prepaid-qr"><i
-							class="fas fa-qrcode" style="color: white"></i> <span th:text="#{default.activeqr}"></span></a> <a class="dropdown-item" href="/db-lost-pet"><i
-							class="fas fa-database" style="color: white"></i> <span th:text="#{default.dbpets}"></span></a>
+							class="fas fa-qrcode" style="color: white"></i>   <span style="color:white" th:text="#{default.activeqr}"></span></a> <a class="dropdown-item" href="/db-lost-pet"><i
+							class="fas fa-database" style="color: white"></i>   <span style="color:white" th:text="#{default.dbpets}"></span></a>
 					</div></li>
-
-				<!-- Start vet-cloud nav button -->
-<!-- 				<li class="nav-item dropdown"><a -->
-<!-- 					class="nav-link dropdown-toggle" href="#" -->
-<!-- 					id="navbarDropdownMenuLinkVetQR" data-toggle="dropdown" -->
-<!-- 					aria-haspopup="true" aria-expanded="false"><i -->
-<!-- 						class="fas fa-cloud"></i> Vet-Cloud</a> -->
-<!-- 					<div class="dropdown-menu" -->
-<!-- 						aria-labelledby="navbarDropdownMenuLinkVetQR" -->
-<!-- 						style="background-color: black; color: white;"> -->
-<!-- 						<a class="dropdown-item" href="/vet-cloud"><i -->
-<!-- 							class="fas fa-cloud-upload-alt"></i> Cargar datos</a> <a -->
-<!-- 							class="dropdown-item" href="/vet-cloud"><i -->
-<!-- 							class="fas fa-cloud-download-alt"></i> Consultar datos</a> <a -->
-<!-- 							class="dropdown-item" href="/vet-cloud"><i -->
-<!-- 							class="fas fa-upload"></i> Modificar datos</a> <a -->
-<!-- 							class="dropdown-item" href="/vet-cloud"><i -->
-<!-- 							class="fas fa-trash-alt"></i> Eliminar datos</a> -->
-<!-- 					</div></li> -->
-				<!-- End vet-cloud nav button -->
 
 				<li class="nav-item"><a class="nav-link" href="/pricing" onmouseout="removeBounce(this)" onmouseover="addBounce(this)" ><i class="fas fa-paw" ></i> <span th:text="#{default.products}"></span></a></li>
 
@@ -203,16 +175,21 @@
 
 		<!-- Logout Bundle buttons, do not change the order  -->
 		<!-- Print Username -->
-		<a th:if="${currentUser}" href="/account" id="currentUserButton"
-			class="nav-link" th:text="${fullName}" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"></a> <a   onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
+		<div style="position:relative;top:0;left:0;">
+			<button class="nav-link btn btn-md blue-gradient"><a th:if="${currentUser}" href="/account" id="currentUserButton" style="position:relative;top:0;left:0; text-shadow: 1px 1px black;" th:text="${fullName}" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"></a></button>
+			<span th:if="${currentUser != 'Invitado'}" class="badge badge-sm badge-danger" style="position:absolute; top:-7; left:-7;"><i class="fas fa-cogs"></i> Admin</span>
+		</div>
+		
+		<a onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
+			
 			th:if="${currentUser == 'Invitado'}" class="nav-link"
 			th:href="@{/login}" id="loginButton"><i class="fas fa-user"
 			style="color: white;"></i> Log in</a>
 
-		<form style="margin-bottom: 0px;" class="nav-link" action="/logout"
+		<form style="margin-bottom: 6px; padding: 0px" class="nav-link" action="/logout"
 			method="POST">
 			<button style="text-shadow: 1px 2px black;" type="submit"
-				th:if="${currentUser != 'Invitado'}" class="nav-link btn btn-danger"
+				th:if="${currentUser != 'Invitado'}" class="nav-link btn btn-md btn-danger"
 				id="logoutButton">
 				<i class="fas fa-sign-out-alt"></i> <span th:text="#{default.logout}"></span>
 			</button>
@@ -258,19 +235,19 @@
 	<div th:if="${error != null}" th:text="#{default.erroraccount}" class="alert alert-danger" id="error"></div>
 		<div class="container-fluid py-3" >
 			<div class="row">
-				<div id="footerBrand" class="col-md-6" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
+				<div id="footerBrand" class="col-md-7" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 					Designed by <img alt="Molokotech" id="logo"
 						src="/img/molokoalternativo.png" class="img-fluid"
-						onmouseover="changeCursorToimages(this)" onclick="redirectTo()"> |   | Powered by <img src="../img/heroku-logo.png" id="herokuLogo" onmouseover="changeCursorToimages(this)" onclick="window.location.href='https://heroku.com'" class="img-fluid" style="height:28px"><span class="small"><br>
+						onmouseover="changeCursorToimages(this)" onclick="redirectTo()"> |   | Powered by <img src="../img/heroku-logo.png" id="herokuLogo" onmouseover="changeCursorToimages(this)" onclick="window.location.href='https://heroku.com'" class="img-fluid" style="height:28px"><span class="small">
 						<strong style="color: #ff8000">Vet-Cloud</strong>® y <Strong
 						style="color: #ff8000">Pet-QR</Strong>® <span th:text="#{default.footer.trademarks}">son marcas Registradas de</span> 
 						<strong style="color: #ff8000">Molokotech Solutions</strong>.</span>
 
 
 				</div>
-				<div class="col-md-3"></div>
+				<div class="col-md-1"></div>
 				<div id="divAgeCreated"
-					class="col-md-3 text-right small align-self-end">©2017 M.
+					class="col-md-4 text-right small align-self-end">©2017 M.
 					Reg.
 					<!-- Social media Buttons start -->
 					<a href="https://twitter.com/minimalmonkey"

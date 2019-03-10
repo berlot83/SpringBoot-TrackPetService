@@ -4,7 +4,7 @@ function contact() {
 	    type: 'purple',
 	    columnClass: 'col-md-6',
 	    content: '' +
-	    "<html xmlns:th='http://www.thymeleaf.org'><body><div id='aboutDiv' style='display:flex;'><div style='flex-grow: 0; flex-shrink: 0; flex-basis: 50%;'><img class='img-fluid' style='' src='../img/qr400moloko.png' alt='Molokotech'><span style='color:LimeGreen; text-shadow:1px 1px black;'><strong style='color:orange'>Molokotech</strong> is an IT agency with a great Development Team.</span></div>"+
+	    "<html xmlns:th='http://www.thymeleaf.org'><body><div id='aboutDiv' style='display:flex;'><div style='flex-grow: 0; flex-shrink: 0; flex-basis: 50%;'><img class='img-fluid' style='' src='../img/qr400moloko.png' alt='Molokotech'></div>"+
 	    "<div class='form-group' style='flex-grow: 0; flex-shrink: 0; flex-basis: 50%;'>" +
 	    "<form id='actionForm' action='/send-contact-form' th:action='@{/send-contact-form}' th:method='GET' th:object='${formMessage}'>"+
 	    '<input type="text" id="name" name="name" placeholder="Your name" class="name form-control" required /><br>' +
@@ -249,3 +249,30 @@ function showAnswerTransfer(link){
 	});	
 }
 /* QR-ayuda end */
+
+/* Be aware Thymeleaf code attached */
+//function showCode(strBase64){
+//	$.alert({
+//			type:"blue",
+//			title: "Preview",
+//			content:"<html><body><div style='text-align:center' ><img src='data:image/png;base64,"+ strBase64+"'</div><div><button class='btn btn-sm blue-gradient' onclick='downloadNowPNG()'>Download Raw</button></div></body></html>"
+//	});
+//}
+
+/* Be aware Thymeleaf code attached */
+function viewId(id){
+	$.alert({
+		type:"purple",
+		title:"QR code complete ID",
+		content:"ID = "+ id
+	});
+}
+
+function spinner(id){
+	var element = document.getElementById(id);
+	var span = document.createElement("span");
+	span.setAttribute("class","spinner-border spinner-border-sm");
+	span.setAttribute("role", "status");
+	span.setAttribute("aria-hidde", "true");
+	element.appendChild(span);	
+}

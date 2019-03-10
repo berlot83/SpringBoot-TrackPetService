@@ -56,6 +56,8 @@ public class PageConfig implements WebMvcConfigurer {
 		registry.addViewController("/send-link").setViewName("send-link");
 		registry.addViewController("/download").setViewName("download");
 		registry.addViewController("/temporal-qr").setViewName("temporal-qr");
+		registry.addViewController("/user").setViewName("user");
+		registry.addViewController("/bootstrap").setViewName("bootstrap");
 	}
 
 	@Bean

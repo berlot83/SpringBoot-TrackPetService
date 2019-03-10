@@ -1,0 +1,245 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="default :: header"></div>
+</head>
+<body>
+<nav th:replace="default :: bar"></nav>
+
+		<div id="horseDiv" th:fragment="horseFragment">
+			
+			<!-- Start Avatar div common for all types -->
+			<div id="avatarDiv" class="container-fluid d-flex p-3 text-white" style="text-shadow: 1px 1px black;">
+				<div id="demo-basic" style="width:150px;height:150px;" class="img-fluid rounded float-left p-2 bg-secondary">
+					<img src="../img/withoutPhoto.png" id="crop" class="img-thumbnail" style="box-shadow: 2px 2px black;"/>
+				</div>
+				<div class="p-2 bg-secondary">
+					<!-- Upload image -->
+					<input type='file' id='file' name="file" accept="image/*" onchange="loadFile(event), cropImageAndSave()" style="text-shadow: 1px 2px black;display:inline-block;float:left;box-shadow: 2px 2px black;" class="btn btn-sm btn-info"/>
+					<br>
+					<br>
+					<button id="basic-result" class="basic-result btn btn-sm btn-info" style="float:left; box-shadow: 2px 2px black;text-shadow: 1px 2px black;" th:text=#{create-prepaid-qr.cutphotobutton}>Recortar</button>
+					<br><br><small style="color:deeppink" th:text=#{create-prepaid-qr.cutphoto1}>Toque Recortar cuando haya centrado la imagen así se persiste en DB.</small><br><small th:text=#{create-prepaid-qr.cutphoto2}>Esta imagen puede ser agregada a los modelos más grandes del código QR.</small>
+					<img id='crop' />
+					<!-- end upload -->
+				</div>
+			</div>
+			<!-- End Avatar div common for all types -->
+			
+			<br>
+			<br>
+			
+			<h5 th:text=#{create-prepaid-qr.basicdata.statustitle}>Estado respecto a Pet-QR</h5>
+			<hr style="border: 1px solid BlueViolet !important">
+			<div class="form-group">
+				<label for="status" th:text=#{create-prepaid-qr.basicdata.statuslabel}>Estado</label>
+				<!-- Start select status -->
+				<select class="form-control" name="status" id="status">
+					<option value="true" th:text=#{create-prepaid-qr.basicdata.status.normal}>Normal</option>
+					<option value="false" th:text=#{create-prepaid-qr.basicdata.status.lost}>Perdido</option>
+				</select>
+			</div>
+			
+			<h5>Horse</h5>
+			<hr>
+				<div id="lineOneHorse" style="display:flex; justify-content:space-around; width:100%">
+					<div id="typeHorseDiv" class="thirdteenCol form-group">
+						<label id="typeHorse">Type:</label>
+						<select id="selectTypeHorse" class="form-control">
+							<option value="light">Light Horse</option>
+							<option value="draft">Draft Horse</option>
+							<option value="ponie">Ponie</option>
+							<option value="warm">Warm blood</option>
+							<option value="cold">ColdBlood</option>
+						</select>
+					</div>
+					
+					<div class="twentyCol form-group">
+						<label id="sexHorse">Sex:</label>
+						<select id="selectSexHorse" class="form-control">
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+					
+					<div id="horseDivBreed"  class="thirdteenCol form-group">
+						<label id="breedHorse">Breed:</label>
+						<select id="selectBreedHorse" class="form-control">
+							<option value="Albino">Albino</option>
+							<option value="Quarter horse">Quarter horse</option>
+							<option value="Saddlebred">Saddlebred</option>
+							<option value="Standardbred">Standardbred</option>
+							<option value="American Warmblood">American Warmblood</option>
+							<option value="Andalusian">Andalusian</option>
+							<option value="Appaloosa">Appaloosa</option>
+							<option value="Arab">Arab</option>
+							<option value="Bashkir curly">Bashkir curly</option>
+							<option value="Brabant">Brabant</option>
+							<option value="Clydesdale">Clydesdale</option>
+							<option value="Connemara">Connemara</option>
+							<option value="Friesian">Friesian</option>
+							<option value="Lippizzaner">Lippizzaner</option>
+							<option value="Morgan">Morgan</option>
+							<option value="Mustang">Mustang</option>
+							<option value="Fjord">Fjord</option>
+							<option value="Paint">Paint</option>
+							<option value="Percheron">Percheron</option>
+							<option value="Shetland">Shetland</option>
+							<option value="Shire">Shire</option>
+						</select>			
+					</div>
+				</div>
+			
+			<div id="lineThreeHorse" style="display:flex; justify-content: space-around">
+					<div class="form-group twentyCol">
+						<label for="ageHorse">Age:</label>
+						<select class="form-control" name="age" id="ageHorse">
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2015">2015</option>
+							<option value="2014">2014</option>
+							<option value="2013">2013</option>
+							<option value="2012">2012</option>
+							<option value="2011">2011</option>
+							<option value="2010">2010</option>
+							<option value="2009">2009</option>
+							<option value="2008">2008</option>
+							<option value="2007">2007</option>
+							<option value="2006">2006</option>
+							<option value="2005">2005</option>
+							<option value="2004">2004</option>
+							<option value="2003">2003</option>
+							<option value="2002">2002</option>
+							<option value="2001">2001</option>
+							<option value="2000">2000</option>
+							<option value="1999">1999</option>
+							<option value="1998">1998</option>
+							<option value="1997">1997</option>
+							<option value="1996">1996</option>
+							<option value="1995">1995</option>
+						</select>
+					</div>
+			
+					<div class="form-group fourteenCol">
+						<label for="horseName">Name</label>
+						<input type="text" id="horseName" placeholder="Name" class="form-control" required>
+					</div>
+					
+					<div class="form-group twentyCol">
+						<label for="horseWeight">Weight</label>
+						<input type="number" id="horseWeight" maxlength="3" min="1" placeholder="110" class="form-control" />
+					</div>
+			</div>
+			
+			
+				<div id="lineTwoHorse" style="display:flex; justify-content:space-around; width:100%">
+					<div class="thirdteenCol form-group">
+						<label for="selectIllnessHorse">Illness:</label>			
+						<select id="selectIllnessHorse" class="form-control">
+							<option value="healthy">Healthy</option>
+							<option value="colic">Colic</option>
+							<option value="djd">Degenerative Joint Disease</option>
+							<option value="arthritis">Arthritis</option>
+							<option value="laminitis">Laminitis</option>
+							<option value="encephalomyelitis">Encephalomyelitis</option>
+							<option value="wnv">West Nile virus</option>
+							<option value="phf">Protomac Horse fever</option>
+							<option value="azoturia">Azoturia</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+	
+					<div class="thirdteenCol form-group">
+						<label for="selectMedicatedHorse">Medicated</label>
+						<select id="selectMedicatedHorse" class="form-control">
+							<option value=true>Yes</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+
+					<div class="thirdteenCol form-group">
+						<label for="lastVeterinaryVisitHorse">Vet visit:</label>
+						<input type="date" id="lastVeterinaryVisitHorse" class="form-control">
+					</div>
+				</div>
+				
+				<div id="lineFourHorse" style="display:flex; justify-content: space-around">
+					<div class="twentyCol form-group">
+						<label for="selectNeuteredHorse">Neutered</label>
+						<select id="selectNeuteredHorse" class="form-control">
+							<option value=true>Yes</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+					
+					<div class="twentyCol form-group">
+						<label for="selectPregnantHorse">Pregnant</label>
+						<select id="selectPregnantHorse" class="form-control">
+							<option value=true>Yes</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+					
+					<div class="twentyCol form-group">
+						<label for="selectStatusHorse">Status</label>
+						<select id="selectStatusHorse" class="form-control">
+							<option value=true>Normal</option>
+							<option value=false>Lost</option>
+						</select>
+					</div>
+				</div>
+				<h6>Vaccines</h6>
+				<hr>
+				<div id="lineFiveHorse" style="display:flex; justify-content: space-around">
+				<div class="thirdteenCol form-group">
+						<label for="vaccineEwt">EWT</label>
+						<input type="date" id="vaccineEwt" class="form-control">
+					</div>
+					
+					<div class="thirdteenCol form-group">
+						<label for="vaccineEhv14">EHV 1 & 4</label>
+						<input type="date" id="vaccineEhv14" class="form-control">
+					</div>
+				</div>
+				
+				<div id="lineSixHorse" style="display:flex; justify-content: space-around">
+				<div class="thirdteenCol form-group">
+						<label for="vaccineWestNile">West Nile</label>
+						<input type="date" id="vaccineWestNile" class="form-control">
+					</div>
+					
+					<div class="thirdteenCol form-group">
+						<label for="vaccineStrangles">In Strangles</label>
+						<input type="date" id="vaccineStrangles" class="form-control">
+					</div>
+				</div>
+				
+				<div id="lineSevenHorse" style="display:flex; justify-content: space-around">
+					<div class="thirdteenCol form-group">
+						<label for="vaccinePhf">PHF</label>
+						<input type="date" id="vaccinePhf" class="form-control">
+					</div>
+
+					<div class="thirdteenCol form-group">
+						<label for="vaccineFluAvert">Flu Avert</label>
+						<input type="date" id="vaccineFluAvert" class="form-control">
+					</div>				
+				</div>
+			
+			<br>			
+			
+			<div class="form-group">
+			<h5 th:text=#{create-prepaid-qr.basicdata.choosevideoyoutubetitle}>Choose a video from Youtube</h5>
+			<hr>
+				<label for="videoUrl" th:text=#{create-prepaid-qr.basicdata.choosevideoyoutube}>Video Youtube</label><br>
+				<input type="text" id="videoUrl" class="form-control">
+			</div>
+				
+			<button onclick="callHorse()" class="btn btn-large purple-gradient">Almacenar datos y crear Código QR</span> ==>  <i class="fas fa-qrcode"></i> + <i class="fas fa-database"></i></button>
+
+	</div>
+
+<footer th:replace="default :: footer">
+</body>
+
+</html>

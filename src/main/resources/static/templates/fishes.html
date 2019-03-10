@@ -1,0 +1,134 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="default :: header"></div>
+</head>
+<body>
+<nav th:replace="default :: bar"></nav>
+			
+		<div id="fishDiv" th:fragment="fishFragment" class="form-group">
+			<h5>Fishes</h5>
+			<hr>
+				<label for="quantity">Group of fishes:</label><br>
+				<small>Be aware: "QR code Fishes group do not add Geocoding feature"</small>
+				<div id="fishGroup1" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity1" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group1" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description1" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup2" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity2" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group2" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description2" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup3" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity3" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group3" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description3" class="form-control halfCol" placeholder="Description" />
+				</div>
+	
+				<div id="fishGroup4" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity4" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group4" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description4" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup5" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity5" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group5" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description5" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup6" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity6" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group6" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description6" class="form-control halfCol" placeholder="Description" />
+				</div>
+										
+				<div id="fishGroup7" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity7" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group7" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description7" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup8" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity8" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group8" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description8" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup9" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity9" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group9" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description9" class="form-control halfCol" placeholder="Description" />
+				</div>
+	
+				<div id="fishGroup10" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity10" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group10" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description10" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup11" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity11" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group11" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description11" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div id="fishGroup12" class="form-group" style="display:flex; justify-content:space-between; width:100%">
+					<input id="quantity12" type="number" class="form-control tenCol" placeholder="Qty"/>
+					<input type="text" id="group12" class="form-control thirdteenCol" placeholder="Fish Class" />
+					<input type="text" id="description12" class="form-control halfCol" placeholder="Description" />
+				</div>
+				
+				<div style="display:flex; justify-content: space-around">
+					<div class="form-group fourteenCol">
+						<label>Last medicine used:</label>
+						<input id="throwLastMedicine" class="form-control" type="text" placeholder="Last Medicine Throw">
+					</div>
+	
+					<div class="form-group fourteenCol">
+						<label>Select kind of water:</label>
+						<select id="water" class="form-control" placeholder="Sea water or River water">
+							<option>Sea water</option>
+							<option>Sweet water</option>
+						</select>
+					</div>
+				</div>
+				
+				<div style="display:flex; justify-content: space-around; width:100%">
+					<div class="form-group fourteenCol">
+						<label>Filter change:</label>
+						<input id="lastFilterChange" class="form-control" type="date" placeholder="Last filter change">
+					</div>
+	
+					<div class="form-group fourteenCol">
+						<label>Temperature:</label>
+						<input type="number" id="temperature" class="form-control" placeholder="Temperature">
+					</div>
+				</div>
+
+				<div style="display:flex; justify-content: space-around; width:100%">
+					<div class="form-group fourteenCol">
+						<label>Fishbowl cleaned:</label>
+						<input id="lastFishbowlClean" class="form-control" type="date" placeholder="Last fishbowl cleaned">
+					</div>
+					
+					<div class="form-group fourteenCol">
+						<label>Plant fertilizer:</label>
+						<input id="plantFertilizer" class="form-control" type="date" placeholder="Plants fertilizer">
+					</div>
+				</div>
+				
+				<br>
+				
+				<div class="form-group">
+					<button onclick="callFishes()" class="btn btn-large purple-gradient">Almacenar datos y crear Código QR</span> ==>  <i class="fas fa-qrcode"></i> + <i class="fas fa-database"></i></button>
+				</div>
+			</div>
+
+<footer th:replace="default :: footer">
+</body>
+
+</html>

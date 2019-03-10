@@ -8,8 +8,9 @@ html, body{
 	box-shadow: 0px 0px 15px black;
 	margin: 0 auto;
 	padding: 25px;
-	height: 100%;
-	background-image: url('../img/tile_pupure.jpg');
+	background: -moz-linear-gradient(-45deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke 40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%, LightSteelBlue 80%);
+    background: -webkit-linear-gradient(-45deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke 40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%, LightSteelBlue 80%);
+    background: linear-gradient(-45deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke 40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%, LightSteelBlue 80%);
 }
 
 #termsAndConditionInput {

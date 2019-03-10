@@ -1,16 +1,152 @@
-
-#accountMainDiv{
-	margin-top:25px !important;
-	color:white;
-    margin: 0 auto;
-    border-radius: 10px;
-    background: url('../img/tile_pupure.jpg');
-    background-repeat: repeat;
-    box-shadow: 0px 0px 20px black;
-    text-shadow: 1px 2px black;
-    padding:15px;
+#accountMainDiv {
+	margin-top: 25px !important;
+	color: white;
+	margin: 0 auto;
+	border-radius: 10px;
+	background-color: #272727;
+	background-image: -webkit-linear-gradient(-45deg, DimGray 0%, DimGray 60%, #303030 60%,
+		#303030 60%);
+	background-image: linear-gradient(-45deg, DimGray 0%, DimGray 60%, #303030 60%, #303030
+		60%);
+	box-shadow: 0px 0px 20px black;
+	text-shadow: 1px 2px black;
+	padding: 15px;
 }
 
-#dataAccountDiv{
-	padding:20px;
+#particles-js {
+	padding: 20px;
+}
+
+.buttonMD {
+	text-shadow: 1px 1px black;
+	width: 100px;
+	height: 50px;
+	width: 100px;
+}
+
+.transparencyWithoutPadding {
+	background: rgba(0, 0, 0, 0.5) !important;
+	border-radius: 10px !important;
+}
+
+.shadow-icon {
+	color: white;
+	text-shadow: 1px 1px black;
+}
+
+.flexCenter {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.controlPanelDiv {
+	display: flex;
+}
+
+.controlPanelDiv ul.item {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid gray;
+	transition: all .5s;
+}
+
+.controlPanel ul.item:hover {
+	transform: scale(1.05);
+	transition: all .5s;
+	z-index: 100;
+	box-shadow: 0 0 10px gray;
+}
+
+.controlPanelHeader {
+	margin: 0;
+	padding: 10px;
+	border: 1px solid gray;
+	transition: all .5s;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.ControlPanelDiv ul.item li {
+	padding: 3px 3px;
+	position: relative;
+}
+
+@media ( max-width : 576px) {
+	body {
+		font-size: small !important;
+	}
+	.controlPanelDiv ul {
+		flex-direction: column;
+		align-items: center;
+	}
+	.controlPanelVertical {
+		display: block;
+	}
+	#flexBoxHeader {
+		display: none;
+	}
+	#infoPanelAccount {
+		flex-direction: column;
+		padding: 2px !important;
+	}
+	#panelLeft {
+		padding: 2p !important;
+	}
+	#accountTable {
+		flex-direction: column;
+	}
+	
+	#logoStarterAnimation{
+		display:none;
+	}
+}
+
+/*  Medium devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	.controlPanelDiv ul {
+		flex-direction: column;
+		align-items: center;
+	}
+	#accountTable {
+		flex-direction: column;
+	}
+	.controlPanelVertical {
+		display: block;
+	}
+	#flexBoxHeader {
+		display: none;
+	}
+	#infoPanelAccount {
+		flex-direction: column;
+	}
+	
+	#logoStarterAnimation{
+		display:none;
+	}
+	
+	#pLogo{
+	}
+}
+
+/*  Large devices (desktops, 992px and up) */
+@media ( max-width : 992px) {
+	#flexBoxHeader {
+		display: none;
+	}
+	#infoPanelAccount {
+		flex-direction: column;
+	}
+
+}
+
+/*  Extra large devices (large desktops, 1200px and up) */
+@media ( mmax-width : 1200px) {
+
 }

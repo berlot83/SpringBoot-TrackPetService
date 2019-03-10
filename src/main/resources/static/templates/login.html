@@ -10,11 +10,11 @@
 <nav th:replace="default :: bar"></nav>
 
 <br>
-    <div id="loginBox">
-        <div class="row" style="margin: 0 auto;">
-            <div class="col" style="margin-top:10px;">
+    <div id="loginBox" th:fragment="login">
+        <div class="row" style="margin: 0 auto !important;">
+            <div class="col" style="margin:10px; max-width:400px" id="login">
                     <H3><img src="../img/iconoPet75.png" width="35" height="35" alt="Pet-Cloud"> Login</H3>
-                <form action="/login" method="POST" >
+                <form action="/login" method="POST" style="margin-bottom:0px !important" >
                     
                     <div th:if="${param.error}" class="alert alert-danger">    
                         <span th:text="#{login.userpasswrong}"></span>
@@ -22,18 +22,22 @@
                     <div th:if="${param.logout}" class="alert alert-warning"> 
                         <span th:text="#{login.logout}"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="username"><i class="fas fa-user" style="color:HotPink"></i> <span th:text="#{login.userlabel}">Usuario:</span></label><br>
-                        <input type="text" name="username" id="username" class="form-control" style="color:deeppink;">
-                    </div>
-                    <div class="form-group">
-                        <label for="password"><i class="fas fa-lock" style="color:LimeGreen"></i> <span th:text="#{login.passwordlabel}">Password:</span></label><br>
-                        <input type="password" name="password" id="password" class="form-control" style="color:tomato;">
-                    <a href="/change-pass"><i class="fas fa-lock-open" style="color:coral"></i> <span th:text="#{login.forgotmypassword}">Olvidé mi contraseña</span></a>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" name="submit" class="btn btn-primary" style=";">Login</button>
+                    
+                    <div class="md-form">
+                    <i class="fas fa-user prefix" style="color:HotPink"></i>
+    					<input type="email" name="username" id="username" class="form-control">
+    					<label for="username">E-mail</label>
+  					</div>
+                    
+                    <div class="md-form">
+                    	<i class="fas fa-lock prefix" style="color:LimeGreen"></i>
+				        <input type="password" name="password" id="password"  class="form-control">
+				        <label for="password">Password</label>
+      				</div>
+					
+                    <div class="form-group" style="margin-bottom:0px !important">
+                        <button type="submit" name="submit" class="btn purple-gradient" style=";">Login</button>
+                    <a href="/change-pass"><i class="fas fa-lock-open" style="color:coral"></i> <span style="color:grey" th:text="#{login.forgotmypassword}">Olvidé mi contraseña</span></a>
                     </div>
                 </form>
             </div>

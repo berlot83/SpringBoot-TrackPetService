@@ -1,9 +1,10 @@
 package com.molokotech.service;
 import java.util.List;
 import java.util.Optional;
-
 import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.molokotech.model.PrepaidQR;
@@ -15,6 +16,7 @@ public class UserService{
 	
 	@Autowired
 	UserRepository userRepository;
+	
 
 	public void saveUser(User user) {
 		userRepository.save(user);
@@ -71,7 +73,7 @@ public class UserService{
 	public List<User> findAll() {
 		return userRepository.findAll();
 	}
-
+	
 	public void update(@PathParam("id") User user) {
 		userRepository.save(user);
 	}

@@ -2,178 +2,314 @@
 <head>
 	<div th:include="default :: header"></div>
 	<link rel="stylesheet" type="text/css" href="../css/account.css" />
+	<script type="text/javascript" src="../js/particles.js"></script>
+	<script type="text/javascript" src="../js/download.js"></script>
+
+	<script type="text/javascript">
+		/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+		particlesJS.load('particles-js', 'particles.json', function() {
+		  console.log('callback - particles.js config loaded');
+		});
+	</script>
+
+	<script>
+		$(document).ready(function(){
+		  $('[data-toggle="tooltip"]').tooltip(); 
+		});
+	</script>
 </head>
 
-<body>
+<body onload="getAllPrepaidQR(), getUserForNotifications()">
 	<nav th:replace="default :: bar"></nav>
-	<div class="container">
-		<div id="accountMainDiv" class="container-fluid">
-			<div id="dataAccountDiv" class="transparency">
-				<h3>
-					<img src="../img/iconoPet75.png" style="width: 38px; height: 38px;">
-					<span th:text="#{account.title}">Cuenta</span>
-				</h3>
-				<hr style="border: 1px solid white !important;">
-				<div class="form-group">
-					<label><i style="color: turquoise" class="fas fa-user"></i> <span th:text="#{account.userlabel}">Nombre de usuario:</span></label>
-					<p th:text="${user?.name}"></p>
-				</div>
+	<div th:if="${errorNoUpload != null}" class="alert alert-danger">
+		<p th:text="${errorNoUpload}"></p> <a href='/account' style="color: red">Refresh</a>
+	</div>
+	
+	<div th:if="${errorNoAnimalAvailable != null}" class="alert alert-danger">
+		<p th:text="${errorNoAnimalAvailable}"></p> <a href='/account' style="color: red">Refresh</a>
+	</div>
+	
+	<div id="particles-js">
 
-				<div class="form-group">
-					<label><i style="color: turquoise" class="fas fa-envelope"></i>
-						<span th:text="#{account.emaillabel}">Email notificaciones de mascota:</span></label>
-					<p th:text="${user?.email}"></p>
-					<small style="color:turquoise" th:text="#{account.emaillabel.info}">Las notificaciones de mascota incluyen la latitud y longitud de lectura, puede diferir de la casilla de activación donde recibió el código.</small>
+
+		<div id="accountMainDiv" class="container-fluid">
+			<div  class="transparencyWithoutPadding" id="window" style="padding:20px">
+					<h3>
+						<img src="../img/iconoPet75.png" style="width: 38px; height: 38px;">
+						<span th:text="#{account.title}">Cuenta</span>
+					</h3>
+					<hr style="border: 1px solid white !important;">
+				<div style="display:flex; padding:20px" id="infoPanelAccount">
+					<div id="panelLeft" class="halfCol">
+					<h5 style="color:turquoise">User data:</h5>
+					<div class="form-group rounded grey-text" style="padding:20px;">
+						<div>
+							<img class="rounded" th:src="'https://www.gravatar.com/avatar/' + ${user?.gravatar} + '?s=120'">
+							<button class="btn btn-sm blue-gradient rounded" onclick="window.location.href='https://gravatar.com'" _target="blank">Gravatar</button>
+						</div>
+						<small style="color:Gold">* To edit profile image use Gravatar service</small>
+					</div>
+					
+					<div class="form-group">
+						<label><i style="color: turquoise" class="fas fa-user"></i> <span th:text="#{account.userlabel}">Nombre de usuario:</span></label>
+						<p style="color:LimeGreen" th:text="${user?.name}"></p>
+					</div>
+	
+					<div class="form-group">
+						<label><i style="color: turquoise" class="fas fa-envelope"></i>
+							<span th:text="#{account.emaillabel}">Email notificaciones:</span></label>
+						<p style="color:LimeGreen" th:text="${user?.email}"></p>
+						<small style="color:turquoise; text-align: justify;" th:text="#{account.emaillabel.info}">Las notificaciones de mascota incluyen la latitud y longitud de lectura, puede diferir de la casilla de activación donde recibió el código.</small>
+					</div>
+					
+					<div class="form-group">
+						<label><i style="color: turquoise" class="fas fa-config"></i>
+						<button onclick="window.location.href='/user'" class="btn btn-md btn-primary"><span>Edit public data.</span> <i class="shadow-icon fas fa-edit"></i></button></label>
+					</div>
+				</div>
+				
+					<div class="halfCol">
+					<h5 style="color:turquoise">Notifications:</h5>
+					<div>
+					<ul id="resultNotifications" style="text-align: justify;">
+					
+					</ul>
+					</div>
+					
+					</div>
 				</div>
 				
 				<br>
 
 				<div class="form-group">
-					<h4 th:text="#{account.controlpanel.title}">Panel de control Pet-QR:</h4>
+					<h5 th:text="#{account.controlpanel.title}">Panel de control:</h5>
 					<hr style="border: 1px solid white !important;">
 				</div>
 
 				<div>
-					<table id="accountTable"
-						class="table table-dark table-responsive table-striped rounded">
-						<thead>
-							<tr>
-								<td th:text="#{account.controlpanel.index}">Indice</td>
-								<td>QR id</td>
-								<td th:text="#{account.controlpanel.petname}">Nombre Mascota</td>
-								<td th:text="#{account.controlpanel.activationemail}">Mail de activación</td>
-								<td th:text="#{account.controlpanel.actions}">Acciones</td>
-								<td th:text="#{account.controlpanel.design}">Diseños</td>
-								<td th:text="#{account.controlpanel.alert}">Alerta</td>
-							</tr>
-						</thead>
-				 <!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
-						<tbody>
-							<tr>
-								<td th:text="${iStat?.count}"></td>
-								<td><a th:href="@{'/id/'+${list[iStat?.index].id}}"
-									th:id="'idValue'+${iStat?.index}"
-									th:text="${list[iStat?.index].id}"></a></td>
-								<td th:text="${listIterate?.pet?.petName}"></td>
-								<td th:text="${list[iStat?.index].selledOnline}"></td>
-								<td><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i
-										style="color: lightgreen" class="fas fa-search"></i></a> <a
-									th:href="@{'/prepaid-qr?idValue='+${list[iStat?.index].id}+'&selledOnlineValue='+${list[iStat?.index].selledOnline}}"><i
-										style="color: PaleTurquoise" class="fas fa-edit"></i></a> <a href="#" onclick="deleteQr()"><i class="far fa-trash-alt" style="color: tomato"></i> <a th:onclick="transferCode()" href="#" ><i class="fas fa-exchange-alt" style="color:DarkViolet"></i></a></td> 
-										<!-- Form button to send object to download page -->
-										<td>
-											<form action="#" th:action="@{/download}" th:method="POST" th:object="${prepaidQR}">
-													<button type="submit" class="btn btn-sm btn-info"><i class="fas fa-download"></i></button>
-													<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
-													<input type="hidden" th:value="${list[iStat?.index].strBase64}" id="strBase64" name="strBase64" />
-													<input type="hidden" th:value="${list[iStat?.index].resultBase64Avatar}" id="resultBase64Avatar" name="resultBase64Avatar" />
-													<input type="hidden" th:value="${list[iStat?.index].base64Backside}" id="base64Backside" name="base64Backside" />
-													<input type="hidden" th:value="${list[iStat?.index].pet?.petName}" id="petName" name="petName" />
-													<input type="hidden" th:value="${list[iStat?.index].pet?.raze}" id="raze" name="raze" />
-													<input type="hidden" th:value="${list[iStat?.index].pet?.illness}" id="illness" name="illness" />
-													<input type="hidden" th:value="${list[iStat?.index].pet?.medicated}" id="medicated" name="medicated" />										
-													<input type="hidden" th:value="${list[iStat?.index].pet?.neuteredPet}" id="neuteredPet" name="neuteredPet" />
-													<input type="hidden" th:value="${list[iStat?.index].owner?.telephone1}" id="telephone1" name="telephone1" />
-													<input type="hidden" th:value="${list[iStat?.index].owner?.telephone2}" id="telephone2" name="telephone2" />
-													<input type="hidden" th:value="${list[iStat?.index].owner?.email}" id="email" name="email" />
-											</form>
-										</td>
-										<td>
-											<form th:if="${list[iStat?.index]?.pet?.status == true}" action="#" th:action="@{/emergency}" method="GET" th:object="${prepaidQR}" style="display:inline">
-												<button class="btn btn-sm btn-danger">
-													<i style="color: pink" class="fas fa-exclamation-triangle"></i>
-												</button>
-											<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id">
-											</form>
-											
-											<form th:if="${list[iStat?.index]?.pet?.status == false}" action="#" th:action="@{/rescued}" method="GET" th:object="${prepaidQR}" style="display:inline">
-												<button class="btn btn-sm btn-success">
-													<i style="color: pink" class="fas fa-exclamation-triangle"></i>
-												</button>
-											<input type="hidden" th:value="${list[iStat?.index].id}" name="id">
-											</form>
-										</td>
-										
-										<script th:inline="javascript">
-										function transferCode(idPrepaidQR){
-											var idPrepaidQR = [[${list[iStat?.index].id.toString()}]];
-											console.log(idPrepaidQR);
-											
-											$.confirm({
-												theme:"bootstrap",
-												title:"Tranferir código a otro usuario <i class='fas fa-exchange-alt' style='color:DarkViolet'></i>",
-												content:"Cuándo sirve esta opción?<br><ol><li>Cuando querés transferirlo por venta.</li><li>Cuando sabés que no vas a tener más mascota</li><li>Cuando querés darlo en forma de regalo.</li><li>Cuando el que lo quiere no puede pagar por los medios disponibles.</li><li>Esta opción es irreversible como la eliminación.</li></ol><label><i class='fas fa-user' style='color:LimeGreen''></i> Usuario Activo Destinatario:</label><input type='text' id='emailDestinatary' style='background-color:pink; text-align:center; margin: 0 auto;' placeholder='Email del destinatario'>",
-												buttons:{
-													confirm: function(){
-														var xhr = new XMLHttpRequest();
-														var emailDestinatary = document.getElementById("emailDestinatary").value;
-														var url = "/transfer?emailDestinatary="+emailDestinatary+"&idPrepaidQR="+idPrepaidQR;
+				<!-- FlexBox control panel start -->
+				<ul id="flexBoxHeader" class="controlPanelHeader bg-dark rounded">
+					<li>
+						Index
+					</li>
+						QR code
+					<li>
+						Key Email
+					</li>
+					
+					<li>
+						Actions
+					</li>
+					
+					<li>
+						QR Design
+					</li>
+					
+					<li>
+						Clinic History
+					</li>
+					
+					<li>
+						Alerts
+					</li>
+					
+					<li>
+						M.P.A.T
+					</li>
+					
+					<li>
+						Quick select
+					</li>
+				</ul>
 
-															xhr.onreadystatechange = function () {
-															if (xhr.readyState == 4 && xhr.status == 200) {
-																$.alert({
-																	title: "Respuesta del servidor",
-																	theme: "bootstrap",																	
-																	content: xhr.responseText,
-																	buttons:{
-																		confirm: function(){
-																			location.reload();
-																		}
-																	}
-																});
-															}
-														}	
-													xhr.open("GET", url, true);
-													xhr.send();
-													},
-													cancel: function(){
-													
-													}
-												}
-												
-											});
-											
-											
-											
-										}
-										</script>
-									
-								<script>
-									function deleteQr() {
-										$
-												.confirm({
-													type : "red",
-													title : 'Confirme la eliminación!',
-													content : "<html><p>Confirma que desea Borrar el QR con id:   <strong>[[${list[iStat?.index].id}]]</strong>?</p><p style='text-align:justify'>Tenga en cuenta que está interactuando con nuestro servidor por ende los datos no podrán ser recuperados</p></html>",
-													buttons : {
-														confirm : {
-															text : 'Borrar',
-															btnClass : 'btn-red',
-															keys : [ 'enter',
-																	'shift' ],
-															action : function() {
-																$
-																		.alert('Confirmada eliminación de QR!, los datos No podrán ser recuperados}');
-																window.location.href = "[[@{'/delete?id='+${list[iStat?.index].id}}]]"
-															}
-														},
-														cancel : function() {
-															$
-																	.alert({
-																		type : "blue",
-																		title : "Acción:",
-																		content : 'Cancelada'
-																	});
-														}
+				<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
 
-													}
-												});
-									}
-								</script>
-							</tr>
-						</tbody>
-					</table>
-				<!--/*/ </th:block> /*/-->
+
+				<div class="controlPanelDiv">
+				<ul class="flexAllStretch rounded item bg-light text-success" id="controlPanel" style="width:100%; text-shadow:none;  font-weight:bold">
+					<li th:text="${iStat?.count}" ></li>
+					<li>
+						<a style="color:black;" th:href="@{'/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${#strings.substring(list[iStat?.index].id,19,24)}"></a>
+						<a class="text-secondary" th:onclick="viewId([[${list[iStat?.index].id.toString()}]])">View</a>
+					</li>
+					<li>
+						<a class="text-info" th:onclick="viewEmail([[${list[iStat?.index].selledOnline}]])">View email</a>
+					</li>
+					<li>
+						<a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search" data-toggle="tooltip" title="View template"></i></a>
+						<a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt" style="color:red"></i>
+						<a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt" style="color:DarkViolet"></i></a>
+					</li>
+					<li>
+						<form style="margin:2px auto;  padding:0px" action="#" th:action="@{/download}" th:method="POST" th:object="${prepaidQR}">
+							<button style="margin: 0 auto;"  type="submit"  class="btn btn-sm blue-gradient"  data-toggle="tooltip" title="Change logo design and download template"><img th:src="'data:image/png;base64,'+${list[iStat?.index].strBase64}" style="width:45px; height:45px; float:left"></button>
+							<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
+						</form>
+						<button style="margin: 0 auto;" th:onclick="showCode([[${list[iStat?.index].strBase64}]])" class="btn btn-sm  blue-gradient">preview</button>
+					</li>
+					<li>
+						<form style="margin:2px auto;  padding:0px" action="#" th:action="@{/#}" th:method="POST" th:object="${dog}">
+							<input type="hidden" th:value="${list[iStat?.index].dog}" id="dog" name="dog" />
+							<button type="submit" class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Clinic History (On develop now)"><i class="fas fa-heartbeat shadow-icon"></i></button>
+						</form>
+					</li>
+					<li>
+<!-- 					Alert functions start -->
+						<button th:id="'alertButton'+${list[iStat?.index].id.toString()}" class="btn buttonMD btn-success" th:onclick="getStatus([[${list[iStat?.index].id.toString()}]])" data-toggle="tooltip" title="Rescued" style="display:flex">
+						<i style="color: white" class="fas fa-exclamation-triangle"></i></button>
+						<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id">
+<!-- 					Alert functions end -->
+					</li>
+					<li th:switch="${list[iStat?.index].typeAnimal}" style="display:flex; justify-content: space-around">
+						
+						<div th:case="dog">
+							<form style="margin:2px auto;  padding:0px" id="modifyDog"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}"  data-toggle="tooltip" title="Edit Dog"><button class="btn buttonMD btn-primary"><img src="../img/dog.png"></button><input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" /><input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" /><input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'dog'}" id="typeAnimal" name="typeAnimal"  /></form>
+						</div>
+						
+						<div th:case="cat">
+							<form style="margin:2px auto;  padding:0px" id="modifyCat"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}" >
+								<button class="btn buttonMD btn-warning"  data-toggle="tooltip" title="Edit Cat"><img src="../img/cat.png"></button>
+								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
+								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
+								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'cat'}" id="typeAnimal" name="typeAnimal"  />
+							</form>
+						</div>
+						
+						<div th:case="horse">
+							<form style="margin:2px auto;  padding:0px" id="modifyHorse"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}">
+								<button class="btn buttonMD btn-success"  data-toggle="tooltip" title="Edit Horse"><img src="../img/horseshoe.png"></button>
+								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
+								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
+								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'horse'}" id="typeAnimal" name="typeAnimal" />
+							</form>
+						</div>
+						
+						<div th:case="rat">
+							<form style="margin:2px auto;  padding:0px" id="modifyRat"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}" >
+								<button class="btn buttonMD btn-info"  data-toggle="tooltip" title="Edit Rodents"><img src="../img/rabbit.png"></button>
+								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
+								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
+								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'rat'}" id="typeAnimal" name="typeAnimal" />
+							</form>
+						</div>
+						
+						<div th:case="fish">
+							<form style="margin:2px auto;  padding:0px" id="modifyFish"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}">
+								<button class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Edit group of fishes"><img src="../img/fish.png"></button>
+								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
+								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
+								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'fish'}" id="typeAnimal" name="typeAnimal" />
+							</form><span class="mdi mdi-home"></span>
+						</div>
+					</li>
+					<li>
+						<button class="btn buttonMD purple-gradient" th:onclick="chooseAnimal([[${list[iStat?.index].id.toString()}]], [[${list[iStat?.index].dog}]], [[${list[iStat?.index].cat}]], [[${list[iStat?.index].horse}]], [[${list[iStat?.index].hamsterFishTank}]], [[${list[iStat?.index].fish}]])"  data-toggle="tooltip" title="Quick Select Animal"><i class="fas fa-paw"></i></button>
+					</li>
+				</ul>
+				</div>
+
+				<br>
+
+<!-- Scripts -->
+<script th:inline="javascript">
+function viewEmail(email){
+	$.alert({
+		type:"purple",
+		title:"<i class='fa fa-envelope' style='color:DarkViolet'></i> Activation E-mail:",
+		content:"<html><body><p>"+email+"</p></body></html>"	
+	});
+}
+
+function showCode(strBase64){
+	$.alert({
+			type:"blue",
+			title: "Preview",
+			content:"<html><body><div style='text-align:center' ><img src='data:image/png;base64,"+ strBase64+"'</div><div><button class='btn btn-sm blue-gradient' onclick='downloadNowPNG()'>Download Raw</button></div><div><small style='color:deeppink'>* This a raw format with a explicit size, it'not a template ready to print.</small></div></body></html>"
+	});
+}
+
+function downloadNowPNG(){
+	var strBase64 = [[${list[iStat?.index].strBase64}]];
+	var id = [[${list[iStat?.index].id.toString()}]];
+	
+	download( "data:image/png;base64,"+strBase64 ,'pet-qr_' + id + '.png','image/png');
+}
+	
+function getAllPrepaidQR(){
+	var xhr = new XMLHttpRequest();
+	var url = "/getAllPrepaidQR";
+	var resultNotifications = document.getElementById("resultNotifications");
+	
+	xhr.open("GET", url, true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send();
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var data = xhr.responseText;
+			
+			var result = JSON.parse(data);
+			for(var i = 0; i < result.length; i++){
+
+				var dog = result[i].dog;
+				var cat = result[i].cat;
+				var horse = result[i].horse;
+				var hamsterFishTank = result[i].hamsterFishTank;
+				var fish = result[i].fish;
+				
+				if(dog == null && cat == null && horse == null && hamsterFishTank == null && fish == null){
+					var li = document.createElement("li");
+					li.innerHTML = "You have void QR code";
+					resultNotifications.appendChild(li);
+					console.log("you have a QR code without without any animals");
+				}
+			}
+		}
+	}
+}
+
+function getUserForNotifications(){
+	var xhr = new XMLHttpRequest();
+	var url = "/getUser";
+	var resultNotifications = document.getElementById("resultNotifications");
+	
+	xhr.open("GET", url, true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send();
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var data = xhr.responseText;
+			var resp = JSON.parse(data);
+			
+			if(resp.owner.telephone1 == "" || resp.owner.telephone1 == undefined){
+				var li = document.createElement("li");
+				li.innerHTML = "<strong style='color:Gold'>Telephone1</strong> You have not set this contact data yet, it's important to contact you if the pet were founded."
+				resultNotifications.appendChild(li);				
+			}
+			if(resp.owner.telephone2 == "" || resp.owner.telephone2 == undefined){
+				var li = document.createElement("li");
+				li.innerHTML = "<strong style='color:Gold'>Telephone2</strong> You have not set this contact data yet, it's important to contact you if the pet were founded."
+				resultNotifications.appendChild(li);				
+			}
+			if(resp.owner.email == "" || resp.owner.email == undefined){
+				var li = document.createElement("li");
+				li.innerHTML = "<strong style='color:Gold'>email</strong> You have not set this contact data yet, it's important to contact you if the pet were founded."
+				resultNotifications.appendChild(li);				
+			}
+			if(resp.owner.address == "" || resp.owner.address == undefined){
+				var li = document.createElement("li");
+				li.innerHTML = "<strong style='color:Gold'>email</strong> You have not set this contact data yet, if you don't want specified an exact location just select a public place."
+				resultNotifications.appendChild(li);				
+			}
+		}
+	}
+}
+</script>
+<!--/*/ </th:block> /*/-->
+<!-- FlexBox control panel end -->				
+
+
+</script>
+				
 				<br>
 				<br>
 
@@ -181,8 +317,9 @@
 			</div>
 		</div>
 
-		<footer th:replace="default :: footer"></footer>
 	</div>
+	</div>
+<footer th:replace="default :: footer"></footer>
 </body>
 
 </html>

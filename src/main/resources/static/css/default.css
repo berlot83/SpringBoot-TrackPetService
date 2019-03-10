@@ -5,26 +5,70 @@ html, body {
 	width: 100%;
 }
 
-#currentUserButton {
+.white-transparency{
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+#curreflexPanelControlntUserButton {
 	font-weight: bolder;
 	background-color: #5b3f83;
 	border-radius: 5px;
 	text-shadow: 1px 2px black;
 }
 
+.flexAllCenter{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+}
+
+.flexAllStretch{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.flexPanelControl{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+}
+
 #loginButton {
 	
 }
 
-.buttonViolet {
-	background-color: #5b3f83;
-	color: white;
-	text-shadow: 1px 2px black;
-	box-shadow: 2px 2px black;
+.halfCol{
+		flex-grow: 0;
+   		flex-shrink: 0;
+   		flex-basis: 50%;
+}
+
+.col40{
+		flex-grow: 0;
+   		flex-shrink: 0;
+   		flex-basis: 45%;
 }
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
+
+	body{
+		font-size: x-small !important;
+	}
+#divAgeCreated{
+	
+	display:none;
+}	
 	
 	#spanish {
 		display: none !important;
@@ -59,6 +103,14 @@ html, body {
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
+	
+	body{
+	font-size: x-small !important;
+	}
+	
+	#footer{
+	height: 80px !important;
+	}
 	
 	#spanish {
 		display: none !important;

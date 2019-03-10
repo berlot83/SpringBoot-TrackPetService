@@ -20,11 +20,13 @@ public class Owner {
     private String sessionToken;
     private String lostDogToken;
     private String name;
-    private Pet pet;
+    private Animal animal;
     private String petNameInCharge;
     private String idPrepaidQrOwned;
+    private String base64Backside;
     private double latitude;
     private double longitude;
+    
     
     public Owner() {
     	
@@ -134,14 +136,6 @@ public class Owner {
 		this.name = name;
 	}
 
-	public Pet getPet() {
-		return pet;
-	}
-
-	public void setPet(Pet pet) {
-		this.pet = pet;
-	}
-
 	public String getPetNameInCharge() {
 		return petNameInCharge;
 	}
@@ -180,6 +174,22 @@ public class Owner {
 
 	public void setResidence(String residence) {
 		this.residence = residence;
+	}
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
+
+	public String getBase64Backside() {
+		return base64Backside;
+	}
+
+	public void setBase64Backside(String base64Backside) {
+		this.base64Backside = base64Backside;
 	}
 
 }

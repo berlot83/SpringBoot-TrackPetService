@@ -1,12 +1,13 @@
 package com.molokotech.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -24,15 +25,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.google.maps.errors.ApiException;
+import com.molokotech.model.Animal;
+import com.molokotech.model.Cat;
+import com.molokotech.model.Dog;
+import com.molokotech.model.Fish;
 import com.molokotech.model.FormMessage;
+import com.molokotech.model.HamsterFishTank;
+import com.molokotech.model.Horse;
 import com.molokotech.model.Owner;
-import com.molokotech.model.Pet;
 import com.molokotech.model.PrepaidQR;
+import com.molokotech.model.Rat;
 import com.molokotech.model.User;
-import com.molokotech.service.PetService;
+import com.molokotech.service.AnimalService;
 import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
+import com.molokotech.utilities.EncryptMD5;
+import com.molokotech.utilities.GoogleMapsService;
 import com.molokotech.utilities.PrintName;
 import com.molokotech.utilities.TokenCreator;
 
@@ -43,7 +52,7 @@ public class QrController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	PetService petService;
+	AnimalService animalService;
 	@Autowired
 	PrepaidQrService prepaidQrService;
 	@Autowired
@@ -142,6 +151,8 @@ public class QrController {
 					String[] authorities = { "USER" };
 					user.setAuthorities(authorities);
 					user.setEmailToken(TokenCreator.createAleatoryToken());
+					EncryptMD5 emailMD5 = new EncryptMD5();
+					user.setGravatar(emailMD5.encryptToMD5(user.getEmail()));
 					userService.saveUser(user);
 				} catch (Exception e) {
 					System.out.println("Entró en exceptción");
@@ -243,12 +254,15 @@ public class QrController {
 	public String prepaidQrForm(Model model, Model modelName) {
 		PrintName.printUser(modelName);
 		model.addAttribute("prepaidQR", new PrepaidQR());
+
 		return "prepaid-qr";
 	}
 
 	@PostMapping("/prepaid-qr")
-	public String prepaidQrSubmit(@ModelAttribute PrepaidQR prepaidQR, Model modelName, Model modelError) {
+	public String prepaidQrSubmit(@ModelAttribute PrepaidQR prepaidQR,  Model modelName, Model modelError) {
 		PrintName.printUser(modelName);
+
+		prepaidQrService.addTypeAnimal(prepaidQR.getId().toHexString(), prepaidQR.getTypeAnimal());
 		
 		String selledOnlineVerify = prepaidQrService.findById(prepaidQR.getId().toHexString()).getSelledOnline();
 		String tempSpecialId = prepaidQrService.findById(prepaidQR.getId().toHexString()).getId().toHexString();
@@ -266,29 +280,97 @@ public class QrController {
 
 	/* get id details */
 	@GetMapping(value = "/id/{id}")
-	public String readQr(@PathVariable String id, PrepaidQR prepaidQR, Model model, Model modelName) {
-		prepaidQR = prepaidQrService.findById(id);
+	public String readQr(@PathVariable String id, PrepaidQR prepaidQR, Model model, Model modelName, String error) {
 		String result = null;
-		if (prepaidQR != null) {
-			model.addAttribute("prepaidQR", prepaidQR);
-			modelName.addAttribute("user", new User());
-			PrintName.printUser(modelName);
-			result = "id";
-		} else {
-			System.out.println("nulo");
-			result = "empty";
+		error = "It appears that this animal is not upload yet, edit this animal from control panel to add it to the MPAT.";
+		/* Find the QR code */
+		prepaidQR = prepaidQrService.findById(new ObjectId(id).toHexString());
+		
+		/* Find the user assigned to it to get the contact data */
+		User user = userService.findUser(prepaidQR.getUserName());
+
+		/* Used to know what animal are active in this moment in DB */
+		String typeAnimal = prepaidQR.getTypeAnimal();
+		
+		/* Verify the object aren't null */
+		switch(typeAnimal) {
+		case "dog":
+			if(prepaidQR.getDog() != null) {
+				model.addAttribute("prepaidQR", prepaidQR);
+				modelName.addAttribute("user", user);
+				PrintName.printUser(modelName);
+				result = "id";
+			}else {
+				model.addAttribute("errorNoUpload", error);
+				PrintName.printUser(modelName);
+				result = "account";
+			}
+			break;
+		case "cat":
+			if(prepaidQR.getCat() != null) {
+				model.addAttribute("prepaidQR", prepaidQR);
+				modelName.addAttribute("user", user);
+				PrintName.printUser(modelName);
+				result = "id";
+			}else {
+				model.addAttribute("errorNoUpload", error);
+				PrintName.printUser(modelName);
+				result = "account";
+			}
+			break;
+		case "horse":
+			if(prepaidQR.getHorse() != null) {
+				model.addAttribute("prepaidQR", prepaidQR);
+				modelName.addAttribute("user", user);
+				PrintName.printUser(modelName);
+				result = "id";
+			}else {
+				model.addAttribute("errorNoUpload", error);
+				PrintName.printUser(modelName);
+				result = "account";
+			}
+			break;
+		case "fish":
+			if(prepaidQR.getFish() != null) {
+				model.addAttribute("prepaidQR", prepaidQR);
+				modelName.addAttribute("user", user);
+				PrintName.printUser(modelName);
+				result = "id";
+			}else {
+				model.addAttribute("errorNoUpload", error);
+				PrintName.printUser(modelName);
+				result = "account";
+			}
+			break;
+		case "rat":
+			if(prepaidQR.getHamsterFishTank() != null) {
+				model.addAttribute("prepaidQR", prepaidQR);
+				modelName.addAttribute("user", user);
+				
+				/* Inner object */
+				Rat rat = prepaidQR.getHamsterFishTank().getRat();
+				
+				if(rat != null) {
+					model.addAttribute("rat",rat);
+				}
+				
+				PrintName.printUser(modelName);
+				result = "id";
+			}else {
+				model.addAttribute("errorNoUpload", error);
+				PrintName.printUser(modelName);
+				result = "account";
+			}
+			break;
 		}
 		return result;
 	}
 	
 	@RequestMapping("/delete")
-	public String deletePrepaidQr(String id) {
+	public @ResponseBody void deletePrepaidQr(String id) {
 		PrepaidQR prepaidQR = prepaidQrService.findById(id);
-		System.out.println(prepaidQR.getPet().getPetName());
 		prepaidQrService.deletePrepaidQr(prepaidQR);
-		return "delete";
 	}
-	
 
 	/* Get all lost Dog */
 	@RequestMapping("/db-lost-pet")
@@ -342,7 +424,6 @@ public class QrController {
 	public String account(Model modelName, Model model) {
 		PrintName.printUser(modelName);
 		List<PrepaidQR> resultList = new ArrayList<>();
-
 		/*
 		 * We capture the name of the logued session to find the user and the we catch
 		 * the email and other data on the page
@@ -366,7 +447,7 @@ public class QrController {
 				}
 				
 			}else {
-				System.out.println("No tiene QR asociados");
+//				System.out.println("No tiene QR asociados");
 			}
 		}
 		model.addAttribute("list", resultList);
@@ -376,56 +457,227 @@ public class QrController {
 	@GetMapping("/download")
 	public String downloadDesign(Model model) {
 		/* Create an PrepaidQR Object */
-		PrepaidQR prepaidQR = new PrepaidQR();
-		
-		/* Create an Pet Object to add the PrepaidQR, because for some reason in Form action do not attach inner objects */
-		Pet pet = new Pet();
-		
-		/* Create an Owner Object to add the PrepaidQR, because for some reason in Form action do not attach inner objects */
-		Owner owner = new Owner();
-		
-		/* Set the Pet to the PrepaidQR */
-		prepaidQR.setPet(pet);
-
-		/* Set the Owner to the PrepaidQR */
-		prepaidQR.setOwner(owner);
-		
 		PrintName.printUser(model);
-		
-		/* Add the attribute to the HTML */
-		model.addAttribute("prepaidQR", prepaidQR);
 		return "download";
 	}
 
 	/* Be aware to do not delete @Model Attribute PrepaidQR and Pet they are in dependency */
 	@PostMapping("/download")
-	public String chooseDesign(@ModelAttribute PrepaidQR prepaidQR, @ModelAttribute Pet pet, @ModelAttribute Owner owner, Model model) {
+	public String chooseDesign(@ModelAttribute PrepaidQR prepaidQR, Model model) {
+		String result = null;
 		PrintName.printUser(model);
-		System.out.println(prepaidQR.getId());
-		System.out.println(prepaidQR.getSelledOnline());
-		return "download";
+		prepaidQR = prepaidQrService.findById(prepaidQR.getId().toHexString());
+		String typeAnimal = prepaidQR.getTypeAnimal();
+
+		if(prepaidQR != null) {
+			model.addAttribute("prepaidQR", prepaidQR);
+			
+			switch(typeAnimal) {
+			case "dog":
+				if(prepaidQR.getDog() != null) {
+					model.addAttribute("prepaidQR", prepaidQR);
+					Dog dog = prepaidQR.getDog();
+					model.addAttribute("dog", dog);
+					result = "download";
+				}
+				else {
+					PrintName.printUser(model);
+					model.addAttribute("errorNoAnimalAvailable", "No Dog added to this account, just create one from the M.P.A.T.");
+					result = "account";
+				}
+				break;			
+			case "cat":
+				if(prepaidQR.getCat() != null){
+					Cat cat = prepaidQR.getCat();
+					model.addAttribute("cat", cat);
+					result = "download";
+				}else{
+					PrintName.printUser(model);
+					model.addAttribute("errorNoAnimalAvailable", "No Cat added to this account, just create one from the M.P.A.T.");
+					result = "account";
+				}
+				break;			
+			case "horse":
+				if(prepaidQR.getHorse() != null) {
+					Horse horse = prepaidQR.getHorse();
+					model.addAttribute("horse", horse);
+					result = "download";	
+				}else {
+					PrintName.printUser(model);
+					model.addAttribute("errorNoAnimalAvailable", "No Horse added to this account, just create one from the M.P.A.T.");
+					result = "account";
+				}
+				break;
+			case "rat":
+				if(prepaidQR.getHamsterFishTank() != null) {
+					HamsterFishTank hamsterFishTank = prepaidQR.getHamsterFishTank();
+					model.addAttribute("hamsterFishTank", hamsterFishTank);
+					Rat rat = prepaidQR.getRat();
+					model.addAttribute("rat", rat);
+				}else {
+					PrintName.printUser(model);
+					model.addAttribute("errorNoAnimalAvailable", "No Rodents added to this account, just create one from the M.P.A.T.");
+					result = "account";	
+				}
+				break;
+			case "fish":
+				if(prepaidQR.getFish() != null) {
+					Fish fish = prepaidQR.getFish();
+					model.addAttribute("fish", fish);
+				}else {
+					PrintName.printUser(model);
+					model.addAttribute("errorNoAnimalAvailable", "No Fishes added to this account, just create one from the M.P.A.T.");
+					result = "account";	
+				}
+				break;
+			}
+			
+			User user = userService.findUser(prepaidQR.getUserName());
+			Owner owner = user.getOwner();
+			model.addAttribute("owner", owner);
+		}
+		return result;
 	}
 	
-	@GetMapping("/emergency")
-	public String emergency(@RequestParam String id, Model model) {
+	@RequestMapping("/ch")
+	public String ch(Model model, PrepaidQR prepaidQR) {
 		PrintName.printUser(model);
-		PrepaidQR prepaidQR = prepaidQrService.findById(id);
-		prepaidQR.getPet().setStatus(false);
-		prepaidQrService.createPrepaidQR(prepaidQR);
-		model.addAttribute("emergency","Perdido");
-		return "index";
+		Dog dog = new Dog();
+		model.addAttribute("dog", dog);
+		return "ch";
 	}
 	
-	@GetMapping("/rescued")
-	public String rescued(@RequestParam String id, Model model) {
+	@PostMapping("/ch")
+	public String chNow(@ModelAttribute Animal animal, Model model) {
 		PrintName.printUser(model);
-		PrepaidQR prepaidQR = prepaidQrService.findById(id);
-		prepaidQR.getPet().setStatus(true);
-		prepaidQrService.createPrepaidQR(prepaidQR);
-		model.addAttribute("rescued","Rescatado");
-		return "index";
+		return "ch";
 	}
+	
+	@GetMapping("/status")
+	public @ResponseBody String getStatus(@RequestParam String id, @RequestParam String typeAnimal) {
+		String result = null;
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
 		
+		switch(typeAnimal) {
+		case "dog":
+			if(prepaidQR.getDog() != null) {
+				Dog dog = prepaidQR.getDog();
+				if(Boolean.toString(dog.isStatus()).equals("true")) {
+					dog.setStatus(false);
+					prepaidQR.setDog(dog);
+					prepaidQrService.createPrepaidQR(prepaidQR);
+					return result = Boolean.toString(prepaidQR.getDog().isStatus());
+				}
+				else{
+					dog.setStatus(true);
+					prepaidQR.setDog(dog);
+					prepaidQrService.createPrepaidQR(prepaidQR);
+					return result = Boolean.toString(prepaidQR.getDog().isStatus());
+				}
+			}
+			else {
+				return result = "Unable to reach the response";
+			}
+		case "cat":
+			if(prepaidQR.getCat() != null){
+				Cat cat = prepaidQR.getCat();
+				if(Boolean.toString(cat.isStatus()).equals("true")) {
+					cat.setStatus(false);
+					prepaidQR.setCat(cat);
+					prepaidQrService.createPrepaidQR(prepaidQR);
+					return result = Boolean.toString(prepaidQR.getCat().isStatus());
+				}
+				else{
+					cat.setStatus(true);
+					prepaidQR.setCat(cat);
+					prepaidQrService.createPrepaidQR(prepaidQR);
+					return result = Boolean.toString(prepaidQR.getCat().isStatus());
+				}
+			}else{
+				return result = "Unable to reach the response";
+			}
+		case "horse":
+			Horse horse = prepaidQR.getHorse();
+			if(prepaidQR.getHorse() != null) {
+				if(Boolean.toString(horse.isStatus()).equals("true")) {
+					horse.setStatus(false);
+					prepaidQR.setHorse(horse);
+					prepaidQrService.createPrepaidQR(prepaidQR);
+					return result = Boolean.toString(prepaidQR.getHorse().isStatus());
+				}
+				else{
+					horse.setStatus(true);
+					prepaidQR.setHorse(horse);
+					prepaidQrService.createPrepaidQR(prepaidQR);
+					return result = Boolean.toString(prepaidQR.getHorse().isStatus());
+				}
+			}
+			else {
+				return result = "Unable to reach the response";
+			}
+//		case "rat":
+//			if(prepaidQR.getHamsterFishTank() != null) {
+//				result = "Not available get lost";	
+//			}else {
+//				result = "Not available get lost";	
+//			}
+//			break;
+//		case "fish":
+//			if(prepaidQR.getFish() != null) {
+//				result = "Not available get lost";	
+//			}else {
+//				result = "Not available get lost";	
+//			}
+//			break;
+		}		
+		return result;
+	}
+	
+	@GetMapping("/get-active-status")
+	public @ResponseBody String getActiveStatus(@RequestParam String id) {
+		String result = null;
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		String typeAnimal = prepaidQR.getTypeAnimal();
+		
+		switch(typeAnimal) {
+		case "dog":
+			if(prepaidQR.getDog() != null) {
+				return result = Boolean.toString(prepaidQR.getDog().isStatus());
+			}
+			else {
+				return result = "Unable to reach the response";
+			}
+		case "cat":
+			if(prepaidQR.getCat() != null){
+					return result = Boolean.toString(prepaidQR.getCat().isStatus());
+			}else{
+				return result = "Unable to reach the response";
+			}
+		case "horse":
+			if(prepaidQR.getHorse() != null) {
+					return result = Boolean.toString(prepaidQR.getHorse().isStatus());
+			}
+			else {
+				return result = "Unable to reach the response";
+			}
+		case "rat":
+			if(prepaidQR.getHamsterFishTank() != null) {
+				result = "Not available get lost";	
+			}else {
+				result = "Not available get lost";	
+			}
+			break;
+		case "fish":
+			if(prepaidQR.getFish() != null) {
+				result = "Not available get lost";	
+			}else {
+				result = "Not available get lost";	
+			}
+			break;
+		}		
+		return result;
+	}
+	
 	@RequestMapping(value = "/send-contact-form", method = RequestMethod.GET)
 	public String sendContactFormMail(@ModelAttribute FormMessage formMessage) {
 		
@@ -444,6 +696,25 @@ public class QrController {
 			System.err.println(ex.getMessage());
 		}
 		return "index";
+	}
+	
+	@GetMapping("/user")
+	public String userSetUp(Model model) {
+		PrintName.printUser(model);
+		return "user";
+	}
+	
+	/* Change values from Owner object and insert or update the one who match with the name (username) */
+	@PostMapping("/user-setup")
+	public @ResponseBody void userSetUp(Model model, User user, @ModelAttribute Owner owner) throws ApiException, InterruptedException, IOException {
+		PrintName.printUser(model);
+		
+		owner.setLatitude(GoogleMapsService.getLatitude(owner.getAddress()));
+		owner.setLongitude(GoogleMapsService.getLongitude(owner.getAddress()));
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		user = userService.findUser(auth.getName());
+		user.setOwner(owner);
+		userService.saveUser(user);
 	}
 	
 }

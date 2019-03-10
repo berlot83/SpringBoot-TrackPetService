@@ -9,14 +9,6 @@ html, body{
 	position: absolute;
 }
 
-#fullcontainer{
-    background-image: url('../img/tile_pupure.jpg');
-    background-repeat: repeat;
-    color:white;
-    text-shadow: 0px 0px 2px black;
-    margin: 0 auto;
-}
-
 .pricingdiv{
   font-family: 'Mali', cursive !important;
   display: flex;
@@ -33,7 +25,7 @@ html, body{
   display: flex;
   flex-direction: column;
   color: black;
-  width: 300px; /* width of each table */
+  width: 450px; /* width of each table */
   margin-right: 20px; /* spacing between tables */
   margin-bottom: 1em;
   border: 1px solid gray;
@@ -74,16 +66,16 @@ html, body{
   text-shadow: 1px 2px black;
 }
 
-.pricingdiv ul.theplan:nth-of-type(2) li.title{
-  background: rgb(249, 111, 118);
+.pricingdiv ul.theplan:nth-of-type(1) li.title{
+  background: #6200ea;
   color: white;
   text-shadow: 1px 2px black;
 }
-    
-.pricingdiv ul.theplan:nth-of-type(3) li.title{
-  background: lightgreen; /* rgb(210, 117, 251) */
+
+.pricingdiv ul.theplan:nth-of-type(2) li.title{
+  background: #1de9b6;
   color: white;
-	text-shadow: 1px 2px black;
+  text-shadow: 1px 2px black;
 }
 
 .pricingdiv ul.theplan li b{
@@ -103,20 +95,6 @@ html, body{
   margin-top: auto; /*align last LI (price botton li) to the very bottom of UL */
 }  
 
-.pricingdiv a.pricebutton{
-  background: #5b3f83;
-  text-decoration: none;
-  padding: 10px;
-  display: inline-block;
-  margin: 10px auto;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-  border-radius: 5px;
-  text-transform: uppercase;
-  text-shadow: 1px 2px black;
-}
-
 .triangleLeftInfo{
 	width: 0;
 	height: 0;
@@ -132,6 +110,10 @@ html, body{
     margin-right: 0;
   }
   
+  #footer{
+  position: fixed;
+  }
+  
   .pricingdiv ul.theplan:hover{
     transform: none;
     box-shadow: none;
@@ -141,6 +123,4 @@ html, body{
     display: block;
   }
 }
-
-
 

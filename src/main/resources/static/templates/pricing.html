@@ -7,28 +7,30 @@
 	<link rel="stylesheet" type="text/css" href="../css/pricing.css" />
 	<script type="text/javascript" src="../js/pricing.js"></script>
 </head>
-<body>
+<body class="background-colors">
 
 	<nav th:replace="default :: bar"></nav>
 	<div id="triangle-topleft-pricing">
 		<img src="../img/mp64x64.png" style="width:64px;height:64px; position: absolute; top: -195px; left: 80px">
 		<img src="../img/paypalLogo.png" style="width:64px;height:64px; position: absolute;top: -195px; left: 10px">
 	</div>
-	<div id="fullcontainer" class="" style="padding: 30px; box-shadow: 0px 0px 25px black;">
+	<divS class="" style="box-shadow: 0px 0px 25px black;">
+		
+		<!-- Parallax start -->
+	<style>
+	.parallax-window {
+	    min-height: 550px;
+	    background: transparent;
+	}
+	</style>
+	<script type="text/javascript" src="../js/parallax.js"></script>
+		
+	<div class="parallax-window" id="parallaxIndex" data-parallax="scroll" data-image-src="../img/parallaxPricing.jpg" style="box-shadow:0px 0px 75px black;"></div>
+	
+		<!-- Parallax end -->
 		
 		<!-- Columns sell flexbox start -->
-		<div class="pricingdiv transparency" style="text-shadow: 0px 0px 0px black; padding-top: 30px;">
-		    <ul class="theplan" style="background-color:white">
-		        <li class="title"><img src="../img/prepaidQR1366x700directSell.jpg"  class="img-fluid" style="border:2px solid white" /><br /> <span th:text="#{products.column1.title}"></span></li>
-		        <li><b th:text="#{products.method}"></b> <span th:text="#{products.column1.method.description}"></span></li>
-		        <li><b th:text="#{products.size}"></b> <span th:text="#{products.column1.size.description}"></span></li>
-		        <li><b th:text="#{products.subscription}"></b> <span th:text="#{products.column1.subscription.description}"></span></li>
-		        <li><b th:text="#{products.shipping}"></b> <span th:text="#{products.column1.shipping.description}"></span></li>
-		        <li><b th:text="#{products.range}"></b> <span th:text="#{products.column1.range.description}"></span></li>
-		        <li><b th:text="#{products.characteristics}"></b> <span th:text="#{products.column1.characteristics.description}"></span></li>
-		        <li><b th:text="#{products.map}"></b> <span th:text="#{products.column1.map.description}"></span></li>
-		        <li><a class="pricebutton" href="/online-checkout" target="_blank" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</a></li>
-		    </ul>
+		<div class="pricingdiv" style="text-shadow: 0px 0px 0px black; padding-top: 30px;">
 		    <ul class="theplan" style="background-color:white">
 		        <li class="title"><img src="../img/prepaidQR1366x900.jpg"  class="img-fluid" style="border:2px solid white" /><br /> <span th:text="#{products.column2.title}"></span></li>
 		        <li><b th:text="#{products.method}"></b> <span th:text="#{products.column2.method.description}"></span></li>
@@ -44,7 +46,7 @@
 		        <li><b th:text="#{products.hc}"></b> <span th:text="#{products.column2.hc.description}"></span></li>
 		        <li><b th:text="#{products.dblostpets}"></b> <span th:text="#{products.column2.dblostpets.description}"></span></li>
 		        <li><b th:text="#{products.warranty}"></b> <span th:text="#{products.column2.warranty.description}"></span></li>
-		        <li><a class="pricebutton" href="/online-checkout" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</a></li>
+		        <li><button type="button" class="btn btn-lg purple-gradient" style="text-shadow: 1px 2px black;" onclick="window.location.href='/online-checkout'" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</button></li>
 		        </ul>
 		    <ul class="theplan" style="background-color:white">
 		        <li class="title"><img src="../img/prepaidQR1366x900onlineSell.jpg"  class="img-fluid" style="border:2px solid white" /><br/>  <span th:text="#{products.column3.title}"></span></li>
@@ -52,15 +54,19 @@
 		        <li><b th:text="#{products.duration}"></b> <span th:text="#{products.column3.duration.description}"></span></li>
 		        <li><b th:text="#{products.limits}"></b> <span th:text="#{products.column3.limits.description}"></span></li>
 		        <li><b th:text="#{products.warranty}"></b>  <span th:text="#{products.column3.warranty.description}"></span></li>
-		        <li><a class="pricebutton" href="/temporal-qr" rel="nofollow"> Check Out</a></li>
+		        <li><button type="button" class="btn btn-lg purple-gradient" style="text-shadow: 1px 2px black;" onclick="window.location.href='/temporal-qr'" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</button></li>
 		    </ul>
 		    <br><br><br><br>
-		    <!-- Advice to be logued start -->
-		    	<p th:if="${currentUser} == Invitado" style="color: pink; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.unlogued}"></span> <i class="fas fa-user-times"></i> ==>   <a href="/login"><i class="fas fa-user" style="color:lightgreen"></i> Login</a></p>
-				<p th:unless="${currentUser} == Invitado" style="color: LimeGreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.logued}"></span> <i class="fas fa-user-check"></i></p> 
-				<p style="background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"> • <i style='color:LimeGreen;' class='fas fa-shield-alt'></i> <span th:text="#{products.ssl}"></span> <i style='color:LimeGreen' class='fas fa-lock'></i> <span th:text="#{products.ssl.privacy}"></span> </p>
-			<!-- Advice to be logued end -->
 		</div>
+		    <!-- Advice to be logued start -->
+		    <div style="text-shadow: 1px 1px black; width:100%">
+		    	<p th:if="${currentUser} == Invitado" style="margin:0 auto; text-align:center; color: pink; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.unlogued}"></span> <i class="fas fa-user-times"></i> ==>   <a href="/login"><i class="fas fa-user" style="color:lightgreen"></i> Login</a></p>
+				
+				<p th:unless="${currentUser} == Invitado" style="margin:0 auto; text-align:center; color: LimeGreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.logued}"></span> <i class="fas fa-user-check"></i></p> 
+				
+				<p style="margin:0 auto; text-align:center; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"> • <i style='color:LimeGreen;' class='fas fa-shield-alt'></i> <span style="color:white" th:text="#{products.ssl}"></span> <i style='color:LimeGreen' class='fas fa-lock'></i> <span  style="color:white" th:text="#{products.ssl.privacy}"></span> </p>
+			</div>
+			<!-- Advice to be logued end -->
 		
 		<br>
 		<br>
@@ -69,6 +75,10 @@
 
 			<!-- Columns sell flexbox end -->
 		</div>
+		<br>
+		<br>
+		<br>
+		<br>
 	<footer th:replace="default :: footer"></footer>
 </body>
 </html>

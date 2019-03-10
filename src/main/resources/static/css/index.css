@@ -14,12 +14,16 @@ html, body {
 	position: absolute;
 }
 
-.backgroundGradient{
-	  background-image: linear-gradient(white, #6755E3);
+.backgroundGradient {
+	background-image: linear-gradient(white, #6755E3);
 }
 
-#footer { //
-	height: 70px;
+.fireEffect {
+	transform: rotate(45deg);
+}
+
+#footer {
+	height: auto;
 	background-color: black;
 	position: fixed;
 	left: 0;
@@ -39,38 +43,22 @@ body {
 	margin: 0;
 	font-family: 'Mali', cursive !important;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3) !important;
-	background: url("../img/bg_tile.gif");
-	background-repeat: repeat;
+	background: -moz-linear-gradient(90deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke
+		40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%,
+		LightSteelBlue 80%) !important;
+	background: -webkit-linear-gradient(90deg, PowderBlue 20%, WhiteSmoke 20%,
+		WhiteSmoke 40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%,
+		LightSteelBlue 80%) !important;
+	background: linear-gradient(90deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke 40%,
+		Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%, LightSteelBlue
+		80%) !important;
+	/* 	background-color: #272727; */
+	/*   	background-image: -webkit-linear-gradient( -45deg, DimGray 0%, DimGray 60%, #303030 60%, #303030 60%); */
+	/*   	background-image: linear-gradient( -45deg, DimGray 0%, DimGray 60%, #303030 60%, #303030 60%); */
 }
 
 #carouselExampleControls {
 	text-shadow: 0px 0px 4px black;
-}
-
-.carousel-item.active, .carousel-item-next, .carousel-item-prev {
-	display: block;
-	padding: 0px;
-	margin: 0px;
-	text-shadow: 1px 1px #5b3f83;
-	color: white;
-	font-weight: bold;
-}
-
-#firstBody {
-	padding: 10px;
-	padding-left: 50px;
-	padding-right: 50px;
-}
-
-#infoDiv {
-	color: white;
-	padding-left: 15px;
-	padding-right: 15px;
-	/* 	background-image: url('../img/tile_pupure.jpg'); */
-	background-repeat: repeat;
-	text-align: justify;
-	box-shadow: 0px 0px 10px black;
-	text-shadow: 1px 2px black;
 }
 
 .transparencyWithoutPadding {
@@ -80,132 +68,122 @@ body {
 
 .transparencyWithPadding {
 	background: rgba(0, 0, 0, 0.5) !important;
-	padding:10px;
+	padding: 10px;
 	border-radius: 10px !important;
 }
 
-.check{
-	color:LimeGreen;
-
+.check {
+	color: LimeGreen;
 }
 
-.cancel{
-	color:red;
-	text-align:center;
+.cancel {
+	color: red;
+	text-align: center;
 }
 
-.howitworksTable{
-  font-family: 'Mali', cursive !important;
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 16px;
-  justify-content: center;
+.howitworksTable {
+	font-family: 'Mali', cursive !important;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 16px;
+	justify-content: center;
 }
 
-.howitworksTable ul.col{
-  background-color: #eef0f0 !important;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  color: black;
-  width: 300px; /* width of each table */
-  margin: 20px; /* spacing between tables */
-  margin-bottom: 1em;
-  border: 1px solid gray;
-  transition: all .5s;
-}
-	
-
-.howitworksTable ul.col:hover{ /* when mouse hover over pricing table */
-  transform: scale(1.05);
-  transition: all .5s;
-  z-index: 100;
-  box-shadow: 0 0 10px gray;
+.howitworksTable ul.col {
+	background-color: #eef0f0 !important;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	color: black;
+	width: 450px; /* width of each table */
+	margin: 20px; /* spacing between tables */
+	margin-bottom: 1em;
+	border: 1px solid gray;
+	transition: all .5s;
 }
 
-.howitworksTable ul.col .center{
-  margin: 0 auto;
-  text-align: center;
+.howitworksTable ul.col:hover {
+	/* when mouse hover over pricing table */
+	transform: scale(1.05);
+	transition: all .5s;
+	z-index: 100;
+	box-shadow: 0 0 10px gray;
 }
 
-.howitworksTable ul.col img{
-  max-width: 100%;
-  height: auto;
+.howitworksTable ul.col .center {
+	margin: 0 auto;
+	text-align: center;
 }
 
-.howitworksTable ul.col li{
-  padding: 10px 10px;
-  position: relative;
-  border-bottom: 1px solid #eee;
+.howitworksTable ul.col img {
+	max-width: 100%;
+	height: auto;
 }
 
-.howitworksTable ul.col li.title{
-  font-weight: bold;
-  text-align: center;
-  padding: 30px 10px;
-/*   background: rgb(40, 193, 203); */
-    background-image: linear-gradient(rgb(40, 193, 203), white);
-  color: white;
-  box-shadow: 0 -10px 5px rgba(0,0,0,.1) inset;
-  text-transform: uppercase;
-  text-shadow: 1px 2px black;
+.howitworksTable ul.col li {
+	padding: 10px 10px;
+	position: relative;
+	border-bottom: 1px solid #eee;
 }
 
-.howitworksTable ul.col:nth-of-type(2) li.title{
-/*   background: rgb(249, 111, 118); */
-   background-image: linear-gradient(rgb(249, 111, 118), white);
-  color: white;
-  text-shadow: 1px 2px black;
-}
-    
-.howitworksTable ul.col:nth-of-type(3) li.title{
-  background-image: linear-gradient(rgb(210, 117, 251), white);
-/*   background: lightgreen; rgb(210, 117, 251) */
-  color: white;
-  text-shadow: 1px 2px black;
+.howitworksTable ul.col li.title {
+	font-weight: bold;
+	text-align: center;
+	padding: 30px 10px;
+	/*   background: rgb(40, 193, 203); */
+	background-image: linear-gradient(rgb(40, 193, 203), white);
+	color: white;
+	box-shadow: 0 -10px 5px rgba(0, 0, 0, .1) inset;
+	text-transform: uppercase;
+	text-shadow: 1px 2px black;
 }
 
-.howitworksTable ul.col li b{
-  text-transform: uppercase;
-}
-.howitworksTable ul.col li.title b{
-  font-size: 110%;
+.howitworksTable ul.col:nth-of-type(2) li.title {
+	/*   background: rgb(249, 111, 118); */
+	background-image: linear-gradient(rgb(249, 111, 118), white);
+	color: white;
+	text-shadow: 1px 2px black;
 }
 
-.howitworksTable ul.col:last-of-type{ /* remove right margin in very last table */
-  margin-right: 0;
+.howitworksTable ul.col:nth-of-type(3) li.title {
+	background-image: linear-gradient(rgb(210, 117, 251), white);
+	/*   background: lightgreen; rgb(210, 117, 251) */
+	color: white;
+	text-shadow: 1px 2px black;
+}
+
+.howitworksTable ul.col li b {
+	text-transform: uppercase;
+}
+
+.howitworksTable ul.col li.title b {
+	font-size: 110%;
+}
+
+.howitworksTable ul.col:last-of-type {
+	/* remove right margin in very last table */
+	margin-right: 0;
 }
 
 /*very last LI within each pricing UL */
-.howitworksTable ul.col li:last-of-type{
-  text-align: center;
-  margin-top: auto; /*align last LI (price botton li) to the very bottom of UL */
-}  	
-	
-.button{
-	color:white;
-	text-shadow: 1px 3px black;
-}	
+.howitworksTable ul.col li:last-of-type {
+	text-align: center;
+	margin-top: auto;
+	/*align last LI (price botton li) to the very bottom of UL */
+}
 
-#divMainForm {
-	box-shadow: 0px 0px 15px black;
+.button {
 	color: white;
-	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-	margin: auto;
-	background: url("../img/tile_pupure.jpg");
-	padding: 25px;
+	text-shadow: 1px 3px black;
 }
 
-.imageCarousel {
-	margin: 0px;
-	padding: 0px;
-	box-shadow: 0px 0px -25px black;
-}
-
-hr {
-	border: 1px solid red !important;
+.hr-black {
+	border: 0 !important;
+	height: 4px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
 #navigationBar {
@@ -229,130 +207,136 @@ a:hover {
 	color: violet !important;
 }
 
-#banner1 {
-	color: white;
-	float: left;
-	text-shadow: 2px 2px black;
-	text-align: justify;
-	display: inline-block;
+.flex-container {
+	margin: auto;
+	width: 100%;
+	-ms-box-orient: horizontal;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
 }
 
-.panel{
-	color:white;
-	padding:20px;
-	text-align: justify;
-	text-shadow: 1px 2px black;
+div.columns {
+	padding: 10px;
 }
 
-	.flex-container {
-		margin: auto;
-		width: 100%;
-	  	-ms-box-orient: horizontal;
-	  	display: -webkit-box;
-	  	display: -moz-box;
-	  	display: -ms-flexbox;
-	  	display: -moz-flex;
-	  	display: -webkit-flex;
-	  	display: flex;
-	}
-	
-	div.columns{
-		padding:10px;
-	}
-	
-	.halfCol{
-		flex-grow: 0;
-   		flex-shrink: 0;
-   flex-basis: 50%;
-	}
+.halfCol {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 50%;
+}
+
+.tenCol {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 10%;
+}
+
+.twentyCol {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 20%;
+}
+
+.thirdteenCol {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 30%;
+}
+
+.fourteenCol {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 40%;
+}
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
-	
-#veryFirstContainer{
-	padding-top:3px !important;
-	
-}
-	
-	#indexMasterDiv{
-	padding-top: 5px !important;
+	#logoStarterAnimation {
+		
 	}
-	
-	#parallaxIndex{
-		display:none;
+	/* cellphones */
+	#pLogo {
+		width: 30px !important;
+		top: 35px !important;
+		left: -20px !important;
 	}
-	
-	#parallaxTemplate{
-		display:none;
+	#titleStarter1 {
+		font-size: 8px !important;
+		width: 100px !important;
+		top: 65px !important;
+		left: -35px !important;
 	}
-	
-	#carouselExampleControls{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;
+	#titleStarter2 {
+		font-size: 9px !important;
+		width: 90px !important;
+		top: 75px !important;
+		left: -25px !important;
 	}
-	
-	#paragraph{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
+	#titleStarter3 {
+		font-size: 9px !important;
+		width: 105px !important;
+		top: 85px !important;
+		left: -20px !important;
 	}
-	
-	@firstImage{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
+	/*  */
+	#loginBox {
+		max-width: 200px;
+		left: 0;
+		top: 0;
+		margin: 0 auto !important;
+		margin-top: 20px !important;
+		margin-left: 10px !important;
+		margin-right: 10px !important;
+		margin-bottom: 20px !important;
 	}
-	
-	#paragraph2{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
+	#loginDiv {
+		font-size: x-small !important;
+		width: 100% !important;
+		margin: 0 auto !important;
+		position: absolute !important;
+		left: 0;
+		top: -70;
 	}
-	
-	@secondImage{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
-	}	
-	
-	#textFirstPanel{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;
+	#compare {
+		flex-basis: 100% !important;
+		font-size: x-small !important;
 	}
-	
-	.flex-container{
+	#steps {
+		display: none;
+	}
+	#barActionButtons {
+		display: flex;
+		flex-direction: column;
+	}
+	.flex-container {
 		flex-flow: wrap;
 		flex-direction: column;
 		font-size: small !important;
 	}
-	
 	#triangleTopLeftIndex {
 		display: none !important;
 	}
 	h3 {
 		font-size: medium !important;
 	}
-	#infoDiv {
-		font-size: small !important;
-	}
 	#footer { //
 		height: 70px !important;
-		background-color: black;
+		background-color: black; position : relative; left : 0; width : 100%;
+		color : white; text-align : left; vertical-align : middle;
+		bottom: 0;
 		position: relative;
 		left: 0;
 		width: 100%;
 		color: white;
 		text-align: left;
 		vertical-align: middle;
-		bottom: 0;
 	}
 	#navigationBar {
 		font-size: small !important;
-	}
-	#divAgeCreated {
-		display: none;
 	}
 	#footerBrand {
 		font-size: x-small;
@@ -361,57 +345,61 @@ a:hover {
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
-
-	
-		#paragraph{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
+	#pLogo {
+		width: 70px !important;
+		top: -5px !important;
+		left: -20px !important;
 	}
-	
-	@firstImage{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
+	#titleStarter1 {
+		font-size: 12px !important;
+		width: 200px !important;
+		top: 65px !important;
+		left: -35px !important;
 	}
-	
-	#paragraph2{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
+	#titleStarter2 {
+		font-size: 12px !important;
+		width: 110px !important;
+		top: 80px !important;
+		left: -25px !important;
 	}
-	
-	@secondImage{
-		width:100% !important;
-		margin: 2px;
-		padding: 3px;	
-	}	
-	
-	
-	#carouselExampleControls{
-		width:100% !important;
-		padding: 3px;
-		margin: 2px;
+	#titleStarter3 {
+		font-size: 12px !important;
+		width: 150px !important;
+		top: 97px !important;
+		left: -18px !important;
 	}
-	
-	#textFirstPanel{
-		width:100% !important;
-		padding: 3px;
-		margin: 2px;
+	/* 	#loginBox { */
+	/* 	margin: 0 auto; */
+	/* 		position: absolute !important; */
+	/* 		left: 0 !important; */
+	/* 		top: 0 !important; */
+	/* 		margin: 10px !important; */
+	/* 	} */
+	#loginDiv {
+		margin: 0 auto !important;
+		position: relative !important;
+		left: 0px !important;
+		top: 0px !important;
 	}
-	
-	.flex-container{
+	#compare {
+		flex-basis: 100% !important;
+		font-size: x-small !important;
+	}
+	#steps {
+		display: none;
+	}
+	#barActionButtons {
+		display: flex;
+		flex-direction: column;
+	}
+	.flex-container {
 		flex-direction: column;
 		font-size: small !important;
 	}
-	
 	h3 {
 		font-size: medium !important;
 	}
-	#infoDiv {
-		font-size: small !important;
-	}
-	#footer { //
+	#footer {
 		height: 70px;
 		background-color: black;
 		position: relative;
@@ -424,30 +412,20 @@ a:hover {
 	}
 	#navigationBar {
 		font-size: small !important;
+	}
+	#logoStarterAnimation {
+		position: absolute;
+		left: 10%;
+		top: 30%;
 	}
 }
 
 /*  Large devices (desktops, 992px and up) */
 @media ( max-width : 992px) {
-	#carouselExampleControls{
-		width:100%;
-		padding: 3px;
-		margin: 2px;
-	}
-	
-	#textFirstPanel{
-		width:100%;
-		padding: 3px;
-		margin: 2px;
-	}
-	
 	h3 {
 		font-size: medium !important;
 	}
-	#infoDiv {
-		font-size: small !important;
-	}
-	#footer { //
+	#footer {
 		height: 70px;
 		background-color: black;
 		position: relative;
@@ -461,8 +439,9 @@ a:hover {
 	#navigationBar {
 		font-size: small !important;
 	}
-}
-
-/*  Extra large devices (large desktops, 1200px and up) */
-@media ( min-width : 1200px) {
+	#logoStarterAnimation {
+		position: absolute;
+		left: 10%;
+		top: 30%;
+	}
 }

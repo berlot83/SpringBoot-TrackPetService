@@ -30,19 +30,19 @@
 							</tr>
 						</thead>
 						<th:block th:each="listIterate : ${list}"
-							th:if="${listIterate?.pet?.status}  == false">
+							th:if="${listIterate?.animal?.status}  == false">
 						<tbody>
 							<tr>
 								<td><img th:if="${listIterate?.resultBase64Avatar != null}" alt="Perfil" id="profile" onmouseover="changeCursorToimagesDB(this)" th:onclick="viewImage([[${listIterate?.resultBase64Avatar}]])" th:src="${listIterate?.resultBase64Avatar}" style="height:45px"><img th:unless="${listIterate?.resultBase64Avatar != null}" alt="Perfil" id="profile" onmouseover="changeCursorToimagesDB(this)" th:onclick="viewImage([[${listIterate?.resultBase64Avatar}]])" src="../img/withoutPhoto.png" style="height:45px"></td>
 								<td th:text="${#strings.substring(listIterate.id, 19, 24)}"></td>
-								<td th:text="${listIterate?.pet?.sex}"></td>
-								<td th:text="${listIterate?.pet?.petName}"></td>
-								<td th:text="${listIterate?.pet?.raze}"></td>
-								<td th:text="${listIterate?.pet?.age}"></td>
-								<td th:if="${listIterate?.pet?.medicated} == true">Si</td>
-								<td th:unless="${listIterate?.pet?.medicated} == true">No</td>
-								<td th:text="${listIterate?.pet?.illness}"></td>
-								<td th:text="${listIterate?.pet?.foodBrand}"></td>
+								<td th:text="${listIterate?.animal?.sex}"></td>
+								<td th:text="${listIterate?.animal?.petName}"></td>
+								<td th:text="${listIterate?.animal?.raze}"></td>
+								<td th:text="${listIterate?.animal?.age}"></td>
+								<td th:if="${listIterate?.animal?.medicated} == true">Si</td>
+								<td th:unless="${listIterate?.animal?.medicated} == true">No</td>
+								<td th:text="${listIterate?.animal?.illness}"></td>
+								<td th:text="${listIterate?.animal?.foodBrand}"></td>
 								<td th:text="${listIterate?.owner?.residence}"></td>
 							<!-- Search script manually start -->		
 							<script th:inline="javascript">
@@ -56,8 +56,8 @@
 										type:"red",
 										theme:"dark",
 										columnClass:"col-xs-4",
-										title:'Perdido/a:  ' + [[${listIterate?.pet?.petName}]],
-										content: "<html><body><div style='text-align:center'><img alt="+ [[${listIterate?.pet?.petName}]] +" src="+id+" /></div></body></html>"
+										title:'Perdido/a:  ' + [[${listIterate?.animal?.petName}]],
+										content: "<html><body><div style='text-align:center'><img alt="+ [[${listIterate?.animal?.petName}]] +" src="+id+" /></div></body></html>"
 									});
 								}
 								

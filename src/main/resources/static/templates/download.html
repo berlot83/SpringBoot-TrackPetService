@@ -1,237 +1,200 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<script type="text/javascript" src="../js/download.js"></script>
 	<div th:include="default :: header"></div>
 	<link rel="stylesheet" type="text/css" href="../css/zoom.css" />
 	<link rel="stylesheet" type="text/css" href="../css/download.css" />
 	<link rel="stylesheet" type="text/css" href="../css/gallery.css" />
 	<script type="text/javascript" src="../js/gallery.js"></script>
-	<script type="text/javascript" src="../js/download.js"></script>
 	<script type="text/javascript" src="../js/downloadDesign.js"></script>
+
+<style>
+	.thirdteenCol{
+		flex-grow: 0;
+   		flex-shrink: 0;
+  		flex-basis: 30%;
+	}
+	
+	.box{
+	width:140px; height:140px;
+	border-radius: 7px;
+	box-shadow: 0px 0px 15px black;
+	}
+</style>
+
 </head>
 <nav th:replace="default :: bar"></nav>
 
 <footer th:replace="default :: footer"></footer>
 <body onload="adviceVariablesNull()">
 
-	<div class="container">
-		<div class="container-fluid" id="downloadMainContainerDiv" style="height:100%">
-			<div id="dataDownloadMainContainerDiv" style="height:100%">
-				<h5><i style="color: coral" class="fas fa-download"></i> Modelos Predefinidos de descarga</h5>
-				<hr style="border: 1px solid DarkViolet !important">
-				<input type="hidden" th:value="${prepaidQR.id}" id="id" style="display:none"/>
-				<input type="hidden" th:value="${prepaidQR.strBase64}" id="strBase64" style="display:none"/>
-				<input type="hidden" th:value="${prepaidQR.resultBase64Avatar}" style="display:none" id="resultBase64Avatar" />
-				<input type="hidden" th:value="${prepaidQR.base64Backside}" style="display:none" id="base64Backside" />
-				<input type="hidden" th:value="${pet?.petName}" style="display:block" id="petName" />
-				<input type="hidden" th:value="${pet?.raze}" style="display:block" id="raze" />
-				<input type="hidden" th:value="${pet?.illness}" style="display:block" id="illness" />
-				<input type="hidden" th:if="${pet?.medicated == false}" th:value="No" style="display:block" id="medicated" />
-				<input type="hidden" th:unless="${pet?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
-				<input type="hidden" th:if="${pet?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
-				<input type="hidden" th:unless="${pet?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
-				<input type="hidden" th:value="${owner?.telephone1}" style="display:block" id="telephone1" />
-				<input type="hidden" th:value="${owner?.telephone2}" style="display:block" id="telephone2" />
-				<input type="hidden" th:value="${owner?.email}" style="display:block" id="email" />
+	<div >
+		<div >
+			<div id="downloadMainContainerDiv" class="card rounded" >
+				<!-- test -->
+
+				<!-- Shared for all objects start -->		
+				<input type="hidden" th:value="${prepaidQR.strBase64}" id="strBase64"/>
+				<input type="hidden" th:value="${owner?.base64Backside}" id="base64Backside" />
+				<input type="hidden" th:value="${prepaidQR.id}" id="id" />
+				<!-- Shared for all objects end -->
 				
-				<!-- Grid row -->
-				<div class="row">
+				<!-- th:block rather than unneeded div -->
+				<th:block th:switch="${prepaidQR.typeAnimal}">
+				<!-- Dog case start -->
+				    <div th:case="'dog'">
+							<h5 class="card-header blue-gradient white-text">Download Dog Tag</h5>
+					 <div style="padding:30px">
+					    <div style="display:flex; justify-content: space-around;">
+						    <div id="qrcode" class="halfCol">
+						    <label>QR code</label><br>
+						    	<img alt="QR code Dog" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
+						    </div>
+						    <div id="base64Backside" class="halfCol">
+						    	<label>Backside of the Tag</label><br>
+						    	<img alt="Backside Tag Dog" th:src="${owner?.base64Backside}" class="box">
+						    </div>
+					    </div>
+				<br>
+				<br>
 
-				</div>
-				<!-- Grid row -->
-
-				<!-- Grid row -->
-				<div class="gallery transparency" id="gallery" style="padding: 10px">
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<img class="img-fluid zoom" src="../img/design/pet-qr.png"
-						alt="Card image cap" th:onclick="getPetQRDesign()" id="petqr">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/pitbull-1.png"
-						onclick="getPitbull1Design()"	alt="Card image cap" id="pitbull1">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/pitbull-2.png" 
-						onclick="getPitbull2Design()" alt="Card image cap" id="pitbull2">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<img class="img-fluid zoom" src="../img/design/pitbull-3.png"
-						onclick="getPitbull3Design()" alt="Card image cap" id="pitbull3">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 2">
-						<img class="img-fluid zoom" src="../img/design/rottweiler-1.png"
-						onclick="getRottweilerDesign()" alt="Card image cap" id="rottweiler">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/warning-dog-1.png"
-						onclick="getWarningDog1Design()" alt="Card image cap" id="warning-dog1">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/bird-1.png"
-						onclick="getBird1Design()" alt="Card image cap" id="bird-1">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/bird-2.png"
-						onclick="getBird2Design()" alt="Card image cap" id="bird-2">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/bird-3.png"
-						onclick="getBird3Design()" alt="Card image cap" id="bird-3">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/fish-1.png"
-						onclick="getFish1Design()" alt="Card image cap" id="fish-1">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/fish-2.png"
-						onclick="getFish2Design()" alt="Card image cap" id="fish-2">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/fish-3.png"
-						onclick="getFish3Design()" alt="Card image cap" id="fish-3">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/dogOnBoardPink.png"
-						onclick="getDogOnBoardPinkDesign()" alt="Card image cap" id="onBoardPink">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/dogOnBoardYellow.png" 
-						onclick="getDogOnBoardYellowDesign()" alt="Card image cap" id="onBoardYellow">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/birds-heart.png"
-							onclick="getBirdsHeartDesign()" alt="Card image cap" id="birds-heart">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/animal-raccoon.png"
-							onclick="getRacconDesign()" alt="Card image cap" id="raccoon">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/heart-1.png"
-							onclick="getHeart1Design()" alt="Card image cap" id="heart-1">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/heart-2.png"
-							onclick="getHeart2Design()" alt="Card image cap" id="heart-2">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/google-logo-1.png"
-							onclick="getGoogle1Design()" alt="Card image cap" id="google-1">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/google-logo-2.png"
-							onclick="getGoogle2Design()" alt="Card image cap" id="google-2">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/google-logo-3.png"
-							onclick="getGoogle3Design()" alt="Card image cap" id="google-3">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/argentine-flag.png"
-							onclick="getArgentineFlagDesign()" alt="Card image cap" id="argentine-flag">
-					</div>
-					<!-- Grid column -->
-
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="../img/design/usa-flag-75x75.png"
-							onclick="getUsaFlagDesign()" alt="Card image cap" id="usa-flag">
-					</div>
-					<!-- Grid column -->
+					<h6>Select logo model:</h6>
+					<hr>
+				        <!-- print object is not active -->
+						<input type="hidden" th:value="${prepaidQR.dog.resultBase64Avatar}" id="resultBase64Avatar" style="display:block" />
+						<input type="hidden" th:value="${dog?.petName}" style="display:block" id="petName" />
+						<input type="hidden" th:value="${dog?.raze}" style="display:block" id="raze" />
+						<input type="hidden" th:value="${dog?.illness}" style="display:block" id="illness" />
+						<input type="hidden" th:if="${dog?.medicated == false}" th:value="No" style="display:block" id="medicated" />
+						<input type="hidden" th:unless="${dog?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
+						<input type="hidden" th:if="${dog?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
+						<input type="hidden" th:unless="${dog?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
+						<input type="hidden" th:value="${owner?.telephone1}" style="display:block" id="telephone1" />
+						<input type="hidden" th:value="${owner?.telephone2}" style="display:block" id="telephone2" />
+						<input type="hidden" th:value="${owner?.email}" style="display:block" id="email" />
+				    
+				    	<div th:replace="logos :: logosDogFragment"></div>
+				    </div>
+				  </div>
+				<!-- Dog case end -->
+				
+				<!-- Cat case start -->
+				    <div th:case="'cat'">
+				    	<h5 class="card-header blue-gradient white-text">Download Cat Tag</h5>
+				<div style="padding:30px">
+					<div style="display:flex; justify-content: space-around">
+						<div id="qrcode" class="thirdteenCol">
+					    <label>QR code</label><br>
+					    	<img alt="QR code Cat" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
+					    </div>
+					    <div id="avatar" class="thirdteenCol">
+					    <label>Photo</label><br>
+					    	<img alt="Avatar Cat" th:src="${prepaidQR?.cat?.resultBase64Avatar}" class="box">
+					    </div>
+					    <div id="base64Backside" class="thirdteenCol">
+					    	<label>Backside of the Tag</label><br>
+					    	<img alt="Backside Tag Cat" th:src="${owner?.base64Backside}" class="box">
+					    </div>
+				    </div>
+				<br>
+				<br>
+					<h6>Select logo model:</h6>
+					<hr>
+						<input type="hidden" th:value="${prepaidQR.cat.resultBase64Avatar}" id="resultBase64Avatar" />
+						<input type="hidden" th:value="${cat?.petName}" id="petName" />
+						<input type="hidden" th:value="${cat?.raze}" id="raze" />
+						<input type="hidden" th:value="${cat?.illness}" id="illness" />
+						<input type="hidden" th:if="${cat?.medicated == false}" th:value="No" id="medicated" />
+						<input type="hidden" th:unless="${cat?.medicated == false}" th:value="Yes" id="medicated" />
+						<input type="hidden" th:if="${cat?.neuteredPet == false}" th:value="No" id="neuteredPet" />
+						<input type="hidden" th:unless="${cat?.neuteredPet == false}" th:value="Yes" id="neuteredPet" />
+						<input type="hidden" th:value="${owner?.telephone1}" id="telephone1" />
+						<input type="hidden" th:value="${owner?.telephone2}" id="telephone2" />
+						<input type="hidden" th:value="${owner?.email}" id="email" />
+			    	<div th:replace="logos :: logosDogFragment"></div>
+			    	</div>
+			    </div>
+				<!-- Cat case end -->
+				
+				<!-- Cat case start -->
+				    <div th:case="'horse'">
+				    	<h5  class="card-header blue-gradient white-text">Download Horse Tag</h5>
+				<div style="padding:30px">
+					<div style="display:flex; justify-content: space-around">
+						<div id="qrcode" class="thirdteenCol">
+					    <label>QR code</label><br>
+					    	<img alt="QR code Horse" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
+					    </div>
+					    <div id="avatar" class="thirdteenCol">
+					    <label>Photo</label><br>
+					    	<img alt="Avatar Horse" th:src="${prepaidQR?.horse?.resultBase64Avatar}" class="box">
+					    </div>
+					    <div id="base64Backside" class="thirdteenCol">
+					    	<label>Backside of the Tag</label><br>
+					    	<img alt="Backside Tag Horse" th:src="${owner?.base64Backside}" class="box">
+					    </div>
+				  </div>
+				<br>
+				<br>
+					<h6>Select logo model:</h6>
+					<hr>
 					
-					<!-- Grid column -->
-					<div class="mb-3 pics animation all 1">
-						<img class="img-fluid zoom" src="data:image/png;base64,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"
-							onclick="getNuclearLogo()" alt="Card image cap" id="nuclear">
-					</div>
-					<!-- Grid column -->
-
+					<small>For equins is available ony one model, without photo and map.</small>
+						<input type="hidden" th:value="${prepaidQR.horse.resultBase64Avatar}" style="display:block" id="resultBase64Avatar" />
+						<input type="hidden" th:value="${horse?.petName}" style="display:block" id="petName" />
+						<input type="hidden" th:value="${horse?.breed}" style="display:block" id="breed" />
+						<input type="hidden" th:value="${horse?.illness}" style="display:block" id="illness" />
+						<input type="hidden" th:if="${horse?.medicated == false}" th:value="No" style="display:block" id="medicated" />
+						<input type="hidden" th:unless="${horse?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
+						<input type="hidden" th:if="${horse?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
+						<input type="hidden" th:unless="${horse?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
+						<input type="hidden" th:value="${owner?.telephone1}" style="display:block" id="telephone1" />
+						<input type="hidden" th:value="${owner?.telephone2}" style="display:block" id="telephone2" />
+						<input type="hidden" th:value="${owner?.email}" style="display:block" id="email" />
+				    
+				    <div th:replace="logos :: logosDogFragment"></div>
+					 </div>				    
+				    </div>
+				    <div th:case="'rat'">
+				        <!-- print object is new and active -->
+						<input type="text" th:value="${hamsterFishTank?.housing}" style="display:block" id="housing" />
+						<input type="text" th:if="${rat?.medicated == false}" th:value="No" style="display:block" id="medicated" />
+						<input type="text" th:unless="${rat?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
+						<input type="text" th:if="${rat?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
+						<input type="text" th:unless="${rat?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
+						<input type="text" th:value="${hamsterFishTank?.wheel}" style="display:block" id="wheel" />
+						<input type="text" th:value="${hamsterFishTank?.rodentQuantity}" style="display:block" id="rodentQuantity" />
+						<input type="text" th:value="${hamsterFishTank?.houseCleaned}" style="display:block" id="houseCleaned" />
+						<input type="text" th:value="${rat?.rodentType}" style="display:block" id="rodentType" />
+						<input type="text" th:value="${rat?.bite}" style="display:block" id="bite" />
+						<input type="text" th:value="${rat?.sex}" style="display:block" id="sex" />
+						
+				    </div>
+				    <div th:case="'fish'">
+				        <!-- print object is new and active -->
+						<input type="text" th:value="${fish?.quantity}" style="display:block" id="quantity" />
+						<input type="text" th:value="${fish?.water}" style="display:block" id="water" />
+						<input type="text" th:value="${fish?.throwLastMedicine}" style="display:block" id="throwLastMedicine" />
+						<input type="text" th:if="${fish?.medicated == false}" th:value="No" style="display:block" id="medicated" />
+						<input type="text" th:unless="${horse?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
+						<input type="text" th:if="${horse?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
+						<input type="text" th:unless="${horse?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
+						<input type="text" th:value="${fish?.tmperature}" style="display:block" id="temperature" />
+						<input type="text" th:value="${fish?.lastFishbowlClean}" style="display:block" id="lastFishbowlClean" />
+						<input type="text" th:value="${fish?.plantFertilizer}" style="display:block" id="plantFertilizer" />
+				    </div>
+				</th:block>
+				<!-- test -->
+				<div style="padding:30px">
+				<p><strong style="color:deeppink">If download did'nt start just verify:</strong></p>
+				<p>1) You have uploaded a photo of your animal here: <a href='/account' style="color:Gold">M.P.A.T edit data</a></p>
+				<p>2) You have uploaded backside tag, if you don't wanna put your place just select anywere: <a href='/user' style="color:Gold">Backside tag</a></p>
 				</div>
-				<!-- Grid row -->
-				
-				<!-- Special downloads div start -->	
-<!-- 				<h5><i style="color: coral" class="fas fa-download"></i> Descargas especiales</h5> -->
-<!-- 				<hr style="border: 1px solid DarkViolet !important"> -->
-<!-- 				<div class="gallery transparency"> -->
-<!-- 									Grid column -->
-<!-- 					<div class="mb-3 pics animation all 1"> -->
-<!-- 						<img class="img-fluid zoom" src="../img/design/usa-flag-75x75.png" -->
-<!-- 							onclick="imageDesignUsaFlag()" alt="Card image cap"> -->
-<!-- 					</div> -->
-<!-- 					Grid column				 -->
-<!-- 				</div> -->
-				<!-- Special downloads div end -->
-				
 			<br><br><br><br><br>
 			</div>
-			
 		</div>
 	</div>
 
 </body>
 
-</html>
+</html><

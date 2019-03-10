@@ -1,111 +1,15 @@
 #faqMainContainer {
-	background-image: url('../img/tile_pupure.jpg');
-	background-repeat: repeat;
-	color: white;
-	text-shadow: 1px 2px black;
+background: -moz-linear-gradient(90deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke 40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%, LightSteelBlue 80%) !important;
+    background: -webkit-linear-gradient(90deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke 40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%, LightSteelBlue 80%) !important;
+    background: linear-gradient(90deg, PowderBlue 20%, WhiteSmoke 20%, WhiteSmoke 40%, Thistle 40%, Thistle 60%, Lavender 60%, Lavender 80%, LightSteelBlue 80%) !important;
 	margin: 0 auto;
 	box-shadow: 0px 0px 25px black;
 	text-align: justify;
-	padding: 30px;
+	width:80%;
 }
 
-#mainDataContainerAbout {
-	padding-top: 10px;
-	padding-left: 80px;
-	padding-right: 80px;
-}
 
 .answer {
 	display: none;
 	padding-left: 30px;
-}
-
-#faqHeader {
-	padding-top: 10px;
-	text-shadow: 1px 3px black;
-}
-
-.transparency {
-	margin-top: 10px;
-	background: rgba(0, 0, 0, 0.5);
-	border-radius: 10px;
-}
-
-/*  Small devices (landscape phones, 576px and up) */
-@media ( max-width : 576px) {
-	body {
-		font-size: small !important;
-	}
-	h4 {
-		font-size: medium !important;
-	}
-	#faqMainContainer {
-		background-image: url('../img/tile_darkblue.jpg');
-		background-repeat: repeat;
-		color: white;
-		text-shadow: 1px 2px black;
-		margin: 0 auto;
-		box-shadow: 0px 0px 25px black;
-		font-size: small !important;
-		padding: 5px;
-	}
-	#mainDataContainerAbout {
-		padding-top: 10px;
-		padding-left: 3px;
-		padding-right: 3px;
-	}
-}
-
-/*  Medium devices (tablets, 768px and up) */
-@media ( max-width : 768px) {
-	body {
-		font-size: small !important;
-	}
-	h4 {
-		font-size: medium !important;
-	}
-	#faqMainContainer {
-		background-image: url('../img/tile_darkblue.jpg');
-		background-repeat: repeat;
-		color: white;
-		text-shadow: 1px 2px black;
-		margin: 0 auto;
-		box-shadow: 0px 0px 25px black;
-		font-size: small !important;
-		padding: 5px;
-	}
-	#mainDataContainerAbout {
-		padding-top: 10px;
-		padding-left: 3px;
-		padding-right: 3px;
-	}
-}
-
-/*  Large devices (desktops, 992px and up) */
-@media ( max-width : 992px) {
-	body {
-		font-size: medium !important;
-	}
-	h4 {
-		font-size: medium !important;
-	}
-	#faqMainContainer {
-		background-image: url('../img/tile_darkblue.jpg');
-		background-repeat: repeat;
-		color: white;
-		text-shadow: 1px 2px black;
-		margin: 0 auto;
-		box-shadow: 0px 0px 25px black;
-		font-size: small !important;
-		padding: 5px;
-	}
-	#mainDataContainerAbout {
-		padding-top: 10px;
-		padding-left: 3px;
-		padding-right: 3px;
-	}
-}
-
-/*  Extra large devices (large desktops, 1200px and up) */
-@media ( min-width : 1200px) {
 }

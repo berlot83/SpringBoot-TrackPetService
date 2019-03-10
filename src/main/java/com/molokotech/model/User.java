@@ -15,6 +15,8 @@ public class User {
 	private String name;
 	private String emailToken;
 	private boolean enabled;
+	private Owner owner;
+	private String gravatar;
 	@Transient
 	private String copyPassword;
 	
@@ -96,6 +98,22 @@ public class User {
 
 	public void setCopyPassword(String copyPassword) {
 		this.copyPassword = copyPassword;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
+	public String getGravatar() {
+		return gravatar;
+	}
+
+	public void setGravatar(String emailMD5) {
+		this.gravatar = emailMD5;
 	}
 
 }

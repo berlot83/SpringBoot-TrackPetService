@@ -1,0 +1,304 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="default :: header"></div>
+</head>
+<body>
+<nav th:replace="default :: bar"></nav>
+
+			<div id="catDiv" th:fragment="catFragment">		
+			
+			<!-- Start Avatar div common for all types -->
+			<div id="avatarDiv" class="container-fluid d-flex p-3 text-white" style="text-shadow: 1px 1px black;">
+				<div id="demo-basic" style="width:150px;height:150px;" class="img-fluid rounded float-left p-2 bg-secondary">
+					<img src="../img/withoutPhoto.png" id="crop" class="img-thumbnail" style="box-shadow: 2px 2px black;"/>
+				</div>
+				<div class="p-2 bg-secondary">
+					<!-- Upload image -->
+					<input type='file' id='file' name="file" accept="image/*" onchange="loadFile(event), cropImageAndSave()" style="text-shadow: 1px 2px black;display:inline-block;float:left;box-shadow: 2px 2px black;" class="btn btn-sm btn-info"/>
+					<br>
+					<br>
+					<button id="basic-result" class="basic-result btn btn-sm btn-info" style="float:left; box-shadow: 2px 2px black;text-shadow: 1px 2px black;" th:text=#{create-prepaid-qr.cutphotobutton}>Recortar</button>
+					<br><br><small style="color:deeppink" th:text=#{create-prepaid-qr.cutphoto1}>Toque Recortar cuando haya centrado la imagen así se persiste en DB.</small><br><small th:text=#{create-prepaid-qr.cutphoto2}>Esta imagen puede ser agregada a los modelos más grandes del código QR.</small>
+					<img id='crop' />
+					<!-- end upload -->
+				</div>
+			</div>
+			<!-- End Avatar div common for all types -->
+			
+			<br>
+			<br>
+			
+			<h5 th:text=#{create-prepaid-qr.basicdata.statustitle}>Estado respecto a Pet-QR</h5>
+			<hr style="border: 1px solid BlueViolet !important">
+			<div class="form-group">
+				<label for="status" th:text=#{create-prepaid-qr.basicdata.statuslabel}>Estado</label>
+				<!-- Start select status -->
+				<select class="form-control" name="status" id="status">
+					<option value="true" th:text=#{create-prepaid-qr.basicdata.status.normal}>Normal</option>
+					<option value="false" th:text=#{create-prepaid-qr.basicdata.status.lost}>Perdido</option>
+				</select>
+			</div>
+			
+			<h5>Gato</h5>
+			<hr style="border: 1px solid BlueViolet !important">
+			<div class="row">
+				<!-- Two colums -->
+				<div class="col">
+					<div class="form-group">
+						<label for="raze" th:text=#{create-prepaid-qr.basicdata.razelabel}>Raza</label>
+						<!-- Start selector raze -->
+						<select class="form-control" name="raze" id="raze">
+							<option value="Otra" selected>Otra</option>
+							<option value="bengala">Bengala</option>
+							<option value="ashera">Ashera</option>
+							<option value="anguro">Angora turco</option>
+							<option value="scottish">Scottish Fold</option>
+							<option value="Somali">Somalí</option>
+						</select>
+						<!-- End selector raze -->
+					</div>
+				</div>
+				
+
+				<div class="col">
+					<div class="form-group">
+						<label for="petname"><i class="fas fa-paw" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.petnamelabel}></span>Nombre mascota</label> <input type="text"
+							id="petName" placeholder="Nombre de la mascota"
+							class="form-control" required>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="age"><i class="fas fa-birthday-cake" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.agelabel}>Edad</span></label>
+						<div id="resultAge"></div>
+
+						<!-- Start select age -->
+						<select class="form-control" name="age" id="age" onchange="age()">
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2015">2015</option>
+							<option value="2014">2014</option>
+							<option value="2013">2013</option>
+							<option value="2012">2012</option>
+							<option value="2011">2011</option>
+							<option value="2010">2010</option>
+							<option value="2009">2009</option>
+							<option value="2008">2008</option>
+							<option value="2007">2007</option>
+							<option value="2006">2006</option>
+							<option value="2005">2005</option>
+							<option value="2004">2004</option>
+							<option value="2003">2003</option>
+							<option value="2002">2002</option>
+							<option value="2001">2001</option>
+							<option value="2000">2000</option>
+							<option value="1999">1999</option>
+							<option value="1998">1998</option>
+							<option value="1997">1997</option>
+							<option value="1996">1996</option>
+							<option value="1995">1995</option>
+						</select>
+						<!-- End select age -->
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="sex"><i class="fas fa-venus-mars" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.sexlabel}>Sexo</span></label> <select id="sex"
+							onchange="pregnant()" class="form-control">
+							<option value="Macho" th:text=#{create-prepaid-qr.basicdata.optionmale}>Macho</option>
+							<option value="Hembra" th:text=#{create-prepaid-qr.basicdata.optionfemale}>Hembra</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="weight"><i class="fas fa-weight" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.weightlabel}>Peso</span></label> <input type="number" id="weight"
+							maxlength="2" min="1" placeholder="5" class="form-control" />
+					</div>
+				</div>
+
+			</div>
+			<br> <br>
+			<h5><i class="fas fa-syringe" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.vaccinestitle}>Vacunaci�n</span></h5>
+			<hr style="border: 1px solid BlueViolet !important">
+			<div class="form-group">
+				<div class="form-check">
+					<input type="checkbox" style="width: 18px; height: 18px;"
+						class="form-check-input" id="checkVaccines"
+						onchange="checkVaccines()" value=true> <label
+						class="form-check-label" th:text=#{create-prepaid-qr.basicdata.vaccineslabel}>Vacunas</label>
+				</div>
+			</div>
+
+			<br>
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="dateAntiRabicVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.antirabic}>Antir�bica</label> <input
+							type="date" class="form-control" name="dateAntiRabicVaccine"
+							id="dateAntiRabicVaccine" disabled>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="datePolivalentVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.polivalent}>Polivalente</label> <input
+							type="date" class="form-control" name="datePolivalentVaccine"
+							id="datePolivalentVaccine" disabled>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label for="dateSextupleVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.sextuple}>Sextuple</label> <input
+							type="date" class="form-control" name="dateSextupleVaccine"
+							id="dateSextupleVaccine" disabled>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label for="dateOctupleVaccine" th:text=#{create-prepaid-qr.basicdata.vaccines.octuple}>Octuple</label> <input type="date"
+							class="form-control" name="dateOctupleVaccine"
+							id="dateOctupleVaccine" disabled>
+					</div>
+				</div>
+			</div>
+			<br> <br>
+			<h5><i class="fas fa-heartbeat" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.basicdata.healthtitle}>Salud</span></h5>
+			<hr  style="border: 1px solid BlueViolet !important">
+			<div class="row">
+				<div class="col-4">
+					<div class="form-group">
+						<label for="illness"><i class="fas fa-briefcase-medical" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.health.illness}>Sufre efermedad</span></label>
+						<!-- Start select age -->
+						<select class="form-control" name="illness" id="illness">
+							<option value="Ninguna">Ninguna</option>
+							<option value="Gastritis">Gastritis</option>
+							<option value="Otitis">Otitis</option>
+							<option value="Moquillo">Moquillo</option>
+							<option value="Sarna">Sarna</option>
+							<option value="Parasites">Parasites</option>
+							<option value="Artrosis">Artrosis</option>
+							<option value="Parvovirus">Parvovirus</option>
+							<option value="Leishmaniosis">Leishmaniosis</option>
+							<option value="Coronavirus">Coronavirus</option>
+							<option value="Leptospirosis">Leptospirosis</option>
+							<option value="HepatitisVirica">HepatitisVirica</option>
+							<option value="Tumor">Tumor</option>
+							<option value="Mastitis">Mastitis</option>
+							<option value="Piometra">Piometra</option>
+							<option value="Alergias">Alergias</option>
+							<option value="TorsionGastrica">TorsionGastrica</option>
+							<option value="Otra">Otra</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="form-group">
+						<label for="medicated"><i class="fas fa-pills" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.health.medicated}>Est� medicado</span></label>
+						<!-- Start select Medicated -->
+						<select class="form-control" name="medicated" id="medicated">
+							<option value=true th:text="#{create-prepaid-qr.basicdata.health.medicated.yes}">S�</option>
+							<option value=false th:text="#{create-prepaid-qr.basicdata.health.medicated.no}">No</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="form-group">
+						<label for="lastVeterinaryVisit"><i class="fas fa-user-md" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.health.lastveterinary}>Ult. revisi�n</span></label> <input
+							type="date" class="form-control" name="lastVeterinaryVisit"
+							id="lastVeterinaryVisit">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col form-group">
+					<label for="neuteredPet" th:text=#{create-prepaid-qr.basicdata.neuteredPet}>Castrado</label> <select id="neuteredPet"
+						class="form-control">
+						<option value=false th:text=#{create-prepaid-qr.basicdata.neuteredPet.no}>No</option>
+						<option value=true th:text=#{create-prepaid-qr.basicdata.neuteredPet.yes}>S�</option>
+					</select>
+				</div>
+
+				<div class="col form-group">
+					<label for="pregnant" th:text=#{create-prepaid-qr.basicdata.pregnant}>Embarazo</label> <select id="pregnant"
+						class="form-control" disabled>
+						<option value=false th:text=#{create-prepaid-qr.basicdata.pregnant.no}>No</option>
+						<option value=true th:text=#{create-prepaid-qr.basicdata.pregnant.yes}>S�</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="clinicHistory"><i class="fas fa-file-medical-alt" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.hc}>Historia Cl�nica</span></label>
+				<textarea name="clinicHistory" id="clinicHistory"
+					placeholder="Historia Cl�nica" rows="9" class="form-control"></textarea>
+			</div>
+			<br> <br>
+			<h5 th:text=#{create-prepaid-qr.basicdata.feedingtitle}>Alimentaci�n</h5>
+			<hr style="border: 1px solid BlueViolet !important">
+			<br>
+			<div id="feeding" class="row">
+				<div class="col-4">
+					<div class="form-group">
+						<label for="foodBrand"><i class="fas fa-bone" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.feeding.petfood}>Comida Bal.:</span></label> <input type="text"
+							id="foodBrand" class="form-control"
+							placeholder="Royal cannin, Proplan, etc">
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="form-group">
+						<label for="quantityFood"><i class="fas fa-weight-hanging" style="color:turquoise"></i> <span th:text=#{create-prepaid-qr.basicdata.feedingquantity}>Cantidad Grs.:</span></label> <input
+							type="number" min="1" id="quantityFood" class="form-control"
+							placeholder="1000 gramos (1 kg al d�a)">
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="form-group">
+						<label for="coockedFood" th:text=#{create-prepaid-qr.basicdata.feeding.cooked}>Comida h.:</label> <select
+							id="coockedFood" class="form-control">
+							<option value="Nunca" th:text=#{create-prepaid-qr.basicdata.feeding.never}>Nunca</option>
+							<option value="A veces" th:text=#{create-prepaid-qr.basicdata.feeding.sometimes}>A veces</option>
+							<option value="Todos los d�as" th:text=#{create-prepaid-qr.basicdata.feeding.every}>Todos los d�as</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+			<h5 th:text=#{create-prepaid-qr.basicdata.choosevideoyoutubetitle}>Choose a video from Youtube</h5>
+			<hr>
+				<label for="videoUrl" th:text=#{create-prepaid-qr.basicdata.choosevideoyoutube}>Video Youtube</label><br>
+				<input type="text" id="videoUrl" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<button id="send" class="btn purple-gradient" onclick="updateQrCat()"><span th:text=#{create-prepaid-qr.basicdata.storedata}>Almacenar
+					datos y crear Código QR</span> ==>  <i class="fas fa-qrcode"></i> + <i class="fas fa-database"></i></button>
+				<br> <small th:text=#{create-prepaid-qr.basicdata.mustbevalidadress}>Importante:
+					Si al hacer click y al cabo de unos segundos no aparece el código
+					creado, revisar la dirección que sea válida para el motor de
+					Google, ya que el sistema permitirácontinuar SOLO si pudo obtener
+					la Longitud y latitud de la dirección arriba declarada.</small>
+			</div>
+			
+		</div>
+
+<footer th:replace="default :: footer">
+</body>
+
+</html>

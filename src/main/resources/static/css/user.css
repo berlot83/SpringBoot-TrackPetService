@@ -1,0 +1,24 @@
+/*  Small devices (landscape phones, 576px and up) */
+@media ( max-width : 576px) {
+	html{
+		font-size: x-small !important;
+	}
+	
+	#mainUser {
+		width: 100% !important;
+	}
+}
+
+/*  Medium devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	#mainUser {
+		width: 100%  !important;
+	}
+}
+
+/*  Large devices (desktops, 992px and up) */
+@media ( max-width : 992px) {
+	#mainUser {
+		width: 100%  !important;
+	}
+}

@@ -1,0 +1,201 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="default :: header"></div>
+</head>
+<body>
+<nav th:replace="default :: bar"></nav>
+
+<!-- Start fragment -->
+<div id="detaillsDiv" th:fragment="dogFragment" class="transparencyWithoutPaddin" style="width: 100%; padding:15px; text-shadow: 1px 1px black">
+		
+		<!-- Separate The div of the image header to the form native start -->
+		<div class="white-transparency rounded" style="padding:20px;">
+		<h4>
+			<span class="badge badge-danger" th:text="${prepaidQR.id}" id="id"></span>
+		</h4>
+		<p th:if="${prepaidQR.userName} != null">
+			<strong class="subtitles" th:text="#{id.assignedusername}">Usuario asignado: </strong><strong><span class="response" th:text="${prepaidQR.userName}"></span></strong></p>
+		
+		<!-- QR miniature start -->
+		<img th:src="'data:image/png;base64,'+${prepaidQR.strBase64}" style="width:100px; height: 100px; border: 2px solid black">
+		<br>
+		<!-- QR miniature end -->
+		
+		<br>
+		<h5>
+			<i class="fas fa-paw" style="color:LimeGreen"></i> <strong><span th:text="#{id.basicinfo}" class="subtitles">Datos básicos</span></strong>
+		</h5>
+		
+		<hr class="hr-black">
+		
+		<br>
+		
+		<div style="display:flex">
+		<div style="transform: rotate(-8deg); display:flex; justify-content:center; max-width:200px; width:100%; max-height:200px; height:100%; box-shadow: 0px 0px 15px black; border-radius: 10px; background-image: url('../img/huesitos.jpg'); background-repeat: repeat;">
+			<div style="margin: auto">
+				<img th:if="${prepaidQR.dog.resultBase64Avatar == null}" alt="" src="../img/withoutPhoto.png" class="img-thumbnail" style="width:150px; height:150px;" />
+				<img th:unless="${prepaidQR.dog.resultBase64Avatar == null}" th:src="${prepaidQR.dog.resultBase64Avatar}" style="box-shadow: 0px 0px 15px black; border-radius: 7px;" class="img-thumbnail"/>
+			</div>
+		</div>
+		
+		<br>
+<div  style="padding-left:30px" class="halfCol">		
+		<p th:if="${user?.owner?.residence} != null">
+			<strong class="subtitles" th:text="#{id.country}">País:</strong> <span class="response" th:text="${user?.owner?.residence}"></span></p>
+		<p th:if="${prepaidQR?.dog?.petName} != null">
+			<strong class="subtitles" th:text="#{id.petname}">Nombre:</strong> <span class="response" th:text="${prepaidQR?.dog?.petName}"></span></p>
+		<p th:if="${prepaidQR.dog.age} <= 2018">
+			<strong class="subtitles" th:text="#{id.birthday}">Nacimimento:</strong> <span class="response" th:text="${prepaidQR?.dog?.age}"></span></p>
+		<p th:if="${prepaidQR?.dog?.sex} != null">
+			<strong class="subtitles" th:text="#{id.sex}">Sexo:</strong> <span class="response" th:text="${prepaidQR.dog.sex}"></span></p>
+</div>
+</div>
+		<br>
+		<h5>
+			<i class="fas fa-heartbeat" style="color:LimeGreen"></i> <strong><span class="subtitles" th:text="#{id.health.title}">Estado de salud</span></strong>
+		</h5>
+		
+		<hr class="hr-black">
+		
+		<p th:if="${prepaidQR?.dog?.clinicHistory} != null">
+			<strong class="subtitles" th:text="#{id.hc}">Historia Clínica:</strong> <span class="response" th:text="${prepaidQR?.dog?.clinicHistory}"></span></p>
+		<p th:if="${prepaidQR?.dog?.illness} != null">
+			<strong class="subtitles" th:text="#{id.illness}">Enfermedades:</strong> <span class="response" th:text="${prepaidQR?.dog?.illness}"></span></p>
+
+		<p th:if="${prepaidQR?.dog?.medicated} == true"><strong class="subtitles" th:text="#{id.medicated}">Medicado:</strong> <span class="response">Sí</span></p>
+		<p th:unless="${prepaidQR?.dog?.medicated} == true">
+			<strong class="subtitles" th:text="#{id.medicated}">Medicado:</strong> <span class="response">No</span></p>
+
+
+		<table  class="table table-light table-bordered table-responsive">
+			<thead class="table-info">
+				<tr>
+					<td th:text="#{id.vaccineantirabic}">V. Antirábica</td>
+					<td th:text="#{id.vaccinepolivalent}">V. Polivalente</td>
+					<td th:text="#{id.vaccinesextuple}">V. Sextuple</td>
+					<td th:text="#{id.vaccineoctuple}">V. Octuple</td>
+				</tr>
+			</thead>
+				<tr>
+					<td><p th:if="${prepaidQR?.dog?.medicated} != null"
+							th:text="${prepaidQR?.dog?.dateAntiRabicVaccine}"></p></td>
+					<td><p th:if="${prepaidQR?.dog?.medicated} != null"
+							th:text="${prepaidQR?.dog?.datePolivalentVaccine}"></p></td>
+					<td><p th:if="${prepaidQR?.dog?.medicated} != null"
+							th:text="${prepaidQR?.dog?.dateSextupleVaccine}"></p></td>
+					<td><p th:if="${prepaidQR?.dog?.medicated} != null"
+							th:text="${prepaidQR?.dog?.dateOctupleVaccine}"></p></td>
+				</tr>
+		</table>
+		<br>
+		<p th:if="${prepaidQR.dog.lastVeterinaryVisit} != null">
+			<strong class="subtitles" th:text="#{id.lastveterinaryvisit}">Últ.visita veterinaria:</strong> <span class="response" th:text="${prepaidQR.dog.lastVeterinaryVisit}"></span></p>
+
+		<p th:if="${prepaidQR?.dog?.neuteredPet} == true"><strong class="subtitles" th:text="#{id.neuteredpet}">Castrado:</strong> <span class="response">Sí</span></p>
+		<p th:unless="${prepaidQR?.dog?.neuteredPet} == true"><strong class="subtitles" th:text="#{id.neuteredpet}">Castrado:</strong> <span class="response">No</span></p>
+
+		<p th:if="${prepaidQR?.dog?.pregnant} == true"><strong class="subtitles" th:text="#{id.pregnant}">Preñiada:</strong> <span class="response">Sí</span></p>
+		<p th:unless="${prepaidQR?.dog?.pregnant} == true"><strong class="subtitles" th:text="#{id.pregnant}">Preñiada:</strong> <span class="response">No</span></p>
+		
+		<br>
+
+		<h5>
+			<i class="fas fa-fish" style="color:LimeGreen"></i> <strong><span class="subtitles" th:text="#{id.food.title}">Alimentación</span></strong>
+		</h5>
+		<hr  class="hr-black">
+		<p th:if="${prepaidQR?.dog?.foodBrand} != null">
+			<strong class="subtitles" th:text="#{id.brandfood}">Marca de Comida bal:</strong> <span class="response" th:text="${prepaidQR?.dog?.foodBrand}"></span></p>
+		<p th:if="${prepaidQR?.dog?.quantityFood} != null">
+			<strong class="subtitles" th:text="#{id.quantityfood}">Cantidad comida Balanceada:</strong> <span class="response" th:text="${prepaidQR?.dog?.quantityFood}"></span> <span style="color:LimeGreen">gr</span></p>
+		<p th:if="${prepaidQR?.dog?.coockedFood} != null">
+			<strong class="subtitles" th:text="#{id.freshfood}">Comida húmeda:</strong> <span class="response" th:text="${prepaidQR?.dog?.coockedFood}"></span></p>
+		<br>
+		<h5>
+			<i class="fas fa-paw" style="color:LimeGreen"></i> <strong><span class="subtitles" th:text="#{id.status.title}">Estado</span></strong>
+		</h5>
+		<div style="flex">
+			<div>
+				<hr class="hr-black">
+				<p th:if="${prepaidQR?.dog?.status} != false"><strong class="response" th:text="#{id.status.normal}">Normal</strong></p>
+				<p th:unless="${prepaidQR?.dog?.status} != false"
+					style="color: deeppink;" th:text="#{id.status.lost}">Perdido!!!, contáctese con los tutores
+					por favor.</p>
+			</div>
+		</div>
+		
+		<br>
+		<h5>
+			<i class="fas fa-user" style="color:LimeGreen;"></i> <strong><span class="subtitles" th:text="#{id.owner.title}">Datos de contacto</span></strong>
+		</h5>
+		<hr class="hr-black">
+		<p th:if="${user?.owner?.ownerName} != null">
+			<strong class="subtitles" th:text="#{id.ownername}">Tutor:</strong> <span class="response" th:text="${user?.owner?.ownerName}"></span> <span class="response" th:text="${user?.owner?.ownerLastname}"></span></p>
+		<p th:if="${user?.owner?.dni} != null">
+			<strong class="subtitles" th:text="#{id.idlegalnumber}">Dni:</strong> <span class="response" th:text="${user?.owner?.dni}"></span></p>
+		<p th:if="${user?.owner?.telephone1} != null">
+			<strong class="subtitles" th:text="#{id.phone1}">Teléfono:</strong> <span class="response" th:text="${user?.owner?.telephone1}"></span></p>
+		<p th:if="${user?.owner?.telephone2} != null">
+			<strong class="subtitles" th:text="#{id.phone2}">Teléfono:</strong> <span class="response" th:text="${user?.owner?.telephone2}"></span></p>
+		<p th:if="${user?.owner?.email} != null">
+			<strong class="subtitles" th:text="#{id.email}">Email:</strong> <span class="response" th:text="${user?.owner?.email}" id="mail"></span></p>
+		<p th:if="${user?.owner?.address} != null">
+			<strong class="subtitles" th:text="#{id.address}">Dirección:</strong> <span class="response" th:text="${user?.owner?.address}"></span></p>
+		<p th:if="${user?.owner?.facebook} != null">
+			<strong class="subtitles" th:text="#{id.facebook}">Facebook:</strong> <span class="response" th:text="${user?.owner?.facebook}"></span></p>
+		<p th:if="${user?.owner?.instagram} != null">
+			<strong class="subtitles" th:text="#{id.instagram}">Instagram:</strong> <span class="response" th:text="${user?.owner?.instagram}"></span></p>
+				<input type="hidden" th:value="${prepaidQR.strBase64}"
+					id="strBase64"></input> <br>
+
+			<strong><h5 style="color:red">Video</h5></strong>
+			<hr class="hr-black">
+			<iframe class="container-fluid" th:if="${prepaidQR?.dog?.videoUrl != null} and ${dog?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
+			</iframe>
+			<p th:unless="${prepaidQR?.dog?.videoUrl != null} and ${dog?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
+		<br>			
+			<h5 style="color:red">Mapas</h5>
+			<hr class="hr-black">
+			<!-- Map Start -->
+	<p  style="color:LimeGreen">Dirección declarada donde reside la mascota</p> 
+	<div id="testcanvas"  th:if="${user?.owner?.latitude != null}">
+		<input type="hidden" th:value="${user?.owner?.latitude}" id="latitude"/>
+		<input type="hidden" th:value="${user?.owner?.longitude}" id="longitude"/>
+		<div id="map" class="container-fluid rounded" ></div>
+	</div>
+	<p th:unless="${user?.owner?.latitude != null}">Parece que no se cargaron las coordenadas, intente cargarlas desde el panel de control</p>
+	<!-- Map End -->
+	
+	</div>
+	<!-- Separate The div of the image header to the form native end -->
+	
+	
+	<!-- YouTube parser start -->
+		<script th:inline="javascript">
+	/* Parser Videos Youtube take care from this code */
+	function youtube_parser(){
+			setTimeout(function(){
+							var url = [[${prepaidQR?.dog?.videoUrl}]];
+							var iframe = document.getElementById("iframeYoutube");
+							var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+							var match = url.match(regExp);
+							if (match && match[7].length == 11){
+							    var b = match[7];
+							    alert("https://www.youtube.com/embed/"+b)
+							    iframe.src = "https://www.youtube.com/embed/"+b;
+							}else{
+							    console.log("Incorrect URL or a conecction problem with Youtube");
+							}
+		
+		}, 2000);
+	
+	}
+	</script>
+	<!-- YouTube parser end -->
+	
+</div>
+<!-- End fragment -->
+
+<footer th:replace="default :: footer">
+</body>
+
+</html>

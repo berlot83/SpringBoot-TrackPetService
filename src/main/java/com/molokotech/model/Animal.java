@@ -1,11 +1,10 @@
 package com.molokotech.model;
 
-import java.time.Period;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "pets")
-public class Pet {
+public class Animal {
 
 	@Id
 	private String id;
@@ -18,20 +17,18 @@ public class Pet {
 	private String illness;
 	private boolean medicated;
 	private boolean status;
-	private Period periodLost;
 	private String dateAntiRabicVaccine;
 	private String datePolivalentVaccine;
 	private String dateSextupleVaccine;
 	private String dateOctupleVaccine;
-	private float quantityFood;
-	private String foodBrand;
 	private boolean neuteredPet;
 	private boolean pregnant;
-	private String coockedFood;
 	private String lastVeterinaryVisit;
+	private String vitamins;
 	private String videoUrl;
-	
-	public Pet() {
+	private String resultBase64Avatar;
+
+	public Animal() {
 
 	}
 
@@ -81,14 +78,6 @@ public class Pet {
 
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-
-	public Period getPeriodLost() {
-		return periodLost;
-	}
-
-	public void setPeriodLost(Period periodLost) {
-		this.periodLost = periodLost;
 	}
 
 	public String getDateAntiRabicVaccine() {
@@ -147,36 +136,12 @@ public class Pet {
 		this.weight = weight;
 	}
 
-	public float getQuantityFood() {
-		return quantityFood;
-	}
-
-	public void setQuantityFood(float quantityFood) {
-		this.quantityFood = quantityFood;
-	}
-
-	public String getFoodBrand() {
-		return foodBrand;
-	}
-
-	public void setFoodBrand(String foodBrand) {
-		this.foodBrand = foodBrand;
-	}
-
 	public boolean isNeuteredPet() {
 		return neuteredPet;
 	}
 
 	public void setNeuteredPet(boolean neuteredPet) {
 		this.neuteredPet = neuteredPet;
-	}
-
-	public String getCoockedFood() {
-		return coockedFood;
-	}
-
-	public void setCoockedFood(String coockedFood) {
-		this.coockedFood = coockedFood;
 	}
 
 	public boolean isPregnant() {
@@ -211,5 +176,20 @@ public class Pet {
 		this.videoUrl = videoUrl;
 	}
 
+	public String getVitamins() {
+		return vitamins;
+	}
+
+	public void setVitamins(String vitamins) {
+		this.vitamins = vitamins;
+	}
+
+	public String getResultBase64Avatar() {
+		return resultBase64Avatar;
+	}
+
+	public void setResultBase64Avatar(String resultBase64Avatar) {
+		this.resultBase64Avatar = resultBase64Avatar;
+	}
 
 }

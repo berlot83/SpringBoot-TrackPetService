@@ -10,12 +10,12 @@
 	<nav th:replace="default :: bar"></nav>
 	<div class="container">
 		<div class="container-fluid" >
-			<div id="dataTemporalDiv" class="transparency">
-				<h3 th:text="#{temporalqr.title}">Alta QR de prueba.</h3>
-				<hr style="border: 1px solid white !important;">
-				<div class="transparency" style="padding:10px">
-					<label for="username"><i class="fas fa-user" style="color: coral;"></i> <span th:text="#{temporalqr.assignuser}">Usuario a asignar código:</span></label>
-					<p th:text="${user.name}" id="username" style="color:LimeGreen"></p>
+			<div id="dataTemporalDiv" class="card rounded">
+				<h3 class="card-header white-text blue-gradient" th:text="#{temporalqr.title}">Alta QR de prueba.</h3>
+				<div style="padding:30px">
+				<div style="padding:10px">
+					<label for="username"><i style="color:pink" class="fas fa-user"></i> <span th:text="#{temporalqr.assignuser}">Usuario a asignar código:</span></label>
+					<strong><p style="font-size:24px; color:pink" th:text="${user.name}" id="username"></p></strong>
 				</div>
 				
 				<br>
@@ -33,7 +33,7 @@
 					<li th:text="#{temporalqr.li5}">Los QR de prueba no se pueden vender ni transferir.</li>
 				</ol>
 
-				<button th:text="#{temporalqr.addtemporalqrbutton}" onclick="createTemporalQR()" class="btn btn-md btn-success" style="margin: 0 auto; text-shadow: 1px 1px black;" >Adquirir ahora</button>
+				<button th:text="#{temporalqr.addtemporalqrbutton}" onclick="createTemporalQR()" class="btn btn-lg blue-gradient" style="margin: 0 auto; text-shadow: 1px 1px black;" >Adquirir ahora</button>
 				
 				<br>
 				<br>
@@ -62,6 +62,7 @@
 				              	 }
 				               
 				               </script>
+				               </div>
 			</div>
 		</div>
 	</div>

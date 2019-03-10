@@ -11,11 +11,11 @@
 	<form action="#" th:action="@{/change-pass}" method="POST" th:object="${user}">
 		<div class="form-group">
 			<label for="name" style="font-size:26px"><i style="color:Coral" class="fas fa-user"></i> <span th:text="#{changepass.userlabel}">Usuario:</span></label>
-			<input type="text" th:field="*{name}" class="form-control">
-			<small style="color:pink"><i style="color:lightgreen" class="fas fa-envelope"></i> <span th:text="#{changepass.adviceemailwithlink}">Usted recibirá un email con un link para el cambio de contraseña, en la casilla que declaró al registrarse.</span></small>
+			<input type="text" placeholder="Your email" th:field="*{name}" class="form-control">
+			<small><i style="color:green" class="fas fa-envelope"></i> <span th:text="#{changepass.adviceemailwithlink}">Usted recibirá un email con un link para el cambio de contraseña, en la casilla que declaró al registrarse.</span></small>
 		</div>
 
-			<button class="btn btn-lg btn-warning" type="submit" th:text="#{changepass.sendbutton}">Enviar</button>
+			<button class="btn btn-lg peach-gradient" type="submit" th:text="#{changepass.sendbutton}">Enviar</button>
 	</form>
 	
 	<br>

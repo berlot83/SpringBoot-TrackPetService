@@ -1,17 +1,57 @@
 #idMainContent {
-	
+
+/*  	background: -moz-linear-gradient(45deg, #272727 20%, #303030 20%, #303030 40%, #303030 40%, #272727 60%, #272727 60%, #303030 80%, #303030 80%); */
+/*     background: -webkit-linear-gradient(45deg, #272727 20%, #303030 20%, #303030 40%, #272727 40%, #272727 60%, #303030 60%, #303030 80%, #272727 80%); */
+/*     background: linear-gradient(45deg, #272727 20%, #303030 20%, #303030 40%, #272727 40%, #272727 60%, #303030 60%, #303030 80%, #272727 80%); */
+/*     background: url('../img/tile_darklightblue.jpg');	 */
+
+
 	box-shadow: 0px 0px 25px black;
-	background-image: url('../img/tile_darkblue.jpg');
-	background-repeat: repeat;
 	margin: 0 auto;
 	color: white;
 	padding: 20px;
 	text-shadow: 0px 0px 3px black;
 }
 
-#detaillsDiv {
-	margin: 10px;
+.subtitles{
+	color:black;
+	text-shadow: none;
+	font-weight:bold;
 }
+
+.response{
+	color:DarkViolet;
+	text-shadow: none;
+	font-weight:bold;
+}
+
+/* .parallax-window { */
+/*     min-height: 300px; */
+/*     background: transparent; */
+/* } */
+
+/* .transparencyWithoutPadding { */
+/* 	background: rgba(1, 1, 1, 0.5) !important; */
+/* 	border-radius: 10px !important; */
+/* } */
+
+/* .bicolor-mediumpurple-dark{ */
+/* 			  background-color: #272727; */
+/*   background-image: -webkit-linear-gradient( 30deg, MediumPurple 0%, MediumPurple 60%, #303030 60%, #303030 60%); */
+/*   background-image: linear-gradient( 30deg, MediumPurple 0%, MediumPurple 60%, #303030 60%, #303030 60%); */
+/* } */
+
+/* .bicolor-graydark-graylight{ */
+/* 	  background-color: #272727; */
+/*   background-image: -webkit-linear-gradient( -50deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
+/*   background-image: linear-gradient( -50deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
+/* } */
+
+/* .bicolor-graydark-graylight-left{ */
+/* 		  background-color: #272727; */
+/*   background-image: -webkit-linear-gradient( 30deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
+/*   background-image: linear-gradient( 30deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
+/* } */
 
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
@@ -26,8 +66,6 @@
 	#idMainContent {
 		font-size: small !important;
 		box-shadow: 0px 0px 25px black;
-		background-image: url('../img/tile_darkblue.jpg');
-		background-repeat: repeat;
 		margin: 0 auto;
 		color: white;
 		padding: 1px;
@@ -46,8 +84,6 @@
 		#idMainContent {
 		font-size: small !important;
 		box-shadow: 0px 0px 25px black;
-		background-image: url('../img/tile_darkblue.jpg');
-		background-repeat: repeat;
 		margin: 0 auto;
 		color: white;
 		padding: 1px;
@@ -66,8 +102,6 @@
 		#idMainContent {
 		font-size: small !important;
 		box-shadow: 0px 0px 25px black;
-		background-image: url('../img/tile_darkblue.jpg');
-		background-repeat: repeat;
 		margin: 0 auto;
 		color: white;
 		padding: 1px;

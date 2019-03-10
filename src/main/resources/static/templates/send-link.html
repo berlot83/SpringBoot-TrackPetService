@@ -6,16 +6,20 @@
 
 <body>
 	<nav th:replace="default :: bar"></nav>
-	<div class="container">
-		<div class="container-fluid" id="sendLinkMainDiv">
+	<div>
+		<div class="card" id="sendLinkMainDiv">
+			<h3 class="card-header blue-gradient white-text rounded" th:text="#{sendlink.state}">Estado:</h3>
 			<div id="dataLinkDiv">
-				<h3 th:text="#{sendlink.state}">Estado:</h3>
 				<p th:text="#{sendlink.emailverify}">Verifique en su correo el link de cambio de contraseña, una vez que haya cambiado la misma, ingrese al link de abajo para loguearse.</p>
 
-				<a href="/login">Login</a>
+				<a style="font-size:24px; color:deeppink" href="/login">Login</a>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
 	<footer th:replace="default :: footer"></footer>
 </body>
 

@@ -1,45 +1,50 @@
-#divMainForm{
-	width:800px;
+#divMainForm {
+	width: 800px;
 }
 
-#dataCreatePrepaidQR{
-	padding:10px;
+#dataCreatePrepaidQR {
+	padding: 10px;
 	text-shadow: 2px 2px black;
 }
 
-
-
 /*  Small devices (landscape phones, 576px and up) */
-@media ( max-width : 576px) {
-	#divMainForm{
-		width:100%;
-	}
-	
-	body {
-		width:100%;
-		font-size: small !important;
-		padding: 2px !important;
-		margin: 2px !important;
-	}
-	h3 {
-		font-size: medium; !important;
-	}
-	
-	divContent{
+@media
+(
+max-width
+:
+576px)
+{
+#divMainForm {
+	width: 100%;
+}
+
+body {
+	width: 100%;
+	font-size: small !important;
+	padding: 2px !important;
+	margin: 2px !important;
+}
+
+h3 {
+	font-size: medium;
+	!
+	important;
+}
+
+divContent {
 	width: 20% !important;
 	font-size: 5px !important;
-	}
+}
+
 }
 
 /*  Medium devices (tablets, 768px and up) */
 @media ( max-width : 768px) {
-
-	#divMainForm{
-		width:100%;
+	#divMainForm {
+		width: 100%;
 	}
-	
 	body {
-	width:100%;
+		width: 100%;
 		font-size: small !important;
 		padding: 2px !important;
 		margin: 2px !important;
@@ -47,10 +52,9 @@
 	h3 {
 		font-size: medium !important;
 	}
-	
-		divContent{
+	divContent {
 		width: 20% !important;
-	font-size: 5px !important;
+		font-size: 5px !important;
 	}
 }
 
@@ -64,10 +68,9 @@
 	h3 {
 		font-size: medium !important;
 	}
-	
-		divContent{
+	divContent {
 		width: 20% !important;
-	font-size: 5px !important;
+		font-size: 5px !important;
 	}
 }
 

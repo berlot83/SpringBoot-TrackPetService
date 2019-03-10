@@ -1,0 +1,192 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="default :: header"></div>
+</head>
+<body>
+<nav th:replace="default :: bar"></nav>
+
+		<div id="horseDiv" th:fragment="ratFragment">
+			<h5>Rodents</h5>
+			<hr>
+			
+			<h6>Ambient</h6>
+			
+				<div style="display:flex; justify-content:space-around; width:100%">
+					<div class="thirdteenCol form-group">
+						<label>Housing:</label>
+						<select id="housing" name="housing" class="form-control">
+							<option value="tank">Hamster fish tank</option>
+							<option value="cage">Cage</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+					
+					<div class="form-group thirdteenCol">
+						<label>Wheel:</label>
+						<select class="form-control" name="wheel" id="wheel">
+							<option value=true >Yes</option>
+							<option value=false >No</option>
+						</select>
+					</div>
+		
+					<div class="form-group thirdteenCol">
+						<label>Cleaned</label>
+						<input type="date" id="houseCleaned" name="houseCleaned" placeholder="Last House Cleaned" class="form-control" required>
+					</div>
+				</div>
+				
+				<div style="display:flex; justify-content:space-around; width:100%">
+					<div class="thirdteenCol form-group">
+						<label>Type:</label>
+						<select id="typeRat" class="form-control">
+							<option value="guinea">Guinea Pigs</option>
+							<option value="hamster">Hamster</option>
+							<option value="gerbils">Gerbils</option>
+							<option value="mice">Mice</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+					
+					<div class="thirdteenCol form-group">
+						<label>Hamster breed:</label>
+						<select id="breed" class="form-control">
+							<option value="other">It' other rodent</option>
+							<option value="hamster">Roborovski</option>
+							<option value="russian">Dwarf Russian</option>
+							<option value="syrian">Syrian</option>
+						</select>
+					</div>
+
+					<div class="form-group thirdteenCol">
+						<label>Rodent quantity</label>
+						<input type="number" id="rodentQuantity" maxlength="2" min="1" placeholder="3" class="form-control" />
+					</div>
+				</div>
+				
+				<div style="display:flex; justify-content:space-around; width:100%">
+					<div class="thirdteenCol form-group">
+						<label>Sex:</label>
+						<select id="sexRat" class="form-control">
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+				
+					<div class="form-group thirdteenCol">
+						<label>Bite:</label>
+						<select class="form-control" name="bite" id="bite">
+							<option value=true>Yes</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+					<div class="form-group thirdteenCol">
+						<label for="vitamins">Vitamins:</label>
+						<select class="form-control" name="vitamins" id="vitamins">
+							<option value="pellets">Hamster fortified pellets</option>
+							<option value="chewsticks">Hamster flavored chew sticks</option>
+						</select>
+					</div>
+				</div>
+			
+				<div style="display:flex; justify-content:space-around; width:100%">
+					<div class="thirdteenCol form-group">
+						<label>Medicated</label>
+						<select id="medicatedRat" class="form-control">
+							<option value=true>Yes</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+				
+					<div class="thirdteenCol form-group">
+						<label>Neutered</label>
+						<select id="neuteredRat" class="form-control">
+							<option value=true>Yes</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+						
+					<div class="thirdteenCol form-group">
+						<label>Pregnant</label>
+						<select id="pregnantRat" class="form-control">
+							<option value=true>Yes</option>
+							<option value=false>No</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- without use right now -->
+<!-- 			<form id="frmFoo" action="@{/list-rat}" method="post" th:object="${hamsterFishTank}"> -->
+			    <ul>
+			<!--/*/ <th:block th:each="listIterate ,iStat : ${rats}"> /*/-->
+			       <li>
+<!-- 			          <input type="text" th:field="*{breed}" th:value="${listIterate.breed}" /> -->
+			       </li>
+<!-- 			       <li th:text="${breed}"></li> -->
+			<!--/*/ </th:block> /*/-->
+<!-- 		    	    <li><button type="submit">Submit</button></li> -->
+			    </ul>
+<!-- 			</form> -->
+				<!-- without use right now -->
+			<br>
+				
+			<button onclick="updateQrHamsterFishTank()" class="btn btn-large btn-danger">Almacenar datos y crear Código QR</span> ==>  <i class="fas fa-qrcode"></i> + <i class="fas fa-database"></i></button>
+
+<script>
+function updateQrHamsterFishTank() {
+	
+	var idPrepaidQrCode = document.getElementById("idPrepaidQrCode").textContent;
+	var user = document.getElementById("user").textContent;
+	var housing = document.getElementById("housing").value;
+	var wheel = document.getElementById("wheel").value;
+	var houseCleaned = document.getElementById("houseCleaned").value;
+	var rodentQuantity = document.getElementById("rodentQuantity").value;
+	var type = document.getElementById("typeRat").value;
+	var breed = document.getElementById("breed").value;
+	var sex = document.getElementById("sexRat").value;
+	var bite = document.getElementById("bite").value;
+	var vitamins = document.getElementById("vitamins").value;
+	var medicated = document.getElementById("medicatedRat").value;
+	var neuteredPet = document.getElementById("neuteredRat").value;
+	var pregnant = document.getElementById("pregnantRat").value;
+
+	
+	var xhr = new XMLHttpRequest();
+	var url = "/update-qr-hamsterFishTank";
+
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&user=" + user + "&medicated=" + medicated + "&neutered=" + neuteredPet + "&pregnant=" + pregnant + "&housing=" + housing + "&wheel=" + wheel + "&houseCleaned=" + houseCleaned + "&rodentQuantity=" + rodentQuantity + "&breed=" + breed + "&sex=" + sex + "&bite=" + bite + "&vitamins=" + vitamins + "&type=" + type);
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			
+			data = xhr.responseText;
+			var jsonResponse = JSON.parse(data);
+			$.alert({type: 'green', 
+					title: 'Compruebe el funcionamiento',
+					content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Lea este código QR para verificar que los datos se subieron correctamente, si los mismo no se subieron intente lo de nuevo, caso contrario comuníquese con el código ID a info@molokotech.com que gestionamos por usted la carga de datos.</p></div></content></body>"});
+		}
+		if(xhr.status == 500){
+			$.alert({
+				
+				type: 'red',
+				title: 'Error del lado del servidor',
+				content:"<p style='text-align:justify'>Muy posiblemente no es posible obtener la latitud y longitud de la dirección, utilice el motor de busqueda de google. Si el mismo no funciona, Coloque la dirección de la siguiente los siguientes ejemplos:</p> <ol><li>Lima 925, Buenos Aires, Argentina</li><li>Avenida de Mayo 725, Villa Adelina, Buenos Aires, Argentina</li></ol><br><p style='text-align:justify'>Si igualmente no funciona ingrese a <a href='google.com'>GoogleMaps</a>, encuentre su dirección y como aparece en la barra de búsqueda asistida y copiela en la nuestra.</p>"});
+			
+		}
+		if(xhr.status == 400){
+			$.alert({
+				type: "red",
+				title: "Error",
+				content: "Falta enviar algun campo"});
+		}
+	}
+
+}
+</script>
+
+	</div>
+
+<footer th:replace="default :: footer">
+</body>
+
+</html>

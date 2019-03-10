@@ -8,25 +8,28 @@
 	<nav th:replace="default :: bar"></nav>
 	<br>
 	<br>
-	<div class="container">
-		<div id="prepaidMainDiv" class="container-fluid">
-			<i class="fas fa-paw" style="font-size:32px; float:left"></i>
-			<h2 id="titleActivateQR" th:text="#{prepaidqr.title}"></h2>
-
-			<br>
-
+	<div>
+		<div id="prepaidQrFormDiv" class="container-fluid" style="width:70%;">
+		
+			<!-- Start transparency -->
+			<div class="backgound-colors card">
+<!-- 			<i class="fas fa-paw" style="font-size:32px; float:left"></i> -->
+			<h2 id="titleActivateQR" class=" card-header white-text aqua-gradient" th:text="#{prepaidqr.title}"></h2>
+		<div style="padding: 40px;">
 			<form action="#" th:action="@{/prepaid-qr}" th:object="${prepaidQR}"
 				method="POST">
-			<label class="form-group" for="id" th:text="#{prepaidqr.insertactivationcode}"></label><br>
-				<input type="text" th:field="*{id}" id="id"
-					onkeyup="findPrepaidQrStrBase64()"
-					required /> <br> <label class="form-group"><i class="fas fa-paw"></i></label> <small
-					style="color: turquoise" th:text="#{prepaidqr.codedetails}"></small> <label><i
-					class="fas fa-paw"></i></label> <br>
+			<label class="form-group" for="id" ><i style="color:LimeGreen" class="fas fa-key"></i> Ingrese Código de activación</label><br>
+				
+				<input type="text" th:field="*{id}" id="id" onkeyup="findPrepaidQrStrBase64()" required /> <br>
+				
+				<label class="form-group"><i style="color:LimeGreen;" class="fas fa-paw"></i></label> <small
+					style="color: deeppink" th:text="#{prepaidqr.codedetails}"></small> <label>
+					<i style="color:LimeGreen;" class="fas fa-paw"></i></label> <br>
+					<small >If the code is correctly typed, you will see just for a moment a preview of you QR code without data.</small><br><br>
 					
-					<div><label class="form-group" for="selledOnline">Email:</label><br>
+					<div><label class="form-group" for="selledOnline"><i style="color:LimeGreen" class="fas fa-envelope"></i> Email:</label><br>
 						<input type="text" th:field="*{selledOnline}" id="selledOnline" /><br>
-						<small style="color: turquoise" th:text="#{prepaidqr.activationemail}"></small>
+						<p style="color:deeppink" th:text="#{prepaidqr.activationemail}"></p><br>
 					</div>
 					<div th:if="${errorMailAsociated}" class="alert alert-danger" style="color:DarkRed;text-shadow:0px 1px black; ">    
                         <p  th:text="#{prepaidqr.errormailassociatte}"></p>
@@ -35,8 +38,22 @@
 				<br>
 				<div id="resultImage"></div>
 				<br>
+				
+				<h6>With witch one do you wanna start on? <i style="color:Gold; font-weight:bold" class="far fa-smile-wink"></i></h6>
+				<!-- Start radio buttons choose type, dependency from animalTypes -->
+				<ul class="list-unstyled" style="display:flex; justify-content: space-around; width:100%;">
+				  <li th:each="i : ${prepaidQR.animalTypes}">
+						<input type="radio" th:field="*{typeAnimal}" th:value="${i}" />
+					    <label th:for="${#ids.prev('typeAnimal')}" th:text="${i}">Wireframe</label>
+				  </li>
+				</ul>
+				<!-- End radio buttons choose type, dependency from animalTypes and typeAnimal (a void String) -->
+				
 				<button id="activateButtonQR" class="btn btn-info" type="submit" th:text="#{prepaidqr.activatebutton}"></button>
 			</form>
+			
+			</div>
+			<!-- End transparency -->
 			<br> <br> <br> <br> <br> <br>
 		</div>
 	</div>
@@ -105,6 +122,7 @@
 
 	}
 
+	/* Unused right now, because it's usining server side directly from account page, this code is ajax */
 	/* Javascript transaction from account html to prepaid-qr.html by ajax Get, getting idValue from url */
 	function reciveIdFromAccount() {
 		var urlString = window.location.href;
