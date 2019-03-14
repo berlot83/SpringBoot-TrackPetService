@@ -79,6 +79,9 @@
 }
 
 @media ( max-width : 576px) {
+	.custom-control-label{
+	font-size: x-small !important;
+	}
 	body {
 		font-size: small !important;
 	}

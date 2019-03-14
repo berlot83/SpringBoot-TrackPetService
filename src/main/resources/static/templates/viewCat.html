@@ -21,6 +21,14 @@
 		<br>
 		<!-- QR miniature end -->
 
+		<!-- Share buttons start -->
+					<div th:if="${user?.setup?.showSharebuttons}" style="display:flex !important;">
+						<div style="padding:3px; float: left;" class="fb-share-button" th:data-href="'https://pet-qr.com/id/'+${prepaidQR.id}" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpet-qr.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+						<!-- Your like button code -->
+						<div style="padding:3px;float: left" class="fb-like" data-href="https://pet-qr.com" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+					</div>
+		<!-- Share buttons end -->
+
 		<br>
 		
 		<h5>
@@ -140,6 +148,17 @@
 				<input type="hidden" th:value="${prepaidQR.strBase64}"
 					id="strBase64"></input> <br>
 
+		<div th:if="${user?.setup?.showSpecialInputs}">			
+				<strong><h5 style="color:red">Important</h5></strong>
+				<hr class="hr-black">
+			<p th:if="${prepaidQR?.cat?.medicalTreatment}">
+				<strong class="subtitles">Part of medical treatment: </strong> <span class="response" th:text="${prepaidQR?.cat?.medicalTreatment}"></span></p>
+			<p th:if="${prepaidQR?.cat?.dangerAnimal}">
+				<strong class="subtitles">Danger Animal: </strong> <span class="response" th:text="${prepaidQR?.cat?.dangerAnimal}"></span></p>
+			<p th:if="${prepaidQR?.cat?.poorHealthCondition}">
+				<strong class="subtitles">Poor health condition: </strong> <span class="response" th:text="${prepaidQR?.cat?.poorHealthCondition}"></span></p>
+		</div>	
+
 			<strong><h5 class="subtitles">Video</h5></strong>
 			<hr class="hr-black">
 			<iframe th:if="${prepaidQR?.cat?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
@@ -147,11 +166,11 @@
 			<p th:unless="${prepaidQR?.cat?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
 <br>			
 
-			<h5 class="subtitles">Mapas</h5>
-			<hr class="hr-black">
 			<!-- Map Start -->
+	<div id="testcanvas" th:if="${user?.owner?.latitude != null && user?.setup?.showMap == true}">
+	<h5 class="subtitles">Mapas</h5>
+	<hr class="hr-black">
 	<p  style="color:LimeGreen">Direccíon declarada donde reside la mascota</p> 
-	<div id="testcanvas" th:if="${user?.owner?.latitude != null}">
 		<input type="hidden" th:value="${user?.owner?.latitude}" id="latitude"/>
 		<input type="hidden" th:value="${user?.owner?.longitude}" id="longitude"/>
 		<div id="map" class="container-fluid rounded" ></div>

@@ -21,6 +21,14 @@
 		<br>
 		<!-- QR miniature end -->
 		
+		<!-- Share buttons start -->
+					<div th:if="${user?.setup?.showSharebuttons}" style="display:flex !important;">
+						<div style="padding:3px; float: left;" class="fb-share-button" data-href="https://pet-qr.com" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpet-qr.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+						<!-- Your like button code -->
+						<div style="padding:3px;float: left" class="fb-like" data-href="https://pet-qr.com" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+					</div>
+		<!-- Share buttons end -->
+		
 		<br>
 		
 		<h5>

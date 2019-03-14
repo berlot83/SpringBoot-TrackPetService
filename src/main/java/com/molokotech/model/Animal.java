@@ -24,8 +24,12 @@ public class Animal {
 	private boolean neuteredPet;
 	private boolean pregnant;
 	private String lastVeterinaryVisit;
+	private boolean medicalTreatment;
+	private boolean dangerAnimal;
+	private boolean poorHealthCondition;
 	private String vitamins;
 	private String videoUrl;
+	private String specialMessage;
 	private String resultBase64Avatar;
 
 	public Animal() {
@@ -190,6 +194,38 @@ public class Animal {
 
 	public void setResultBase64Avatar(String resultBase64Avatar) {
 		this.resultBase64Avatar = resultBase64Avatar;
+	}
+
+	public boolean isMedicalTreatment() {
+		return medicalTreatment;
+	}
+
+	public void setMedicalTreatment(boolean medicalTreatment) {
+		this.medicalTreatment = medicalTreatment;
+	}
+
+	public boolean isDangerAnimal() {
+		return dangerAnimal;
+	}
+
+	public void setDangerAnimal(boolean dangerAnimal) {
+		this.dangerAnimal = dangerAnimal;
+	}
+
+	public boolean isPoorHealthCondition() {
+		return poorHealthCondition;
+	}
+
+	public void setPoorHealthCondition(boolean poorHealthCondition) {
+		this.poorHealthCondition = poorHealthCondition;
+	}
+
+	public String getSpecialMessage() {
+		return specialMessage;
+	}
+
+	public void setSpecialMessage(String specialMessage) {
+		this.specialMessage = specialMessage;
 	}
 
 }

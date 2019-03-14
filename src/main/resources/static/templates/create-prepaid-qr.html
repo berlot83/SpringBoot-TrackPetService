@@ -94,7 +94,26 @@
 					</div>
 				</div>
 			<!-- Type of animalFragment end -->
-	
+			
+			<br><br><br>
+			
+			<div th:if="${user.setup.showQuickConnectMolokotech} == true">
+			
+			<!-- Moloko connect -->			
+			<div class="card">
+				<h3 class="card-header aqua-gradient">Quick connect with Moloko devs</h3>
+				<div id="bodyCard" style="padding:30px">
+					<div class="form-group">
+					<label th:text="${'User: ' + currentUser}"></label><br>
+					<label th:text="${'Email: ' + prepaidQR?.selledOnline}"></label><br>
+					<textarea style="width:100%" placeholder="Write here your sugerence"></textarea>
+					</div>
+				<small>If you need a special input and is a releable make a sugerence to add to the platform, we could do it between a few days or a month.</small>
+				</div>
+			</div>
+			<!-- Moloko connect -->
+			
+			</div>
 	</div>
 			<br> <br> <br> <br> <br> <br>
 			

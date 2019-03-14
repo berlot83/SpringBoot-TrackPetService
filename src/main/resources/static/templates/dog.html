@@ -336,9 +336,60 @@
 					</div>
 				</div>
 			</div>
+	
+			<br> <br>
+			<h5>Special inputs</h5>
+			<small><span style="color:red">*</span> This options should be added from the control panel.</small>
+			<hr style="border: 1px solid BlueViolet !important">
+			<div id="specialInputs" class="row">
+				<div class="col-4">
+					<div class="form-group">
+						<label for="medicalTreatment"><span>Required as Medical treatment:</span></label>
+						<select id="medicalTreatment" class="form-control">
+						<option value=false>No</option>
+						<option value=true>Yes</option>
+						</select>
+						<small>Guide pets, autist treatment...</small>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="form-group">
+						<label for="dangerAnimal"><span>Danger animal:</span></label>
+						<select id="dangerAnimal" class="form-control">
+						<option value=false>No</option>
+						<option value=true>Yes</option>
+						</select>
+						<small>Bites, scratch, kick...</small>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="form-group">
+						<label for="poorHealthCondition"><span>Poor medical condition:</span></label>
+						<select id="poorHealthCondition" class="form-control">
+						<option value=false>No</option>
+						<option value=true>Yes</option>
+						</select>
+						<small>Very bad condition.</small>
+					</div>
+				</div>
+			</div>
+			
+			<br>
+			
+			<div class="form-group">
+			<h5>Special inputs</h5>
+			<small><span style="color:red">*</span>  This option should be added from the control panel.</small>
+			<hr style="border: 1px solid BlueViolet !important">
+				<label>Set help message:</label>
+				<input type="text" id="specialMessage" style="background-color:pink" class="form-control" placeholder="Please comeback my pet, she is with me since I was 15 years, I cannot live without her.">
+			</div>
+			
+			<br><br>
 			
 			<div class="form-group">
 			<h5 th:text=#{create-prepaid-qr.basicdata.choosevideoyoutubetitle}>Choose a video from Youtube</h5>
+			<small><span style="color:red">*</span>  This option should be added from the control panel.</small>
 			<hr>
 				<label for="videoUrl" th:text=#{create-prepaid-qr.basicdata.choosevideoyoutube}>Video Youtube</label><br>
 				<input type="text" id="videoUrl" class="form-control">

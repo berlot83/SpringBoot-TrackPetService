@@ -41,13 +41,17 @@ function updateQrDog() {
 	var pregnant = document.getElementById("pregnant").value;
 	var weight = document.getElementById("weight").value;
 	var videoUrl = document.getElementById("videoUrl").value;
-
+	var medicalTreatment = document.getElementById("medicalTreatment").value;
+	var dangerAnimal = document.getElementById("dangerAnimal").value;
+	var poorHealthCondition = document.getElementById("poorHealthCondition").value;
+	var specialMessage = document.getElementById("specialMessage").value;
+	
 	var xhr = new XMLHttpRequest();
 	var url = "/update-qr-dog";
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode +"&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&videoUrl=" + videoUrl);
+	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode +"&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&videoUrl=" + videoUrl + "&medicalTreatment=" + medicalTreatment + "&dangerAnimal=" + dangerAnimal + "&poorHealthCondition=" + poorHealthCondition + "&specialMessage=" + specialMessage);
 	console.log(videoUrl);
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -73,7 +77,6 @@ function updateQrDog() {
 				content: "Falta enviar algun campo"});
 		}
 	}
-
 }
 
 /* Complete creation and asimilation of prepaidQR to the user account */
@@ -100,13 +103,17 @@ function updateQrCat() {
 	var pregnant = document.getElementById("pregnant").value;
 	var weight = document.getElementById("weight").value;
 	var videoUrl = document.getElementById("videoUrl").value;
-
+	var medicalTreatment = document.getElementById("medicalTreatment").value;
+	var dangerAnimal = document.getElementById("dangerAnimal").value;
+	var poorHealthCondition = document.getElementById("poorHealthCondition").value;
+	var specialMessage = document.getElementById("specialMessage").value;
+	
 	var xhr = new XMLHttpRequest();
 	var url = "/update-qr-cat";
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&videoUrl=" + videoUrl);
+	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&raze=" + raze + "&foodBrand=" + foodBrand + "&user=" + user + "&age=" + age + " &lastVeterinaryVisit=" + lastVeterinaryVisit + "&dateAntiRabicVaccine=" + dateAntiRabicVaccine + "&datePolivalentVaccine=" + datePolivalentVaccine + "&dateSextupleVaccine=" + dateSextupleVaccine + "&dateOctupleVaccine=" + dateOctupleVaccine + "&clinicHistory=" + clinicHistory + "&illness=" + illness + "&medicated=" + medicated + "&quantityFood=" + quantityFood + "&neuteredPet=" + neuteredPet + "&coockedFood=" + coockedFood + "&status=" + status + "&pregnant=" + pregnant + "&weight=" + weight + "&petName=" + petName + "&sex=" + sex + "&videoUrl=" + videoUrl  + "&medicalTreatment=" + medicalTreatment + "&dangerAnimal=" + dangerAnimal + "&poorHealthCondition=" + poorHealthCondition + "&specialMessage=" + specialMessage);
 	console.log(videoUrl);
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -459,7 +466,11 @@ function callHorse(){
 	var vaccinePhf = document.getElementById("vaccinePhf").value;
 	var vaccineFluAvert = document.getElementById("vaccineFluAvert").value;
 	var videoUrl = document.getElementById("videoUrl").value;
-	
+	var medicalTreatment = document.getElementById("medicalTreatment").value;
+	var dangerAnimal = document.getElementById("dangerAnimal").value;
+	var poorHealthCondition = document.getElementById("poorHealthCondition").value;
+	var specialMessage = document.getElementById("specialMessage").value;
+
 	var xhr = new XMLHttpRequest();
 	var url =  "/update-qr-horse";
 	xhr.onreadystatechange = function () {
@@ -474,7 +485,7 @@ function callHorse(){
 	}
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&user=" + user + "&typeHorse=" + typeHorse + "&breed=" + breed + "&illness=" + illness + "&sex="+ sex + "&age=" + age + "&petName=" + petName + "&weight=" + weight + "&medicated=" + medicated + "&lastVeterinaryVisit=" + lastVeterinaryVisit + "&neuteredPet=" + neuteredPet + "&pregnant=" + pregnant + "&status=" + status + "&vaccineEwt=" + vaccineEwt + "&vaccineEhv14=" + vaccineEhv14 + "&vaccinePhf=" + vaccinePhf + "&vaccineWestNile=" + vaccineWestNile + "&vaccineStrangles=" + vaccineStrangles + "&vaccineFluAvert=" + vaccineFluAvert + "&videoUrl=" + videoUrl);
+	xhr.send("idPrepaidQrCode=" + idPrepaidQrCode + "&user=" + user + "&typeHorse=" + typeHorse + "&breed=" + breed + "&illness=" + illness + "&sex="+ sex + "&age=" + age + "&petName=" + petName + "&weight=" + weight + "&medicated=" + medicated + "&lastVeterinaryVisit=" + lastVeterinaryVisit + "&neuteredPet=" + neuteredPet + "&pregnant=" + pregnant + "&status=" + status + "&vaccineEwt=" + vaccineEwt + "&vaccineEhv14=" + vaccineEhv14 + "&vaccinePhf=" + vaccinePhf + "&vaccineWestNile=" + vaccineWestNile + "&vaccineStrangles=" + vaccineStrangles + "&vaccineFluAvert=" + vaccineFluAvert + "&videoUrl=" + videoUrl + "&medicalTreatment=" + medicalTreatment + "&dangerAnimal=" + dangerAnimal + "&poorHealthCondition=" + poorHealthCondition + "&specialMessage=" + specialMessage);
 }
 /* Account page, ajax horse, without use function end */
 
@@ -607,9 +618,6 @@ function chooseAnimal(id, dog, cat, horse, hamsterFishTank, fish){
 	var url = "/get-selected-animal";
 	window.src;
 	
-	
-//	alert(this.getActiveStatus(id, "dog"));
-	
 	if(dog == null){
 		dog = "<i class='fas fa-times text-danger'></i> <strong class='text-danger'>Not Created</strong>";
 	}else{
@@ -677,10 +685,10 @@ function chooseAnimal(id, dog, cat, horse, hamsterFishTank, fish){
 			theme:"bootstrap",
 			columnClass:"col-md-4",
 			title:"Animal Selector.",
-			content:"<html xmlns:th='http://www.thymeleaf.org'><body><div><form id='chooseanimal' action='/select-animal' method='POST' onsubmit='return window.location.reload()'>" +
+			content:"<html xmlns:th='http://www.thymeleaf.org'><head><div th:include='default :: header'></div></head><body><div><form id='chooseanimal' action='/select-animal' method='POST' onsubmit='return window.location.reload()'>" +
 			"<input type='hidden' value='"+ id +"' id='id' name='id' />" +
 			"<table class='bordered rounded table-responsive table'><thead><tr class='table-info'><td>Animal</td><td>Icon</td><td>Created</td></tr><thead>" +
-			"<tr><td><label><input type='radio' name='typeAnimal' id='typeAnimal' value='dog' checked> Dog</label></td> <td><img src='../img/dog.png'></td><td>"+ dog +"</td><td></td></tr>" +
+			"<tr><td><label><input type='radio' name='typeAnimal' id='typeAnimal' value='dog' checked> Dog</label></td> <td><img src='../img/dog.png'></td><td>"+ dog +"</td></tr>" +
 			"<tr><td><label><input type='radio' name='typeAnimal' id='typeAnimal' value='cat'> Cat</label></td> <td><img src='../img/cat.png'></td><td>"+ cat +"</td></tr>" +
 			"<tr><td><label><input type='radio' name='typeAnimal' id='typeAnimal' value='horse'> Horse</label></td> <td><img src='../img/horseshoe.png'>  </td><td>"+ horse +"</td></tr>" +
 			"<tr><td><label><input type='radio' name='typeAnimal' id='typeAnimal' value='rat'> Rodents</label></td> <td><img src='../img/rabbit.png'></td><td>"+ hamsterFishTank +"</td></tr>" +
@@ -749,69 +757,4 @@ function chooseAnimal(id, dog, cat, horse, hamsterFishTank, fish){
 		/* Retard function to get DB info, need to get the info end*/
 	
 	}
-/* Select Animal end */
 
-function getStatus(id){
-	
-	var alertButton = document.getElementById("alertButton"+id);
-	var xhr = new XMLHttpRequest();
-	var url = "/status?id="+ id;
-	
-	xhr.open("GET", url, true);
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send();
-	
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var animal = xhr.responseText;
-			
-			if(animal == "true"){
-				alertButton.classList.remove("btn-danger");
-				alertButton.classList.add("btn-success");
-				alertButton.innerHTML = "rescued";
-			}
-			
-			if(animal == "false"){
-				alertButton.classList.remove("btn-success");
-				alertButton.classList.add("btn-danger")
-				alertButton.innerHTML = "Lost";
-			}
-		}
-	}
-}
-
-function getActiveStatus(id, typeAnimal){
-	
-//	var alertButton = document.getElementById("alertButton"+id);
-	var xhr = new XMLHttpRequest();
-	var url = "/get-active-status?id="+ id + "&typeAnimal=" + typeAnimal;
-	var result = null;
-	
-	
-	xhr.open("GET", url, true);
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send();
-	
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var animal = xhr.responseText;
-				
-				if(animal == "true"){
-	//				alertButton.classList.remove("btn-danger");
-	//				alertButton.classList.add("btn-success");
-	//				alertButton.innerHTML = "rescued";
-					result = "rescued";
-				return result;
-				}
-				
-				if(animal == "false"){
-	//				alertButton.classList.remove("btn-success");
-	//				alertButton.classList.add("btn-danger")
-	//				alertButton.innerHTML = "Lost";
-				result = "Lost";
-				return result;
-	//			}
-			}
-		}
-	}
-}

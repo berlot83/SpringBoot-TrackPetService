@@ -1,9 +1,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<!-- Alertify start libs -->
+	<!-- JavaScript -->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+	<!-- Semantic UI theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
+	<!-- Bootstrap theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
+	<!-- Alertify end libs -->
+	
+	<!-- Bundle start of libs -->
 	<div th:include="default :: header"></div>
+	<!-- Bundle end of libs -->
+	
 	<link rel="stylesheet" type="text/css" href="../css/account.css" />
 	<script type="text/javascript" src="../js/particles.js"></script>
 	<script type="text/javascript" src="../js/download.js"></script>
+	<script type="text/javascript" src="../js/setup.js"></script>
+	<script type="text/javascript" src="../js/alerts.js"></script>
 
 	<script type="text/javascript">
 		/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
@@ -19,8 +37,12 @@
 	</script>
 </head>
 
-<body onload="getAllPrepaidQR(), getUserForNotifications()">
+<body onload="getAllPrepaidQR(), getUserForNotifications(), retriveSetup()">
 	<nav th:replace="default :: bar"></nav>
+
+<script>
+</script>
+
 	<div th:if="${errorNoUpload != null}" class="alert alert-danger">
 		<p th:text="${errorNoUpload}"></p> <a href='/account' style="color: red">Refresh</a>
 	</div>
@@ -30,7 +52,6 @@
 	</div>
 	
 	<div id="particles-js">
-
 
 		<div id="accountMainDiv" class="container-fluid">
 			<div  class="transparencyWithoutPadding" id="window" style="padding:20px">
@@ -66,51 +87,110 @@
 						<label><i style="color: turquoise" class="fas fa-config"></i>
 						<button onclick="window.location.href='/user'" class="btn btn-md btn-primary"><span>Edit public data.</span> <i class="shadow-icon fas fa-edit"></i></button></label>
 					</div>
+					
+					<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
+					<br>
+					<div class="form-group">
+						<label><i style="color: turquoise" class="fas fa-config"></i>
+						<div  th:if="${list[iStat.index]?.expiration} != null"><strong>Expiration day: </strong><span class="text-danger" th:text="${list[iStat.index]?.expiration}"></span></div>
+					</div>		
+					<!--/*/ </th:block> /*/-->
+
 				</div>
 				
 				<div>
-					<div class="halfCol">
+					<div class="halfCol" style="min-height:100px;">
 					<h5 style="color:turquoise">Notifications:</h5>
-					<div>
-					<ul id="resultNotifications" style="text-align: justify;">
-					
-					</ul>
+						<div>
+							<ul id="resultNotifications" style="text-align: justify;">
+							
+							</ul>
+						</div>
 					</div>
-					
-					</div>
-					
+
+					<br>
+
 					<div id="config" style="display:flex; flex-direction:column;">
-					<!-- Default switch -->
+					<h5 style="color:turquoise">Setup:</h5>
+						<!-- Default switch -->
 						<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="customSwitches">
-						  <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+						  <input type="checkbox" class="custom-control-input" id="templates" onchange="lockTemplates()">
+						  <label class="custom-control-label" for="templates">Show/hidde all animal templates (Lock)</label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="customSwitches">
-						  <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+						  <input type="checkbox" class="custom-control-input" id="qcMolokotech" onchange="quickMolokotechConnect()">
+						  <label class="custom-control-label" for="qcMolokotech">Quick connect with Molokotech Devs into the form</label>
+						</div>
+
+						<!-- Default switch -->
+						<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="shareButtons"  onchange="showSharebuttons()">
+						  <label class="custom-control-label" for="shareButtons">Share buttons into templates (Anyone can share it)</label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="customSwitches">
-						  <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+						  <input type="checkbox" class="custom-control-input" id="enableCoordinates" onchange="enableSendCoordinates()">
+						  <label class="custom-control-label" for="enableCoordinates"><a href="#" onclick="warningCoordinatesAlert()">Enable</a> coordinates to the email  <span class="text-danger">*</span></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="customSwitches">
-						  <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+						  <input type="checkbox" class="custom-control-input" id="customMessage" onchange="enableEspecialMessage()">
+						  <label class="custom-control-label" for="customMessage">Add custom and special message to the top of templates  <span class="text-danger">*</span></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="customSwitches">
-						  <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+						  <input type="checkbox" class="custom-control-input" id="specialInputs" onchange="enableEspecialInputs()">
+						  <label class="custom-control-label" for="specialInputs">Add special inputs for animal<span class="text-danger">*</span></label>
 						</div>
+						
+						<!-- Default switch -->
+						<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="showMap" onchange="showLocationMap()">
+						  <label class="custom-control-label" for="showMap">Show location map into templates</label>
+						</div>
+						
+						<!-- Default switch -->
+						<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="showFooter" onchange="showFooter()">
+						  <label class="custom-control-label" for="showFooter">Show/hide Footer on templates for vision improve</label>
+						</div>
+						
+						<!-- Default switch -->
+						<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="showYoutubeVideo" onchange="showYoutubeVideo()">
+						  <label class="custom-control-label" for="showYoutubeVideo">Show/hide YouTube video option into templates</label>
+						</div>
+						
+						<!-- Default switch -->
+						<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="SendRequestVet">
+						  <label class="custom-control-label" for="SendRequestVet">Send encoded request to vets for update Clinic History <span class="text-danger">*</span></label>
+						</div>
+											
+						<!-- Default switch -->
+						<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="prices" disabled>
+						  <label class="custom-control-label" for="prices">Allow prices for rodents and fishes  <span class="badge badge-sm badge-warning">On develop now</span></label>
+						</div>
+						
+						<small class="text-danger">* Applies only for animal that could be lost or get vet atemption.</small>
+						<small class="text-danger"> Option saves only if you have almost a QR code available</small>
+	<script>
+	function warningCoordinatesAlert(){
+		$.alert({
+			type:"purple",
+			title:"Disable coordinates",
+			content:"Why and when.. you have two ways to disable the coordinates, one is using this option and the other is changing the email for any other or just leave in blank, we do not recommend the last option but it works. And the question of why... is because maybe you have your pets safe in your home, and use it to see and admin vaccines or clinic history, so in this case you would'not want get mock coordinates to your email."
+		});
+	}
+	</script>
+	
 					</div>
-					
 					
 					</div>
 				</div>
@@ -159,8 +239,6 @@
 				</ul>
 
 				<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
-
-
 				<div class="controlPanelDiv">
 				<ul class="flexAllStretch rounded item bg-light text-success" id="controlPanel" style="width:100%; text-shadow:none;  font-weight:bold">
 					<li th:text="${iStat?.count}" ></li>
@@ -172,9 +250,9 @@
 						<a class="text-info" th:onclick="viewEmail([[${list[iStat?.index].selledOnline}]])">View email</a>
 					</li>
 					<li>
-						<a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search" data-toggle="tooltip" title="View template"></i></a>
-						<a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt" style="color:red"></i>
-						<a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt" style="color:DarkViolet"></i></a>
+						<a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search fa-2x" data-toggle="tooltip" title="View template"></i></a>
+						<a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt fa-2x" style="color:red"></i>
+						<a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt fa-2x" style="color:DarkViolet"></i></a>
 					</li>
 					<li>
 						<form style="margin:2px auto;  padding:0px" action="#" th:action="@{/download}" th:method="POST" th:object="${prepaidQR}">
@@ -191,7 +269,7 @@
 					</li>
 					<li>
 <!-- 					Alert functions start -->
-						<button th:id="'alertButton'+${list[iStat?.index].id.toString()}" class="btn buttonMD btn-success" th:onclick="getStatus([[${list[iStat?.index].id.toString()}]])" data-toggle="tooltip" title="Rescued" style="display:flex">
+						<button th:onclick="alerts([[${list[iStat?.index].id.toString()}]])" class="btn buttonMD btn-success" data-toggle="tooltip" title="Declare animals in emergency or rescued" style="display:flex">
 						<i style="color: white" class="fas fa-exclamation-triangle"></i></button>
 						<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id">
 <!-- 					Alert functions end -->
@@ -294,7 +372,7 @@ function getAllPrepaidQR(){
 				
 				if(dog == null && cat == null && horse == null && hamsterFishTank == null && fish == null){
 					var li = document.createElement("li");
-					li.innerHTML = "You have void QR code";
+					li.innerHTML = "You have a QR code without any data animal created";
 					resultNotifications.appendChild(li);
 					console.log("you have a QR code without without any animals");
 				}

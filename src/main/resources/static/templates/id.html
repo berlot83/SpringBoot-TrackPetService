@@ -5,21 +5,24 @@
 	<link rel="stylesheet" type="text/css" href="../css/id.css" />
 	<link rel="stylesheet" type="text/css" href="../css/base.css" />
 	<link rel="stylesheet" type="text/css" href="../css/maps.css" />
-		<link rel="stylesheet" type="text/css" href="../css/view.css" />
+	<link rel="stylesheet" type="text/css" href="../css/view.css" />
 	<script type="text/javascript" src="../js/parallax.js"></script>
 </head>
 
 <body onload="initMap(), moveToLocation(), youtube_parser()">
 	<nav th:replace="default :: bar"></nav>
+	<!-- Share info start -->
+	<div th:replace="default :: share"></div>
+	<!-- Share info e
 	
-	
-<!-- Parallax start -->
-<style>
-	.parallax-window {
-	    min-height: 400px;
-	    background: transparent;
-	}
-</style>
+		<!-- Parallax start -->
+		<style>
+			.parallax-window {
+			    min-height: 400px;
+			    background: transparent;
+			}
+		</style>
+
 				<!-- Type of animalFragment start -->
 					<div style="padding:0px !important" th:switch="${prepaidQR.typeAnimal}">
 						<div th:case="horse">
@@ -36,15 +39,18 @@
 						</div>
 					</div>
 				<!-- Type of animalFragment end -->
-<!-- Parallax end -->	
+
+		<!-- Parallax end -->	
 	
 	<div class="container">
 		
 		
 		<div th:if="${prepaidQR} != null" id="idMainContent" class="container-fluid background-colors">
 		
-<!-- 		<div class="white-transparency rounded" style="padding:150px"> -->
-			
+		
+		
+		<div th:if="${user.setup.lockTemplate} == true">
+
 				<!-- Type of animalFragment start -->
 					<div th:switch="${prepaidQR.typeAnimal}">
 						<div th:case="fish">
@@ -54,14 +60,44 @@
 						<div th:case="horse">
 							<br>
 							<div th:replace="viewHorse :: horseFragment"></div>
+
+								<div th:if="${user?.setup?.showSpecialMessage}">
+									<script>
+										$.alert({
+											type:"red",
+											title:"<i class='far fa-frown fa-2x' style='color:Gold'></i> My pet is lost",
+											content:"[[${prepaidQR?.horse?.specialMessage}]]"
+										});
+									</script>
+								</div>
 						</div>
 						<div th:case="dog">
 							<br>
 							<div th:replace="viewDog :: dogFragment"></div>
+								
+								<div th:if="${user?.setup?.showSpecialMessage}">
+									<script>
+										$.alert({
+											type:"red",
+											title:"<i class='far fa-frown fa-2x' style='color:Gold'></i> My pet is lost",
+											content:"[[${prepaidQR?.dog?.specialMessage}]]"
+										});
+									</script>
+								</div>
 						</div>
 						<div th:case="cat">
 							<br>
 							<div th:replace="viewCat :: catFragment"></div>
+						
+								<div th:if="${user?.setup?.showSpecialMessage}">
+									<script>
+										$.alert({
+											type:"red",
+											title:"<i class='far fa-frown fa-2x' style='color:Gold'></i> My pet is lost",
+											content:"[[${prepaidQR?.cat?.specialMessage}]]"
+										});
+									</script>
+								</div>						
 						</div>
 						<div th:case="rat">
 							<br>
@@ -69,16 +105,22 @@
 						</div>
 					</div>
 				<!-- Type of animalFragment end -->
-				
+				<div th:if="${user?.setup?.sendCoordinates}">
 				<script>
 				/* Needs to be here to wait charge email input, not onload */
 				$( document ).ready(function() {
 					getLocalization();
 				});
 				</script>
-				
+				</div>
 				<br> <br> <br>
-<!-- 			</div> -->
+			</div>
+			
+			<div th:unless="${user?.setup?.lockTemplate} == true">
+				<h4 class="text-dark"><i class="fa fa-lock fa-2x text-success"></i> Not Allowed by the user temporally.</h5>
+				<button onclick="window.location.href='/index'" class="btn btn-lg blue-gradient">Home page</button>
+			</div>
+			
 		</div>
 	</div>
 
@@ -91,7 +133,8 @@
 			async defer></script>
 		<!-- Javascript maps libraries -->
 	
-	<footer th:replace="default :: footer"></footer>
+	
+	<div  th:if="${user?.setup?.showFooter}"><footer th:replace="default :: footer"></footer></div>
 </body>
 
 </html>

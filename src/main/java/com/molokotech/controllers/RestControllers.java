@@ -46,6 +46,7 @@ import com.molokotech.model.Horse;
 import com.molokotech.model.Owner;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.Rat;
+import com.molokotech.model.Setup;
 import com.molokotech.model.User;
 import com.molokotech.service.AnimalService;
 import com.molokotech.service.BuyerService;
@@ -111,6 +112,7 @@ public class RestControllers {
 						e.printStackTrace();
 					}
 					String strBase64 = QRCodeGenerator.toBase64(imageData);
+					prepaidqr.setTypeAnimal("dog");
 					prepaidqr.setStrBase64(strBase64);
 					
 					/* It must be this String to change to 'vendido' when payment was released */
@@ -176,6 +178,7 @@ public class RestControllers {
 								e.printStackTrace();
 							}
 							String strBase64 = QRCodeGenerator.toBase64(imageData);
+							prepaidqr.setTypeAnimal("dog");
 							prepaidqr.setStrBase64(strBase64);
 							
 							/* Persist the user to have control */
@@ -634,6 +637,24 @@ public class RestControllers {
 		return result;
 	}
 	
+	@RequestMapping(value = "/retriveSetup", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public String retriveSetup() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = userService.findUser(auth.getName()).getName();
+		User user = userService.findUser(username);
+		
+		String result = null;
+		try {
+			Setup setup = user.getSetup();
+			Gson gson = new Gson();
+			result = gson.toJson(setup);
+		}catch(Exception error) {
+			System.out.println("Null value on setup, doesn' exist so cannot retrive nothing.");
+		}
+		
+		return result;
+	}
+	
 	@RequestMapping(value = "/retrivePrepaidQrHamsterFishTank", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public String retrivePrepaidQrHamsterFishTank(@RequestParam String id) {
 		PrepaidQR prepaidQR = prepaidQrService.findById(id);
@@ -648,14 +669,8 @@ public class RestControllers {
 		
 		return result;
 	}
-	
-//	@PostMapping("/select-animal")
-//	public void selectAnimal(@RequestParam String id, @RequestParam String typeAnimal) {
-//		System.out.println(id);
-//		System.out.println(typeAnimal);
-//		prepaidQrService.addTypeAnimal(id, typeAnimal);
-//	}
 
+	
 	@GetMapping("/select-animal")
 	public void selectAnimal(@RequestParam String id, @RequestParam String typeAnimal) {
 		System.out.println(id);
@@ -740,4 +755,5 @@ public class RestControllers {
 		String avatar = user.getGravatar();
 		return avatar;
 	}
+	
 }

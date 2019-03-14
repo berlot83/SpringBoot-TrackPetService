@@ -17,6 +17,7 @@ public class User {
 	private boolean enabled;
 	private Owner owner;
 	private String gravatar;
+	private Setup setup;
 	@Transient
 	private String copyPassword;
 	
@@ -114,6 +115,14 @@ public class User {
 
 	public void setGravatar(String emailMD5) {
 		this.gravatar = emailMD5;
+	}
+
+	public Setup getSetup() {
+		return setup;
+	}
+
+	public void setSetup(Setup setup) {
+		this.setup = setup;
 	}
 
 }

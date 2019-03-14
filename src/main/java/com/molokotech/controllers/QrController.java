@@ -36,6 +36,7 @@ import com.molokotech.model.Horse;
 import com.molokotech.model.Owner;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.Rat;
+import com.molokotech.model.Setup;
 import com.molokotech.model.User;
 import com.molokotech.service.AnimalService;
 import com.molokotech.service.PrepaidQrService;
@@ -153,6 +154,9 @@ public class QrController {
 					user.setEmailToken(TokenCreator.createAleatoryToken());
 					EncryptMD5 emailMD5 = new EncryptMD5();
 					user.setGravatar(emailMD5.encryptToMD5(user.getEmail()));
+					
+					Setup setup = new Setup();
+					user.setSetup(setup);
 					userService.saveUser(user);
 				} catch (Exception e) {
 					System.out.println("Entró en exceptción");
@@ -268,6 +272,13 @@ public class QrController {
 		String tempSpecialId = prepaidQrService.findById(prepaidQR.getId().toHexString()).getId().toHexString();
 		String result = null;
 		
+		/* For quick connect to moloko */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = userService.findUser(auth.getName()).getName();
+		User user = userService.findUser(username);
+		modelName.addAttribute("user", user);
+		/* For quick connect to moloko */
+		
 		if (prepaidQR.getId().toHexString() != null && prepaidQR.getId().toHexString().equals(tempSpecialId) && prepaidQR.getSelledOnline().equals(selledOnlineVerify)) {
 			result = "create-prepaid-qr";
 		} else {
@@ -288,81 +299,90 @@ public class QrController {
 		
 		/* Find the user assigned to it to get the contact data */
 		User user = userService.findUser(prepaidQR.getUserName());
-
+		model.addAttribute("user", user);
 		/* Used to know what animal are active in this moment in DB */
 		String typeAnimal = prepaidQR.getTypeAnimal();
 		
-		/* Verify the object aren't null */
-		switch(typeAnimal) {
-		case "dog":
-			if(prepaidQR.getDog() != null) {
-				model.addAttribute("prepaidQR", prepaidQR);
-				modelName.addAttribute("user", user);
-				PrintName.printUser(modelName);
-				result = "id";
-			}else {
-				model.addAttribute("errorNoUpload", error);
-				PrintName.printUser(modelName);
-				result = "account";
-			}
-			break;
-		case "cat":
-			if(prepaidQR.getCat() != null) {
-				model.addAttribute("prepaidQR", prepaidQR);
-				modelName.addAttribute("user", user);
-				PrintName.printUser(modelName);
-				result = "id";
-			}else {
-				model.addAttribute("errorNoUpload", error);
-				PrintName.printUser(modelName);
-				result = "account";
-			}
-			break;
-		case "horse":
-			if(prepaidQR.getHorse() != null) {
-				model.addAttribute("prepaidQR", prepaidQR);
-				modelName.addAttribute("user", user);
-				PrintName.printUser(modelName);
-				result = "id";
-			}else {
-				model.addAttribute("errorNoUpload", error);
-				PrintName.printUser(modelName);
-				result = "account";
-			}
-			break;
-		case "fish":
-			if(prepaidQR.getFish() != null) {
-				model.addAttribute("prepaidQR", prepaidQR);
-				modelName.addAttribute("user", user);
-				PrintName.printUser(modelName);
-				result = "id";
-			}else {
-				model.addAttribute("errorNoUpload", error);
-				PrintName.printUser(modelName);
-				result = "account";
-			}
-			break;
-		case "rat":
-			if(prepaidQR.getHamsterFishTank() != null) {
-				model.addAttribute("prepaidQR", prepaidQR);
-				modelName.addAttribute("user", user);
-				
-				/* Inner object */
-				Rat rat = prepaidQR.getHamsterFishTank().getRat();
-				
-				if(rat != null) {
-					model.addAttribute("rat",rat);
+		
+		if(user.getSetup().isLockTemplate()) {
+			
+			/* Verify the object aren't null */
+			switch(typeAnimal) {
+			case "dog":
+				if(prepaidQR.getDog() != null) {
+					model.addAttribute("prepaidQR", prepaidQR);
+					modelName.addAttribute("user", user);
+					PrintName.printUser(modelName);
+					result = "id";
+				}else {
+					model.addAttribute("errorNoUpload", error);
+					PrintName.printUser(modelName);
+					result = "account";
 				}
-				
-				PrintName.printUser(modelName);
-				result = "id";
-			}else {
-				model.addAttribute("errorNoUpload", error);
-				PrintName.printUser(modelName);
-				result = "account";
+				break;
+			case "cat":
+				if(prepaidQR.getCat() != null) {
+					model.addAttribute("prepaidQR", prepaidQR);
+					modelName.addAttribute("user", user);
+					PrintName.printUser(modelName);
+					result = "id";
+				}else {
+					model.addAttribute("errorNoUpload", error);
+					PrintName.printUser(modelName);
+					result = "account";
+				}
+				break;
+			case "horse":
+				if(prepaidQR.getHorse() != null) {
+					model.addAttribute("prepaidQR", prepaidQR);
+					modelName.addAttribute("user", user);
+					PrintName.printUser(modelName);
+					result = "id";
+				}else {
+					model.addAttribute("errorNoUpload", error);
+					PrintName.printUser(modelName);
+					result = "account";
+				}
+				break;
+			case "fish":
+				if(prepaidQR.getFish() != null) {
+					model.addAttribute("prepaidQR", prepaidQR);
+					modelName.addAttribute("user", user);
+					PrintName.printUser(modelName);
+					result = "id";
+				}else {
+					model.addAttribute("errorNoUpload", error);
+					PrintName.printUser(modelName);
+					result = "account";
+				}
+				break;
+			case "rat":
+				if(prepaidQR.getHamsterFishTank() != null) {
+					model.addAttribute("prepaidQR", prepaidQR);
+					modelName.addAttribute("user", user);
+					
+					/* Inner object */
+					Rat rat = prepaidQR.getHamsterFishTank().getRat();
+					
+					if(rat != null) {
+						model.addAttribute("rat",rat);
+					}
+					
+					PrintName.printUser(modelName);
+					result = "id";
+				}else {
+					model.addAttribute("errorNoUpload", error);
+					PrintName.printUser(modelName);
+					result = "account";
+				}
+				break;
 			}
-			break;
+		}else {
+			System.out.println("Not allow by the user");
+			model.addAttribute("authorized", "The users locks the templates temporally.");
+			return "id";
 		}
+		
 		return result;
 	}
 	
@@ -562,16 +582,10 @@ public class QrController {
 		case "dog":
 			if(prepaidQR.getDog() != null) {
 				Dog dog = prepaidQR.getDog();
-				if(Boolean.toString(dog.isStatus()).equals("true")) {
-					dog.setStatus(false);
-					prepaidQR.setDog(dog);
-					prepaidQrService.createPrepaidQR(prepaidQR);
+				if(dog.isStatus()) {
 					return result = Boolean.toString(prepaidQR.getDog().isStatus());
 				}
 				else{
-					dog.setStatus(true);
-					prepaidQR.setDog(dog);
-					prepaidQrService.createPrepaidQR(prepaidQR);
 					return result = Boolean.toString(prepaidQR.getDog().isStatus());
 				}
 			}
@@ -581,16 +595,10 @@ public class QrController {
 		case "cat":
 			if(prepaidQR.getCat() != null){
 				Cat cat = prepaidQR.getCat();
-				if(Boolean.toString(cat.isStatus()).equals("true")) {
-					cat.setStatus(false);
-					prepaidQR.setCat(cat);
-					prepaidQrService.createPrepaidQR(prepaidQR);
+				if(cat.isStatus()) {
 					return result = Boolean.toString(prepaidQR.getCat().isStatus());
 				}
 				else{
-					cat.setStatus(true);
-					prepaidQR.setCat(cat);
-					prepaidQrService.createPrepaidQR(prepaidQR);
 					return result = Boolean.toString(prepaidQR.getCat().isStatus());
 				}
 			}else{
@@ -599,82 +607,69 @@ public class QrController {
 		case "horse":
 			Horse horse = prepaidQR.getHorse();
 			if(prepaidQR.getHorse() != null) {
-				if(Boolean.toString(horse.isStatus()).equals("true")) {
-					horse.setStatus(false);
-					prepaidQR.setHorse(horse);
-					prepaidQrService.createPrepaidQR(prepaidQR);
+				if(horse.isStatus()) {
 					return result = Boolean.toString(prepaidQR.getHorse().isStatus());
 				}
 				else{
-					horse.setStatus(true);
-					prepaidQR.setHorse(horse);
-					prepaidQrService.createPrepaidQR(prepaidQR);
 					return result = Boolean.toString(prepaidQR.getHorse().isStatus());
 				}
 			}
 			else {
 				return result = "Unable to reach the response";
 			}
-//		case "rat":
-//			if(prepaidQR.getHamsterFishTank() != null) {
-//				result = "Not available get lost";	
-//			}else {
-//				result = "Not available get lost";	
-//			}
-//			break;
-//		case "fish":
-//			if(prepaidQR.getFish() != null) {
-//				result = "Not available get lost";	
-//			}else {
-//				result = "Not available get lost";	
-//			}
-//			break;
 		}		
 		return result;
 	}
 	
-	@GetMapping("/get-active-status")
-	public @ResponseBody String getActiveStatus(@RequestParam String id) {
-		String result = null;
+	@GetMapping("/change-status")
+	public @ResponseBody String changeStatus(@RequestParam String id, @RequestParam String typeAnimal, @RequestParam boolean status) {
 		PrepaidQR prepaidQR = prepaidQrService.findById(id);
-		String typeAnimal = prepaidQR.getTypeAnimal();
+		String result = null;
 		
 		switch(typeAnimal) {
 		case "dog":
 			if(prepaidQR.getDog() != null) {
-				return result = Boolean.toString(prepaidQR.getDog().isStatus());
+				prepaidQR.getDog().setStatus(status);
+				prepaidQrService.createPrepaidQR(prepaidQR);
+					if(prepaidQR.getDog().isStatus() == true) {
+						result = "Dog was declared in emergency";
+					}else {
+						result = "Dog was has been rescued";
+					}
 			}
 			else {
-				return result = "Unable to reach the response";
+				result = "Dog appears to be null, maybe it's not created";
 			}
+			break;
 		case "cat":
 			if(prepaidQR.getCat() != null){
-					return result = Boolean.toString(prepaidQR.getCat().isStatus());
+				prepaidQR.getCat().setStatus(status);
+				prepaidQrService.createPrepaidQR(prepaidQR);
+					if(prepaidQR.getCat().isStatus() == true) {
+						result = "Cat was declared in emergency";
+					}else {
+						result = "Cat was has been rescued";
+					}
+				
 			}else{
-				return result = "Unable to reach the response";
+				result = "Cat appears to be null, maybe it's not created";
 			}
+			break;
 		case "horse":
 			if(prepaidQR.getHorse() != null) {
-					return result = Boolean.toString(prepaidQR.getHorse().isStatus());
+				prepaidQR.getHorse().setStatus(status);
+				prepaidQrService.createPrepaidQR(prepaidQR);
+					if(prepaidQR.getHorse().isStatus() == true) {
+						result = "Horse was declared in emergency";
+					}else {
+						result = "Horse was has been rescued";
+					}
 			}
 			else {
-				return result = "Unable to reach the response";
-			}
-		case "rat":
-			if(prepaidQR.getHamsterFishTank() != null) {
-				result = "Not available get lost";	
-			}else {
-				result = "Not available get lost";	
+				result = "Horse appears to be null, maybe it's not created";
 			}
 			break;
-		case "fish":
-			if(prepaidQR.getFish() != null) {
-				result = "Not available get lost";	
-			}else {
-				result = "Not available get lost";	
-			}
-			break;
-		}		
+		}
 		return result;
 	}
 	

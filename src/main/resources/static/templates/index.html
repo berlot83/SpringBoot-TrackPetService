@@ -18,9 +18,6 @@
 </head>
 
 <body class="background-colors">
-	<!-- Share info start -->
-		<div th:replace="default :: share"></div>
-	<!-- Share info end -->
 
 	<!-- Template bar -->
 	<nav th:replace="default :: bar"></nav>
@@ -40,10 +37,8 @@
 			type:"purple",
 			title:"<i class='fa fa-paw' style='color:deeppink'></i> Multi Porpuse Animal Tag",
 			content:"<html><body><span style='text-align:justify'>It's a QR code that can handle more than one animal, so you can Store dog, cat, rodents even horses and fishes, the QR code shows one Animal at time, but you can choose the one whoose active now. Power control within your pets.</span></body></html>"
-			
 		});
 	}
-	
 	</script>
 	
 	<div th:if="${#session != null}" style="position:absolute; left:77%; top:13%;" id="logoStarterAnimation">
