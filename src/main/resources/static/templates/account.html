@@ -168,8 +168,8 @@
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="SendRequestVet">
-						  <label class="custom-control-label" for="SendRequestVet">Send encoded request to vets for update Clinic History <span class="text-danger">*</span></label>
+						  <input type="checkbox" class="custom-control-input" id="SendRequestVet" disabled>
+						  <label class="custom-control-label" for="SendRequestVet">Send encoded request to vets for update Clinic History <span class="text-danger">*</span></label>    <span class="badge badge-sm badge-warning">On develop now</span></label>
 						</div>
 											
 						<!-- Default switch -->
@@ -204,39 +204,39 @@
 
 				<div>
 				<!-- FlexBox control panel start -->
-				<ul id="flexBoxHeader" class="controlPanelHeader bg-dark rounded">
-					<li>
-						Index
-					</li>
-						QR code
-					<li>
-						Key Email
-					</li>
+<!-- 				<ul id="flexBoxHeader" class="controlPanelHeader bg-dark rounded"> -->
+<!-- 					<li> -->
+<!-- 						Index -->
+<!-- 					</li> -->
+<!-- 						QR code -->
+<!-- 					<li> -->
+<!-- 						Key Email -->
+<!-- 					</li> -->
 					
-					<li>
-						Actions
-					</li>
+<!-- 					<li> -->
+<!-- 						Actions -->
+<!-- 					</li> -->
 					
-					<li>
-						QR Design
-					</li>
+<!-- 					<li> -->
+<!-- 						QR Design -->
+<!-- 					</li> -->
 					
-					<li>
-						Clinic History
-					</li>
+<!-- 					<li> -->
+<!-- 						Clinic History -->
+<!-- 					</li> -->
 					
-					<li>
-						Alerts
-					</li>
+<!-- 					<li> -->
+<!-- 						Alerts -->
+<!-- 					</li> -->
 					
-					<li>
-						M.P.A.T
-					</li>
+<!-- 					<li> -->
+<!-- 						M.P.A.T -->
+<!-- 					</li> -->
 					
-					<li>
-						Quick select
-					</li>
-				</ul>
+<!-- 					<li> -->
+<!-- 						Quick select -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
 
 				<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
 				<div class="controlPanelDiv">
@@ -245,14 +245,17 @@
 					<li>
 						<a style="color:black;" th:href="@{'/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${#strings.substring(list[iStat?.index].id,19,24)}"></a>
 						<a class="text-secondary" th:onclick="viewId([[${list[iStat?.index].id.toString()}]])">View</a>
+					
 					</li>
 					<li>
 						<a class="text-info" th:onclick="viewEmail([[${list[iStat?.index].selledOnline}]])">View email</a>
 					</li>
 					<li>
-						<a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search fa-2x" data-toggle="tooltip" title="View template"></i></a>
-						<a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt fa-2x" style="color:red"></i>
-						<a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt fa-2x" style="color:DarkViolet"></i></a>
+						<div>
+						<div><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search" data-toggle="tooltip" title="View template"></i> <span style="color:black">View template</span></a></div>
+							<div><a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt" style="color:red"></i> <span style="color:black">Delete Code</span></a></div>
+							<div><a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt" style="color:DarkViolet"></i> <span style="color:black">Transfer code</span></a></div>
+						</div>
 					</li>
 					<li>
 						<form style="margin:2px auto;  padding:0px" action="#" th:action="@{/download}" th:method="POST" th:object="${prepaidQR}">
@@ -262,62 +265,71 @@
 						<button style="margin: 0 auto;" th:onclick="showCode([[${list[iStat?.index].strBase64}]])" class="btn btn-sm  blue-gradient">preview</button>
 					</li>
 					<li>
-						<form style="margin:2px auto;  padding:0px" action="#" th:action="@{/#}" th:method="POST" th:object="${dog}">
+						<div>
 							<input type="hidden" th:value="${list[iStat?.index].dog}" id="dog" name="dog" />
-							<button type="submit" class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Clinic History (On develop now)"><i class="fas fa-heartbeat shadow-icon"></i></button>
-						</form>
+							<button class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Clinic History (On develop now)"><i class="fas fa-heartbeat shadow-icon"></i></button>
+						</div>
+						<div style="text-align:center; color:black">Clinic History</div>
 					</li>
 					<li>
 <!-- 					Alert functions start -->
 						<button th:onclick="alerts([[${list[iStat?.index].id.toString()}]])" class="btn buttonMD btn-success" data-toggle="tooltip" title="Declare animals in emergency or rescued" style="display:flex">
-						<i style="color: white" class="fas fa-exclamation-triangle"></i></button>
-						<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id">
+						<i style="color: white" class="fas fa-exclamation-triangle"></i>
+						</button>
+						<div style="text-align:center; color:black">Alerts</div>
 <!-- 					Alert functions end -->
 					</li>
 					<li th:switch="${list[iStat?.index].typeAnimal}" style="display:flex; justify-content: space-around">
 						
 						<div th:case="dog">
-							<form style="margin:2px auto;  padding:0px" id="modifyDog"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}"  data-toggle="tooltip" title="Edit Dog"><button class="btn buttonMD btn-primary"><img src="../img/dog.png"></button><input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" /><input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" /><input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'dog'}" id="typeAnimal" name="typeAnimal"  /></form>
+							<form style="margin:0px auto;  padding:0px" id="modifyDog"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}"  data-toggle="tooltip" title="Edit Dog"><button class="btn buttonMD btn-primary"><img src="../img/dog.png"></button><input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" /><input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" /><input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'dog'}" id="typeAnimal" name="typeAnimal"  /></form>
+							<div style="text-align:center; color:black">Edit dog</div>
 						</div>
 						
 						<div th:case="cat">
-							<form style="margin:2px auto;  padding:0px" id="modifyCat"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}" >
+							<form style="margin:0px auto;  padding:0px" id="modifyCat"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}" >
 								<button class="btn buttonMD btn-warning"  data-toggle="tooltip" title="Edit Cat"><img src="../img/cat.png"></button>
 								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'cat'}" id="typeAnimal" name="typeAnimal"  />
 							</form>
+							<div style="text-align:center; color:black">Edit cat</div>
 						</div>
 						
 						<div th:case="horse">
-							<form style="margin:2px auto;  padding:0px" id="modifyHorse"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}">
+							<form style="margin:0px auto;  padding:0px" id="modifyHorse"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}">
 								<button class="btn buttonMD btn-success"  data-toggle="tooltip" title="Edit Horse"><img src="../img/horseshoe.png"></button>
 								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'horse'}" id="typeAnimal" name="typeAnimal" />
 							</form>
+						<div style="text-align:center; color:black">Edit horse</div>
 						</div>
 						
 						<div th:case="rat">
-							<form style="margin:2px auto;  padding:0px" id="modifyRat"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}" >
+							<form style="margin:0px auto;  padding:0px" id="modifyRat"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}" >
 								<button class="btn buttonMD btn-info"  data-toggle="tooltip" title="Edit Rodents"><img src="../img/rabbit.png"></button>
 								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'rat'}" id="typeAnimal" name="typeAnimal" />
 							</form>
+						<div style="text-align:center; color:black">Edit rodents</div>
 						</div>
 						
 						<div th:case="fish">
-							<form style="margin:2px auto;  padding:0px" id="modifyFish"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}">
+							<form style="margin:0px auto;  padding:0px" id="modifyFish"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}">
 								<button class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Edit group of fishes"><img src="../img/fish.png"></button>
 								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'fish'}" id="typeAnimal" name="typeAnimal" />
 							</form><span class="mdi mdi-home"></span>
+							<div style="text-align:center; color:black">Edit fishes</div>
 						</div>
+					
 					</li>
 					<li>
 						<button class="btn buttonMD purple-gradient" th:onclick="chooseAnimal([[${list[iStat?.index].id.toString()}]], [[${list[iStat?.index].dog}]], [[${list[iStat?.index].cat}]], [[${list[iStat?.index].horse}]], [[${list[iStat?.index].hamsterFishTank}]], [[${list[iStat?.index].fish}]])"  data-toggle="tooltip" title="Quick Select Animal"><i class="fas fa-paw"></i></button>
+						<div style="text-align:center; color:black">Select animal</div>
 					</li>
 				</ul>
 				</div>
