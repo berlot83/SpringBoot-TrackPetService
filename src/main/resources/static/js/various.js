@@ -54,9 +54,11 @@ function removeBounce(id){
 function changeCursorToimages(){
 	var herokuLogo = document.getElementById("herokuLogo");
 	var logo = document.getElementById("logo");
+	var pLogo = document.getElementById("pLogo");
 	
 	herokuLogo.style.cursor = "pointer";
 	logo.style.cursor = "pointer";
+	pLogo.style.cursor = "pointer";
 }
 
 function redirectTo() {

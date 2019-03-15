@@ -95,7 +95,5 @@ public class MailSenderUtilities {
 			System.err.println(ex.getMessage());
 		}
 	}
-	
-
 
 }

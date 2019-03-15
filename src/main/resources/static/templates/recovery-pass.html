@@ -13,12 +13,12 @@
 				<form action="#" th:action="@{/recovery-pass}" method="POST"
 					th:object="${user}">
 					<div class="form-group">
-						<label for="password">Nueva password</label> <input type="text"
+						<label for="password"><i class="fa fa-lock" style="color:LimeGreen"></i> Nueva password</label> <input type="text"
 							th:id="password" th:name="password" class="form-control">
 					</div>
 
 					<div class="form-group">
-						<label for="repeatPassword">Repetir password</label> <input
+						<label for="repeatPassword"><i class="fa fa-lock" style="color:LimeGreen"></i> Repetir password</label> <input
 							type="text" th:id="copyPasword" th:name="copyPassword"
 							class="form-control">
 					</div>
@@ -26,7 +26,7 @@
 						<input type="hidden" th:field="*{id}">
 					</div>
 					<div>
-						<button class="btn btn-lg btn-warning" type="submit">Enviar</button>
+						<button class="btn btn-lg peach-gradient" type="submit">Enviar</button>
 					</div>
 					<br>
 					<div th:if="${success}" class="alert alert-success" id="success">El

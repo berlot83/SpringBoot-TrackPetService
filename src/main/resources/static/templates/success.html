@@ -9,18 +9,19 @@
     <nav th:replace="default :: bar"></nav>
     <div class="container">
     <br>
-    <div id="wellcomeContent" class="container-fluid" style="padding-bottom:50px;">
-        <h2 th:text="#{success.wellcome}">Bienvenido</h2>
-        <h3> <span th:text="#{success.hello}"></span> <span th:text="${user.name}" style="color:fuchsia;"></span></h3>
-        <p th:text="#{success.disclaimer}">Tengas un Perro o un Gato, u otro animal, acá en nuestra
-            comunidad creemos en los avances beneficiosos para los animales, tanto para su seguridad para poder
-            encontrarlos en el caso que se pierdan, en la gestión de datos de los mismos en las veterinarias con sus
-            datos en la Cloud o en la gestión de turnos para Spa de perros.</p>
-       
-        <br>
-
-        <p th:text="#{success.redirectlink}">Ingresa en el siguiente link para loguearte</p>
-        <button class="btn btn-warning" onclick="window.location.href='login'">Login</button>
+    <div id="wellcomeContent" class="container-fluid" style="padding-bottom:50px; color:black; text-shadow:1px 1px black;" >
+        <h3> <span>Bienvenido</span> <span th:text="${user.name}" style="color:fuchsia;"></span></h3>
+<br>
+        <p>Lets started choosse between this two options.</p>
+        
+        <div style="display:flex">
+	        <div class="halfCol"><p style="color:Gold">1) Buy a QR code and activate it with your account.</p>
+	        	<button class="btn btn-lg purple-gradient" onclick="window.location.href = '/online-checkout'">Buy QR code</button>
+	        </div>
+	       	<div class="halfCol"><p  style="color:LimeGreen">2) Try a QR code for 30 days.</p>
+	       		<button class="btn btn-lg purple-gradient" onclick="window.location.href = '/temporal-qr'">Try QR code</button>
+	       	</div>
+        </div>
     </div>
 </div>
     <footer th:replace="default :: footer"></footer>

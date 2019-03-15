@@ -39,10 +39,14 @@
 			content:"<html><body><span style='text-align:justify'>It's a QR code that can handle more than one animal, so you can Store dog, cat, rodents even horses and fishes, the QR code shows one Animal at time, but you can choose the one whoose active now. Power control within your pets.</span></body></html>"
 		});
 	}
+	
+// 	Arrow.show(10000);
 	</script>
 	
+
+	
 	<div th:if="${#session != null}" style="position:absolute; left:77%; top:13%;" id="logoStarterAnimation">
-	   <img src="../img/iconoPet75.png" style="position:absolute; left:33px; top:0px;" class="animated flipInX delay-2s" id="pLogo">
+	   <img src="../img/iconoPet75.png" style="position:absolute; left:33px; top:0px;" class="animated flipInX delay-2s" id="pLogo" onmouseover="changeCursorToimages()" onclick="window.location.href = '/account'">
 	   <h5 id="titleStarter1" style="position:absolute; left:0px; top:145px; width: 230px" class="animated flipInX delay-3s">Not a simple website,</h5>
 	   <h4 id="titleStarter2" style="position:absolute; left:10px; top:175px; width:240px" class="animated flipInX delay-4s">a great Platform...</h4>
 	   <h4 id="titleStarter3" style="position:absolute; left:0px; top:210px; width:270px;" class="animated flipInX delay-5s">for <span style="color:blue">A</span><span style="color:red">n</span><span style="color:green">i</span><span style="color:DarkViolet">m</span><span style="color:lightblue">a</span><span style="color:orange">l</span> S<i class="fa fa-at" style="color:LimeGreen"></i>fety.</h4></div>
