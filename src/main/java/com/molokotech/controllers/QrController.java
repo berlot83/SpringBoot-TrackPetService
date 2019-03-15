@@ -153,8 +153,11 @@ public class QrController {
 					user.setAuthorities(authorities);
 					user.setEmailToken(TokenCreator.createAleatoryToken());
 					EncryptMD5 emailMD5 = new EncryptMD5();
-					user.setGravatar(emailMD5.encryptToMD5(user.getEmail().toLowerCase()));
-					user.setEmail(user.getEmail().toLowerCase());
+					String email = user.getEmail();
+					String gravatar = emailMD5.encryptToMD5(email); 
+					System.out.println(gravatar);
+					user.setGravatar(gravatar);
+					user.setEmail(user.getEmail().trim().toLowerCase());
 					
 					
 					Setup setup = new Setup();
