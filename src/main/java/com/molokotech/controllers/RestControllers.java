@@ -729,14 +729,6 @@ public class RestControllers {
 		return resultList;
 	}
 	
-	@GetMapping("/getUser")
-	public @ResponseBody User getNotificationsUser() throws Exception{
-		/* Retrive the entire list of PrepaidQR for a User */
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUser(auth.getName());
-		return user;
-	}
-	
 	@GetMapping("/set-avatar-user")
 	public @ResponseBody String setAvatarUser(@RequestParam String emailMD5) throws Exception{
 		/* Retrive the entire list of PrepaidQR for a User */

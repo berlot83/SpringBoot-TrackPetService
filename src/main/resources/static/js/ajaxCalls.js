@@ -58,9 +58,34 @@ function updateQrDog() {
 			
 			data = xhr.responseText;
 			var jsonResponse = JSON.parse(data);
-			$.alert({type: 'green', 
+			$.confirm({type: 'green', 
 					title: 'Compruebe el funcionamiento',
-					content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Lea este código QR para verificar que los datos se subieron correctamente, si los mismo no se subieron intente lo de nuevo, caso contrario comuníquese con el código ID a info@molokotech.com que gestionamos por usted la carga de datos.</p></div></content></body>"});
+					content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Please test it with your phone</p></div></content></body>",
+					buttons:{
+						confirm:{
+							text: "Account",
+							btnClass:"btn-blue",
+							 action: function(){
+								window.location.href = "/account";
+							}
+							
+						},
+						view:{
+							text: "View",
+							btnClass: "btn-green",
+							action: function(){
+								window.location.href = "/id/"+idPrepaidQrCode;
+							}	
+							
+							
+						}
+						,
+						cancel: function(){
+							
+						}
+					}
+			});
+		
 		}
 		if(xhr.status == 500){
 			$.alert({
@@ -120,9 +145,33 @@ function updateQrCat() {
 			
 			data = xhr.responseText;
 			var jsonResponse = JSON.parse(data);
-			$.alert({type: 'green', 
-					title: 'Compruebe el funcionamiento',
-					content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Lea este código QR para verificar que los datos se subieron correctamente, si los mismo no se subieron intente lo de nuevo, caso contrario comuníquese con el código ID a info@molokotech.com que gestionamos por usted la carga de datos.</p></div></content></body>"});
+			
+			$.confirm({type: 'green', 
+				title: 'Compruebe el funcionamiento',
+				content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Please test it with your phone</p></div></content></body>",
+				buttons:{
+					confirm:{
+						text: "Account",
+						btnClass:"btn-blue",
+						 action: function(){
+							window.location.href = "/account";
+						}
+						
+					},
+					view:{
+						text: "View",
+						btnClass: "btn-green",
+						action: function(){
+							window.location.href = "/id/"+idPrepaidQrCode;
+						}	
+					}
+					,
+					cancel: function(){
+						
+					}
+				}
+		});
+			
 		}
 		if(xhr.status == 500){
 			$.alert({
@@ -432,9 +481,33 @@ function callFishes(){
 			
 			data = xhr.responseText;
 			var jsonResponse = JSON.parse(data);
-			$.alert({type: 'green', 
-					title: 'Compruebe el funcionamiento',
-					content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Lea este código QR para verificar que los datos se subieron correctamente, si los mismo no se subieron intente lo de nuevo, caso contrario comuníquese con el código ID a info@molokotech.com que gestionamos por usted la carga de datos.</p></div></content></body>"});
+			$.confirm({type: 'green', 
+				title: 'Compruebe el funcionamiento',
+				content: "<body><content> <div><p style='color:deeppink'>"+ idPrepaidQrCode +"</p></div><div><img src='data:image/png;base64, "+jsonResponse["strBase64"]+"'></img></div><div><p>Please test it with your phone</p></div></content></body>",
+				buttons:{
+					confirm:{
+						text: "Account",
+						btnClass:"btn-blue",
+						 action: function(){
+							window.location.href = "/account";
+						}
+						
+					},
+					view:{
+						text: "View",
+						btnClass: "btn-green",
+						action: function(){
+							window.location.href = "/id/"+idPrepaidQrCode;
+						}	
+						
+						
+					}
+					,
+					cancel: function(){
+						
+					}
+				}
+		});
 		}
 	}
 	xhr.open("POST", url, true);

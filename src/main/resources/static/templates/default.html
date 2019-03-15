@@ -176,26 +176,26 @@
 		<!-- Print Username -->
 		<div style="position:relative;top:0;left:0;">
 			<button class="nav-link btn btn-md blue-gradient"><a th:if="${currentUser}" href="/account" id="currentUserButton" style="position:relative;top:0;left:0; text-shadow: 1px 1px black;" th:text="${fullName}" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"></a></button>
-			<span th:if="${currentUser != 'Invitado'}" class="badge badge-sm badge-danger" style="position:absolute; top:-7; left:-20;"><i class="fas fa-cogs"></i> Admin Animals</span>
+			<span th:if="${currentUser != 'Guess'}" class="badge badge-sm badge-danger" style="position:absolute; top:-7; left:-20;"><i class="fas fa-cogs"></i> Admin Animals</span>
 		</div>
 		
 		<a onmouseout="removeBounce(this)" onmouseover="addBounce(this)"
 			
-			th:if="${currentUser == 'Invitado'}" class="nav-link"
+			th:if="${currentUser == 'Guess'}" class="nav-link"
 			th:href="@{/login}" id="loginButton"><i class="fas fa-user"
 			style="color: white;"></i> Log in</a>
 
 		<form style="margin-bottom: 6px; padding: 0px" class="nav-link" action="/logout"
 			method="POST">
 			<button style="text-shadow: 1px 2px black;" type="submit"
-				th:if="${currentUser != 'Invitado'}" class="nav-link btn btn-md btn-danger"
+				th:if="${currentUser != 'Guess'}" class="nav-link btn btn-md btn-danger"
 				id="logoutButton">
 				<i class="fas fa-sign-out-alt"></i> <span th:text="#{default.logout}"></span>
 			</button>
 		</form>
 
 		<!-- Print Register -->
-		<a th:if="${currentUser == 'Invitado'}" class="nav-link"
+		<a th:if="${currentUser == 'Guess'}" class="nav-link"
 			href="/sign-up" id="registerButton" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><i class="fas fa-sign-in-alt"></i>
 			<span th:text="#{default.register}"></span></a>
 

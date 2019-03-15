@@ -37,7 +37,7 @@
 	</script>
 </head>
 
-<body onload="getAllPrepaidQR(), getUserForNotifications(), retriveSetup()">
+<body onload="getAllPrepaidQR(), retriveSetup()">
 	<nav th:replace="default :: bar"></nav>
 
 <script>
@@ -103,7 +103,12 @@
 					<h5 style="color:turquoise">Notifications:</h5>
 						<div>
 							<ul id="resultNotifications" style="text-align: justify;">
-							
+							<li th:if="${user?.owner == null}">You have not updated any contact data yet <a href="/user" style="color:Gold">Edit here</a>.</li>
+							<li th:if="${user?.setup?.sendCoordinates != true}">You have <span class="text-danger">disabled</span> the coordinates to your email, Check <span style="color:turquoise">Setup</span>.</li>
+							<li th:if="${user?.owner?.telephone1 == ''}"><strong style='color:Gold'>Telephone1</strong> You have not set this contact data yet, it's important to contact you if the pet were founded <a href="/user" style="color:Gold">Edit here</a>.</li>
+							<li th:if="${user?.owner?.telephone2 == ''}"><strong style='color:Gold'>Telephone2</strong> You have not set this contact data yet, it's important to contact you if the pet were founded <a href="/user" style="color:Gold">Edit here</a>.</li>
+							<li th:if="${user?.owner?.email == ''}"><strong style='color:Gold'>Email</strong> You have not set this contact data yet, it's important to contact you if the pet were founded <a href="/user" style="color:Gold">Edit here</a>.</li>
+							<li th:if="${user?.owner?.address == ''}"><strong style='color:Gold'>Address</strong> You have not set this contact data yet, if you don't want specified an exact location just select a public place. <a href="/user" style="color:Gold">Edit here</a></li>
 							</ul>
 						</div>
 					</div>
@@ -111,7 +116,7 @@
 					<br>
 
 					<div id="config" style="display:flex; flex-direction:column;">
-					<h5 style="color:turquoise">Setup:</h5>
+					<h5 style="color:turquoise">Setup options:</h5>
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="templates" onchange="lockTemplates()">
@@ -179,7 +184,7 @@
 						</div>
 						
 						<small class="text-danger">* Applies only for animal that could be lost or get vet atemption.</small>
-						<small class="text-danger"> Option saves only if you have almost a QR code available</small>
+						<small class="text-danger"> Setup saves "Automatically", but only if you have at least a QR code available</small>
 	<script>
 	function warningCoordinatesAlert(){
 		$.alert({
@@ -189,7 +194,24 @@
 		});
 	}
 	</script>
-	
+					<button class="btn btn-md peach-gradient" onclick="tutorial()">Tutorial</button>
+					<script>
+					function tutorial(){
+						$.alert({
+							title:"Tutorial how it works",
+							content:"<a href='/online-checkout' class='text-primary'>Buy a QR code</a>, or <a href='/temporal-qr' class='text-success'>try one 30 days</a>."+
+							"<p>next => <span class='badge badge-sm badge-danger'>Admin Animals</span></p>"+
+							"<p>next => <button class='btn btn-sm purple-gradient'>Select Animal</button> => select the one</p>"+
+							"<p>next => tap edit Animal => edit <span class='text-success'>this animal</span></p>"+
+							"<p>next => Go to the green loop to view the template rendered.</p>"
+						});
+					} 
+					</script>
+					</div>
+					
+					<div>
+
+					
 					</div>
 					
 					</div>
@@ -374,6 +396,7 @@ function getAllPrepaidQR(){
 			var data = xhr.responseText;
 			
 			var result = JSON.parse(data);
+			
 			for(var i = 0; i < result.length; i++){
 
 				var dog = result[i].dog;
@@ -388,43 +411,6 @@ function getAllPrepaidQR(){
 					resultNotifications.appendChild(li);
 					console.log("you have a QR code without without any animals");
 				}
-			}
-		}
-	}
-}
-
-function getUserForNotifications(){
-	var xhr = new XMLHttpRequest();
-	var url = "/getUser";
-	var resultNotifications = document.getElementById("resultNotifications");
-	
-	xhr.open("GET", url, true);
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send();
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var data = xhr.responseText;
-			var resp = JSON.parse(data);
-			
-			if(resp.owner.telephone1 == "" || resp.owner.telephone1 == undefined){
-				var li = document.createElement("li");
-				li.innerHTML = "<strong style='color:Gold'>Telephone1</strong> You have not set this contact data yet, it's important to contact you if the pet were founded."
-				resultNotifications.appendChild(li);				
-			}
-			if(resp.owner.telephone2 == "" || resp.owner.telephone2 == undefined){
-				var li = document.createElement("li");
-				li.innerHTML = "<strong style='color:Gold'>Telephone2</strong> You have not set this contact data yet, it's important to contact you if the pet were founded."
-				resultNotifications.appendChild(li);				
-			}
-			if(resp.owner.email == "" || resp.owner.email == undefined){
-				var li = document.createElement("li");
-				li.innerHTML = "<strong style='color:Gold'>email</strong> You have not set this contact data yet, it's important to contact you if the pet were founded."
-				resultNotifications.appendChild(li);				
-			}
-			if(resp.owner.address == "" || resp.owner.address == undefined){
-				var li = document.createElement("li");
-				li.innerHTML = "<strong style='color:Gold'>email</strong> You have not set this contact data yet, if you don't want specified an exact location just select a public place."
-				resultNotifications.appendChild(li);				
 			}
 		}
 	}
