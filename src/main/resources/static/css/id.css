@@ -25,34 +25,6 @@
 	font-weight:bold;
 }
 
-/* .parallax-window { */
-/*     min-height: 300px; */
-/*     background: transparent; */
-/* } */
-
-/* .transparencyWithoutPadding { */
-/* 	background: rgba(1, 1, 1, 0.5) !important; */
-/* 	border-radius: 10px !important; */
-/* } */
-
-/* .bicolor-mediumpurple-dark{ */
-/* 			  background-color: #272727; */
-/*   background-image: -webkit-linear-gradient( 30deg, MediumPurple 0%, MediumPurple 60%, #303030 60%, #303030 60%); */
-/*   background-image: linear-gradient( 30deg, MediumPurple 0%, MediumPurple 60%, #303030 60%, #303030 60%); */
-/* } */
-
-/* .bicolor-graydark-graylight{ */
-/* 	  background-color: #272727; */
-/*   background-image: -webkit-linear-gradient( -50deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
-/*   background-image: linear-gradient( -50deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
-/* } */
-
-/* .bicolor-graydark-graylight-left{ */
-/* 		  background-color: #272727; */
-/*   background-image: -webkit-linear-gradient( 30deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
-/*   background-image: linear-gradient( 30deg, #272727 0%, #272727 60%, #303030 60%, #303030 60%); */
-/* } */
-
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 	body {

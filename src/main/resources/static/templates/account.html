@@ -35,6 +35,21 @@
 		  $('[data-toggle="tooltip"]').tooltip(); 
 		});
 	</script>
+<style>
+.columnBackground{
+	 /* Most sober colors */
+	 background-image: -webkit-linear-gradient(-45deg, GhostWhite 0%, GhostWhite 50%,
+	 		WhiteSmoke 50%, WhiteSmoke 50%);
+	 	background-image: linear-gradient(-45deg, lightgray 0%, lightgray 50%, WhiteSmoke 50%,
+	 		WhiteSmoke 50%);
+	
+	/* 	Too much colors on this code */
+	/* 	background: -moz-linear-gradient(-45deg, #F6D6A8 20%, #F5BA55 20%, #F5BA55 40%, #F09741 40%, #F09741 60%, #327AB2 60%, #327AB2 80%, #3A94F6 80%); */
+	/*  background: -webkit-linear-gradient(-45deg, #F6D6A8 20%, #F5BA55 20%, #F5BA55 40%, #F09741 40%, #F09741 60%, #327AB2 60%, #327AB2 80%, #3A94F6 80%); */
+	/*  background: linear-gradient(-45deg, #F6D6A8 20%, #F5BA55 20%, #F5BA55 40%, #F09741 40%, #F09741 60%, #F5BA55 60%, #F5BA55 80%, #F6D6A8 80%); */
+}
+</style>
+
 </head>
 
 <body onload="getAllPrepaidQR(), retriveSetup()">
@@ -229,8 +244,8 @@
 				<!-- FlexBox control panel start -->
 				<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
 				<div class="controlPanelDiv">
-				<ul class="flexAllStretch rounded item bg-light text-success" id="controlPanel" style="width:100%; text-shadow:none;  font-weight:bold">
-					<li th:text="${iStat?.count}" ></li>
+				<ul class="flexAllStretch rounded item bg-light zoom text-success columnBackground" id="controlPanel" style="width:100%; text-shadow:none;  font-weight:bold">
+					<li th:text="${iStat?.count}"></li>
 					<li>
 						<a style="color:black;" th:href="@{'/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${#strings.substring(list[iStat?.index].id,19,24)}"></a>
 						<a class="text-secondary" th:onclick="viewId([[${list[iStat?.index].id.toString()}]])">View</a>

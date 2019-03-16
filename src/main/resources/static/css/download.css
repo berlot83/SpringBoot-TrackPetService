@@ -14,3 +14,31 @@ html, body{
 	width:80%;
 	height:auto;
 }
+
+/*  Small devices (landscape phones, 576px and up) */
+@media ( max-width : 576px) {
+	body {
+		font-size: x-small !important;
+	}
+	
+	#accountFirstPanel{
+	display:flex;
+	flex-direction: column;
+	}
+	
+	#footer{
+	position:fixed;
+	bottom:0;
+	}
+}
+
+/*  Medium devices (tablets, 768px and up) */
+@media ( max-width : 768px) {
+	body {
+		font-size: small !important;
+	}
+		#footer{
+	position:fixed;
+	bottom:0;
+	}
+}

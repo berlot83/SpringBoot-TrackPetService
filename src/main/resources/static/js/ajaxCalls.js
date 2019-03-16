@@ -755,10 +755,9 @@ function chooseAnimal(id, dog, cat, horse, hamsterFishTank, fish){
 		/* Start table function - inside getFunction Ajax, be carefull */
 		$.confirm({
 			type:"purple",
-			theme:"bootstrap",
 			columnClass:"col-md-4",
 			title:"Animal Selector.",
-			content:"<html xmlns:th='http://www.thymeleaf.org'><head><div th:include='default :: header'></div></head><body><div><form id='chooseanimal' action='/select-animal' method='POST' onsubmit='return window.location.reload()'>" +
+			content:"<html xmlns:th='http://www.thymeleaf.org'><head><div th:include='default :: header'><link rel='stylesheet' type='text/css' href='../css/galery.css' /></div></head><body><div><form id='chooseanimal' action='/select-animal' method='POST' onsubmit='return window.location.reload()'>" +
 			"<input type='hidden' value='"+ id +"' id='id' name='id' />" +
 			"<table class='bordered rounded table-responsive table'><thead><tr class='table-info'><td>Animal</td><td>Icon</td><td>Created</td></tr><thead>" +
 			"<tr><td><label><input type='radio' name='typeAnimal' id='typeAnimal' value='dog' checked> Dog</label></td> <td><img src='../img/dog.png'></td><td>"+ dog +"</td></tr>" +

@@ -91,7 +91,7 @@ public class RestControllers {
 					prepaidqr.setActivationToken(TokenCreator.createAleatoryToken());
 					
 					try {
-						imageData = QRCodeGenerator.generateQRCodeImageToByte("https://pet-cloud-service.herokuapp.com/id/" + prepaidqr.getId(), 300, 300);
+						imageData = QRCodeGenerator.generateQRCodeImageToByte("https://pet-qr.com/id/" + prepaidqr.getId(), 300, 300);
 					} catch (WriterException | IOException e) {
 						e.printStackTrace();
 					}
