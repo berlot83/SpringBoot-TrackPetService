@@ -679,8 +679,8 @@ public class QrController {
 	}
 	
 	@RequestMapping(value = "/send-contact-form", method = RequestMethod.GET)
-	public String sendContactFormMail(@ModelAttribute FormMessage formMessage) {
-		
+	public String sendContactFormMail(@ModelAttribute FormMessage formMessage, Model model) {
+		PrintName.printUser(model);
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setSubject(formMessage.getSubject());

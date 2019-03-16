@@ -90,6 +90,7 @@
 					
 					<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
 					<br>
+					
 					<div class="form-group">
 						<label><i style="color: turquoise" class="fas fa-config"></i>
 						<div  th:if="${list[iStat.index]?.expiration} != null"><strong>Expiration day: </strong><span class="text-danger" th:text="${list[iStat.index]?.expiration}"></span></div>
@@ -174,13 +175,13 @@
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="SendRequestVet" disabled>
-						  <label class="custom-control-label" for="SendRequestVet">Send encoded request to vets for update Clinic History <span class="text-danger">*</span></label>    <span class="badge badge-sm badge-warning">On develop now</span></label>
+						  <label class="custom-control-label" for="SendRequestVet">Send encoded request to vets for update Clinic History <span class="text-danger">*</span></label>  <span class="badge badge-sm badge-warning">On progress now</span></label>
 						</div>
 											
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="prices" disabled>
-						  <label class="custom-control-label" for="prices">Allow prices for rodents and fishes  <span class="badge badge-sm badge-warning">On develop now</span></label>
+						  <label class="custom-control-label" for="prices">Allow prices for rodents and fishes  <span class="badge badge-sm badge-warning">On progress now</span></label>
 						</div>
 						
 						<small class="text-danger">* Applies only for animal that could be lost or get vet atemption.</small>
@@ -267,7 +268,6 @@
 					<li>
 						<a style="color:black;" th:href="@{'/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${#strings.substring(list[iStat?.index].id,19,24)}"></a>
 						<a class="text-secondary" th:onclick="viewId([[${list[iStat?.index].id.toString()}]])">View</a>
-					
 					</li>
 					<li>
 						<a class="text-info" th:onclick="viewEmail([[${list[iStat?.index].selledOnline}]])">View email</a>

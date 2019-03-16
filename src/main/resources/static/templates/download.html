@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/gallery.css" />
 	<script type="text/javascript" src="../js/gallery.js"></script>
 	<script type="text/javascript" src="../js/downloadDesign.js"></script>
-
+	<script type="text/javascript" src="../js/arrow.js"></script>
 <style>
 	.thirdteenCol{
 		flex-grow: 0;
@@ -16,7 +16,7 @@
 	}
 	
 	.box{
-	width:140px; height:140px;
+	width:200px; height:200px;
 	border-radius: 7px;
 	box-shadow: 0px 0px 15px black;
 	}
@@ -46,33 +46,66 @@
 							<h5 class="card-header blue-gradient white-text">Download Dog Tag</h5>
 					 <div style="padding:30px">
 					    <div style="display:flex; justify-content: space-around;">
-						    <div id="qrcode" class="halfCol">
-						    <label>QR code</label><br>
+						    <div id="qrcode" class="thirdteenCol">
+						    <h5>QR code</h5>
+						    <br>
 						    	<img alt="QR code Dog" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
 						    </div>
-						    <div id="base64Backside" class="halfCol">
-						    	<label>Backside of the Tag</label><br>
+						    <div id="base64Backside" class="thirdteenCol">
+						    	<h5>Backside of the Tag</h5>
+						    	<br>
 						    	<img alt="Backside Tag Dog" th:src="${owner?.base64Backside}" class="box">
 						    </div>
+						    <div class="thirdteenCol">
+							<h5>Select inputs</h5>
+							<br>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${dog?.petName}" class="custom-control-input" style="display:block" id="petName" checked/>
+								<label class="custom-control-label" for="petName">Pet Name</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${dog?.raze}" class="custom-control-input" style="display:block" id="raze" />
+								<label class="custom-control-label" for="raze">Raze</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${dog?.illness}" class="custom-control-input" style="display:block" id="illness" />
+								<label class="custom-control-label" for="illness">Illness</label>
+							</div>
+							<div class="custom-control custom-switch" th:if="${dog?.medicated == false}">
+								<input type="checkbox" th:if="${dog?.medicated == false}" class="custom-control-input" th:value="No" style="display:block" id="medicated" />
+								<label class="custom-control-label" for="medicated">Medicated</label>
+							</div>
+							<div class="custom-control custom-switch" th:unless="${dog?.medicated == false}">
+								<input type="checkbox" th:unless="${dog?.medicated == false}" class="custom-control-input" th:value="Yes" style="display:block" id="medicated" />
+								<label class="custom-control-label" for="medicated">Medicated</label>
+							</div>
+							<div class="custom-control custom-switch" th:if="${dog?.neuteredPet == false}">
+								<input type="checkbox" th:if="${dog?.neuteredPet == false}" class="custom-control-input" th:value="No" style="display:block" id="neuteredPet" />
+								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+							</div>
+							<div class="custom-control custom-switch" th:unless="${dog?.neuteredPet == false}">
+								<input type="checkbox" th:unless="${dog?.neuteredPet == false}" class="custom-control-input" th:value="Yes" style="display:block" id="neuteredPet" />
+								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.telephone1}" class="custom-control-input" style="display:block" id="telephone1" checked/>
+								<label class="custom-control-label" for="telephone1">Phone 1</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.telephone2}" class="custom-control-input" style="display:block" id="telephone2" />
+								<label class="custom-control-label" for="telephone2">Phone 2</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.email}" class="custom-control-input" style="display:block" id="email" />
+								<label class="custom-control-label" for="email">Email</label>
+							</div>
 					    </div>
+					   </div>
 				<br>
 				<br>
-
 					<h6>Select logo model:</h6>
 					<hr>
 				        <!-- print object is not active -->
-						<input type="hidden" th:value="${prepaidQR.dog.resultBase64Avatar}" id="resultBase64Avatar" style="display:block" />
-						<input type="hidden" th:value="${dog?.petName}" style="display:block" id="petName" />
-						<input type="hidden" th:value="${dog?.raze}" style="display:block" id="raze" />
-						<input type="hidden" th:value="${dog?.illness}" style="display:block" id="illness" />
-						<input type="hidden" th:if="${dog?.medicated == false}" th:value="No" style="display:block" id="medicated" />
-						<input type="hidden" th:unless="${dog?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
-						<input type="hidden" th:if="${dog?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
-						<input type="hidden" th:unless="${dog?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
-						<input type="hidden" th:value="${owner?.telephone1}" style="display:block" id="telephone1" />
-						<input type="hidden" th:value="${owner?.telephone2}" style="display:block" id="telephone2" />
-						<input type="hidden" th:value="${owner?.email}" style="display:block" id="email" />
-				    
 				    	<div th:replace="logos :: logosDogFragment"></div>
 				    </div>
 				  </div>
@@ -84,74 +117,133 @@
 				<div style="padding:30px">
 					<div style="display:flex; justify-content: space-around">
 						<div id="qrcode" class="thirdteenCol">
-					    <label>QR code</label><br>
+					    <h5>QR code</h5>
+					    <br>
 					    	<img alt="QR code Cat" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
 					    </div>
-					    <div id="avatar" class="thirdteenCol">
-					    <label>Photo</label><br>
-					    	<img alt="Avatar Cat" th:src="${prepaidQR?.cat?.resultBase64Avatar}" class="box">
-					    </div>
 					    <div id="base64Backside" class="thirdteenCol">
-					    	<label>Backside of the Tag</label><br>
+					    	<h5>Backside of the Tag</h5>
+					    	<br>
 					    	<img alt="Backside Tag Cat" th:src="${owner?.base64Backside}" class="box">
+					    </div>
+						<div class="thirdteenCol">
+							<h5>Select inputs</h5>
+							<br>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${cat?.petName}" class="custom-control-input" style="display:block" id="petName" checked/>
+								<label class="custom-control-label" for="petName">Pet Name</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${cat?.raze}" class="custom-control-input" style="display:block" id="raze" />
+								<label class="custom-control-label" for="raze">Raze</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${cat?.illness}" class="custom-control-input" style="display:block" id="illness" />
+								<label class="custom-control-label" for="illness">Illness</label>
+							</div>
+							<div class="custom-control custom-switch" th:if="${cat?.medicated == false}">
+								<input type="checkbox" th:if="${cat?.medicated == false}" class="custom-control-input" th:value="No" style="display:block" id="medicated" />
+								<label class="custom-control-label" for="medicated">Medicated</label>
+							</div>
+							<div class="custom-control custom-switch" th:unless="${cat?.medicated == false}">
+								<input type="checkbox" th:unless="${cat?.medicated == false}" class="custom-control-input" th:value="Yes" style="display:block" id="medicated" />
+								<label class="custom-control-label" for="medicated">Medicated</label>
+							</div>
+							<div class="custom-control custom-switch" th:if="${cat?.neuteredPet == false}">
+								<input type="checkbox" th:if="${cat?.neuteredPet == false}" class="custom-control-input" th:value="No" style="display:block" id="neuteredPet" />
+								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+							</div>
+							<div class="custom-control custom-switch" th:unless="${cat?.neuteredPet == false}">
+								<input type="checkbox" th:unless="${cat?.neuteredPet == false}" class="custom-control-input" th:value="Yes" style="display:block" id="neuteredPet" />
+								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.telephone1}" class="custom-control-input" style="display:block" id="telephone1" checked/>
+								<label class="custom-control-label" for="telephone1">Phone 1</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.telephone2}" class="custom-control-input" style="display:block" id="telephone2" />
+								<label class="custom-control-label" for="telephone2">Phone 2</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.email}" class="custom-control-input" style="display:block" id="email" />
+								<label class="custom-control-label" for="email">Email</label>
+							</div>
 					    </div>
 				    </div>
 				<br>
 				<br>
 					<h6>Select logo model:</h6>
 					<hr>
-						<input type="hidden" th:value="${prepaidQR.cat.resultBase64Avatar}" id="resultBase64Avatar" />
-						<input type="hidden" th:value="${cat?.petName}" id="petName" />
-						<input type="hidden" th:value="${cat?.raze}" id="raze" />
-						<input type="hidden" th:value="${cat?.illness}" id="illness" />
-						<input type="hidden" th:if="${cat?.medicated == false}" th:value="No" id="medicated" />
-						<input type="hidden" th:unless="${cat?.medicated == false}" th:value="Yes" id="medicated" />
-						<input type="hidden" th:if="${cat?.neuteredPet == false}" th:value="No" id="neuteredPet" />
-						<input type="hidden" th:unless="${cat?.neuteredPet == false}" th:value="Yes" id="neuteredPet" />
-						<input type="hidden" th:value="${owner?.telephone1}" id="telephone1" />
-						<input type="hidden" th:value="${owner?.telephone2}" id="telephone2" />
-						<input type="hidden" th:value="${owner?.email}" id="email" />
 			    	<div th:replace="logos :: logosDogFragment"></div>
 			    	</div>
 			    </div>
 				<!-- Cat case end -->
 				
-				<!-- Cat case start -->
+				<!-- horse case start -->
 				    <div th:case="'horse'">
 				    	<h5  class="card-header blue-gradient white-text">Download Horse Tag</h5>
 				<div style="padding:30px">
 					<div style="display:flex; justify-content: space-around">
 						<div id="qrcode" class="thirdteenCol">
-					    <label>QR code</label><br>
+					    <h5>QR code</h5>
+					    	<br>
 					    	<img alt="QR code Horse" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
 					    </div>
-					    <div id="avatar" class="thirdteenCol">
-					    <label>Photo</label><br>
-					    	<img alt="Avatar Horse" th:src="${prepaidQR?.horse?.resultBase64Avatar}" class="box">
-					    </div>
 					    <div id="base64Backside" class="thirdteenCol">
-					    	<label>Backside of the Tag</label><br>
+					    	<h5>Backside of the Tag</h5>
+					    	<br>
 					    	<img alt="Backside Tag Horse" th:src="${owner?.base64Backside}" class="box">
+					    </div>
+					    <div class="thirdteenCol">
+							<h5>Select inputs</h5>
+							<br>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${horse?.petName}" class="custom-control-input" style="display:block" id="petName" checked/>
+								<label class="custom-control-label" for="petName">Pet Name</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${horse?.raze}" class="custom-control-input" style="display:block" id="raze" />
+								<label class="custom-control-label" for="raze">Raze</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${horse?.illness}" class="custom-control-input" style="display:block" id="illness" />
+								<label class="custom-control-label" for="illness">Illness</label>
+							</div>
+							<div class="custom-control custom-switch" th:if="${horse?.medicated == false}">
+								<input type="checkbox" th:if="${horse?.medicated == false}" class="custom-control-input" th:value="No" style="display:block" id="medicated" />
+								<label class="custom-control-label" for="medicated">Medicated</label>
+							</div>
+							<div class="custom-control custom-switch" th:unless="${horse?.medicated == false}">
+								<input type="checkbox" th:unless="${horse?.medicated == false}" class="custom-control-input" th:value="Yes" style="display:block" id="medicated" />
+								<label class="custom-control-label" for="medicated">Medicated</label>
+							</div>
+							<div class="custom-control custom-switch" th:if="${horse?.neuteredPet == false}">
+								<input type="checkbox" th:if="${horse?.neuteredPet == false}" class="custom-control-input" th:value="No" style="display:block" id="neuteredPet" />
+								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+							</div>
+							<div class="custom-control custom-switch" th:unless="${horse?.neuteredPet == false}">
+								<input type="checkbox" th:unless="${horse?.neuteredPet == false}" class="custom-control-input" th:value="Yes" style="display:block" id="neuteredPet" />
+								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.telephone1}" class="custom-control-input" style="display:block" id="telephone1" checked/>
+								<label class="custom-control-label" for="telephone1">Phone 1</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.telephone2}" class="custom-control-input" style="display:block" id="telephone2" />
+								<label class="custom-control-label" for="telephone2">Phone 2</label>
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" th:value="${owner?.email}" class="custom-control-input" style="display:block" id="email" />
+								<label class="custom-control-label" for="email">Email</label>
+							</div>
 					    </div>
 				  </div>
 				<br>
 				<br>
 					<h6>Select logo model:</h6>
 					<hr>
-					
-					<small>For equins is available ony one model, without photo and map.</small>
-						<input type="hidden" th:value="${prepaidQR.horse.resultBase64Avatar}" style="display:block" id="resultBase64Avatar" />
-						<input type="hidden" th:value="${horse?.petName}" style="display:block" id="petName" />
-						<input type="hidden" th:value="${horse?.breed}" style="display:block" id="breed" />
-						<input type="hidden" th:value="${horse?.illness}" style="display:block" id="illness" />
-						<input type="hidden" th:if="${horse?.medicated == false}" th:value="No" style="display:block" id="medicated" />
-						<input type="hidden" th:unless="${horse?.medicated == false}" th:value="Yes" style="display:block" id="medicated" />
-						<input type="hidden" th:if="${horse?.neuteredPet == false}" th:value="No" style="display:block" id="neuteredPet" />
-						<input type="hidden" th:unless="${horse?.neuteredPet == false}" th:value="Yes" style="display:block" id="neuteredPet" />
-						<input type="hidden" th:value="${owner?.telephone1}" style="display:block" id="telephone1" />
-						<input type="hidden" th:value="${owner?.telephone2}" style="display:block" id="telephone2" />
-						<input type="hidden" th:value="${owner?.email}" style="display:block" id="email" />
-				    
 				    <div th:replace="logos :: logosDogFragment"></div>
 					 </div>				    
 				    </div>
@@ -185,12 +277,7 @@
 				    </div>
 				</th:block>
 				<!-- test -->
-				<div style="padding:30px">
-				<p><strong style="color:deeppink">If download did'nt start just verify:</strong></p>
-				<p>1) You have uploaded a photo of your animal here: <a href='/account' style="color:Gold">M.P.A.T edit data</a></p>
-				<p>2) You have uploaded backside tag, if you don't wanna put your place just select anywere: <a href='/user' style="color:Gold">Backside tag</a></p>
-				</div>
-			<br><br><br><br><br>
+			<br><br>
 			</div>
 		</div>
 	</div>

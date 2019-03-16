@@ -14,13 +14,13 @@
 					th:object="${user}">
 					<div class="form-group">
 						<label for="password"><i class="fa fa-lock" style="color:LimeGreen"></i> Nueva password</label> <input type="text"
-							th:id="password" th:name="password" class="form-control">
+							th:id="password" th:name="password" class="form-control text-success">
 					</div>
 
 					<div class="form-group">
 						<label for="repeatPassword"><i class="fa fa-lock" style="color:LimeGreen"></i> Repetir password</label> <input
 							type="text" th:id="copyPasword" th:name="copyPassword"
-							class="form-control">
+							class="form-control text-success">
 					</div>
 					<div class="form-group">
 						<input type="hidden" th:field="*{id}">

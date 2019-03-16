@@ -5,15 +5,6 @@ function imageDesignGeneric(logo){
 	var id = document.getElementById("id").value;
 	var strBase64 = document.getElementById("strBase64").value;
 	
-//	if(document.getElementById("resultBase64Avatar").value == null || document.getElementById("resultBase64Avatar").value == ""){
-//		$.alert({
-//			type: "red",
-//			title:"Atention",
-//			content:"You don't upload an avatar for this animal, just go to <a style='color:red' href='/account'>M.P.A.T</a>, just tap the button for the animal you want and upload the photo and rext tap Cut to persit it into the DB."});
-//	}else{
-//		var	resultBase64Avatar = document.getElementById("resultBase64Avatar").value;
-//	}
-	
 	if(document.getElementById("base64Backside").value == null || document.getElementById("base64Backside").value == ""){
 		$.alert({
 			type: "red",
@@ -22,23 +13,72 @@ function imageDesignGeneric(logo){
 	}else{
 		var base64Backside = document.getElementById("base64Backside").value;
 	}
-	
 	/* PrepaidQR variables end */
 	
-	/* Pet variables start */
-	var petName = document.getElementById("petName").value;
-	var raze = document.getElementById("raze").value;
-	var illness = document.getElementById("illness").value;
-	var medicated = document.getElementById("medicated").value;
-	var neuteredPet = document.getElementById("neuteredPet").value;
-	/* Pet variables end */
-
-	/* Owner variables start */
+	/* Variables */
+	var petName = null;
+	var raze = null;
+	var illness = null;
+	var medicated =null;
+	var neutered = null;
+	var telephone1 = null;
+	var telephone2 = null;
+	var email = null;
+	var noData = "No data";
 	
-	var telephone1 = document.getElementById("telephone1").value;
-	var telephone2 = document.getElementById("telephone2").value;
-	var email = document.getElementById("email").value;
-	/* Owner variables end */
+	/* CheckBox start */
+		/* Pet variables start */
+		if(document.getElementById("petName").checked){
+			petName = document.getElementById("petName").value;
+		}else{
+			petName = noData;
+		}
+		
+		if(document.getElementById("raze").checked){
+			raze = document.getElementById("raze").value;
+		}else{
+			raze = noData;
+		}
+		
+		if(document.getElementById("illness").checked){
+			illness = document.getElementById("illness").value;
+		}else{
+			illness = noData;
+		}
+		
+		if(document.getElementById("medicated").checked){
+			medicated = document.getElementById("medicated").value;
+		}else{
+			medicated = noData;
+		}
+	
+		if(document.getElementById("neuteredPet").checked){
+			neuteredPet = document.getElementById("neuteredPet").value;
+		}else{
+			neuteredPet = noData;
+		}
+		/* Pet variables end */
+	
+		/* Owner variables start */
+		if(document.getElementById("telephone1").checked){
+			telephone1 = document.getElementById("telephone1").value;
+		}else{
+			telephone1 = noData;
+		}
+		
+		if(document.getElementById("telephone2").checked){
+			telephone2 = document.getElementById("telephone2").value;
+		}else{
+			telephone2 = noData;
+		}
+		
+		if(document.getElementById("email").checked){
+			email = document.getElementById("email").value;
+		}else{
+			email = noData;
+		}
+		/* Owner variables end */
+	/* CheckBox end */
 	
 	var sissors = "../img/design/sissors.png"; 
 
@@ -92,10 +132,6 @@ function imageDesignGeneric(logo){
 		doc.setFontSize(9.2);
 		doc.text(id, 53, 56);
 		doc.addImage(sissors,'PNG', 101, 51, 0, 0);
-//		doc.addImage(resultBase64Avatar,'PNG', 56.5,89, 0, 0)
-		doc.addImage("../img/warningBar150x14.png", 'PNG' , 51.2, 89, 5, 37);
-		doc.addImage("../img/warningBar150x14.png", 'PNG' , 94, 89, 5, 37);
-		doc.addImage("../img/warningBar150X14h-short.png", 'PNG' , 70, 76, 29, 6.7);
 		
 		/* Image 70% */
 		doc.setFontSize(8);
@@ -123,14 +159,16 @@ function imageDesignGeneric(logo){
 		doc.setFontSize(6.5);
 		doc.text("https://pet-qr.com/id/", 2, 69);
 		doc.text(id, 2, 71.5);
-		doc.text("Raze: " + raze, 2, 78.5);
-		doc.text("Illness: " + illness, 2, 81);
-		doc.text("Medicated: " + medicated, 2, 83.5);
-	
+		
 		doc.setFontSize(9);
-		doc.text(petName, 2, 76);
-		doc.text("Tel 1: " + telephone1, 2, 80);
-		doc.text(email, 2, 91);
+		doc.text("Name: " + petName, 2, 75);
+		doc.text("Raze: " + raze, 2, 78);
+		doc.text("Ill: " + illness, 2, 81);
+		doc.text("Medic.: " + medicated, 2, 84);
+		doc.text("Tel: " + telephone1, 2, 87);
+		doc.text("Tel: " + telephone2, 2, 90);
+		doc.setFontSize(8);
+		doc.text(email, 2, 93);
 		
 		/* md */
 		doc.setFontSize(8);
@@ -138,9 +176,20 @@ function imageDesignGeneric(logo){
 		/* Start qr md */
 		doc.rect(51, 76, 48, 50.5);
 		doc.addImage(footerLogo,'PNG', 51, 76, 20, 0);
-		doc.setFontSize(8);
+		
+		doc.setFontSize(9);
+		doc.addImage(litlePaw, 89, 117 ,0,0);
+		doc.addImage(backgroundLowOpacity, 64, 91, 0, 0);
 		doc.text("https://pet-qr.com/id/", 52, 85.7);
-		doc.text(id, 52, 88.3);
+		doc.text(id, 52, 89);
+		doc.setFontSize(10);
+		doc.text("Name: " + petName, 52, 93);
+		doc.text("Raze: " + raze, 52, 97);
+		doc.text("Ill: " + illness, 52, 101);
+		doc.text("Medic.: " + medicated, 52, 105);
+		doc.text("Tel: " + telephone1, 52, 109);
+		doc.text("Tel: " + telephone2, 52, 113);
+		doc.text(email, 52, 117);
 		
 		/* lg */
 		doc.setFontSize(8);
@@ -151,7 +200,11 @@ function imageDesignGeneric(logo){
 		doc.setFontSize(9);
 		doc.text("https://pet-qr.com/id/", 132.5, 99.5);
 		doc.text(id, 132.5, 102.5);
-		doc.addImage(base64Backside, 114,103,0,0);
+		if(base64Backside != null && base64Backside != ""){
+			doc.addImage(base64Backside, 114,103,0,0);
+		}else{
+			doc.text("No backside image available",150,150);
+		}
 		/* Reverse end */
 		
 		var date = Date(Date.now()); 
@@ -164,11 +217,12 @@ function imageDesignGeneric(logo){
 		doc.text("Web Access= https://pet-qr.com/id/" + id, 1, 260);
 		doc.addImage(footerLogo,'PNG', 1, 263, 23, 0);
 		doc.text("is Powered by ", 26, 268);
-		doc.addImage(footerMolokotech,'PNG', 50, 263, 34 , 0);
+		doc.addImage(footerMolokotech,'PNG', 52, 263, 34 , 0);
 		/* Footer end */
 		
 		/* Finally saves it */
 		doc.save('petQR_Design_a4.pdf');
+		Arrow.show(10000);
 }
 
 function getPetQRDesign(){

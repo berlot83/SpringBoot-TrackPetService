@@ -346,20 +346,12 @@ public class RestControllers {
 	}
 
 	@RequestMapping(value = "/uploadBackside", method = RequestMethod.POST,  produces= {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_HTML_VALUE, MediaType.TEXT_PLAIN_VALUE, MediaType.ALL_VALUE}, consumes= {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_HTML_VALUE, MediaType.TEXT_PLAIN_VALUE, MediaType.ALL_VALUE})
-	public @ResponseBody void uploadBackside(String base64Backside) {
+	public @ResponseBody void uploadBackside(@RequestParam String base64Backside) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = userService.findUser(auth.getName()).getName();
-		
-		User userTemp = userService.findUser(username);
+		User user = userService.findUser(auth.getName());
 		String backside64 = base64Backside.replaceAll(" ", "+");
-		userTemp.getOwner().setBase64Backside(backside64);
-		userService.saveUser(userTemp);
-		//PrepaidQR prepaidQR = prepaidQrService.findById(id);
-		
-		/* For some reason the string arrives without plus sign, and must be added coding */
-		//String backside64 = base64Backside.replaceAll(" ", "+");
-		//prepaidQR.setBase64Backside(backside64);
-		//prepaidQrService.createPrepaidQR(prepaidQR);
+		user.getOwner().setBase64Backside(backside64);
+		userService.saveUser(user);
 	}
 	
 	@RequestMapping("/transfer")

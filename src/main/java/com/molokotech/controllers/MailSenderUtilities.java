@@ -6,13 +6,21 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.molokotech.model.FormMessage;
 import com.molokotech.model.Order;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
 import com.molokotech.service.UserService;
+import com.molokotech.utilities.PrintName;
+
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 
