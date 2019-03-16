@@ -35,7 +35,7 @@
 			<i class="fas fa-paw" style="color:LimeGreen"></i> <strong><span class="subtitles">Horse</span></strong>
 		</h5>
 		
-		<hr style="border: 10px solid blue !important">
+		<hr class="hr-black">
 		
 		<div style="transform: rotate(-8deg); display:flex; justify-content:center; max-width:200px; width:100%; max-height:200px; height:100%; box-shadow: 0px 0px 15px black; border-radius: 10px; background-image: url('../img/huesitos.jpg'); background-repeat: repeat;">
 			<div style="margin: auto">
@@ -75,15 +75,11 @@
 		<p th:if="${prepaidQR?.horse?.medicated} == true"><strong class="Subtitles">Medicated:</strong> <span class="response">Yes</span></p>
 		<p th:unless="${prepaidQR?.horse?.medicated} == true"><strong class="subtitles">Medicado:</strong> <span class="response">No</span></p>
 
-		<table class="table rounded table-light table-bordered table-responsive">
+		<table class="table rounded table-light table-bordered table-sm">
 			<thead class="table-info">
 				<tr>
 					<td>V. EWT</td>
 					<td>V.EHV 14</td>
-					<td>V. PHF</td>
-					<td>V. West Nile</td>
-					<td>V. Strangles</td>
-					<td>V. West Flu Avert</td>
 				</tr>
 			</thead>
 				<tr>
@@ -91,10 +87,26 @@
 							th:text="${prepaidQR?.horse?.vaccineEwt}"></p></td>
 					<td><p th:if="${prepaidQR?.horse?.medicated} != null"
 							th:text="${prepaidQR?.horse?.vaccineEhv14}"></p></td>
+				</tr>
+			<thead class="table-info">
+				<tr>	
+					<td>V. PHF</td>
+					<td>V. West Nile</td>
+				</tr>
+			</thead>
+				<tr>
 					<td><p th:if="${prepaidQR?.horse?.medicated} != null"
 							th:text="${prepaidQR?.horse?.vaccinePhf}"></p></td>
 					<td><p th:if="${prepaidQR?.horse?.medicated} != null"
 							th:text="${prepaidQR?.horse?.vaccineWestNile}"></p></td>
+				</tr>
+			<thead class="table-info">
+				<tr>
+					<td>V. Strangles</td>
+					<td>V. West Flu Avert</td>
+				</tr>
+			</thead>
+				<tr>
 					<td><p th:if="${prepaidQR?.horse?.medicated} != null"
 							th:text="${prepaidQR?.horse?.vaccineStrangles}"></p></td>
 					<td><p th:if="${prepaidQR?.horse?.medicated} != null"
@@ -125,22 +137,22 @@
 			<i class="fas fa-user" style="color:LimeGreen;"></i> <strong><span class="subtitles">Contact Data</span></strong>
 		</h5>
 		<hr class="hr-black">
-		<p th:if="${prepaidQR?.owner?.ownerName} != null">
-			<strong class="subtitles" th:text="#{id.ownername}">Tutor:</strong> <span class="response" th:text="${prepaidQR?.owner?.ownerName}"></span> <span class="response" th:text="${prepaidQR.owner.ownerLastname}"></span></p>
-		<p th:if="${prepaidQR?.owner?.dni} != null">
-			<strong class="subtitles" th:text="#{id.idlegalnumber}">Dni:</strong> <span class="response" th:text="${prepaidQR?.owner?.dni}"></span></p>
-		<p th:if="${prepaidQR?.owner?.telephone1} != null">
-			<strong class="subtitles" th:text="#{id.phone1}">Teléfono:</strong> <span class="response" th:text="${prepaidQR?.owner?.telephone1}"></span></p>
-		<p th:if="${prepaidQR?.owner?.telephone2} != null">
-			<strong class="subtitles" th:text="#{id.phone2}">Teléfono:</strong> <span class="response" th:text="${prepaidQR?.owner?.telephone2}"></span></p>
-		<p th:if="${prepaidQR?.owner?.email} != null">
-			<strong class="subtitles" th:text="#{id.email}">Email:</strong> <span class="response" th:text="${prepaidQR?.owner?.email}" id="mail"></span></p>
-		<p th:if="${prepaidQR?.owner?.address} != null">
-			<strong class="subtitles" th:text="#{id.address}">Dirección:</strong> <span class="response" th:text="${prepaidQR?.owner?.address}"></span></p>
-		<p th:if="${prepaidQR?.owner?.facebook} != null">
-			<strong class="subtitles" th:text="#{id.facebook}">Facebook:</strong> <span class="response" th:text="${prepaidQR?.owner?.facebook}"></span></p>
-		<p th:if="${prepaidQR?.owner?.instagram} != null">
-			<strong class="subtitles" th:text="#{id.instagram}">Instagram:</strong> <span class="response" th:text="${prepaidQR?.owner?.instagram}"></span></p>
+		<p th:if="${user?.owner?.ownerName} != null">
+			<strong class="subtitles" th:text="#{id.ownername}">Tutor:</strong> <span class="response" th:text="${user?.owner?.ownerName}"></span> <span class="response" th:text="${user?.owner?.ownerLastname}"></span></p>
+		<p th:if="${user?.owner?.dni} != null">
+			<strong class="subtitles" th:text="#{id.idlegalnumber}">Dni:</strong> <span class="response" th:text="${user?.owner?.dni}"></span></p>
+		<p th:if="${user?.owner?.telephone1} != null">
+			<strong class="subtitles" th:text="#{id.phone1}">Teléfono:</strong> <span class="response" th:text="${user?.owner?.telephone1}"></span></p>
+		<p th:if="${user?.owner?.telephone2} != null">
+			<strong class="subtitles" th:text="#{id.phone2}">Teléfono:</strong> <span class="response" th:text="${user?.owner?.telephone2}"></span></p>
+		<p th:if="${user?.owner?.email} != null">
+			<strong class="subtitles" th:text="#{id.email}">Email:</strong> <span class="response" th:text="${user?.owner?.email}" id="mail"></span></p>
+		<p th:if="${user?.owner?.address} != null">
+			<strong class="subtitles" th:text="#{id.address}">Dirección:</strong> <span class="response" th:text="${user?.owner?.address}"></span></p>
+		<p th:if="${user?.owner?.facebook} != null">
+			<strong class="subtitles" th:text="#{id.facebook}">Facebook:</strong> <span class="response" th:text="${user?.owner?.facebook}"></span></p>
+		<p th:if="${user?.owner?.instagram} != null">
+			<strong class="subtitles" th:text="#{id.instagram}">Instagram:</strong> <span class="response" th:text="${user?.owner?.instagram}"></span></p>
 				<input type="hidden" th:value="${prepaidQR.strBase64}"
 					id="strBase64"></input> <br>
 
@@ -159,9 +171,9 @@
 		<div th:if="${user?.setup?.showYoutubeVideo}">
 			<strong><h5 class="subtitles">Video</h5></strong>
 			<hr class="hr-black">
-			<iframe th:if="${prepaidQR?.dog?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
+			<iframe th:if="${prepaidQR?.horse?.videoUrl != null} and ${prepaidQR?.horse?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
 			</iframe>
-			<p th:unless="${prepaidQR?.dog?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
+			<p th:unless="${prepaidQR?.horse?.videoUrl != null} and ${prepaidQR?.horse?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
 		</div>
 	
 	<br>	

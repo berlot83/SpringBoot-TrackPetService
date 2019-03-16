@@ -73,20 +73,27 @@
 			<strong class="subtitles" th:text="#{id.medicated}">Medicado:</strong> <span class="response">No</span></p>
 
 
-		<table class="table table-light table-bordered table-responsive">
+		<table class="table table-light table-bordered table-lg">
 			<thead class="table-info">
 				<tr>
 					<td th:text="#{id.vaccineantirabic}">V. Antirábica</td>
 					<td th:text="#{id.vaccinepolivalent}">V. Polivalente</td>
-					<td th:text="#{id.vaccinesextuple}">V. Sextuple</td>
-					<td th:text="#{id.vaccineoctuple}">V. Octuple</td>
 				</tr>
+				<tr>
 			</thead>
 				<tr>
 					<td><p th:if="${prepaidQR?.cat?.medicated} != null"
 							th:text="${prepaidQR?.cat?.dateAntiRabicVaccine}"></p></td>
 					<td><p th:if="${prepaidQR?.cat?.medicated} != null"
 							th:text="${prepaidQR?.cat?.datePolivalentVaccine}"></p></td>
+				</tr>
+			<thead class="table-info">
+				<tr>
+					<td th:text="#{id.vaccinesextuple}">V. Sextuple</td>
+					<td th:text="#{id.vaccineoctuple}">V. Octuple</td>
+				</tr>
+			</thead>
+				<tr>
 					<td><p th:if="${prepaidQR?.cat?.medicated} != null"
 							th:text="${prepaidQR?.cat?.dateSextupleVaccine}"></p></td>
 					<td><p th:if="${prepaidQR?.cat?.medicated} != null"
@@ -159,11 +166,13 @@
 				<strong class="subtitles">Poor health condition: </strong> <span class="response" th:text="${prepaidQR?.cat?.poorHealthCondition}"></span></p>
 		</div>	
 
-			<strong><h5 class="subtitles">Video</h5></strong>
-			<hr class="hr-black">
-			<iframe th:if="${prepaidQR?.cat?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
-			</iframe>
-			<p th:unless="${prepaidQR?.cat?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
+			<div th:if="${user?.setup?.showYoutubeVideo}">
+				<strong><h5 class="subtitles">Video</h5></strong>
+				<hr class="hr-black">
+				<iframe th:if="${prepaidQR?.cat?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
+				</iframe>
+				<p th:unless="${prepaidQR?.cat?.videoUrl != null} and ${prepaidQR?.cat?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
+			</div>
 <br>			
 
 			<!-- Map Start -->

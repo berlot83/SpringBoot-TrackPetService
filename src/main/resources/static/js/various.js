@@ -185,6 +185,8 @@ function moveToLocation(){
 function getLocalization(){
 	//  Html5 Geolocalization
     
+	/* String format to dev better ending https://www.google.com.ar/maps/@-36.527072,-56.7017652,17z */
+	
 	if (navigator.geolocation) {
     	navigator.geolocation.getCurrentPosition(function(position) {
           var pos = {

@@ -37,12 +37,10 @@
 		<hr  class="hr-black">
 		<small style="color:red">Be aware that rodents and fishes doesn't have the coordinates and photo features, but you can add more than one animal to the tank</small>
 
-		<table style="text-shadow:none" class="table table-light table-bordered rounded table-responsive{-lg}">
-				<tr class="table-primary" style="border: 1px solid blue">
+		<table style="text-shadow:none" class="table table-light table-bordered rounded table-lg">
+				<tr class="table-primary">
 					<td>Housing</td>
 					<td>Wheel</td>
-					<td>Last cleaned</td>
-					<td>Rodent Type</td>
 				</tr>
 				<tr>
 					<td><p th:if="${prepaidQR?.hamsterFishTank?.housing} != ''" th:text="${prepaidQR?.hamsterFishTank?.housing}"></p>
@@ -51,6 +49,12 @@
 					<td><p th:if="${prepaidQR?.hamsterFishTank?.wheel} != ''" th:text="${prepaidQR?.hamsterFishTank?.wheel}"></p>
 						<p th:unless="${prepaidQR?.hamsterFishTank?.wheel} != ''">No data</p>
 					</td>
+				</tr>
+				<tr class="table-warning">				
+					<td>Last cleaned</td>
+					<td>Rodent Type</td>
+				</tr>
+				<tr>
 					<td><p th:if="${prepaidQR?.hamsterFishTank?.houseCleaned} != ''" th:text="${prepaidQR?.hamsterFishTank?.houseCleaned}"></p>
 						<p th:unless="${prepaidQR?.hamsterFishTank?.houseCleaned} != ''">No data</p>
 					</td>
@@ -61,10 +65,7 @@
 				<tr class="table-success">
 					<td>Hamster breed</td>
 					<td>RodentQuantity</td>
-					<td>Sex</td>
-					<td>Bite</td>
 				</tr>
-				
 				<tr>
 					<td><p th:if="${rat?.breed} != ''" th:text="${rat?.breed}"></p>
 						<p th:unless="${rat?.breed} != ''"></p>
@@ -72,6 +73,12 @@
 					<td><p th:if="${prepaidQR?.hamsterFishTank?.rodentQuantity} != ''" th:text="${prepaidQR?.hamsterFishTank?.rodentQuantity}"></p>
 						<p th:unless="${prepaidQR?.hamsterFishTank?.rodentQuantity} != ''"></p>
 					</td>
+				</tr>
+				<tr class="table-secondary">
+					<td>Sex</td>
+					<td>Bite</td>
+				</tr>
+				<tr>				
 					<td><p th:if="${rat?.sex} != ''" th:text="${rat?.sex}"></p>
 						<p th:unless="${rat?.sex} != ''">No data</p>
 					</td>
@@ -82,22 +89,25 @@
 				<tr class="table-danger">
 					<td>Vitamins granted</td>
 					<td>Medicated</td>
+				</tr>
+				<tr>
+					<td><p th:if="${rat?.vitamins} != ''" th:text="${rat?.vitamins}"></p>
+						<p th:unless="${rat?.vitamins} != ''">No data</p>
+					</td>
+					<td><p th:if="${rat?.medicated} != ''" th:text="${rat?.medicated}"></p>
+						<p th:unless="${rat?.medicated} != ''">No data</p>
+					</td>
+				</tr>
+				<tr class="table-info">				
 					<td>Neutered</td>
 					<td>Pregnant</td>
 				</tr>
-				<tr style="border: 1px solid blue">
-					<td><p th:if="${rat?.vitamins} != ''" th:text="${rat?.vitamins}"></p>
-						<p th:unless="${rat?.vitamins} != ''">No data</p>
-							</td>
-					<td><p th:if="${rat?.medicated} != ''" th:text="${rat?.medicated}"></p>
-						<p th:unless="${rat?.medicated} != ''">No data</p>
-							</td>
+				<tr>
 					<td><p th:if="${rat?.neuteredPet} != ''" th:text="${rat?.neuteredPet}"></p></td>
 						<p th:unless="${rat?.neuteredPet} != ''">No data</p>
 					<td><p th:if="${rat?.pregnant} != ''" th:text="${rat?.pregnant}"></p>
 						<p th:unless="${rat?.pregnant}  != ''">No data</p>
-								
-							</td>
+					</td>
 				</tr>
 		</table>
 		

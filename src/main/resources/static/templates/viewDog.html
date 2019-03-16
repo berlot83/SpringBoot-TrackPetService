@@ -74,13 +74,12 @@
 			<strong class="subtitles" th:text="#{id.medicated}">Medicado:</strong> <span class="response">No</span></p>
 
 
-		<table  class="table table-light table-bordered table-responsive">
+		<table  class="table table-light table-bordered table-lg">
 			<thead class="table-info">
 				<tr>
 					<td th:text="#{id.vaccineantirabic}">V. Antirábica</td>
 					<td th:text="#{id.vaccinepolivalent}">V. Polivalente</td>
-					<td th:text="#{id.vaccinesextuple}">V. Sextuple</td>
-					<td th:text="#{id.vaccineoctuple}">V. Octuple</td>
+					
 				</tr>
 			</thead>
 				<tr>
@@ -88,6 +87,14 @@
 							th:text="${prepaidQR?.dog?.dateAntiRabicVaccine}"></p></td>
 					<td><p th:if="${prepaidQR?.dog?.medicated} != null"
 							th:text="${prepaidQR?.dog?.datePolivalentVaccine}"></p></td>
+				</tr>
+				<thead class="table-info">
+			<tr>
+					<td th:text="#{id.vaccinesextuple}">V. Sextuple</td>
+					<td th:text="#{id.vaccineoctuple}">V. Octuple</td>
+				</tr>
+			</thead>
+				<tr>
 					<td><p th:if="${prepaidQR?.dog?.medicated} != null"
 							th:text="${prepaidQR?.dog?.dateSextupleVaccine}"></p></td>
 					<td><p th:if="${prepaidQR?.dog?.medicated} != null"
@@ -165,11 +172,13 @@
 				<strong class="subtitles">Poor health condition</strong> <span class="response" th:text="${prepaidQR?.dog?.poorHealthCondition}"></span></p>
 		</div>		
 
-			<strong><h5 style="color:red">Video</h5></strong>
-			<hr class="hr-black">
-			<iframe class="container-fluid" th:if="${prepaidQR?.dog?.videoUrl != null} and ${dog?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
-			</iframe>
-			<p th:unless="${prepaidQR?.dog?.videoUrl != null} and ${dog?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
+			<div th:if="${user?.setup?.showYoutubeVideo}">
+				<strong><h5 style="color:red">Video</h5></strong>
+				<hr class="hr-black">
+				<iframe class="container-fluid" th:if="${prepaidQR?.dog?.videoUrl != null} and ${dog?.videoUrl != ''}" id="iframeYoutube" width="420" height="315" src="">
+				</iframe>
+				<p th:unless="${prepaidQR?.dog?.videoUrl != null} and ${dog?.videoUrl != ''}" style="color:red">No hay Video para mostrar</p>
+			</div>
 		<br>			
 
 	<!-- Map Start -->
