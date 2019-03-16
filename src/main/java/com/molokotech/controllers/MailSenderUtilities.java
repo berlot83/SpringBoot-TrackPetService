@@ -66,12 +66,14 @@ public class MailSenderUtilities {
 	@PostMapping("/sendCoordinatesToMail")
 	public void sendCoordinatesToMail(String latitude, String longitude, String mail, String dateTime) {
 
+		String mapAddress = "https://www.google.com.ar/maps/@"+latitude+","+longitude+"z";
+
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setSubject("Coordenadas de la última lectura");
 				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(mail));
 				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
-				mimeMessage.setText("EL QR de la mascota fue escaneada en:\n\nLatitud: "+ latitude + "\nLongitud: "+ longitude + "\nDia y hora: "+ dateTime);
+				mimeMessage.setText("EL QR de la mascota fue escaneada en:\n\nLatitud: "+ latitude + "\nLongitud: "+ longitude + "\nDia y hora: "+ dateTime + " Siga el siguiente link para ver en el mapa => "+ mapAddress);
 			}
 		};
 

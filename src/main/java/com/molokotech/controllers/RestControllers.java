@@ -273,13 +273,10 @@ public class RestControllers {
 
 		hamsterFishTank.setRat(rat);
 		hamsterFishTankService.createHamsterFishTank(hamsterFishTank);
-	
 		PrepaidQR temp = prepaidQrService.updateQrServiceHamsterFishTank(idPrepaidQrCode, prepaidQR, hamsterFishTank, user);
-		
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		String strJson = gson.toJson(temp, PrepaidQR.class);
-		
 		return strJson;
 	}
 	
