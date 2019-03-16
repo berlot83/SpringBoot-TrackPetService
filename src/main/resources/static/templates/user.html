@@ -403,9 +403,9 @@
 			<br>
 			
 			<!-- Button to upload start backside map image -->
-			<div style="display:flex; flex-direction:column; width: 100%">
-				<button style="margin: 0 auto" class="btn btn-lg purple-gradient" id="export" onclick="takePhoto()" th:text=#{create-prepaid-qr.basicdata.picbacksidebutton}>Pic Backside Tag, centering the map</button>
-			</div>
+<!-- 			<div style="display:flex; flex-direction:column; width: 100%"> -->
+<!-- 				<button style="margin: 0 auto" class="btn btn-lg purple-gradient" id="export" onclick="takePhoto()" th:text=#{create-prepaid-qr.basicdata.picbacksidebutton}>Pic Backside Tag, centering the map</button> -->
+<!-- 			</div> -->
 			<!-- Button to upload end backside map image -->
 			
 			<br>
@@ -441,7 +441,9 @@ function updateQrOwner(){
 			//var jsonResponse = JSON.parse(data);
 			$.alert({type: 'green', 
 					title: 'Compruebe el funcionamiento',
-					content: "Complete"});
+					content: "<div style='display:flex; flex-direction:column; width: 100%'>" +
+							"<button style='margin: 0 auto' class='btn btn-lg purple-gradient' id='export' onclick='takePhoto()' th:text=#{create-prepaid-qr.basicdata.picbacksidebutton}>Pic Backside Tag, centering the map</button>"	+
+							"</div>"});
 		}
 		if(xhr.status == 500){
 			$.alert({

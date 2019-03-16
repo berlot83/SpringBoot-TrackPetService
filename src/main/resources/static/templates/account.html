@@ -227,40 +227,6 @@
 
 				<div>
 				<!-- FlexBox control panel start -->
-<!-- 				<ul id="flexBoxHeader" class="controlPanelHeader bg-dark rounded"> -->
-<!-- 					<li> -->
-<!-- 						Index -->
-<!-- 					</li> -->
-<!-- 						QR code -->
-<!-- 					<li> -->
-<!-- 						Key Email -->
-<!-- 					</li> -->
-					
-<!-- 					<li> -->
-<!-- 						Actions -->
-<!-- 					</li> -->
-					
-<!-- 					<li> -->
-<!-- 						QR Design -->
-<!-- 					</li> -->
-					
-<!-- 					<li> -->
-<!-- 						Clinic History -->
-<!-- 					</li> -->
-					
-<!-- 					<li> -->
-<!-- 						Alerts -->
-<!-- 					</li> -->
-					
-<!-- 					<li> -->
-<!-- 						M.P.A.T -->
-<!-- 					</li> -->
-					
-<!-- 					<li> -->
-<!-- 						Quick select -->
-<!-- 					</li> -->
-<!-- 				</ul> -->
-
 				<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
 				<div class="controlPanelDiv">
 				<ul class="flexAllStretch rounded item bg-light text-success" id="controlPanel" style="width:100%; text-shadow:none;  font-weight:bold">
@@ -287,9 +253,10 @@
 						<button style="margin: 0 auto;" th:onclick="showCode([[${list[iStat?.index].strBase64}]])" class="btn btn-sm  blue-gradient">preview</button>
 					</li>
 					<li>
-						<div>
+						<div style="position:relative; top:0; left:0;">
 							<input type="hidden" th:value="${list[iStat?.index].dog}" id="dog" name="dog" />
 							<button class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Clinic History (On develop now)"><i class="fas fa-heartbeat shadow-icon"></i></button>
+							<span style="position:absolute; left:-5;top:-5;" class="badge badge-lg badge-warning">On progress</span>
 						</div>
 						<div style="text-align:center; color:black">Clinic History</div>
 					</li>
@@ -338,7 +305,7 @@
 						<div style="text-align:center; color:black">Edit rodents</div>
 						</div>
 						
-						<div th:case="fish">
+						<div th:case="fish"  style="position:relative; top:0; left:0;">
 							<form style="margin:0px auto;  padding:0px" id="modifyFish"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}">
 								<button class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Edit group of fishes"><img src="../img/fish.png"></button>
 								<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
@@ -346,6 +313,7 @@
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'fish'}" id="typeAnimal" name="typeAnimal" />
 							</form><span class="mdi mdi-home"></span>
 							<div style="text-align:center; color:black">Edit fishes</div>
+							<span style="position:absolute; left:-5;top:-5;" class="badge badge-lg badge-warning">On progress</span>
 						</div>
 					
 					</li>

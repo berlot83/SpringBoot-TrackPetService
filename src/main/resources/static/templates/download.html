@@ -54,7 +54,8 @@
 						    <div id="base64Backside" class="thirdteenCol">
 						    	<h5>Backside of the Tag</h5>
 						    	<br>
-						    	<img alt="Backside Tag Dog" th:src="${owner?.base64Backside}" class="box">
+						    	<img alt="Backside Tag Dog" th:if="${owner?.base64Backside != null && owner?.base64Backside != ''}" th:src="${owner?.base64Backside}" class="box">
+						    	<div alt="Backside Tag Dog" th:unless="${owner?.base64Backside != null && owner?.base64Backside != ''}" class="box" style="background-color:rgba(200,200,200,0.5);text-align: justify; padding:15px">There is not an snapshot of location yet. got to <a href="/user" style="color:blue">user settings</a></div>
 						    </div>
 						    <div class="thirdteenCol">
 							<h5>Select inputs</h5>
