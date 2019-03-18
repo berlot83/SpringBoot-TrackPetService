@@ -260,6 +260,13 @@ position: absolute; left:10%; top:20%;
 /*  Small devices (landscape phones, 576px and up) */
 @media ( max-width : 576px) {
 
+	#startButton{
+	position: absolute;
+	left: 10% !important;
+	box-shadow: 0px 0px 30px black;
+	text-shadow: 1px 2px black;
+	}
+	
 	#disclaimer{
 	font-size: x-small !important;
 	position: absolute !important; left:50% !important; top:20% !important;

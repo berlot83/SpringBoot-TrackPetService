@@ -25,12 +25,12 @@
 
 	<div style="position:relative !important;top:0px;left:0px;width:100% !important; display:block;">
 			<div  style="position:relative !important; width:100%; margin:0 auto; top: 0px; left:0px;"><img alt="" class="img-fluid" src="../img/dogsCats.jpg">
-	<div><button th:if="${currentUser != 'Guess'}" class="btn btn-lg peach-gradient" onclick="window.location.href='/account'" style="position:absolute; top: 5%; left:50%; max-width:320px; height:auto !important">Empezar</button></div>
+	<div><button id="startButton" th:if="${currentUser != 'Guess'}" class="btn btn-lg peach-gradient" onclick="window.location.href='/account'" style="position:absolute; top: 5%; left:50%; max-width:320px; height:auto !important; box-shadow: 0px 0px 30px black; text-shadow: 1px 2px black">Empezar</button></div>
 			<div id="loginDiv" th:if="${#session == null}" th:insert="login :: login" style="position:absolute; top: 5%; left:65%; max-width:320px; height:auto !important"></div>
 		</div>
 	</div>
 	
-	<div id="disclaimer" th:if="${#session == null}"><strong style="" class="animated flipInX delay-2s"><span style="color:Gold">"</span>The awesome of <a onclick="mpat()"><span style="color:blue">M</span>.<span style="color:red">P</span>.<span style="color:Gold">A</span>.<span style="color:LimeGreen">T</span>.</a> is that you can "store" almost 5 animals in one QR-code...<span style="color:Gold">"</span></strong> </div>
+	<div id="disclaimer" th:if="${#session == null}"><strong class="animated flipInX delay-2s"><span style="color:Gold">"</span>The awesome of <a onclick="mpat()"><span style="color:blue">M</span>.<span style="color:red">P</span>.<span style="color:Gold">A</span>.<span style="color:LimeGreen">T</span>.</a> is that you can "store" almost 5 animals in one QR-code...<span style="color:Gold">"</span></strong> </div>
 	
 	<script>
 	function mpat(){
@@ -88,8 +88,6 @@
 		<!-- PDF div end -->
 	</div>
 		<!-- Action Buttons end -->	
-	
-			
 			<div class="tab-content flexAllStretch rounded" style="">
                             <div id="compare" style="width:100%; margin: 20px;" class="card col40">
                             <h3 class="card-header purple-gradient white-text"><i style="color:turquoise" class="fas fa-search"></i> <span th:text="#{index.compare.title}"></span></h3>
