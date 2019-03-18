@@ -55,7 +55,21 @@
 				            				$.confirm({
 				            					type:"blue",
 				            					title: "Respuesta de nuestro servidor",
-				            					content: data
+				            					content: data,
+				            					buttons:{
+				            						confirm: function(){
+				            						window.location.href= "/account";
+				            					},
+				            					cancel: function(){
+				            						
+				            					}
+				            						
+				            						
+				            						
+				            					}
+				            						
+				            						
+				            					
 				            				});
 				            			}
 				            	  	}

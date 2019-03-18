@@ -18,6 +18,8 @@ import com.molokotech.model.FormMessage;
 import com.molokotech.model.Order;
 import com.molokotech.model.PrepaidQR;
 import com.molokotech.model.User;
+import com.molokotech.repository.PrepaidQrRepository;
+import com.molokotech.service.PrepaidQrService;
 import com.molokotech.service.UserService;
 import com.molokotech.utilities.PrintName;
 
@@ -33,6 +35,9 @@ public class MailSenderUtilities {
 	
 	@Autowired
 	public JavaMailSender emailSender;
+	
+	@Autowired
+	public PrepaidQrService prepaidQrService;
 
 	@GetMapping("/onlineBuyResponseMail")
 	public void placeOrder() {
@@ -64,10 +69,12 @@ public class MailSenderUtilities {
 	}
 
 	@PostMapping("/sendCoordinatesToMail")
-	public void sendCoordinatesToMail(String latitude, String longitude, String mail, String dateTime) {
+	public void sendCoordinatesToMail(String latitude, String longitude, String mail, String dateTime, String id) {
 
 		String mapAddress = "https://www.google.com.ar/maps/@"+latitude+","+longitude+"z";
 
+		
+		
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setSubject("Coordenadas de la última lectura");
@@ -82,6 +89,11 @@ public class MailSenderUtilities {
 		} catch (MailException ex) {
 			System.err.println(ex.getMessage());
 		}
+		
+		PrepaidQR prepaidQR = prepaidQrService.findById(id);
+		prepaidQR.setLastLatitude(latitude);
+		prepaidQR.setLastLongitude(longitude);
+		prepaidQrService.createPrepaidQR(prepaidQR);
 
 	}
 	

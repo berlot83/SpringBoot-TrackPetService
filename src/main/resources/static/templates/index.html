@@ -24,7 +24,8 @@
 	<div id="triangleTopLeftIndex"><div style="position:absolute; top:-200px; left:0px;" ><!-- <img src="../img/world.png" /> --><div onmouseout="removeBounce(this)" onmouseover="addBounce(this)" style="color:white;text-shadow: 0px 0px 5px black; position:absolute; top:0px;left:0px;padding:5px; transform:rotate(-45deg)"><br><strong th:text="#{index.buyandadmin}"></strong> <i class="fas fa-wifi" style="color:#ff8000"></i></div></div></div>
 
 	<div style="position:relative !important;top:0px;left:0px;width:100% !important; display:block;">
-			<div style="position:relative !important; width:100%; margin:0 auto; top: 0px; left:0px;"><img alt="" class="img-fluid" src="../img/dogsCats.jpg">
+			<div  style="position:relative !important; width:100%; margin:0 auto; top: 0px; left:0px;"><img alt="" class="img-fluid" src="../img/dogsCats.jpg">
+	<div><button th:if="${currentUser != 'Guess'}" class="btn btn-lg peach-gradient" onclick="window.location.href='/account'" style="position:absolute; top: 5%; left:50%; max-width:320px; height:auto !important">Empezar</button></div>
 			<div id="loginDiv" th:if="${#session == null}" th:insert="login :: login" style="position:absolute; top: 5%; left:65%; max-width:320px; height:auto !important"></div>
 		</div>
 	</div>
@@ -45,8 +46,8 @@
 	
 	<div th:if="${#session != null}" style="position:absolute; left:77%; top:13%;" id="logoStarterAnimation">
 	   <img src="../img/iconoPet75.png" style="position:absolute; left:33px; top:0px;" class="animated flipInX delay-2s" id="pLogo" onmouseover="changeCursorToimages()" onclick="window.location.href = '/account'">
-	   <h5 id="titleStarter1" style="position:absolute; left:0px; top:145px; width: 230px" class="animated flipInX delay-3s">Not a simple website,</h5>
-	   <h4 id="titleStarter2" style="position:absolute; left:10px; top:175px; width:240px" class="animated flipInX delay-4s">a great Platform...</h4>
+	   <h5 id="titleStarter1" style="position:absolute; left:0px; top:145px; width: 230px" class="animated flipInX delay-3s" th:text="#{index.intro1}"></h5>
+	   <h4 id="titleStarter2" style="position:absolute; left:10px; top:175px; width:270px" class="animated flipInX delay-4s">But a whole Platform!</h4>
 	   <h4 id="titleStarter3" style="position:absolute; left:0px; top:210px; width:270px;" class="animated flipInX delay-5s">for <span style="color:blue">A</span><span style="color:red">n</span><span style="color:green">i</span><span style="color:DarkViolet">m</span><span style="color:lightblue">a</span><span style="color:orange">l</span> S<i class="fa fa-at" style="color:LimeGreen"></i>fety.</h4></div>
 	
 	<!-- Action Buttons start -->

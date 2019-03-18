@@ -46,7 +46,7 @@
 		        <li><b th:text="#{products.hc}"></b> <span th:text="#{products.column2.hc.description}"></span></li>
 		        <li><b th:text="#{products.dblostpets}"></b> <span th:text="#{products.column2.dblostpets.description}"></span></li>
 		        <li><b th:text="#{products.warranty}"></b> <span th:text="#{products.column2.warranty.description}"></span></li>
-		        <li><button type="button" class="btn btn-lg purple-gradient" style="text-shadow: 1px 2px black;" onclick="window.location.href='/online-checkout'" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</button></li>
+		        <li><button type="button" class="btn btn-lg purple-gradient" style="text-shadow: 1px 2px black;" onclick="window.location.href='/online-checkout'" rel="nofollow"><i class="fas fa-shopping-cart"></i> Comprar</button></li>
 		        </ul>
 		    <ul class="theplan" style="background-color:white">
 		        <li class="title"><img src="../img/prepaidQR1366x900onlineSell.jpg"  class="img-fluid" style="border:2px solid white" /><br/>  <span th:text="#{products.column3.title}"></span></li>
@@ -54,15 +54,15 @@
 		        <li><b th:text="#{products.duration}"></b> <span th:text="#{products.column3.duration.description}"></span></li>
 		        <li><b th:text="#{products.limits}"></b> <span th:text="#{products.column3.limits.description}"></span></li>
 		        <li><b th:text="#{products.warranty}"></b>  <span th:text="#{products.column3.warranty.description}"></span></li>
-		        <li><button type="button" class="btn btn-lg purple-gradient" style="text-shadow: 1px 2px black;" onclick="window.location.href='/temporal-qr'" rel="nofollow"><i class="fas fa-shopping-cart"></i> Check Out</button></li>
+		        <li><button type="button" class="btn btn-lg purple-gradient" style="text-shadow: 1px 2px black;" onclick="window.location.href='/temporal-qr'" rel="nofollow"><i class="fas fa-shopping-cart"></i> Obtener</button></li>
 		    </ul>
 		    <br><br><br><br>
 		</div>
 		    <!-- Advice to be logued start -->
 		    <div style="text-shadow: 1px 1px black; width:100%">
-		    	<p th:if="${currentUser} == Invitado" style="margin:0 auto; text-align:center; color: pink; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.unlogued}"></span> <i class="fas fa-user-times"></i> ==>   <a href="/login"><i class="fas fa-user" style="color:lightgreen"></i> Login</a></p>
+		    	<p th:if="${currentUser} == Guess" style="margin:0 auto; text-align:center; color: pink; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.unlogued}"></span> <i class="fas fa-user-times"></i> ==>   <a href="/login"><i class="fas fa-user" style="color:lightgreen"></i> Login</a></p>
 				
-				<p th:unless="${currentUser} == Invitado" style="margin:0 auto; text-align:center; color: LimeGreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.logued}"></span> <i class="fas fa-user-check"></i></p> 
+				<p th:unless="${currentUser} == Guess" style="margin:0 auto; text-align:center; color: LimeGreen; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"><span th:text="#{products.loginadvice.logued}"></span> <i class="fas fa-user-check"></i></p> 
 				
 				<p style="margin:0 auto; text-align:center; background: rgba(0, 0, 0, 0.5); border-radius: 5px; padding: 5px;"> • <i style='color:LimeGreen;' class='fas fa-shield-alt'></i> <span style="color:white" th:text="#{products.ssl}"></span> <i style='color:LimeGreen' class='fas fa-lock'></i> <span  style="color:white" th:text="#{products.ssl.privacy}"></span> </p>
 			</div>

@@ -67,7 +67,7 @@ public class QrController {
 		if (logout != null)
 			model.addAttribute("msg", "Saliste.");
 		PrintName.printUser(model);
-		return "login";
+		return "login"; /* login */
 	}
 	
 	@RequestMapping("/")

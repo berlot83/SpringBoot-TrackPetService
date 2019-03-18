@@ -184,7 +184,7 @@ function moveToLocation(){
 
 function getLocalization(){
 	//  Html5 Geolocalization
-    
+    var idPrepaidQR = document.getElementById("id").textContent;
 	/* String format to dev better ending https://www.google.com.ar/maps/@-36.527072,-56.7017652,17z */
 	
 	if (navigator.geolocation) {
@@ -207,7 +207,7 @@ function getLocalization(){
           
           xhr.open("POST", url, true);
           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xhr.send("latitude="+latitude+"&longitude="+longitude+"&mail="+mail+"&dateTime="+dateTime);
+          xhr.send("latitude="+latitude+"&longitude="+longitude+"&mail="+mail+"&dateTime="+dateTime+"&id="+idPrepaidQR);
           /* For Mailing*/
 
         }, function() {

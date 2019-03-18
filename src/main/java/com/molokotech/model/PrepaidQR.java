@@ -31,6 +31,8 @@ public class PrepaidQR {
 	private String base64Backside;
 	private LocalDate expiration; /* whitout use right now */
 	private String activationToken; /* whitout use right now */
+	private String lastLatitude;
+	private String lastLongitude;
 	
 	@Autowired
 	public PrepaidQR() {
@@ -209,6 +211,22 @@ public class PrepaidQR {
 
 	public void setRat(Rat rat) {
 		this.rat = rat;
+	}
+
+	public String getLastLatitude() {
+		return lastLatitude;
+	}
+
+	public void setLastLatitude(String lastLatitude) {
+		this.lastLatitude = lastLatitude;
+	}
+
+	public String getLastLongitude() {
+		return lastLongitude;
+	}
+
+	public void setLastLongitude(String lastLongitude) {
+		this.lastLongitude = lastLongitude;
 	}
 
 }
