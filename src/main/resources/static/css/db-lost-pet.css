@@ -4,9 +4,9 @@ body, html {
 
 #lostPetContainer {
 	text-shadow: 1px 2px black;
-	background-image: url('../img/tile_pupure.jpg');
-	background-repeat: repeat;
-	margin: 0 auto;
+	background: -moz-linear-gradient(-45deg, #F6D6A8 20%, #F5BA55 20%, #F5BA55 40%, #F09741 40%, #F09741 60%, #327AB2 60%, #327AB2 80%, #3A94F6 80%);
+	background: -webkit-linear-gradient(-45deg, #F6D6A8 20%, #F5BA55 20%, #F5BA55 40%, #F09741 40%, #F09741 60%, #327AB2 60%, #327AB2 80%, #3A94F6 80%);
+	background: linear-gradient(-45deg, #F6D6A8 20%, #F5BA55 20%, #F5BA55 40%, #F09741 40%, #F09741 60%, #F5BA55 60%, #F5BA55 80%, #F6D6A8 80%);
 	box-shadow: 0px 0px 15px black;
 	color: white;
 	text-align: justify;

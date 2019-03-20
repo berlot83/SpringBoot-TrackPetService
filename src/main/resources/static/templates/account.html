@@ -74,26 +74,26 @@
 			<div style="margin-left:20px; margin-right:20px; padding:10px">
 					<div id="window" style="display:flex; justify-content: space-around">
 						<div>
-							<button class="btn btn-lg blue-gradient" onclick="window.location.href='/online-checkout'" style="text-shadow:1px 1px black;">Activar Código prepago</button>
+							<button class="btn btn-lg blue-gradient" onclick="window.location.href='/online-checkout'" style="text-shadow:1px 1px black;" th:text="#{account.activateqr}"></button>
 						</div>
 						<div>
-							<button class="btn btn-lg purple-gradient" onclick="window.location.href='/temporal-qr'" style="text-shadow:1px 1px black;">Activar Código prueba</button>
+							<button class="btn btn-lg purple-gradient" onclick="window.location.href='/temporal-qr'" style="text-shadow:1px 1px black;" th:text="#{account.tryqr}"></button>
 						</div>
 					</div>
 				<hr>
 
 				<!-- PrepiaidQR codes start -->
 				<div class="form-group">
-					<h5>Panel de control:</h5>
+					<h5 th:text="#{account.controlpanel.title}"></h5>
 				<hr>
 				
 				</div>
 
 				<div class="d-flex" id="contactButtonDiv">
-					<button onclick="window.location.href='/user'" class="btn btn-md btn-info" style="margin: 4px  !important"><span style="text-shadow:1px 1px black;">Datos de contacto</span> <i class="shadow-icon fas fa-edit"></i></button>
+					<button onclick="window.location.href='/user'" class="btn btn-md btn-info" style="margin: 4px  !important"><span style="text-shadow:1px 1px black;" th:text="#{account.contactdata}"></span> <i class="shadow-icon fas fa-edit"></i></button>
 					<div class="alert alert-warning" role="alert" style="border-radius: 3px; border: 1px solid tomato; margin:4px !important;">
 						<a href="#" class="close" data-dismiss="alert">&times;</a>
-						<strong>Importante!: </strong> Estos datos se mostrarán al leer el código QR, para que quien encuentre a tu mascota se pueda poner en contacto contigo. Por favor evita dar información personal.
+						<strong th:text="#{account.important}">Importante!: </strong> <span th:text="#{account.important.body}">
 					</div>
 				</div>
 				
@@ -105,17 +105,17 @@
 					<li th:text="${iStat?.count}"></li>
 					<li>
 						<a style="color:black;" th:href="@{'/id/'+${list[iStat?.index].id}}" th:id="'idValue'+${iStat?.index}" th:text="${#strings.substring(list[iStat?.index].id,19,24)}"></a>
-						<a class="text-secondary" th:onclick="viewId([[${list[iStat?.index].id.toString()}]])">View</a>
+						<a class="text-secondary" th:onclick="viewId([[${list[iStat?.index].id.toString()}]])" th:text="#{account.code}"></a>
 					</li>
 					<li>
-						<a class="text-info" th:onclick="viewEmail([[${list[iStat?.index].selledOnline}]])">View email</a>
+						<a class="text-info" th:onclick="viewEmail([[${list[iStat?.index].selledOnline}]])" th:text="#{account.email}"></a>
 					</li>
 					<li>
 						<div>
-						<div><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search" data-toggle="tooltip" title="View template"></i> <span style="color:black">View template</span></a></div>
-							<div><a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt" style="color:red"></i> <span style="color:black">Delete Code</span></a></div>
-							<div><a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt" style="color:DarkViolet"></i> <span style="color:black">Transfer code</span></a></div>
-							<div><a style="color:black" th:href="@{'https://www.google.com.ar/maps/@'+ ${list[iStat?.index].lastLatitude} +','+ ${list[iStat?.index].lastLatitude} +',z'}" target="_blank"><i class="fa fa-map" style="color:blue"></i> Last Coordinates readed</a></div>
+						<div><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search" data-toggle="tooltip" title="View template"></i> <span style="color:black" th:text="#{account.viewtemplate}">View template</span></a></div>
+							<div><a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt" style="color:red"></i> <span style="color:black" th:text="#{account.deletecode}">Delete Code</span></a></div>
+							<div><a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt" style="color:DarkViolet"></i> <span style="color:black" th:text="#{account.transfercode}">Transfer code</span></a></div>
+							<div><a style="color:black" th:href="@{'https://www.google.com.ar/maps/@'+ ${list[iStat?.index].lastLatitude} +','+ ${list[iStat?.index].lastLatitude} +',z'}" target="_blank"><i class="fa fa-map" style="color:blue"></i> <span th:text="#{account.coordinatesreaded}">Last Coordinates readed</span></a></div>
 						</div>
 					</li>
 					<li>
@@ -123,19 +123,19 @@
 							<button style="margin: 0 auto;"  type="submit"  class="btn btn-sm blue-gradient"  data-toggle="tooltip" title="Change logo design and download template"><img th:src="'data:image/png;base64,'+${list[iStat?.index].strBase64}" style="width:45px; height:45px; float:left"></button>
 							<input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" />
 						</form>
-						<button style="margin: 0 auto;" th:onclick="showCode([[${list[iStat?.index].strBase64}]])" class="btn btn-sm  blue-gradient">preview</button>
+						<button style="margin: 0 auto;" th:onclick="showCode([[${list[iStat?.index].strBase64}]])" class="btn btn-sm  blue-gradient" th:text="#{account.preview}"></button>
 					</li>
 					
 					<li>
 						<button class="btn buttonMD purple-gradient" th:onclick="chooseAnimal([[${list[iStat?.index].id.toString()}]], [[${list[iStat?.index].dog}]], [[${list[iStat?.index].cat}]], [[${list[iStat?.index].horse}]], [[${list[iStat?.index].hamsterFishTank}]], [[${list[iStat?.index].fish}]])"  data-toggle="tooltip" title="Quick Select Animal"><i class="fas fa-paw"></i></button>
-						<div style="text-align:center; color:black">Select animal</div>
+						<div style="text-align:center; color:black" th:text="#{account.selectanimal}"></div>
 					</li>
 					<li>
 					<li th:switch="${list[iStat?.index].typeAnimal}" style="display:flex; justify-content: space-around">
 						
 						<div th:case="dog">
 							<form style="margin:0px auto;  padding:0px" id="modifyDog"  action="#" th:action="@{/prepaid-qr}" method="POST" th:object="${prepaidQR}"  data-toggle="tooltip" title="Edit Dog"><button class="btn buttonMD btn-primary"><img src="../img/dog.png"></button><input type="hidden" th:value="${list[iStat?.index].id}" id="id" name="id" /><input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" /><input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'dog'}" id="typeAnimal" name="typeAnimal"  /></form>
-							<div style="text-align:center; color:black">Edit dog</div>
+							<div style="text-align:center; color:black" th:text="#{account.selectanimal.editdog}"></div>
 						</div>
 						
 						<div th:case="cat">
@@ -145,7 +145,7 @@
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'cat'}" id="typeAnimal" name="typeAnimal"  />
 							</form>
-							<div style="text-align:center; color:black">Edit cat</div>
+							<div style="text-align:center; color:black" th:text="#{account.selectanimal.editcat}"></div>
 						</div>
 						
 						<div th:case="horse">
@@ -155,7 +155,7 @@
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'horse'}" id="typeAnimal" name="typeAnimal" />
 							</form>
-						<div style="text-align:center; color:black">Edit horse</div>
+						<div style="text-align:center; color:black" th:text="#{account.selectanimal.edithorse}"></div>
 						</div>
 						
 						<div th:case="rat">
@@ -165,7 +165,7 @@
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'rat'}" id="typeAnimal" name="typeAnimal" />
 							</form>
-						<div style="text-align:center; color:black">Edit rodents</div>
+						<div style="text-align:center; color:black" th:text="#{account.selectanimal.editrat}"></div>
 						</div>
 						
 						<div th:case="fish"  style="position:relative; top:0; left:0;">
@@ -175,8 +175,8 @@
 								<input type="hidden" th:value="${list[iStat?.index].selledOnline}" id="id" name="selledOnline" />
 								<input type="hidden" th:value="${list[iStat?.index].typeAnimal = 'fish'}" id="typeAnimal" name="typeAnimal" />
 							</form><span class="mdi mdi-home"></span>
-							<div style="text-align:center; color:black">Edit fishes</div>
-							<span style="position:absolute; left:-5;top:-5;" class="badge badge-lg badge-warning">On progress</span>
+							<div style="text-align:center; color:black" th:text="#{account.selectanimal.editfishes}"></div>
+							<span style="position:absolute; left:-5;top:-5;" class="badge badge-lg badge-warning" th:text="#{account.ondevelopmentnow}"></span>
 						</div>
 					</li>
 					<li>
@@ -184,16 +184,16 @@
 						<button th:onclick="alerts([[${list[iStat?.index].id.toString()}]])" class="btn buttonMD btn-success" data-toggle="tooltip" title="Declare animals in emergency or rescued" style="display:flex">
 						<i style="color: white" class="fas fa-exclamation-triangle"></i>
 						</button>
-						<div style="text-align:center; color:black">Alerts</div>
+						<div style="text-align:center; color:black" th:text="#{account.alerts}"></div>
 <!-- 					Alert functions end -->
 					</li>
 					<li>
 						<div style="position:relative; top:0; left:0;">
 							<input type="hidden" th:value="${list[iStat?.index].dog}" id="dog" name="dog" />
 							<button class="btn buttonMD btn-danger"  data-toggle="tooltip" title="Clinic History (On develop now)"><i class="fas fa-heartbeat shadow-icon"></i></button>
-							<span style="position:absolute; left:-5;top:-5;" class="badge badge-lg badge-warning">Work in progress</span>
+							<span style="position:absolute; left:-5;top:-5;" class="badge badge-lg badge-warning" th:text="#{account.ondevelopmentnow}"></span>
 						</div>
-						<div style="text-align:center; color:black">Clinical History</div>
+						<div style="text-align:center; color:black" th:text="#{account.clinicalhistory}"></div>
 					</li>
 				</ul>
 				</div>
@@ -270,11 +270,11 @@ function getAllPrepaidQR(){
 				<br><br>
 				<!-- Info user start -->
 				<div class="card rounded" id="setupContainer">
-				<h2 class="card-header text-white aqua-gradient">Setup</h2>
+				<h2 class="card-header text-white aqua-gradient" th:text="#{account.setup.title}"></h2>
 				<div style="display:flex; margin:40px" id="infoPanelAccount">
 				
 					<div id="panelLeft" class="halfCol">
-					<h5>User data:</h5>
+					<h5 th:text="#{account.user.title}"></h5>
 					<div class="form-group rounded grey-text" style="">
 						<div>
 							<img style="box-shadow:0px 0px 15px black" class="rounded" th:src="'https://www.gravatar.com/avatar/' + ${user?.gravatar} + '?s=120'">
@@ -282,20 +282,20 @@ function getAllPrepaidQR(){
 						</div>
 						<br>
 					
-						<small style="color:red">* To edit profile image use Gravatar service</small>
+						<small style="color:red" th:text="#{account.gravatar.advice}">* To edit profile image use Gravatar service</small>
 					</div>
 					
 					<div class="form-group">
-						<label><i class="fas fa-user text-primary"></i> <span th:text="#{account.userlabel}">Nombre de usuario:</span></label>
+						<label><i class="fas fa-user text-primary"></i> <span th:text="#{account.user.label}"></span></label>
 						<div><i class="fa fa-arrow-right text-danger"></i> <span style="color:RebeccaPurple" th:text="${user?.name}"></span></div>
 					</div>
 	
 					<div class="form-group">
 						<label><i class="fas fa-envelope text-primary"></i>
-						<span th:text="#{account.emaillabel}">Email notificaciones:</span></label>
+						<span th:text="#{account.email.label}">Email notificaciones:</span></label>
 						<div><i class="fa fa-arrow-right  text-danger"></i> <span style="color:RebeccaPurple" th:text="${user?.email}"></span></div>
 						<br>
-						<small class="text-primary" style="text-align: justify; font-weight: bold" th:text="#{account.emaillabel.info}">Las notificaciones de mascota incluyen la latitud y longitud de lectura, puede diferir de la casilla de activación donde recibió el código.</small>
+						<small class="text-primary" style="text-align: justify; font-weight: bold" th:text="#{account.user.advice}">Las notificaciones de mascota incluyen la latitud y longitud de lectura, puede diferir de la casilla de activación donde recibió el código.</small>
 					</div>
 					
 					<!--/*/ <th:block th:each="listIterate ,iStat : ${list}"> /*/-->
@@ -303,7 +303,7 @@ function getAllPrepaidQR(){
 					
 					<div class="form-group">
 						<label><i style="color: turquoise" class="fas fa-config"></i>
-						<div  th:if="${list[iStat.index]?.expiration} != null"><strong>Expiration day: </strong><span class="text-danger" th:text="${list[iStat.index]?.expiration}"></span></div>
+						<div  th:if="${list[iStat.index]?.expiration} != null"><strong th:text="#{account.expiration}"></strong><span class="text-danger" th:text="${list[iStat.index]?.expiration}"></span></div>
 					</div>		
 					<!--/*/ </th:block> /*/-->
 
@@ -311,15 +311,15 @@ function getAllPrepaidQR(){
 				
 				<div>
 					<div class="halfCol" style="min-height:100px;">
-					<h5>Notifications:</h5>
+					<h5 th:text="#{account.notifications}"></h5>
 						<div>
 							<ul id="resultNotifications" style="text-align: justify;">
-							<li th:if="${user?.owner == null}">You have not updated any contact data yet <a href="/user" class="text-danger">Edit here</a>.</li>
-							<li th:if="${user?.setup?.sendCoordinates != true}">You have <span class="text-danger">disabled</span> the coordinates to your email, Check <span style="color:turquoise">Setup</span>.</li>
-							<li th:if="${user?.owner?.telephone1 == ''}"><strong class="text-danger">Telephone1</strong> You have not set this contact data yet, it's important to contact you if the pet were founded <a href="/user" style="color:Gold">Edit here</a>.</li>
-							<li th:if="${user?.owner?.telephone2 == ''}"><strong class="text-danger">Telephone2</strong> You have not set this contact data yet, it's important to contact you if the pet were founded <a href="/user" style="color:Gold">Edit here</a>.</li>
-							<li th:if="${user?.owner?.email == ''}"><strong class="text-danger">Email</strong> You have not set this contact data yet, it's important to contact you if the pet were founded <a href="/user" style="color:Gold">Edit here</a>.</li>
-							<li th:if="${user?.owner?.address == ''}"><strong class="text-danger">Address</strong> You have not set this contact data yet, if you don't want specified an exact location just select a public place. <a href="/user" style="color:Gold">Edit here</a></li>
+							<li th:if="${user?.owner == null}"><span th:text="#{account.notupdatedcontactdata}"></span> <a href="/user" class="text-danger" th:text="#{account.edithere}">Edit here</a>.</li>
+							<li th:if="${user?.setup?.sendCoordinates != true}"><span th:text="#{account.coordinatesdisabled}"></span><span style="color:turquoise" th:text="#{account.setup.title}"></span>.</li>
+							<li th:if="${user?.owner?.telephone1 == ''}"><strong class="text-danger" th:text="#{account.telephone1}">Telephone1</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, it's important to contact you if the pet were founded</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a>.</li>
+							<li th:if="${user?.owner?.telephone2 == ''}"><strong class="text-danger" th:text="#{account.telephone2}">Telephone2</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, it's important to contact you if the pet were founded</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a>.</li>
+							<li th:if="${user?.owner?.email == ''}"><strong class="text-danger">Email</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, it's important to contact you if the pet were founded</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a>.</li>
+							<li th:if="${user?.owner?.address == ''}"><strong class="text-danger" th:text="#{account.address"}>Address</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, if you don't want specified an exact location just select a public place.</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a></li>
 							</ul>
 						</div>
 					</div>
@@ -331,71 +331,71 @@ function getAllPrepaidQR(){
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="templates" onchange="lockTemplates()">
-						  <label class="custom-control-label" for="templates">Show/hidde all animal templates (Lock)</label>
+						  <label class="custom-control-label" for="templates" th:text="#{account.showhiddetemplate}">Show/hidde all animal templates (Lock)</label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="qcMolokotech" onchange="quickMolokotechConnect()">
-						  <label class="custom-control-label" for="qcMolokotech">Quick connect with Molokotech Devs into the form</label>
+						  <label class="custom-control-label" for="qcMolokotech" th:text="#{account.connectwithmolokotech}">Quick connect with Molokotech Devs into the form</label>
 						</div>
 
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="shareButtons"  onchange="showSharebuttons()">
-						  <label class="custom-control-label" for="shareButtons">Share buttons into templates (Anyone can share it)</label>
+						  <label class="custom-control-label" for="shareButtons" th:text="#{account.sharebuttons}">Share buttons into templates (Anyone can share it)</label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="enableCoordinates" onchange="enableSendCoordinates()">
-						  <label class="custom-control-label" for="enableCoordinates"><a href="#" onclick="warningCoordinatesAlert()" style="color:blue">Enable</a> coordinates to the email  <span class="text-danger">*</span></label>
+						  <label class="custom-control-label" for="enableCoordinates"  th:text="#{account.coordinatestoemail}"><a href="#" onclick="warningCoordinatesAlert()" style="color:blue">Enable</a> coordinates to the email  <span class="text-danger">*</span></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="customMessage" onchange="enableEspecialMessage()">
-						  <label class="custom-control-label" for="customMessage">Add custom and special message to the top of templates  <span class="text-danger">*</span></label>
+						  <label class="custom-control-label" for="customMessage" th:text="#{account.custommessage}"><span class="text-danger">*</span></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="specialInputs" onchange="enableEspecialInputs()">
-						  <label class="custom-control-label" for="specialInputs">Add special inputs for animal<span class="text-danger">*</span></label>
+						  <label class="custom-control-label" for="specialInputs"  th:text="#{account.addspecialinput}"><span class="text-danger">*</span></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="showMap" onchange="showLocationMap()">
-						  <label class="custom-control-label" for="showMap">Show location map into templates</label>
+						  <label class="custom-control-label" for="showMap"   th:text="#{account.showmap}"></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="showFooter" onchange="showFooter()">
-						  <label class="custom-control-label" for="showFooter">Show/hide Footer on templates for vision improve</label>
+						  <label class="custom-control-label" for="showFooter" th:text="#{account.showfooter}"></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="showYoutubeVideo" onchange="showYoutubeVideo()">
-						  <label class="custom-control-label" for="showYoutubeVideo">Show/hide YouTube video option into templates</label>
+						  <label class="custom-control-label" for="showYoutubeVideo" th:text="#{account.showvideo}"></label>
 						</div>
 						
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="SendRequestVet" disabled>
-						  <label class="custom-control-label" for="SendRequestVet">Send encoded request to vets for update Clinic History <span class="text-danger">*</span></label>  <span class="badge badge-sm badge-primary">On progress now</span></label>
+						  <label class="custom-control-label" for="SendRequestVet" th:text="#{account.sendclinichistorytovet}"></label> <span class="badge badge-sm badge-primary" th:text="#{account.ondevelopmentnow}"></span></label>
 						</div>
 											
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="prices" disabled>
-						  <label class="custom-control-label" for="prices">Allow prices for rodents and fishes  <span class="badge badge-sm badge-primary">On progress now</span></label>
+						  <label class="custom-control-label" for="prices" th:text="#{account.addpricetorodentsfishes}">Allow prices for rodents and fishes</label><label></label>  <span class="badge badge-sm badge-primary" th:text="#{account.ondevelopmentnow}"></span></label>
 						</div>
 						
-						<small class="text-danger" style=" font-weight: bold">* Applies only for animal that could be lost or get vet atemption.</small>
-						<small class="text-danger" style=" font-weight: bold"> Setup saves "Automatically", but only if you have at least a QR code available</small>
+						<small class="text-danger" style=" font-weight: bold" th:text="#{account.onlylostanimal}"></small>
+						<small class="text-danger" style=" font-weight: bold" th:text="#{account.setupsavesonlywithqr}"></small>
 	<script>
 	function warningCoordinatesAlert(){
 		$.alert({

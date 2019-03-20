@@ -21,25 +21,31 @@
 
 	<!-- Template bar -->
 	<nav th:replace="default :: bar"></nav>
-	<div id="triangleTopLeftIndex"><div style="position:absolute; top:-200px; left:0px;" ><!-- <img src="../img/world.png" /> --><div onmouseout="removeBounce(this)" onmouseover="addBounce(this)" style="color:white;text-shadow: 0px 0px 5px black; position:absolute; top:0px;left:0px;padding:5px; transform:rotate(-45deg)"><br><strong th:text="#{index.buyandadmin}"></strong> <i class="fas fa-wifi" style="color:#ff8000"></i></div></div></div>
-
 	<div style="position:relative !important;top:0px;left:0px;width:100% !important; display:block;">
-			<div  style="position:relative !important; width:100%; margin:0 auto; top: 0px; left:0px;"><img alt="" class="img-fluid" src="../img/dogsCats.jpg">
-	<div><button id="startButton" th:if="${currentUser != 'Guess'}" class="btn btn-lg peach-gradient" onclick="window.location.href='/account'" style="position:absolute; top: 5%; left:50%; max-width:320px; height:auto !important; box-shadow: 0px 0px 30px black; text-shadow: 1px 2px black">Empezar</button></div>
+			<div  style="position:relative !important; width:100%; margin:0 auto; top: 0px; left:0px;"><img alt="Background QR" class="img-fluid" src="../img/dogsCats.jpg">
+	<div><button id="startButton" th:if="${currentUser != 'Guesst'}" class="btn btn-lg peach-gradient" onclick="window.location.href='/account'" style="position:absolute; top: 5%; left:50%; max-width:320px; height:auto !important; box-shadow: 0px 0px 30px black; text-shadow: 1px 2px black">Empezar</button></div>
 			<div id="loginDiv" th:if="${#session == null}" th:insert="login :: login" style="position:absolute; top: 5%; left:65%; max-width:320px; height:auto !important"></div>
 		</div>
 	</div>
 	
-	<div id="disclaimer" th:if="${#session == null}"><strong class="animated flipInX delay-2s"><span style="color:Gold">"</span>The awesome of <a onclick="mpat()"><span style="color:blue">M</span>.<span style="color:red">P</span>.<span style="color:Gold">A</span>.<span style="color:LimeGreen">T</span>.</a> is that you can "store" almost 5 animals in one QR-code...<span style="color:Gold">"</span></strong> </div>
+	<div style="background-color:rgba(250,250,250,0.5); padding:10px" id="disclaimer" th:if="${#session == null}" class="rounded"><strong class="animated flipInX delay-2s"><span style="color:Gold">"</span><span th:text="#{index.disclaimer.1}"></span><a onclick="mpat()"><span style="color:blue">M</span>.<span style="color:red">P</span>.<span style="color:Gold">A</span>.<span style="color:LimeGreen">T</span>.</a> <span th:text="#{index.disclaimer.2}"></span><span style="color:Gold">"</span></strong> </div>
 	
-	<script>
+	<script th:inline="javascript">
+
+	
 	function mpat(){
+		/*<![CDATA[*/
+		var title = /*[[#{index.alert.title}]]*/;
+	var content = /*[[#{index.alert.mpat}]]*/;
+
 		$.alert({
 			type:"purple",
-			title:"<i class='fa fa-paw' style='color:deeppink'></i> Multi Porpuse Animal Tag",
-			content:"<html><body><span style='text-align:justify'>It's a QR code that can handle more than one animal, so you can Store dog, cat, rodents even horses and fishes, the QR code shows one Animal at time, but you can choose the one whoose active now. Power control within your pets.</span></body></html>"
+			title:"<i class='fa fa-paw' style='color:deeppink'></i> <span th:text="+title+"/></span>",
+			content:"<html  xmlns:th='http://www.thymeleaf.org'><body><span style='text-align:justify' th:text="+content+"></span></body></html>"
 		});
+			alert(content);
 	}
+    /*]]>*/
 	</script>
 	
 
@@ -47,26 +53,26 @@
 	<div th:if="${#session != null}" style="position:absolute; left:77%; top:13%;" id="logoStarterAnimation">
 	   <img src="../img/iconoPet75.png" style="position:absolute; left:33px; top:0px;" class="animated flipInX delay-2s" id="pLogo" onmouseover="changeCursorToimages()" onclick="window.location.href = '/account'">
 	   <h5 id="titleStarter1" style="position:absolute; left:0px; top:145px; width: 230px" class="animated flipInX delay-3s" th:text="#{index.intro1}"></h5>
-	   <h4 id="titleStarter2" style="position:absolute; left:10px; top:175px; width:270px" class="animated flipInX delay-4s">But a whole Platform!</h4>
-	   <h4 id="titleStarter3" style="position:absolute; left:0px; top:210px; width:270px;" class="animated flipInX delay-5s">for <span style="color:blue">A</span><span style="color:red">n</span><span style="color:green">i</span><span style="color:DarkViolet">m</span><span style="color:lightblue">a</span><span style="color:orange">l</span> S<i class="fa fa-at" style="color:LimeGreen"></i>fety.</h4></div>
+	   <h4 id="titleStarter2" style="position:absolute; left:10px; top:175px; width:270px" class="animated flipInX delay-4s" th:text="#{index.intro2}">But a whole Platform!</h4>
+	   <h4 id="titleStarter3" style="position:absolute; left:0px; top:210px; width:300px;" class="animated flipInX delay-5s" th:utext="#{index.intro3}"></div>
 	
 	<!-- Action Buttons start -->
 	<div id="barActionButtons" style="padding:20px;background-color:black; height: auto; text-align:center" class="flexAllStretch grey-text">
 			<div>
-			<h4 id="buttonsActive" class="text-warning" style="text-align:center"><i style="color:white" class="fas fa-qrcode"></i> Start now</h4>
+			<h4 id="buttonsActive" class="text-warning" style="text-align:center"><i style="color:white" class="fas fa-qrcode"></i> <span th:text="#{index.startnow}"></span></h4>
 			<hr style="border: 1px solid gold;">
-			<span style="text-align:center" class="grey-text">Activate your MPTA right now or start a Free Trial</span>	
+			<span style="text-align:center" class="grey-text" th:text="#{index.activatempta}"></span>	
 				<div style="text-align:center">
-					<button id="activateButton" type="button" class="btn purple-gradient" onclick="spinner(id); window.location.href= '/pricing';" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"></span> Comprar QR</button>
+					<button id="activateButton" type="button" class="btn purple-gradient" onclick="spinner(id); window.location.href= '/pricing';" onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.buyqr}"></button>
 					
-					<button class="btn purple-gradient" onclick="window.location.href= '/prepaid-qr'" onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.button.activateqr}"></button>
+					<button class="btn purple-gradient" onclick="spinner(id); window.location.href= '/prepaid-qr'" onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.tryqr}"></button>
 				</div>
 			</div>	
 			
 			<div>
-			<h4 class="text-warning"><i style="color:white" class="fas fa-share-alt"></i> Share this page</h4>
+			<h4 class="text-warning"><i style="color:white" class="fas fa-share-alt"></i> <span th:text="#{index.sharethispage}"></span></h4>
 			<hr style="border: 1px solid gold;">
-				<span style="text-align:center">We develop for animal's safety, it's a god cause so if could just share it.</span><br>
+				<span style="text-align:center" th:text="#{index.developforanimals}"></span><br>
 					<div style="display:flex !important; justify-content: center !important">
 						<div style="padding:3px; float: left"><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Customize%20your%20online%20QR%20Code%20for%20your%20Pet!" data-size="large" size="large">Tweet</a></div>
 						<div style="padding:3px; float: left;" class="fb-share-button" data-href="https://pet-qr.com" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpet-qr.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
@@ -77,9 +83,9 @@
 
 		<!-- PDF div start -->
 			<div id="pdfDiv">
-				<h4 class="text-warning" style="text-align:center"><i style="color:white" class="fas fa-eye"></i> View Example</h4>
+				<h4 class="text-warning" style="text-align:center"><i style="color:white" class="fas fa-eye"></i> <span th:text="#{index.example}"></span></h4>
 				<hr style="border: 1px solid gold;">
-				<span>Just check the example bellow</span>
+				<span th:text="#{index.viewexamples}"></span>
 				<div>	
 					<img src="../img/pdfIcon75.png" alt="" id="pdfimage" style="width: 64px; padding-right:20px;" onclick="viewPdf()" onmouseover="addBounce(this), changeCursorPdf()" onmouseout="removeBounce(this)" />
 					<img src="../img/youtube.jpg" style="border-radius:3px">
@@ -99,6 +105,12 @@
                                             <th width="20%" class="text-center"><i style="color:#FF8A8A" class="fas fa-microchip"></i> <span th:text="#{index.table.header.header2}"></span></th>
                                             <th width="20%" class="text-center"><i style="color:#2FAACE" class="fas fa-tag"></i> <span th:text="#{index.table.header.header3}"></span></th>
                                         </tr>
+                                        <tr>
+  	                                        <td class="text-right" th:text="#{index.table.detail.animalquantity}"></td>
+                                            <td class="text-center"><i class="fas fa-check check"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>
+                                            <td class="text-center"><i class="fas fa-times cancel"></i></td>                                         
+                                       </tr>
                                         <tr>
                                             <td class="text-right" th:text="#{index.table.detail.visible}"></td>
                                             <td class="text-center"><i class="fas fa-check check"></i></td>
@@ -196,14 +208,13 @@
                                             <td class="text-center"><i class="fas fa-check check"></i></td>
                                             <td class="text-center"><i class="fas fa-check check"></i></td>
                                         </tr>
-                                             
                                     </tbody>
                                 </table>
                                 
                                 <div style="text-align:center; display:flex; flex-direction:column;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">
 											<button type="button" class="btn btn-lg purple-gradient" onclick="window.location.href='/pricing'" style="margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)"><strong th:text="#{index.panel5.buttonstart}"></strong></button>
 											<small style="margin: 0 auto; font-size:16px; padding:3px;" th:text="#{index.panel5.starnow}"></small>
-										<button onclick="window.location.href='/temporal-qr'" class="btn btn-lg blue-gradient" style="margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)">Start Free trial</button>
+										<button onclick="window.location.href='/temporal-qr'" class="btn btn-lg blue-gradient" style="margin: 0 auto;" onmouseout="removeBounce(this)" onmouseover="addBounce(this)" th:text="#{index.panel5.startfreetrial}"></button>
 											<small style="padding:3px;" class="form-group" th:text="#{index.panel5.starnow.description}"></small><br>
 										</div>
                                 

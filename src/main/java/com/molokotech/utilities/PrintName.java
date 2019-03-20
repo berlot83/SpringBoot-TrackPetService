@@ -12,7 +12,7 @@ public class PrintName {
 				
 				String name = auth.getName(); // get logged in username				
 				if(name.equals("anonymousUser")) {
-					name = "Guess"; /* Lastone says "Invitado"*/
+					name = "Guesst"; /* Lastone says "Invitado"*/
 				}
 				modelName.addAttribute("currentUser", name);
 				modelName.addAttribute("fullName", name);
