@@ -117,8 +117,9 @@
 							<div><a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt" style="color:DarkViolet"></i> <span style="color:black" th:text="#{account.transfercode}">Transfer code</span></a></div>
 							<div><a style="color:black" th:href="@{'https://www.google.com/maps/search/?api=1&query='+${list[iStat?.index].lastLatitude}+','+${list[iStat?.index].lastLongitude}}" target="_blank"><i class="fa fa-map" style="color:blue"></i> <span th:text="#{account.coordinatesreaded}">Last Coordinates readed</span></a></div>
 						</div>
-<!-- 						https://www.google.com/maps/search/?api=1&query=36.26577,-92.54324 this format is correct, not the beside-->
-<!-- th:href="@{'https://www.google.com.ar/maps/@'+ ${list[iStat?.index].lastLatitude} +','+ ${list[iStat?.index].lastLongitude + ',18z'}}" this format is not correct, is very gral-->
+						
+						<!-- https://www.google.com/maps/search/?api=1&query=36.26577,-92.54324 this format is correct, not the beside-->
+						<!-- th:href="@{'https://www.google.com.ar/maps/@'+ ${list[iStat?.index].lastLatitude} +','+ ${list[iStat?.index].lastLongitude + ',18z'}}" this format is not correct, is very gral-->
 						
 					</li>
 					<li>

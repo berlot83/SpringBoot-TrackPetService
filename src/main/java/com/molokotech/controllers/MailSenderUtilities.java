@@ -71,8 +71,8 @@ public class MailSenderUtilities {
 	@PostMapping("/sendCoordinatesToMail")
 	public void sendCoordinatesToMail(String latitude, String longitude, String mail, String dateTime, String id) {
 
-		String mapAddress = "https://www.google.com.ar/maps/@"+latitude+","+longitude+"z";
-
+		//String mapAddress = "https://www.google.com.ar/maps/@"+latitude+","+longitude+"z"; Old and ambicius without precision
+		String mapAddress = "https://www.google.com.ar/maps/search/?api=1&query="+latitude+","+longitude;
 		
 		
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {

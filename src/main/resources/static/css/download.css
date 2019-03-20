@@ -1,6 +1,5 @@
-html, body{
+html, body {
 	height: 100%;
-	
 }
 
 #downloadMainContainerDiv {
@@ -9,10 +8,12 @@ html, body{
 	box-shadow: 0px 0px 20px black;
 	height: 100%;
 	background-color: #272727;
-	background-image: -webkit-linear-gradient( -45deg, GhostWhite 0%, GhostWhite 50%, WhiteSmoke 50%, WhiteSmoke 50%);
-	background-image: linear-gradient( -45deg, GhostWhite 0%, GhostWhite 50%, WhiteSmoke 50%, WhiteSmoke 50%);
-	width:80%;
-	height:auto;
+	background-image: -webkit-linear-gradient(-45deg, GhostWhite 0%, GhostWhite 50%,
+		WhiteSmoke 50%, WhiteSmoke 50%);
+	background-image: linear-gradient(-45deg, GhostWhite 0%, GhostWhite 50%, WhiteSmoke 50%,
+		WhiteSmoke 50%);
+	width: 80%;
+	height: auto;
 }
 
 /*  Small devices (landscape phones, 576px and up) */
@@ -20,15 +21,13 @@ html, body{
 	body {
 		font-size: x-small !important;
 	}
-	
-	#accountFirstPanel{
-	display:flex;
-	flex-direction: column;
+	#downloadFirstPanel {
+		display: flex;
+		flex-direction: column;
 	}
-	
-	#footer{
-	position:fixed;
-	bottom:0;
+	#footer {
+		position: fixed;
+		bottom: 0;
 	}
 }
 
@@ -37,8 +36,8 @@ html, body{
 	body {
 		font-size: small !important;
 	}
-		#footer{
-	position:fixed;
-	bottom:0;
+	#footer {
+		position: fixed;
+		bottom: 0;
 	}
 }

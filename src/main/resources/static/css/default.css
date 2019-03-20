@@ -34,6 +34,16 @@ html, body {
 	align-content: stretch;
 }
 
+.flexAllCentered{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+}
+
+
 .flexPanelControl{
 	display: flex;
 	flex-direction: row;

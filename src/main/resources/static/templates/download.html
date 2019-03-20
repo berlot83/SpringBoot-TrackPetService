@@ -43,58 +43,58 @@
 				<th:block th:switch="${prepaidQR.typeAnimal}">
 				<!-- Dog case start -->
 				    <div th:case="'dog'">
-							<h5 class="card-header blue-gradient white-text">Download Dog Tag</h5>
+							<h5 class="card-header blue-gradient white-text" th:text="#{download.dogtag}">Download Dog Tag</h5>
 					 <div style="padding:30px">
-					    <div style="display:flex; justify-content: space-around;" id="accountFirstPanel">
+					    <div style="display:flex; justify-content: space-around;" id="downloadFirstPanel">
 						    <div id="qrcode" class="thirdteenCol">
-						    <h5>QR code</h5>
+						    <h5 th:text="#{download.qrcode}">QR code</h5>
 						    <br>
 						    	<img alt="QR code Dog" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
 						    </div>
 						    <div id="base64Backside" class="thirdteenCol">
-						    	<h5>Backside of the Tag</h5>
+						    	<h5 th:text="#{download.backsidetag}">Backside of the Tag</h5>
 						    	<br>
 						    	<img alt="Backside Tag Dog" th:if="${owner?.base64Backside != null && owner?.base64Backside != ''}" th:src="${owner?.base64Backside}" class="box">
 						    	<div alt="Backside Tag Dog" th:unless="${owner?.base64Backside != null && owner?.base64Backside != ''}" class="box" style="background-color:rgba(200,200,200,0.5);text-align: justify; padding:15px">There is not an snapshot of location yet. got to <a href="/user" style="color:blue">user settings</a></div>
 						    </div>
 						    <div class="thirdteenCol">
-							<h5>Select inputs</h5>
+							<h5 th:text="#{download.inputs}">Select inputs</h5>
 							<br>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${dog?.petName}" class="custom-control-input" style="display:block" id="petName" checked/>
-								<label class="custom-control-label" for="petName">Pet Name</label>
+								<label class="custom-control-label" for="petName" th:text="#{download.petname}">Pet Name</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${dog?.raze}" class="custom-control-input" style="display:block" id="raze" />
-								<label class="custom-control-label" for="raze">Raze</label>
+								<label class="custom-control-label" for="raze" th:text="#{download.raze}">Raze</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${dog?.illness}" class="custom-control-input" style="display:block" id="illness" />
-								<label class="custom-control-label" for="illness">Illness</label>
+								<label class="custom-control-label" for="illness" th:text="#{download.illness}">Illness</label>
 							</div>
 							<div class="custom-control custom-switch" th:if="${dog?.medicated == false}">
 								<input type="checkbox" th:if="${dog?.medicated == false}" class="custom-control-input" th:value="No" style="display:block" id="medicated" />
-								<label class="custom-control-label" for="medicated">Medicated</label>
+								<label class="custom-control-label" for="medicated" th:text="#{download.medicated}">Medicated</label>
 							</div>
 							<div class="custom-control custom-switch" th:unless="${dog?.medicated == false}">
 								<input type="checkbox" th:unless="${dog?.medicated == false}" class="custom-control-input" th:value="Yes" style="display:block" id="medicated" />
-								<label class="custom-control-label" for="medicated">Medicated</label>
+								<label class="custom-control-label" for="medicated" th:text="#{download.medicated}">Medicated</label>
 							</div>
 							<div class="custom-control custom-switch" th:if="${dog?.neuteredPet == false}">
 								<input type="checkbox" th:if="${dog?.neuteredPet == false}" class="custom-control-input" th:value="No" style="display:block" id="neuteredPet" />
-								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+								<label class="custom-control-label" for="neuteredPet" th:text="#{download.neutered}">Neutered</label>
 							</div>
 							<div class="custom-control custom-switch" th:unless="${dog?.neuteredPet == false}">
 								<input type="checkbox" th:unless="${dog?.neuteredPet == false}" class="custom-control-input" th:value="Yes" style="display:block" id="neuteredPet" />
-								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+								<label class="custom-control-label" for="neuteredPet" th:text="#{download.neutered}">Neutered</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.telephone1}" class="custom-control-input" style="display:block" id="telephone1" checked/>
-								<label class="custom-control-label" for="telephone1">Phone 1</label>
+								<label class="custom-control-label" for="telephone1" th:text="#{download.phone1}">Phone 1</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.telephone2}" class="custom-control-input" style="display:block" id="telephone2" />
-								<label class="custom-control-label" for="telephone2">Phone 2</label>
+								<label class="custom-control-label" for="telephone2" th:text="#{download.phone2}">Phone 2</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.email}" class="custom-control-input" style="display:block" id="email" />
@@ -114,57 +114,57 @@
 				
 				<!-- Cat case start -->
 				    <div th:case="'cat'">
-				    	<h5 class="card-header blue-gradient white-text">Download Cat Tag</h5>
+				    	<h5 class="card-header blue-gradient white-text" th:text="#{download.cattag}">Download Cat Tag</h5>
 				<div style="padding:30px">
 					<div style="display:flex; justify-content: space-around">
 						<div id="qrcode" class="thirdteenCol">
-					    <h5>QR code</h5>
+					    <h5 th:text="#{download.qrcode}">QR code</h5>
 					    <br>
 					    	<img alt="QR code Cat" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
 					    </div>
 					    <div id="base64Backside" class="thirdteenCol">
-					    	<h5>Backside of the Tag</h5>
+					    	<h5 th:text="#{download.backsidetag}">Backside of the Tag</h5>
 					    	<br>
 					    	<img alt="Backside Tag Cat" th:src="${owner?.base64Backside}" class="box">
 					    </div>
 						<div class="thirdteenCol">
-							<h5>Select inputs</h5>
+							<h5 th:text="#{download.inputs}">Select inputs</h5>
 							<br>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${cat?.petName}" class="custom-control-input" style="display:block" id="petName" checked/>
-								<label class="custom-control-label" for="petName">Pet Name</label>
+								<label class="custom-control-label" for="petName" th:text="#{download.petname}">Pet Name</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${cat?.raze}" class="custom-control-input" style="display:block" id="raze" />
-								<label class="custom-control-label" for="raze">Raze</label>
+								<label class="custom-control-label" for="raze" th:text="#{download.raze}">Raze</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${cat?.illness}" class="custom-control-input" style="display:block" id="illness" />
-								<label class="custom-control-label" for="illness">Illness</label>
+								<label class="custom-control-label" for="illness" th:text="#{download.illness}">Illness</label>
 							</div>
 							<div class="custom-control custom-switch" th:if="${cat?.medicated == false}">
 								<input type="checkbox" th:if="${cat?.medicated == false}" class="custom-control-input" th:value="No" style="display:block" id="medicated" />
-								<label class="custom-control-label" for="medicated">Medicated</label>
+								<label class="custom-control-label" for="medicated" th:text="#{download.medicated}">Medicated</label>
 							</div>
 							<div class="custom-control custom-switch" th:unless="${cat?.medicated == false}">
 								<input type="checkbox" th:unless="${cat?.medicated == false}" class="custom-control-input" th:value="Yes" style="display:block" id="medicated" />
-								<label class="custom-control-label" for="medicated">Medicated</label>
+								<label class="custom-control-label" for="medicated" th:text="#{download.medicated}">Medicated</label>
 							</div>
 							<div class="custom-control custom-switch" th:if="${cat?.neuteredPet == false}">
 								<input type="checkbox" th:if="${cat?.neuteredPet == false}" class="custom-control-input" th:value="No" style="display:block" id="neuteredPet" />
-								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+								<label class="custom-control-label" for="neuteredPet" th:text="#{download.neutered}">Neutered</label>
 							</div>
 							<div class="custom-control custom-switch" th:unless="${cat?.neuteredPet == false}">
 								<input type="checkbox" th:unless="${cat?.neuteredPet == false}" class="custom-control-input" th:value="Yes" style="display:block" id="neuteredPet" />
-								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+								<label class="custom-control-label" for="neuteredPet" th:text="#{download.neutered}">Neutered</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.telephone1}" class="custom-control-input" style="display:block" id="telephone1" checked/>
-								<label class="custom-control-label" for="telephone1">Phone 1</label>
+								<label class="custom-control-label" for="telephone1" th:text="#{download.phone1}">Phone 1</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.telephone2}" class="custom-control-input" style="display:block" id="telephone2" />
-								<label class="custom-control-label" for="telephone2">Phone 2</label>
+								<label class="custom-control-label" for="telephone2" th:text="#{download.phone2}">Phone 2</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.email}" class="custom-control-input" style="display:block" id="email" />
@@ -183,57 +183,57 @@
 				
 				<!-- horse case start -->
 				    <div th:case="'horse'">
-				    	<h5  class="card-header blue-gradient white-text">Download Horse Tag</h5>
+				    	<h5  class="card-header blue-gradient white-text" th:text="#{download.horsetag}">Download Horse Tag</h5>
 				<div style="padding:30px">
 					<div style="display:flex; justify-content: space-around">
 						<div id="qrcode" class="thirdteenCol">
-					    <h5>QR code</h5>
+					    <h5 th:text="#{download.qrcode}">QR code</h5>
 					    	<br>
 					    	<img alt="QR code Horse" th:src="'data:image/png;base64,' + ${prepaidQR?.strBase64}" class="box">
 					    </div>
 					    <div id="base64Backside" class="thirdteenCol">
-					    	<h5>Backside of the Tag</h5>
+					    	<h5 th:text="#{download.backsidetag}">Backside of the Tag</h5>
 					    	<br>
 					    	<img alt="Backside Tag Horse" th:src="${owner?.base64Backside}" class="box">
 					    </div>
 					    <div class="thirdteenCol">
-							<h5>Select inputs</h5>
+							<h5 th:text="#{download.inputs}">Select inputs</h5>
 							<br>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${horse?.petName}" class="custom-control-input" style="display:block" id="petName" checked/>
-								<label class="custom-control-label" for="petName">Pet Name</label>
+								<label class="custom-control-label" for="petName" th:text="#{download.petname}">Pet Name</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${horse?.raze}" class="custom-control-input" style="display:block" id="raze" />
-								<label class="custom-control-label" for="raze">Raze</label>
+								<label class="custom-control-label" for="raze" th:text="#{download.raze}">Raze</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${horse?.illness}" class="custom-control-input" style="display:block" id="illness" />
-								<label class="custom-control-label" for="illness">Illness</label>
+								<label class="custom-control-label" for="illness" th:text="#{download.illness}">Illness</label>
 							</div>
 							<div class="custom-control custom-switch" th:if="${horse?.medicated == false}">
 								<input type="checkbox" th:if="${horse?.medicated == false}" class="custom-control-input" th:value="No" style="display:block" id="medicated" />
-								<label class="custom-control-label" for="medicated">Medicated</label>
+								<label class="custom-control-label" for="medicated" th:text="#{download.medicated}">Medicated</label>
 							</div>
 							<div class="custom-control custom-switch" th:unless="${horse?.medicated == false}">
 								<input type="checkbox" th:unless="${horse?.medicated == false}" class="custom-control-input" th:value="Yes" style="display:block" id="medicated" />
-								<label class="custom-control-label" for="medicated">Medicated</label>
+								<label class="custom-control-label" for="medicated" th:text="#{download.medicated}">Medicated</label>
 							</div>
 							<div class="custom-control custom-switch" th:if="${horse?.neuteredPet == false}">
 								<input type="checkbox" th:if="${horse?.neuteredPet == false}" class="custom-control-input" th:value="No" style="display:block" id="neuteredPet" />
-								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+								<label class="custom-control-label" for="neuteredPet" th:text="#{download.neutered}">Neutered</label>
 							</div>
 							<div class="custom-control custom-switch" th:unless="${horse?.neuteredPet == false}">
 								<input type="checkbox" th:unless="${horse?.neuteredPet == false}" class="custom-control-input" th:value="Yes" style="display:block" id="neuteredPet" />
-								<label class="custom-control-label" for="neuteredPet">Neutered</label>
+								<label class="custom-control-label" for="neuteredPet" th:text="#{download.neutered}">Neutered</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.telephone1}" class="custom-control-input" style="display:block" id="telephone1" checked/>
-								<label class="custom-control-label" for="telephone1">Phone 1</label>
+								<label class="custom-control-label" for="telephone1" th:text="#{download.phone1}">Phone 1</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.telephone2}" class="custom-control-input" style="display:block" id="telephone2" />
-								<label class="custom-control-label" for="telephone2">Phone 2</label>
+								<label class="custom-control-label" for="telephone2" th:text="#{download.phone2}">Phone 2</label>
 							</div>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" th:value="${owner?.email}" class="custom-control-input" style="display:block" id="email" />
@@ -243,7 +243,7 @@
 				  </div>
 				<br>
 				<br>
-					<h6>Elige un logo y descarga tu código QR:</h6>
+					<h6  th:text="#{download.rodentstag}">Elige un logo y descarga tu código QR:</h6>
 					<hr>
 				    <div th:replace="logos :: logosDogFragment"></div>
 					 </div>				    
