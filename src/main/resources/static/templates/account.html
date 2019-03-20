@@ -115,8 +115,11 @@
 						<div><a th:href="@{'/id/'+${list[iStat?.index].id}}"><i style="color: LimeGreen" class="fas fa-search" data-toggle="tooltip" title="View template"></i> <span style="color:black" th:text="#{account.viewtemplate}">View template</span></a></div>
 							<div><a href="#" th:onclick="deleteQr([[${list[iStat?.index].id.toString()}]])"  data-toggle="tooltip" title="Delete QR code"><i class="far fa-trash-alt" style="color:red"></i> <span style="color:black" th:text="#{account.deletecode}">Delete Code</span></a></div>
 							<div><a th:onclick="transferCode([[${list[iStat?.index].id.toString()}]])" href="#"  data-toggle="tooltip" title="Transfer QR code to another User"><i class="fas fa-exchange-alt" style="color:DarkViolet"></i> <span style="color:black" th:text="#{account.transfercode}">Transfer code</span></a></div>
-							<div><a style="color:black" th:href="@{'https://www.google.com.ar/maps/@'+ ${list[iStat?.index].lastLatitude} +','+ ${list[iStat?.index].lastLatitude} +',z'}" target="_blank"><i class="fa fa-map" style="color:blue"></i> <span th:text="#{account.coordinatesreaded}">Last Coordinates readed</span></a></div>
+							<div><a style="color:black" th:href="@{'https://www.google.com/maps/search/?api=1&query='+${list[iStat?.index].lastLatitude}+','+${list[iStat?.index].lastLongitude}}" target="_blank"><i class="fa fa-map" style="color:blue"></i> <span th:text="#{account.coordinatesreaded}">Last Coordinates readed</span></a></div>
 						</div>
+<!-- 						https://www.google.com/maps/search/?api=1&query=36.26577,-92.54324 this format is correct, not the beside-->
+<!-- th:href="@{'https://www.google.com.ar/maps/@'+ ${list[iStat?.index].lastLatitude} +','+ ${list[iStat?.index].lastLongitude + ',18z'}}" this format is not correct, is very gral-->
+						
 					</li>
 					<li>
 						<form style="margin:2px auto;  padding:0px" action="#" th:action="@{/download}" th:method="POST" th:object="${prepaidQR}">
@@ -310,16 +313,16 @@ function getAllPrepaidQR(){
 				</div>
 				
 				<div>
-					<div class="halfCol" style="min-height:100px;">
+					<div class="halfCol rounded" style="min-height:100px; background-color: rgba(200,200,200,0.3); padding:10px;">
 					<h5 th:text="#{account.notifications}"></h5>
 						<div>
 							<ul id="resultNotifications" style="text-align: justify;">
-							<li th:if="${user?.owner == null}"><span th:text="#{account.notupdatedcontactdata}"></span> <a href="/user" class="text-danger" th:text="#{account.edithere}">Edit here</a>.</li>
-							<li th:if="${user?.setup?.sendCoordinates != true}"><span th:text="#{account.coordinatesdisabled}"></span><span style="color:turquoise" th:text="#{account.setup.title}"></span>.</li>
-							<li th:if="${user?.owner?.telephone1 == ''}"><strong class="text-danger" th:text="#{account.telephone1}">Telephone1</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, it's important to contact you if the pet were founded</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a>.</li>
-							<li th:if="${user?.owner?.telephone2 == ''}"><strong class="text-danger" th:text="#{account.telephone2}">Telephone2</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, it's important to contact you if the pet were founded</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a>.</li>
-							<li th:if="${user?.owner?.email == ''}"><strong class="text-danger">Email</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, it's important to contact you if the pet were founded</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a>.</li>
-							<li th:if="${user?.owner?.address == ''}"><strong class="text-danger" th:text="#{account.address"}>Address</strong><span th:text="#{account.nodatasetted}"> You have not set this contact data yet, if you don't want specified an exact location just select a public place.</span> <a href="/user" style="color:Gold" th:text="#{account.edithere}">Edit here</a></li>
+							<li th:if="${user?.owner == null}"> <span th:text="#{account.notupdatedcontactdata}"></span> <a href="/user" class="text-danger" style="text-shadow: 1px 1px black" th:text="#{account.edithere}"></a>.</li>
+							<li th:if="${user?.setup?.sendCoordinates != true}"><span th:text="#{account.coordinatesdisabled}"></span><span style="color:turquoise; text-shadow: 1px 1px black" th:text="#{account.setup.title}"></span>.</li>
+							<li th:if="${user?.owner?.telephone1 == ''}"> <strong class="text-danger" style="text-shadow: 1px 1px black" th:text="#{account.telephone1}"></strong><span th:text="#{account.nodatasetted}"> </span> <a href="/user" style="color:LimeGreen; text-shadow: 1px 1px black" th:text="#{account.edithere}"></a>.</li>
+							<li th:if="${user?.owner?.telephone2 == ''}"> <strong class="text-danger" style="text-shadow: 1px 1px black" th:text="#{account.telephone2}"></strong><span th:text="#{account.nodatasetted}"> </span> <a href="/user" style="color:LimeGreen; text-shadow: 1px 1px black" th:text="#{account.edithere}"></a>.</li>
+							<li th:if="${user?.owner?.email == ''}"><strong class="text-danger">Email</strong><span th:text="#{account.nodatasetted}"></span> <a href="/user" style="color:Gold; text-shadow: 1px 1px black" th:text="#{account.edithere}"></a>.</li>
+							<li th:if="${user?.owner?.address == ''}"><strong class="text-danger" th:text="#{account.address"}></strong><span th:text="#{account.nodatasetted}"> </span> <a href="/user" style="color:LimeGreen; text-shadow: 1px 1px black" th:text="#{account.edithere}"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -327,7 +330,7 @@ function getAllPrepaidQR(){
 					<br>
 
 					<div id="config" style="display:flex; flex-direction:column;">
-					<h5>Setup options:</h5>
+					<h5 th:text="#{account.options}"></h5>
 						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 						  <input type="checkbox" class="custom-control-input" id="templates" onchange="lockTemplates()">

@@ -28,8 +28,7 @@
 								<td th:text="#{db.table.food}">Marca Comida</td>
 							</tr>
 						</thead>
-						<th:block th:each="listIterate : ${list}"
-							th:if="${listIterate?.dog?.status}  == true">
+						<th:block th:each="listIterate : ${list}" th:if="${listIterate?.dog?.status}  == true">
 						<tbody>
 							<tr>
 								<td><img th:if="${listIterate?.dog?.resultBase64Avatar != null}" alt="Perfil" id="profile" onmouseover="changeCursorToimagesDB(this)" th:onclick="viewImage([[${listIterate?.dog?.resultBase64Avatar}]])" th:src="${listIterate?.dog?.resultBase64Avatar}" style="height:45px"><img th:unless="${listIterate?.dog?.resultBase64Avatar != null}" alt="Perfil" id="profile" onmouseover="changeCursorToimagesDB(this)" th:onclick="viewImage([[${listIterate?.dog?.resultBase64Avatar}]])" src="../img/withoutPhoto.png" style="height:45px"></td>
@@ -42,6 +41,7 @@
 								<td th:unless="${listIterate?.dog?.medicated} == true">No</td>
 								<td th:text="${listIterate?.dog?.illness}"></td>
 								<td th:text="${listIterate?.dog?.foodBrand}"></td>
+							
 							<!-- Search script manually start -->		
 							<script th:inline="javascript">
 								function findManuallyId(){
