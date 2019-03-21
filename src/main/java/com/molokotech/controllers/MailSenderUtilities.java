@@ -32,10 +32,10 @@ public class MailSenderUtilities {
 
 	@Autowired
 	public UserService userService;
-	
+
 	@Autowired
 	public JavaMailSender emailSender;
-	
+
 	@Autowired
 	public PrepaidQrService prepaidQrService;
 
@@ -71,16 +71,19 @@ public class MailSenderUtilities {
 	@PostMapping("/sendCoordinatesToMail")
 	public void sendCoordinatesToMail(String latitude, String longitude, String mail, String dateTime, String id) {
 
-		//String mapAddress = "https://www.google.com.ar/maps/@"+latitude+","+longitude+"z"; Old and ambicius without precision
-		String mapAddress = "https://www.google.com.ar/maps/search/?api=1&query="+latitude+","+longitude;
-		
-		
+		// String mapAddress =
+		// "https://www.google.com.ar/maps/@"+latitude+","+longitude+"z"; Old and
+		// ambicius without precision
+		String mapAddress = "https://www.google.com.ar/maps/search/?api=1&query=" + latitude + "," + longitude;
+
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setSubject("Coordenadas de la última lectura");
 				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(mail));
 				mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
-				mimeMessage.setText("EL QR de la mascota fue escaneada en:\n\nLatitud: "+ latitude + "\nLongitud: "+ longitude + "\nDia y hora: "+ dateTime + " Siga el siguiente link para ver en el mapa => "+ mapAddress);
+				mimeMessage.setText("EL QR de la mascota fue escaneada en:\n\nLatitud: " + latitude + "\nLongitud: "
+						+ longitude + "\nDia y hora: " + dateTime + " Siga el siguiente link para ver en el mapa => "
+						+ mapAddress);
 			}
 		};
 
@@ -89,19 +92,19 @@ public class MailSenderUtilities {
 		} catch (MailException ex) {
 			System.err.println(ex.getMessage());
 		}
-		
+
 		PrepaidQR prepaidQR = prepaidQrService.findById(id);
 		prepaidQR.setLastLatitude(latitude);
 		prepaidQR.setLastLongitude(longitude);
 		prepaidQrService.createPrepaidQR(prepaidQR);
 
 	}
-	
+
 	@GetMapping("/sendQrCodeToEmail")
 	public void sendQrCodeToEmail(PrepaidQR prepaidQR, User user) {
-		
+
 		String id = prepaidQR.getId().toString();
-		
+
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setSubject("Id del QR adquirido.");

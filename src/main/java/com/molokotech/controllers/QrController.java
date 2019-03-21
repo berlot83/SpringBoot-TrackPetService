@@ -159,15 +159,37 @@ public class QrController {
 					user.setGravatar(gravatar);
 					user.setEmail(user.getEmail().trim().toLowerCase());
 					
-					
 					Setup setup = new Setup();
 					user.setSetup(setup);
 					userService.saveUser(user);
+					
 				} catch (Exception e) {
 					System.out.println("Entró en exceptción");
 					System.out.println(e.getMessage());
 					return "sign-up";
-				}			
+				}
+				
+				/* Start send email confirmation to admins, delete if exception could be Throw for out of space in email container or other */
+				if(user != null) {
+					MimeMessagePreparator preparator = new MimeMessagePreparator() {
+						public void prepare(MimeMessage mimeMessage) throws Exception {
+							mimeMessage.setSubject("Nuevo registro de usuario");
+							mimeMessage.setRecipient(Message.RecipientType.TO,
+									new InternetAddress("berlot83@yahoo.com.ar", "jaggerloco@hotmail.com"));
+							mimeMessage.setFrom(new InternetAddress("info@molokotech.com"));
+							mimeMessage
+									.setText("El usuario: " + user.getName() + ", ha sido registrado en pet-qr.com y su mail es: " + user.getEmail());
+						}
+					};
+
+					try {
+						this.emailSender.send(preparator);
+					} catch (MailException ex) {
+						System.err.println(ex.getMessage());
+					}
+				}
+				/* End send email confirmation to admins, delete if exception could be Throw for out of space in email container or other */
+				
 				return "success";
 				
 			}else {
