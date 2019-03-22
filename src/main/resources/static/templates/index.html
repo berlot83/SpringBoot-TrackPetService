@@ -53,7 +53,7 @@
 	<div th:if="${#session != null}" style="position:absolute; left:77%; top:13%;" id="logoStarterAnimation">
 	   <img src="../img/iconoPet75.png" style="position:absolute; left:33px; top:0px;" class="animated flipInX delay-2s" id="pLogo" onmouseover="changeCursorToimages()" onclick="window.location.href = '/account'">
 	   <h5 id="titleStarter1" style="position:absolute; left:0px; top:145px; width: 230px" class="animated flipInX delay-3s" th:text="#{index.intro1}"></h5>
-	   <h4 id="titleStarter2" style="position:absolute; left:10px; top:175px; width:270px" class="animated flipInX delay-4s" th:text="#{index.intro2}">But a whole Platform!</h4>
+	   <h4 id="titleStarter2" style="position:absolute; left:0px; top:175px; width:280px" class="animated flipInX delay-4s" th:text="#{index.intro2}">But a whole Platform!</h4>
 	   <h4 id="titleStarter3" style="position:absolute; left:0px; top:210px; width:300px;" class="animated flipInX delay-5s" th:utext="#{index.intro3}"></div>
 	
 	<!-- Action Buttons start -->
@@ -237,7 +237,6 @@
 							<li class="title"><img alt="Login" src="../img/login150.png" class="img-fluid"></li>
 								<li><b th:text="#{index.howto.login.title}">2) Login</b></li>
 								<li><i style="color:#ff8000" class="fas fa-long-arrow-alt-right"></i> <span  th:text="#{index.howto.login.loginto}"></span></li>
-								<li><small style="color:DarkGreen" th:text="#{index.howto.login.loginneeded}"></small></li>
 								<li><button class="btn btn-lg button" onclick="window.location.href='/login'" style="background-color:rgb(249, 111, 118)" th:text="#{index.howto.login.buttonlogin}">Login</button></li>
 							</ul>
 						<div >
