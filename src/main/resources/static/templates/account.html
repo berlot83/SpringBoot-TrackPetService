@@ -22,6 +22,7 @@
 	<script type="text/javascript" src="../js/download.js"></script>
 	<script type="text/javascript" src="../js/setup.js"></script>
 	<script type="text/javascript" src="../js/alerts.js"></script>
+	<script type="text/javascript" src="../js/parallax.js"></script>
 
 	<script type="text/javascript">
 		/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
@@ -54,6 +55,15 @@
 
 <body onload="getAllPrepaidQR(), retriveSetup()">
 	<nav th:replace="default :: bar"></nav>
+	<!-- Parallax start -->
+<style>
+.parallax-window {
+    min-height: 150px;
+    background: transparent;
+}
+</style>
+<div class="parallax-window" id="parallaxIndex" data-parallax="scroll" data-image-src="../img/accountParallax.png" style="box-shadow:0px 0px 75px black;"></div>
+<!-- Parallax end -->
 
 	<div th:if="${errorNoUpload != null}" class="alert alert-danger">
 		<p th:text="${errorNoUpload}"></p> <a href='/account' style="color: red">Refresh</a>

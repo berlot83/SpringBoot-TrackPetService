@@ -5,7 +5,10 @@
  */
 package com.molokotech.config;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.LocaleResolver;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -90,12 +94,12 @@ public class PageConfig implements WebMvcConfigurer {
 	/* Thymeleaf local config start */
 	
 	/* Set  default lang to English, deactivate, but active if needed */
-//	@Bean
-//	public LocaleResolver localeResolver() {
-//	    SessionLocaleResolver slr = new SessionLocaleResolver();
-//	    slr.setDefaultLocale(Locale.US);
-//	    return slr;
-//	}
+	@Bean
+	public SessionLocaleResolver localeResolver() {
+	    SessionLocaleResolver slr = new SessionLocaleResolver();
+	    slr.setDefaultLocale(Locale.US);
+	    return slr;
+	}
 	
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
