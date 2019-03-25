@@ -275,6 +275,11 @@ div.columns {
 	}
 
 	/* cellphones */
+	#arrowRight {
+		position: absolute;
+		top: 30px;
+		left: -50px
+	}
 	#pLogo {
 		width: 30px !important;
 		top: 30px !important;
@@ -342,7 +347,7 @@ div.columns {
 	h3 {
 		font-size: medium !important;
 	}
-	#footer { 
+	#footer {
 		height: 70px !important;
 		background-color: black;
 		position: relative;
